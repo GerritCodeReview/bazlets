@@ -1,0 +1,11 @@
+*.sublime-*
+/bazel-bin
+/bazel-genfiles
+/bazel-bazlets
+/bazel-out
+/bazel-testlogs
+*.pyc
+.DS_Store
+*.swp
+*.asc
+*~
