@@ -71,7 +71,10 @@ def gerrit_plugin(
     gwt_binary(
       name = name + '__gwt_application',
       module = [gwt_module],
-      deps = GWT_PLUGIN_DEPS + GWT_TRANSITIVE_DEPS + ['//external:gwt-dev'],
+      deps = GWT_PLUGIN_DEPS + GWT_TRANSITIVE_DEPS + [
+          '//external:gwt-dev',
+          '//external:gwt-user',
+      ],
       module_deps = [':%s__gwt_module' % name],
       compiler_args = GWT_COMPILER_ARGS,
       jvm_args = GWT_JVM_ARGS,
