@@ -5,3 +5,7 @@ PLUGIN_DEPS_NEVERLINK = [
 PLUGIN_DEPS = [
     "//external:gerrit-plugin-api",
 ]
+
+PLUGIN_TEST_DEPS=[
+    "//external:gerrit-acceptance-framework"
+]

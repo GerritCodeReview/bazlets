@@ -1,5 +1,10 @@
 load("//tools:genrule2.bzl", "genrule2")
-load("//tools:commons.bzl", "PLUGIN_DEPS_NEVERLINK")
+load(
+    "//tools:commons.bzl",
+    "PLUGIN_DEPS",
+    "PLUGIN_DEPS_NEVERLINK",
+    "PLUGIN_TEST_DEPS",
+)
 load(
     "//tools:gwt.bzl",
     "GWT_PLUGIN_DEPS",
