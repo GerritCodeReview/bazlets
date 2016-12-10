@@ -17,6 +17,7 @@ gerrit_plugin is rule for building Gerrit plugins using Bazel.
 def gerrit_plugin(
     name,
     deps = [],
+    provided_deps = [],
     srcs = [],
     gwt_module = [],
     resources = [],
@@ -33,7 +34,7 @@ def gerrit_plugin(
     name = name + '__plugin',
     srcs = srcs,
     resources = resources,
-    deps = deps + gwt_deps + PLUGIN_DEPS_NEVERLINK,
+    deps = provided_deps + deps + gwt_deps + PLUGIN_DEPS_NEVERLINK,
     visibility = ['//visibility:public'],
     **kwargs
   )
