@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "bafcf4a9_fdf5f908",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-01-26T08:28:50Z",
+      "side": 1,
+      "message": "Good point. Havn\u0027t had time to address it.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 23
+      },
+      "revId": "7fb38cda16b07dea52035a400c32345bfc1bb613",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "45fb63b8_3c984451",
         "filename": "tools/eclipse/project.py",
         "patchSetId": 1
@@ -48,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "0ca24ca2_7f9268d4",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-01-26T08:28:50Z",
+      "side": 1,
+      "message": "Not applicable any more.",
+      "range": {
+        "startLine": 123,
+        "startChar": 36,
+        "endLine": 123,
+        "endChar": 37
+      },
+      "revId": "7fb38cda16b07dea52035a400c32345bfc1bb613",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "90cbff90_05678a9d",
         "filename": "tools/eclipse/project.py",
         "patchSetId": 1
@@ -59,6 +105,29 @@
       "writtenOn": "2017-01-26T01:26:15Z",
       "side": 1,
       "message": "whitespace",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 2
+      },
+      "revId": "7fb38cda16b07dea52035a400c32345bfc1bb613",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "deb6aa92_659ee60b",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-01-26T08:28:50Z",
+      "side": 1,
+      "message": "Done",
       "range": {
         "startLine": 195,
         "startChar": 0,
