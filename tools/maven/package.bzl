@@ -25,6 +25,7 @@ sh_bang_template = (" && ".join([
 
 def maven_package(
     version,
+    group,
     repository = None,
     url = None,
     jar = {},
@@ -33,7 +34,12 @@ def maven_package(
     war = {}):
 
   build_cmd = ['bazel', 'build']
-  mvn_cmd = ['$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)', '-v', version, '-r', '.']
+  mvn_cmd = [
+    '$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)',
+    '-v', version,
+    '-g', group,
+    '-r', '.',
+  ]
   api_cmd = mvn_cmd[:]
   api_targets = []
   for type,d in [('jar', jar), ('java-source', src), ('javadoc', doc)]:
