@@ -20,7 +20,7 @@ sh_bang_template = (" && ".join([
     "echo \"\" >> $@",
     "echo %s >> $@",
     "echo \"\" >> $@",
-    "echo %s >> $@",
+    "echo 'python $$OUTPUT_BASE/%s' >> $@",
 ]))
 
 def maven_package(
@@ -33,7 +33,7 @@ def maven_package(
     war = {}):
 
   build_cmd = ['bazel', 'build']
-  mvn_cmd = ['python', '$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)', '-v', version, '-r', '.']
+  mvn_cmd = ['$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)', '-v', version, '-r', '.']
   api_cmd = mvn_cmd[:]
   api_targets = []
   for type,d in [('jar', jar), ('java-source', src), ('javadoc', doc)]:
