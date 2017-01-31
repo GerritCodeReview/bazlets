@@ -19,43 +19,49 @@ from os import path, environ
 from subprocess import check_output
 from sys import stderr
 
+def mvn(action):
+  return ['mvn', '--file', path.join(root, 'fake_pom_%s.xml' % action)]
+
 opts = OptionParser()
 opts.add_option('--repository', help='maven repository id')
 opts.add_option('--url', help='maven repository url')
 opts.add_option('-o')
 opts.add_option('-r', '--root', help='Root directory')
+opts.add_option('-g', help='maven group id')
 opts.add_option('-a', help='action (valid actions are: install,deploy)')
 opts.add_option('-v', help='gerrit version')
 opts.add_option('-s', action='append', help='triplet of artifactId:type:path')
 
 args, ctx = opts.parse_args()
+if not args.g:
+  print('group is empty', file=stderr)
+  exit(1)
+
 if not args.v:
   print('version is empty', file=stderr)
   exit(1)
 
 if not args.root:
   opts.error('Root option not provided')
-  sys.exit(1)
+  exit(1)
 
-root = args.root
-ROOT = path.abspath(root)
-while not path.exists(path.join(ROOT, 'WORKSPACE')):
-  ROOT = path.dirname(ROOT)
+common = [
+  '-DgroupId=%s' % args.g,
+  '-Dversion=%s' % args.v,
+]
+
+root = path.abspath(args.root)
+while not path.exists(path.join(root, 'WORKSPACE')):
+  root = path.dirname(root)
 
 if 'install' == args.a:
-  cmd = [
-    'mvn',
-    'install:install-file',
-    '-Dversion=%s' % args.v,
-  ]
+  cmd = mvn(args.a) + ['install:install-file'] + common
 elif 'deploy' == args.a:
-  cmd = [
-    'mvn',
+  cmd = mvn(args.a) + [
     'gpg:sign-and-deploy-file',
     '-DrepositoryId=%s' % args.repository,
-    '-Dversion=%s' % args.v,
     '-Durl=%s' % args.url,
-  ]
+  ] + common
 else:
   print("unknown action -a %s" % args.a, file=stderr)
   exit(1)
@@ -63,7 +69,7 @@ else:
 for spec in args.s:
   artifact, packaging_type, src = spec.split(':')
   exe = cmd + [
-    '-DpomFile=%s' % path.join(root, '%s/pom.xml' % artifact),
+    '-DartifactId=%s' % artifact,
     '-Dpackaging=%s' % packaging_type,
     '-Dfile=%s' % src,
   ]
