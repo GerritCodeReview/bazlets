@@ -30,8 +30,7 @@ def maven_package(
     url = None,
     jar = {},
     src = {},
-    doc = {},
-    war = {}):
+    doc = {}):
 
   build_cmd = ['bazel', 'build']
   mvn_cmd = [
@@ -71,33 +70,3 @@ def maven_package(
       executable = True,
       testonly = 1,
     )
-
-  if war:
-    war_cmd = mvn_cmd[:]
-    war_targets = []
-    for a,t in sorted(war.items()):
-      war_cmd.append('-s %s:war:$(location %s)' % (a,t))
-      war_targets.append(t)
-
-    native.genrule(
-      name = 'gen_war_install',
-      cmd = sh_bang_template % (' '.join(build_cmd + war_targets),
-                                ' '.join(war_cmd + ['-a', 'install'])),
-      srcs = war_targets,
-      outs = ['war_install.sh'],
-      executable = True,
-    )
-
-    if repository and url:
-      native.genrule(
-        name = 'gen_war_deploy',
-        cmd = sh_bang_template % (
-            ' '.join(build_cmd + war_targets),
-            ' '.join(war_cmd + [
-          '-a', 'deploy',
-          '--repository', repository,
-          '--url', url])),
-        srcs = war_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
-        outs = ['war_deploy.sh'],
-        executable = True,
-      )
