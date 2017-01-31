@@ -33,7 +33,7 @@ def maven_package(
     war = {}):
 
   build_cmd = ['bazel', 'build']
-  mvn_cmd = ['python', 'tools/maven/mvn.py', '-v', version]
+  mvn_cmd = ['python', '$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)', '-v', version, '-r', '.']
   api_cmd = mvn_cmd[:]
   api_targets = []
   for type,d in [('jar', jar), ('java-source', src), ('javadoc', doc)]:
@@ -46,7 +46,7 @@ def maven_package(
     cmd = sh_bang_template % (
       ' '.join(build_cmd + api_targets),
       ' '.join(api_cmd + ['-a', 'install'])),
-    srcs = api_targets,
+    srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
     outs = ['api_install.sh'],
     executable = True,
     testonly = 1,
@@ -60,7 +60,7 @@ def maven_package(
         ' '.join(api_cmd + ['-a', 'deploy',
                             '--repository', repository,
                             '--url', url])),
-      srcs = api_targets,
+      srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
       outs = ['api_deploy.sh'],
       executable = True,
       testonly = 1,
@@ -91,7 +91,7 @@ def maven_package(
           '-a', 'deploy',
           '--repository', repository,
           '--url', url])),
-        srcs = war_targets,
+        srcs = war_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
         outs = ['war_deploy.sh'],
         executable = True,
       )
