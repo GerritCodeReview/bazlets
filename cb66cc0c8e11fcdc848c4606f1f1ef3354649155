@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "60079afb_cdfde141",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-02-17T02:00:26Z",
+      "side": 1,
+      "message": "I tried to add some logic to make it only add Implementation-Vendor if it\u0027s not already there, but couldn\u0027t get it to work...",
+      "revId": "cb66cc0c8e11fcdc848c4606f1f1ef3354649155",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
