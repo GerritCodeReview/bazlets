@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "601fa176_d1712d66",
+        "filename": "tools/pkg_war.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-04-03T06:08:53Z",
+      "side": 1,
+      "message": "Trailing blanks.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 4
+      },
+      "revId": "03f89b9f62b43df43ea3cb8dba759f700e83b60c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
