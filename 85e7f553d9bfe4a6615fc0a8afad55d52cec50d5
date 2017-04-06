@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6bb6e99f_ecc248d0",
+        "filename": "bouncycastle.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-04-06T23:21:34Z",
+      "side": 1,
+      "message": "Is it worth adding a comment that this should match the version in core Gerrit?",
+      "revId": "85e7f553d9bfe4a6615fc0a8afad55d52cec50d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e93be73_bc57a142",
+        "filename": "bouncycastle.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-04-06T23:21:34Z",
+      "side": 1,
+      "message": "\"repositories\" or \"repos\" since there are more than one?",
+      "range": {
+        "startLine": 9,
+        "startChar": 17,
+        "endLine": 9,
+        "endChar": 27
+      },
+      "revId": "85e7f553d9bfe4a6615fc0a8afad55d52cec50d5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
