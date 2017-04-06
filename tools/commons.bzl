@@ -6,6 +6,9 @@ PLUGIN_DEPS = [
     "//external:gerrit-plugin-api",
 ]
 
-PLUGIN_TEST_DEPS=[
-    "//external:gerrit-acceptance-framework"
+PLUGIN_TEST_DEPS = [
+    "//external:bcpg",
+    "//external:bcpkix",
+    "//external:bcprov",
+    "//external:gerrit-acceptance-framework",
 ]
