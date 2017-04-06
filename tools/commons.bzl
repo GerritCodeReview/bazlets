@@ -7,5 +7,8 @@ PLUGIN_DEPS = [
 ]
 
 PLUGIN_TEST_DEPS=[
-    "//external:gerrit-acceptance-framework"
+    "//external:bcpg",
+    "//external:bcpkix",
+    "//external:bcprov",
+    "//external:gerrit-acceptance-framework",
 ]
