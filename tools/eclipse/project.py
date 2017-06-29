@@ -109,7 +109,7 @@ def gen_classpath(ext):
   src = set()
   lib = set()
 
-  java_library = re.compile('bazel-out/local-fastbuild/bin/(.*)/[^/]+[.]jar$')
+  java_library = re.compile('bazel-out/(?:.*)-fastbuild/bin/(.*)/[^/]+[.]jar$')
   srcs = re.compile('(.*/external/[^/]+)/jar/(.*)[.]jar')
   for p in _query_classpath(MAIN):
     m = java_library.match(p)
