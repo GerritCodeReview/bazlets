@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9b413cbe_0e0eb347",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-07-05T04:41:38Z",
+      "side": 1,
+      "message": "Optional: I\u0027m sure we forget it again. Add a comment on bouncycastle line in gerrit/WORKSPACE that bouncycastle in bazlets project (here) must be updated as well.",
+      "revId": "d1dd04380a2e41a32fca265c999936c35fcfae14",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
