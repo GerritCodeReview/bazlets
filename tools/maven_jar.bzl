@@ -69,6 +69,18 @@ def _create_coordinates(fully_qualified_name):
       version = version,
   )
 
+def _format_deps(attr, deps):
+  formatted_deps = ""
+  if deps:
+    if len(deps) == 1:
+      formatted_deps += "%s = [\'%s\']," % (attr, deps[0])
+    else:
+      formatted_deps += "%s = [\n" % attr
+      for dep in deps:
+        formatted_deps += "        \'%s\',\n" % dep
+      formatted_deps += "    ],"
+  return formatted_deps
+
 # Provides the syntax "@jar_name//jar" for bin classifier
 # and "@jar_name//src" for sources
 def _generate_build_file(ctx, classifier, filename):
@@ -77,13 +89,17 @@ def _generate_build_file(ctx, classifier, filename):
 java_import(
     name = '{classifier}',
     jars = ['{filename}'],
-    visibility = ['//visibility:public']
+    visibility = ['//visibility:public'],
+    {deps}
+    {exports}
 )
 java_import(
     name = 'neverlink',
     jars = ['{filename}'],
     neverlink = 1,
-    visibility = ['//visibility:public']
+    visibility = ['//visibility:public'],
+    {deps}
+    {exports}
 )
 filegroup(
     name = 'file',
@@ -91,7 +107,9 @@ filegroup(
     visibility = ['//visibility:public']
 )\n""".format(classifier = classifier,
               rule_name = ctx.name,
-              filename = filename)
+              filename = filename,
+              deps = _format_deps("deps", ctx.attr.deps),
+              exports = _format_deps("exports", ctx.attr.exports))
   ctx.file('%s/BUILD' % ctx.path(classifier), contents, False)
 
 def _maven_jar_impl(ctx):
@@ -147,6 +165,8 @@ maven_jar = repository_rule(
         "repository": attr.string(default = MAVEN_CENTRAL),
         "attach_source": attr.bool(default = True),
         "unsign": attr.bool(default = False),
+        "deps": attr.string_list(),
+        "exports": attr.string_list(),
         "exclude": attr.string_list(),
     },
     local = True,
