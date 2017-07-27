@@ -26,15 +26,11 @@ from xml.dom import minidom
 import re
 import sys
 
-MAIN = '//tools/eclipse:classpath'
 JRE = '/'.join([
   'org.eclipse.jdt.launching.JRE_CONTAINER',
   'org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType',
   'JavaSE-1.8',
 ])
-cp_targets = {
-  MAIN: '//tools/eclipse:main_classpath_collect',
-}
 
 opts = OptionParser()
 opts.add_option('-r', '--root', help='Root directory entry')
@@ -54,9 +50,9 @@ while not path.exists(path.join(ROOT, 'WORKSPACE')):
 def retrieve_ext_location():
   return check_output(['bazel', 'info', 'output_base']).strip()
 
-def _query_classpath(target):
+def _query_classpath():
   deps = []
-  t = cp_targets[target]
+  t = '//tools/eclipse:main_classpath_collect'
   try:
     check_call(['bazel', 'build', t])
   except CalledProcessError:
@@ -111,7 +107,7 @@ def gen_classpath(ext):
 
   java_library = re.compile('bazel-out/local-fastbuild/bin(.*)/[^/]+[.]jar$')
   srcs = re.compile('(.*/external/[^/]+)/jar/(.*)[.]jar')
-  for p in _query_classpath(MAIN):
+  for p in _query_classpath():
     m = java_library.match(p)
     if m:
       src.add(m.group(1).lstrip('/'))
@@ -190,10 +186,6 @@ try:
   gen_project(name)
   gen_classpath(retrieve_ext_location())
 
-  try:
-    check_call(['bazel', 'build', MAIN])
-  except CalledProcessError:
-    exit(1)
 except KeyboardInterrupt:
   print('Interrupted by user', file=sys.stderr)
   exit(1)
