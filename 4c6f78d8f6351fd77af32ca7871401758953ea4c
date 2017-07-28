@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c45e2243_604d0298",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-07-28T03:17:50Z",
+      "side": 0,
+      "message": "Yes, gen_factorypath() is dead code and AUTO was never defined. I copied it from gerrit core, because i thought one day, we would need annotation pre-processing support not only in gerrit core, but also in other projects, that use bazlets.\n\nI think this was a bad idea. We should remove it, but let us do it in its own change. Dropping of factorypath generation code is unrelated to dropping the need for //tools/eclipse:classpath target.",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 0
+      },
+      "revId": "4c6f78d8f6351fd77af32ca7871401758953ea4c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
