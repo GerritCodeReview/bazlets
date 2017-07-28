@@ -51,7 +51,6 @@ def retrieve_ext_location():
   return check_output(['bazel', 'info', 'output_base']).strip()
 
 def _query_classpath():
-  deps = []
   t = '//tools/eclipse:main_classpath_collect'
   try:
     check_call(['bazel', 'build', t])
