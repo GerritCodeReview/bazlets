@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "29300602_bb847244",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-07-28T03:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65892845_1da41cb2",
+      "revId": "4bb4b4d85c6d8ccf0e46f92398c051b3810c6ce2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4cd18a77_7adad037",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-07-28T03:17:50Z",
       "side": 1,
       "message": "Can you add test plan? Something like:\n\nTest Plan:\n\n* bazel clean --expunge\n* run tools/eclipse/project.py (or project.sh)\n* verify that all artifacts listed in .classpath are correctly fetched.",
+      "revId": "4bb4b4d85c6d8ccf0e46f92398c051b3810c6ce2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "541b0300_782efee1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-07-28T03:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cd18a77_7adad037",
       "revId": "4bb4b4d85c6d8ccf0e46f92398c051b3810c6ce2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
