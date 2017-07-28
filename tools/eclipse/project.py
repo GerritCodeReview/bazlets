@@ -160,20 +160,6 @@ def gen_classpath(ext):
   with open(p, 'w') as fd:
     doc.writexml(fd, addindent='\t', newl='\n', encoding='UTF-8')
 
-def gen_factorypath(ext):
-  doc = minidom.getDOMImplementation().createDocument(None, 'factorypath', None)
-  for jar in _query_classpath(AUTO):
-    e = doc.createElement('factorypathentry')
-    e.setAttribute('kind', 'EXTJAR')
-    e.setAttribute('id', path.join(ext, jar))
-    e.setAttribute('enabled', 'true')
-    e.setAttribute('runInBatchMode', 'false')
-    doc.documentElement.appendChild(e)
-
-  p = path.join(ROOT, '.factorypath')
-  with open(p, 'w') as fd:
-    doc.writexml(fd, addindent='\t', newl='\n', encoding='UTF-8')
-
 def excluded(lib):
   if args.exclude:
     for x in args.exclude:
