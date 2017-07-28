@@ -51,15 +51,13 @@ def retrieve_ext_location():
   return check_output(['bazel', 'info', 'output_base']).strip()
 
 def _query_classpath():
-  deps = []
   t = '//tools/eclipse:main_classpath_collect'
   try:
     check_call(['bazel', 'build', t])
   except CalledProcessError:
     exit(1)
   name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
-  deps = [line.rstrip('\n') for line in open(name)]
-  return deps
+  return [line.rstrip('\n') for line in open(name)]
 
 def gen_project(name, root=ROOT):
   p = path.join(root, '.project')
