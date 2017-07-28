@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ffc87f8e_c585fa41",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-07-28T11:20:01Z",
+      "side": 1,
+      "message": "Could be simplified further to:\n\n return [line.rstrip(\u0027\\n\u0027) for line in open(name)]",
+      "range": {
+        "startLine": 60,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 13
+      },
+      "revId": "861355d7c81b6c955c44fc007ca00b1785c5802e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
