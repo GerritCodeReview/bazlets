@@ -20,7 +20,7 @@ from __future__ import print_function
 # ...
 # optparse.OptionParser
 from optparse import OptionParser
-from os import environ, path, makedirs
+from os import path
 from subprocess import CalledProcessError, check_call, check_output
 from xml.dom import minidom
 import re
