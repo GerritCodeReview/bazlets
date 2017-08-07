@@ -27,20 +27,25 @@ def gerrit_plugin(
     gwt_module = [],
     resources = [],
     manifest_entries = [],
+    plugin_deps_neverlink = PLUGIN_DEPS_NEVERLINK,
+    gwt_plugin_deps = GWT_PLUGIN_DEPS,
+    gwt_plugin_deps_neverlink = GWT_PLUGIN_DEPS_NEVERLINK,
     target_suffix = "",
     **kwargs):
 
   gwt_deps = []
   static_jars = []
+  if not plugin_deps_neverlink:
+    plugin_deps_neverlink = PLUGIN_DEPS_NEVERLINK
   if gwt_module:
     static_jars = [':%s-static' % name]
-    gwt_deps = GWT_PLUGIN_DEPS_NEVERLINK
+    gwt_deps = gwt_plugin_deps
 
   native.java_library(
     name = name + '__plugin',
     srcs = srcs,
     resources = resources,
-    deps = provided_deps + deps + gwt_deps + PLUGIN_DEPS_NEVERLINK,
+    deps = provided_deps + deps + gwt_deps + plugin_deps_neverlink,
     visibility = ['//visibility:public'],
     **kwargs
   )
@@ -59,7 +64,7 @@ def gerrit_plugin(
     native.java_library(
       name = name + '__gwt_module',
       resources = list(set(srcs + resources)),
-      runtime_deps = deps + GWT_PLUGIN_DEPS,
+      runtime_deps = deps + gwt_plugin_deps,
       visibility = ['//visibility:public'],
     )
     genrule2(
@@ -75,7 +80,7 @@ def gerrit_plugin(
     gwt_binary(
       name = name + '__gwt_application',
       module = [gwt_module],
-      deps = GWT_PLUGIN_DEPS + GWT_TRANSITIVE_DEPS + [
+      deps = gwt_plugin_deps + GWT_TRANSITIVE_DEPS + [
         '//external:gwt-dev',
         '//external:gwt-user',
       ],
