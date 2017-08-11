@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ed912e4_9508f214",
+        "filename": "gerrit_api_multiversion.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-08-11T09:56:56Z",
+      "side": 1,
+      "message": "This means this file will grow \"ad-infinitum\" to accommodate any new released version?",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "0210e3cd881a9b802c053840bbfc4e8b51991abd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd2a4257_2d080c28",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-08-11T09:56:56Z",
+      "side": 1,
+      "message": "Is this necessary given you\u0027re using a default value on line 30?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "0210e3cd881a9b802c053840bbfc4e8b51991abd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
