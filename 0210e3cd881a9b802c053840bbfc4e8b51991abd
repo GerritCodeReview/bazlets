@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "c241fa5c_4af6cef5",
+        "filename": "gerrit_api_multiversion.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-08-14T05:38:23Z",
+      "side": 1,
+      "message": "In principle yes. We could decide, to offer api_multiple_all.bzl and api_multiple_latest_released.bzl only, where we would offer only the latest minor releases, e.g.: 2.11.7, 2.12.x, 2.13.9, 2.14.2 etc.\n\nMoreover, another optimization would be to add skip_release_x option, that would be active by default. So that the caller would say:\n\n  gerrit_api_multiversion(skip_release_2.13 \u003d false)",
+      "parentUuid": "8ed912e4_9508f214",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "0210e3cd881a9b802c053840bbfc4e8b51991abd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "fd2a4257_2d080c28",
         "filename": "gerrit_plugin.bzl",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-08-11T09:56:56Z",
       "side": 1,
       "message": "Is this necessary given you\u0027re using a default value on line 30?",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 49
+      },
+      "revId": "0210e3cd881a9b802c053840bbfc4e8b51991abd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ecc86adf_98a9b431",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-08-14T05:38:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd2a4257_2d080c28",
       "range": {
         "startLine": 38,
         "startChar": 2,
