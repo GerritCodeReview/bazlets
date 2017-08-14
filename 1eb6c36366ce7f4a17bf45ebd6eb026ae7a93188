@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "42a5de48_91a7b208",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-08-14T09:48:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a338f06_da18c2a0",
+      "revId": "1eb6c36366ce7f4a17bf45ebd6eb026ae7a93188",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "46d42189_75b8bbb1",
         "filename": "tools/junit.bzl",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-08-14T05:56:20Z",
       "side": 1,
       "message": "So far, the workaround was to avoid having dash in test target. Can you clarify, why this doesn\u0027t work for you? Should we do it in gerrit core as well?",
+      "revId": "1eb6c36366ce7f4a17bf45ebd6eb026ae7a93188",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b26e1caa_400d03fb",
+        "filename": "tools/junit.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-08-14T09:48:30Z",
+      "side": 1,
+      "message": "Well, the initial idea was to simplify a bit more the build for plugins. This included setting the plugin\u0027s name, which is used to name the rules, in a file .bzl file so that this name could be set once and then read from other files where the name could be needed. This works well for the standalone build and means you\u0027ll only need to set the plugin name in one place. The in-tree build, though, is broken as a result and I haven\u0027t found a way to make it work.\nIn conclusion, this change was required for that simplification but lately I\u0027ve been busy on other things so didn\u0027t continue working on making in-tree build work with the new file.",
+      "parentUuid": "46d42189_75b8bbb1",
       "revId": "1eb6c36366ce7f4a17bf45ebd6eb026ae7a93188",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
