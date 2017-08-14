@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8a338f06_da18c2a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-08-14T05:56:20Z",
+      "side": 1,
+      "message": "Nit: empty line before Change-Id.",
+      "revId": "1eb6c36366ce7f4a17bf45ebd6eb026ae7a93188",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "46d42189_75b8bbb1",
+        "filename": "tools/junit.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-08-14T05:56:20Z",
+      "side": 1,
+      "message": "So far, the workaround was to avoid having dash in test target. Can you clarify, why this doesn\u0027t work for you? Should we do it in gerrit core as well?",
+      "revId": "1eb6c36366ce7f4a17bf45ebd6eb026ae7a93188",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
