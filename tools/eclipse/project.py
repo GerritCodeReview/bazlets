@@ -114,6 +114,7 @@ def gen_classpath(ext):
         p = path.join(ext, p)
         lib.add(p)
 
+  src_paths = {}
   for s in sorted(src):
     out = None
 
@@ -133,9 +134,17 @@ def gen_classpath(ext):
         o = 'eclipse-out/test'
 
       for srctype in ['java', 'resources']:
+        p = path.join('src', env, srctype)
+        if s.startswith(p):
+          src_paths[p] = o
+          continue
+
         p = path.join(s, 'src', env, srctype)
         if path.exists(p):
-          classpathentry('src', p, out=o)
+          src_paths[p] = o
+
+  for s in src_paths:
+    classpathentry('src', s, out=src_paths[s])
 
   for libs in [lib]:
     for j in sorted(libs):
