@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "275eba42_65cfd0e8",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1011842
+      },
+      "writtenOn": "2017-08-20T02:29:41Z",
+      "side": 1,
+      "message": "Won\u0027t \"javatests\" match \"java\" in this condition?",
+      "revId": "bdf3bd5dbdaf930b7f051f4e9d41338b2a0bc3d1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
