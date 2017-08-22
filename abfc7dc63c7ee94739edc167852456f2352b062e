@@ -22,6 +22,30 @@
       "revId": "abfc7dc63c7ee94739edc167852456f2352b062e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5ad9bd55_e334f90a",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-08-22T17:37:20Z",
+      "side": 1,
+      "message": "\u003e Elsewhere this function assumes s uses \u0027/\u0027 as path separator.\n \u003e \n \u003e I worry that, on Windows, using \u0027/\u0027 elsewhere and \u0027\\\\\u0027 here will\n \u003e not produce the correct result. Could this just use \u0027/\u0027?\n\nDone. So, we are far away from the ability to build on Windows, unfortunately, see my recent issues i filed against bazel project: [1].\n\n* [1] https://github.com/bazelbuild/bazel/issues?q\u003dis%3Aopen+is%3Aissue+author%3Adavido+label%3A%22category%3A+multi-platform+%3E+windows%22",
+      "parentUuid": "f0da6a54_60fae333",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 36
+      },
+      "revId": "abfc7dc63c7ee94739edc167852456f2352b062e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
