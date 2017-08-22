@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f0da6a54_60fae333",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1011842
+      },
+      "writtenOn": "2017-08-22T16:56:09Z",
+      "side": 1,
+      "message": "Elsewhere this function assumes s uses \u0027/\u0027 as path separator.\n\nI worry that, on Windows, using \u0027/\u0027 elsewhere and \u0027\\\\\u0027 here will not produce the correct result. Could this just use \u0027/\u0027?",
+      "range": {
+        "startLine": 136,
+        "startChar": 28,
+        "endLine": 136,
+        "endChar": 36
+      },
+      "revId": "abfc7dc63c7ee94739edc167852456f2352b062e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
