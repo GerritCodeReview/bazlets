@@ -16,7 +16,7 @@
 from __future__ import print_function
 from optparse import OptionParser
 from os import path, environ
-from subprocess import check_output
+from subprocess import check_output, CalledProcessError
 from sys import stderr
 
 def mvn(action):
@@ -77,8 +77,9 @@ for spec in args.s:
     if environ.get('VERBOSE'):
       print(' '.join(exe), file=stderr)
     check_output(exe)
-  except Exception as e:
-    print('%s command failed: %s\n%s' % (args.a, ' '.join(exe), e),
+  except CalledProcessError as e:
+    print(
+      '%s command failed: %s\n%s\n%s' % (args.a, ' '.join(exe), e, e.output),
       file=stderr)
     exit(1)
 
