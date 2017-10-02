@@ -90,7 +90,7 @@ USER_AGENT_XML = """<module rename-to='gerrit_ui'>
 
 def gwt_module(gwt_xml=None, resources=[], srcs=[], **kwargs):
   if gwt_xml:
-    resources += [gwt_xml]
+    resources = resources + [gwt_xml]
 
   java_library2(
     srcs = srcs,
@@ -162,7 +162,7 @@ def _gwt_binary_impl(ctx):
     deploy_dir,
   )
   # TODO(davido): clean up command concatenation
-  cmd += " ".join([
+  cmd = cmd + " ".join([
     "-style %s" % ctx.attr.style,
     "-optimize %s" % ctx.attr.optimize,
     "-strict",
@@ -186,15 +186,15 @@ def _gwt_binary_impl(ctx):
   )
 
 def _get_transitive_closure(ctx):
-  deps = set()
+  deps = depset()
   for dep in ctx.attr.module_deps:
-    deps += dep.java.transitive_runtime_deps
-    deps += dep.java.transitive_source_jars
+    deps = deps + dep.java.transitive_runtime_deps
+    deps = deps + dep.java.transitive_source_jars
   for dep in ctx.attr.deps:
     if hasattr(dep, 'java'):
-      deps += dep.java.transitive_runtime_deps
+      deps = deps + dep.java.transitive_runtime_deps
     elif hasattr(dep, 'files'):
-      deps += dep.files
+      deps = deps + dep.files
 
   return deps
 
