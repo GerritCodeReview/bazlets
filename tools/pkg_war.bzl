@@ -31,7 +31,7 @@ def _add_file(name, in_file, output):
   if n != 'web.xml' and short_path.startswith('%s-' % name):
     n = short_path.split('/')[0] + '-' + n
 
-  output_path += n
+  output_path = output_path + n
 
   return [
     'test -L %s || ln -s $(pwd)/%s %s' % (output_path, input_path, output_path)
@@ -56,31 +56,31 @@ def _war_impl(ctx):
     'mkdir -p %s/WEB-INF/lib' % build_output,
   ]
 
-  transitive_lib_deps = set()
+  transitive_lib_deps = depset()
   for l in ctx.attr.libs:
     if hasattr(l, 'java'):
-      transitive_lib_deps += l.java.transitive_runtime_deps
+      transitive_lib_deps = transitive_lib_deps + l.java.transitive_runtime_deps
     elif hasattr(l, 'files'):
-      transitive_lib_deps += l.files
+      transitive_lib_deps = transitive_lib_deps + l.files
 
   for dep in transitive_lib_deps:
-    cmd += _add_file(ctx.attr.name, dep, build_output + '/WEB-INF/lib/')
+    cmd = cmd + _add_file(ctx.attr.name, dep, build_output + '/WEB-INF/lib/')
     inputs.append(dep)
 
   if ctx.attr.web_xml:
     for web_xml in ctx.attr.web_xml.files:
       inputs.append(web_xml)
-      cmd += _add_file(ctx.attr.name, web_xml, build_output + '/WEB-INF/')
+      cmd = cmd + _add_file(ctx.attr.name, web_xml, build_output + '/WEB-INF/')
 
-  transitive_context_deps = set()
+  transitive_context_deps = depset()
   if ctx.attr.context:
     for jar in ctx.attr.context:
       if hasattr(jar, 'java'):
-        transitive_context_deps += jar.java.transitive_runtime_deps
+        transitive_context_deps = transitive_context_deps + jar.java.transitive_runtime_deps
       elif hasattr(jar, 'files'):
-        transitive_context_deps += jar.files
+        transitive_context_deps = transitive_context_deps + jar.files
   for dep in transitive_context_deps:
-    cmd += _add_context(dep, build_output)
+    cmd = cmd + _add_context(dep, build_output)
     inputs.append(dep)
 
   # Add zip war

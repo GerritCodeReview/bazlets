@@ -73,12 +73,12 @@ def _format_deps(attr, deps):
   formatted_deps = ""
   if deps:
     if len(deps) == 1:
-      formatted_deps += "%s = [\'%s\']," % (attr, deps[0])
+      formatted_deps = formatted_deps + "%s = [\'%s\']," % (attr, deps[0])
     else:
-      formatted_deps += "%s = [\n" % attr
+      formatted_deps = formatted_deps + "%s = [\n" % attr
       for dep in deps:
-        formatted_deps += "        \'%s\',\n" % dep
-      formatted_deps += "    ],"
+        formatted_deps = formatted_deps +  "        \'%s\',\n" % dep
+      formatted_deps = formatted_deps + "    ],"
   return formatted_deps
 
 # Provides the syntax "@jar_name//jar" for bin classifier

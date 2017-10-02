@@ -20,8 +20,8 @@ def _impl(ctx):
   transitive_jar_set = set()
   source_jars = set()
   for l in ctx.attr.libs:
-    source_jars += l.java.source_jars
-    transitive_jar_set += l.java.transitive_deps
+    source_jars = source_jars + l.java.source_jars
+    transitive_jar_set = transitive_jar_set + l.java.transitive_deps
 
   transitive_jar_paths = [j.path for j in transitive_jar_set]
   dir = ctx.outputs.zip.path + ".dir"
