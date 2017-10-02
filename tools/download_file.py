@@ -127,7 +127,7 @@ if args.v:
 
 exclude = []
 if args.x:
-  exclude += args.x
+  exclude = exclude + args.x
 if args.exclude_java_sources:
   try:
     with ZipFile(cache_ent, 'r') as zf:
