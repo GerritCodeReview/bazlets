@@ -34,6 +34,24 @@
       "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93ac48bc_cb196371",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1029297
+      },
+      "writtenOn": "2017-11-28T22:54:35Z",
+      "side": 1,
+      "message": "Totally understand! Just mentioning so in the review so that nothing gets submitted early :)",
+      "parentUuid": "4a1b3eaf_9963a3b3",
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
