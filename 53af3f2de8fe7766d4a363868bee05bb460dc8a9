@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b971c2cb_c93f3d35",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1029297
+      },
+      "writtenOn": "2017-11-28T22:17:45Z",
+      "side": 1,
+      "message": "This should be re-forked from gerrit before submit.",
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
