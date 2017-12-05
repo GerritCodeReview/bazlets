@@ -52,6 +52,46 @@
       "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a84e9530_c3ccb1b1",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1024777
+      },
+      "writtenOn": "2017-12-05T23:35:08Z",
+      "side": 1,
+      "message": "Hm, this depends on licenses from //lib, doesn\u0027t it?\nWould a plugin need to add a new license there to be able to use the component?",
+      "range": {
+        "startLine": 208,
+        "startChar": 4,
+        "endLine": 208,
+        "endChar": 19
+      },
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "826cdf33_87434173",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1024777
+      },
+      "writtenOn": "2017-12-05T23:35:08Z",
+      "side": 1,
+      "message": "Do we need this to be public?\nWouldn\u0027t polygerrit_plugin be enough for the plugin developers?",
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
