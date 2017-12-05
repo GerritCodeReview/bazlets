@@ -92,6 +92,24 @@
       "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16395c20_8ccedbc1",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1024777
+      },
+      "writtenOn": "2017-12-05T23:52:38Z",
+      "side": 1,
+      "message": "Disregard, I completely missed obvious fact that gerrit/polygerrit-ui uses it.",
+      "parentUuid": "826cdf33_87434173",
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
