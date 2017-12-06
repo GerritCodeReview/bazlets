@@ -110,6 +110,24 @@
       "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f67121f4_34a70bf8",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1024777
+      },
+      "writtenOn": "2017-12-06T00:01:47Z",
+      "side": 1,
+      "message": "Actually, maybe this isn\u0027t needed after all, since it\u0027s a new thing.\n\nCan we not include it into interface? After all, vulcanize is deprecated in favor of polymer-bundler, so I\u0027d not add an incentive for plugin developers to depend on this.",
+      "parentUuid": "16395c20_8ccedbc1",
+      "revId": "53af3f2de8fe7766d4a363868bee05bb460dc8a9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
