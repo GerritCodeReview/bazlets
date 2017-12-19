@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "968b6e85_d7c2adfd",
+        "filename": "gerrit_prolog.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-19T06:44:56Z",
+      "side": 1,
+      "message": "I don\u0027t think this file is used at any place right now. I do have a working proposal, of removing the maven_jar from gerrit and consuming this from bazlets, in which case we could in fact remove those lines from WORKSPACE in gerrit core and include this file (that is broken now).\n\nThe relevant gerrit patch would then be something like: [1].\n\n* http://paste.openstack.org/show/629279",
+      "parentUuid": "f18fdeca_46091eff",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "f7b3cc40886f356ee39d5fb6c755109dda0f9536",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0c62083_baa79b01",
         "filename": "lib/prolog/java/BuckPrologCompiler.java",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2017-12-18T22:47:48Z",
       "side": 1,
       "message": "Now that Gerrit is going to consume this rule from Bazlets [1] and that this class won\u0027t be duplicated anymore, shouldn\u0027t we change this name to remove the (legacy) Buck prefix?\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/148810",
+      "range": {
+        "startLine": 24,
+        "startChar": 13,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "f7b3cc40886f356ee39d5fb6c755109dda0f9536",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "545cc659_544c9bc9",
+        "filename": "lib/prolog/java/BuckPrologCompiler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-19T06:44:56Z",
+      "side": 1,
+      "message": "+1.",
+      "parentUuid": "c0c62083_baa79b01",
       "range": {
         "startLine": 24,
         "startChar": 13,
