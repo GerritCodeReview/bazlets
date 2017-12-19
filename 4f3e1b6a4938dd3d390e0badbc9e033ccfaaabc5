@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9177cef6_f4d90a25",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-19T07:02:12Z",
+      "side": 1,
+      "message": "I think I messed here something up ;-( \n\n  expected b30a17d3c03108a8d800be048e7f0032a73041c7\n  received 0bcd16415c9f2cd2e51c5d6f8b0939b5742b69cd\n\nLooking at the sha1 files, this error is justified: [1].\n\n  0bcd16415c9f2cd2e51c5d6f8b0939b5742b69cd\n\nMy mistake was to use: [2]\n\n  b30a17d3c03108a8d800be048e7f0032a73041c7\n\n* [1] http://central.maven.org/maven2/com/google/gerrit/gerrit-plugin-api/2.14.6/gerrit-plugin-api-2.14.6.jar.sha1\n* [2] http://central.maven.org/maven2/com/google/gerrit/gerrit-plugin-api/2.14.6/gerrit-plugin-api-2.14.6.jar.asc.sha1",
+      "range": {
+        "startLine": 16,
+        "startChar": 11,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "4f3e1b6a4938dd3d390e0badbc9e033ccfaaabc5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
