@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "077691ba_14f97dba",
+        "filename": "gerrit_prolog.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-12-19T16:42:13Z",
+      "side": 1,
+      "message": "I think your proposal makes lots of sense. For now, I will remove these lines.",
+      "parentUuid": "968b6e85_d7c2adfd",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 1
+      },
+      "revId": "f7b3cc40886f356ee39d5fb6c755109dda0f9536",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c0c62083_baa79b01",
         "filename": "lib/prolog/java/BuckPrologCompiler.java",
         "patchSetId": 3
@@ -117,6 +141,30 @@
       "revId": "f7b3cc40886f356ee39d5fb6c755109dda0f9536",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "407cc33c_31821118",
+        "filename": "lib/prolog/java/BuckPrologCompiler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-12-19T16:42:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "545cc659_544c9bc9",
+      "range": {
+        "startLine": 24,
+        "startChar": 13,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "f7b3cc40886f356ee39d5fb6c755109dda0f9536",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
