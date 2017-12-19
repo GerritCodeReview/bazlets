@@ -46,6 +46,30 @@
       "revId": "4f3e1b6a4938dd3d390e0badbc9e033ccfaaabc5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0833d4b2_122fe22f",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-19T07:22:22Z",
+      "side": 1,
+      "message": "I need this change, to make the build work on owners plugin: [1].\n\n* [1] http://paste.openstack.org/show/629280",
+      "parentUuid": "c620288b_8eb12902",
+      "range": {
+        "startLine": 16,
+        "startChar": 11,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "4f3e1b6a4938dd3d390e0badbc9e033ccfaaabc5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
