@@ -22,6 +22,30 @@
       "revId": "4f3e1b6a4938dd3d390e0badbc9e033ccfaaabc5",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c620288b_8eb12902",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2017-12-19T07:06:18Z",
+      "side": 1,
+      "message": "I don\u0027t understand.  Shouldn\u0027t the \"expected\" sha1 be what is specified in the rule?  It\u0027s showing \"received\" as the same as specified, which is the same as the actual one.",
+      "parentUuid": "9177cef6_f4d90a25",
+      "range": {
+        "startLine": 16,
+        "startChar": 11,
+        "endLine": 16,
+        "endChar": 51
+      },
+      "revId": "4f3e1b6a4938dd3d390e0badbc9e033ccfaaabc5",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
