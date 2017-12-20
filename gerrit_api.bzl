@@ -11,9 +11,9 @@ def gerrit_api():
   bouncycastle_repos()
 
   maven_jar(
-   name = 'gerrit_plugin_api',
-   artifact = 'com.google.gerrit:gerrit-plugin-api:' + VER,
-   sha1 = 'a448355a7fdfbace0e6e4f449c9a37aaa3a889f9',
+    name = 'gerrit_plugin_api',
+    artifact = 'com.google.gerrit:gerrit-plugin-api:' + VER,
+    sha1 = 'a448355a7fdfbace0e6e4f449c9a37aaa3a889f9',
   )
   maven_jar(
     name = 'gerrit_plugin_gwtui',
