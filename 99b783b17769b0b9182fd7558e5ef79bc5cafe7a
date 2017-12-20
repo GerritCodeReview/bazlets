@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c6baa469_b13490a2",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-20T15:39:21Z",
+      "side": 1,
+      "message": "Optional: Should we update years to 2017, here and oder files in this change?",
+      "revId": "99b783b17769b0b9182fd7558e5ef79bc5cafe7a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6f086d3e_6ec44f85",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2017-12-20T15:39:21Z",
+      "side": 1,
+      "message": "Remove hat left over?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "99b783b17769b0b9182fd7558e5ef79bc5cafe7a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
