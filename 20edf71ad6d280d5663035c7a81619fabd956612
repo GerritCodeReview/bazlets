@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "b575aa73_2d2a10a1",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-12-20T15:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62109ac0_d7abcbcf",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "20edf71ad6d280d5663035c7a81619fabd956612",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f9b0c072_a69eca2e",
         "filename": "lib/prolog/prolog.bzl",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-12-20T12:01:13Z",
       "side": 1,
       "message": "native.genrule? And remove the genrule2 import above?",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 10
+      },
+      "revId": "20edf71ad6d280d5663035c7a81619fabd956612",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d363f2f0_ba4c1ca7",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2017-12-20T15:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9b0c072_a69eca2e",
       "range": {
         "startLine": 22,
         "startChar": 2,
