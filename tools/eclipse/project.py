@@ -35,7 +35,7 @@ JRE = '/'.join([
 opts = OptionParser()
 opts.add_option('-r', '--root', help='Root directory entry')
 opts.add_option('-n', '--name', help='Project name')
-opts.add_option('-x', '--exclude', action='append', help='Exlude paths')
+opts.add_option('-x', '--exclude', action='append', help='Exclude paths')
 args, _ = opts.parse_args()
 
 if not args.root:
