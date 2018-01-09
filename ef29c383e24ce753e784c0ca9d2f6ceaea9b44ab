@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "925c1529_6cb04de9",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-01-09T04:23:22Z",
+      "side": 1,
+      "message": "nit: This is redundant; the default for store_true options is already False.",
+      "range": {
+        "startLine": 40,
+        "startChar": 16,
+        "endLine": 40,
+        "endChar": 29
+      },
+      "revId": "ef29c383e24ce753e784c0ca9d2f6ceaea9b44ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1ac6fc54_9863d64d",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-01-09T04:23:22Z",
+      "side": 1,
+      "message": "This can be simplified to:\n\n if batch_option:",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 30
+      },
+      "revId": "ef29c383e24ce753e784c0ca9d2f6ceaea9b44ab",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
