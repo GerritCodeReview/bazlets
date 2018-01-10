@@ -35,7 +35,9 @@ JRE = '/'.join([
 opts = OptionParser()
 opts.add_option('-r', '--root', help='Root directory entry')
 opts.add_option('-n', '--name', help='Project name')
-opts.add_option('-x', '--exclude', action='append', help='Exlude paths')
+opts.add_option('-x', '--exclude', action='append', help='Exclude paths')
+opts.add_option('-b', '--batch', action='store_true',
+                dest='batch', help='Bazel batch option')
 args, _ = opts.parse_args()
 
 if not args.root:
@@ -47,13 +49,23 @@ ROOT = path.abspath(root)
 while not path.exists(path.join(ROOT, 'WORKSPACE')):
   ROOT = path.dirname(ROOT)
 
+batch_option = '--batch' if args.batch else None
+
+def _build_bazel_cmd(*args):
+  cmd = ['bazel']
+  if batch_option:
+    cmd.append('--batch')
+  for arg in args:
+    cmd.append(arg)
+  return cmd
+
 def retrieve_ext_location():
-  return check_output(['bazel', 'info', 'output_base']).strip()
+  return check_output(_build_bazel_cmd('info', 'output_base')).strip()
 
 def _query_classpath():
   t = '//tools/eclipse:main_classpath_collect'
   try:
-    check_call(['bazel', 'build', t])
+    check_call(_build_bazel_cmd('build', t))
   except CalledProcessError:
     exit(1)
   name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
