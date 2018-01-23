@@ -19,6 +19,7 @@ def gerrit_api():
     name = 'gerrit_plugin_gwtui',
     artifact = 'com.google.gerrit:gerrit-plugin-gwtui:' + VER,
     sha1 = 'ccf9fe33a759c247339ab096ac505013aed27a17',
+    exclude = ['com/google/gwt/*'],
   )
   maven_jar(
     name = 'gerrit_acceptance_framework',
