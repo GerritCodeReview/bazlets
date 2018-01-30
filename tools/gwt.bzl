@@ -68,6 +68,7 @@ GWT_TRANSITIVE_DEPS = [
     "//external:javax-validation-src",
     "//external:jsinterop-annotations",
     "//external:jsinterop-annotations-src",
+    "//external:jsr305",
     "//external:tapestry",
     "//external:w3c-css-sac",
     "//external:ow2-asm",

@@ -1,6 +1,6 @@
 load("//tools:maven_jar.bzl", "maven_jar")
 
-GWT_VER = "2.8.0"
+GWT_VER = "2.8.2"
 
 OW2_VER = "5.1"
 
@@ -8,13 +8,13 @@ def gerrit_gwt():
   maven_jar(
     name = 'gwt_user',
     artifact = 'com.google.gwt:gwt-user:' + GWT_VER,
-    sha1 = '518579870499e15531f454f35dca0772d7fa31f7',
+    sha1 = 'a2b9be2c996a658c4e009ba652a9c6a81c88a797',
     attach_source = False,
   )
   maven_jar(
     name = 'gwt_dev',
     artifact = 'com.google.gwt:gwt-dev:' + GWT_VER,
-    sha1 = 'f160a61272c5ebe805cd2d3d3256ed3ecf14893f',
+    sha1 = '7a87e060bbf129386b7ae772459fb9f87297c332',
     attach_source = False,
   )
   maven_jar(
@@ -78,6 +78,12 @@ def gerrit_gwt():
     artifact = 'org.ow2.asm:asm-util:' + OW2_VER,
     sha1 = 'b60e33a6bd0d71831e0c249816d01e6c1dd90a47',
   )
+  maven_jar(
+    name = 'findbugs_jsr305',
+    artifact = 'com.google.code.findbugs:jsr305:3.0.1',
+    sha1 = 'f7be08ec23c21485b9b5a1cf1654c2ec8c58168d',
+    attach_source = False,
+  )
   native.bind(
     name = 'gwt-user',
     actual = '@gwt_user//jar')
@@ -133,3 +139,6 @@ def gerrit_gwt():
   native.bind(
     name = 'ow2-asm-util',
     actual = '@ow2_asm_util//jar')
+  native.bind(
+    name = 'jsr305',
+    actual = '@findbugs_jsr305//jar')
