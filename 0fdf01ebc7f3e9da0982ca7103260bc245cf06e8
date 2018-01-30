@@ -16,6 +16,24 @@
       "revId": "0fdf01ebc7f3e9da0982ca7103260bc245cf06e8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea5b4016_3d75e87e",
+        "filename": "gerrit_gwt.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-01-30T03:40:40Z",
+      "side": 1,
+      "message": "No, they are all the same versions on core stable-2.14",
+      "parentUuid": "7dcf6048_febb6058",
+      "revId": "0fdf01ebc7f3e9da0982ca7103260bc245cf06e8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
