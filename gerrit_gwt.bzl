@@ -1,6 +1,6 @@
 load("//tools:maven_jar.bzl", "maven_jar")
 
-GWT_VER = "2.8.0"
+GWT_VER = "2.8.2"
 
 OW2_VER = "5.1"
 
@@ -8,13 +8,13 @@ def gerrit_gwt():
   maven_jar(
     name = 'gwt_user',
     artifact = 'com.google.gwt:gwt-user:' + GWT_VER,
-    sha1 = '518579870499e15531f454f35dca0772d7fa31f7',
+    sha1 = 'a2b9be2c996a658c4e009ba652a9c6a81c88a797',
     attach_source = False,
   )
   maven_jar(
     name = 'gwt_dev',
     artifact = 'com.google.gwt:gwt-dev:' + GWT_VER,
-    sha1 = 'f160a61272c5ebe805cd2d3d3256ed3ecf14893f',
+    sha1 = '7a87e060bbf129386b7ae772459fb9f87297c332',
     attach_source = False,
   )
   maven_jar(
@@ -25,9 +25,15 @@ def gerrit_gwt():
   )
   maven_jar(
     name = 'jsinterop_annotations',
-    artifact = 'com.google.jsinterop:jsinterop-annotations:1.0.0',
-    sha1 = '23c3a3c060ffe4817e67673cc8294e154b0a4a95',
-    src_sha1 = '5d7c478efbfccc191430d7c118d7bd2635e43750',
+    artifact = 'com.google.jsinterop:jsinterop-annotations:1.0.2',
+    sha1 = 'abd7319f53d018e11108a88f599bd16492448dd2',
+    src_sha1 = '33716f8aef043f2f02b78ab4a1acda6cd90a7602',
+  )
+  maven_jar(
+    name = 'findbugs_jsr305',
+    artifact = 'com.google.code.findbugs:jsr305:3.0.1',
+    sha1 = 'f7be08ec23c21485b9b5a1cf1654c2ec8c58168d',
+    attach_source = False,
   )
   maven_jar(
     name = 'ant_artifact',
@@ -102,6 +108,9 @@ def gerrit_gwt():
   native.bind(
     name = 'jsinterop-annotations-src',
     actual = '@jsinterop_annotations//src')
+  native.bind(
+    name = 'jsr305',
+    actual = '@findbugs_jsr305//jar')
   native.bind(
     name = 'ant',
     actual = '@ant_artifact//jar')
