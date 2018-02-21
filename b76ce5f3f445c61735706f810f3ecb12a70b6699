@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26d994a2_11e5fa59",
+        "filename": "tools/maven/mvn.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1010008
+      },
+      "writtenOn": "2018-02-21T17:18:57Z",
+      "side": 1,
+      "message": "Jeez, my python is rusty...I\u0027m assuming from the check_output docs that e.stderr is None in this case and that the subprocess stderr just went straight through to real stderr.",
+      "revId": "b76ce5f3f445c61735706f810f3ecb12a70b6699",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
