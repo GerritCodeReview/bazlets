@@ -188,7 +188,7 @@ def excluded(lib):
 try:
   name = args.name if args.name else path.basename(ROOT)
   gen_project(name)
-  gen_classpath(retrieve_ext_location())
+  gen_classpath(retrieve_ext_location().decode('utf-8'))
 
 except KeyboardInterrupt:
   print('Interrupted by user', file=sys.stderr)
