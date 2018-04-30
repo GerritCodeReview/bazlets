@@ -22,6 +22,30 @@
       "revId": "ac09eddbed94feba340bf48fd632a916fd8b7f53",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91f3c562_fe5ecad5",
+        "filename": "tools/sonar.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1060002
+      },
+      "writtenOn": "2018-04-30T17:03:37Z",
+      "side": 1,
+      "message": "Thank you for all of these options",
+      "parentUuid": "477ec301_d198b0c6",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 61
+      },
+      "revId": "ac09eddbed94feba340bf48fd632a916fd8b7f53",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
