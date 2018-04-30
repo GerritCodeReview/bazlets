@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "477ec301_d198b0c6",
+        "filename": "tools/sonar.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2018-04-30T13:56:21Z",
+      "side": 1,
+      "message": "I think we need to find a better way to get this information out as hardcoding the number of levels in the folder hierarchy is very brittle, besides requiring a very specific setup.\n\nThere are different ways to get relevant information with bazel query. For example, to get the current workspace, you can do:\n  \n  bazel info workspace\n\nFrom here, you can find the BUILD file if needed and this could work, at least for plugin workspaces.\n\nAnother option is to read it from the WORKSPACE file. A guy just did exactly that in Python [1].\n\nA third option could be to use:\n\n  basename $(bazel info execution_root)\n\nas suggested by Bazel developers answering to an FR about getting the name of the workspace. The problem with this one is that, so far, the name of the workspace corresponds to the name of the plugin, but this is not a hard requirement. So, as soon as a workspace is named differently from the plugin, this will break.\n\nLast two options need to be validated to work in Jenkins.\n\nFinally, what can be our best shot at the moment could be to reuse what we\u0027re currently doing in one of our Jenkins jobs:\n\n  bazel query \u0027kind(java_binary, //...)\u0027 2\u003e\u00261 | grep -Po \u0027(?\u003c\u003d//:).*(?\u003d__non_stamped)\u0027\n\nEven if the query is not pretty, it\u0027s always returning the right name and could also avoid us reading files and fiddling with paths.\n\n[1] https://github.com/EricCousineau-TRI/repro/blob/860323d/shell/bazel_workspace_name.py\n[2] https://github.com/bazelbuild/bazel/issues/2317",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 61
+      },
+      "revId": "ac09eddbed94feba340bf48fd632a916fd8b7f53",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
