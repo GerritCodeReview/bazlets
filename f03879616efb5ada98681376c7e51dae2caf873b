@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e10865be_8e01c295",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-04-30T19:21:42Z",
+      "side": 1,
+      "message": "Automate SonarQube analysis for plugins built with bazel",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 42
+      },
+      "revId": "f03879616efb5ada98681376c7e51dae2caf873b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "901307e6_c5586c9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-04-30T19:21:42Z",
+      "side": 1,
+      "message": "Instead of this paragraph, let\u0027s explain what is the functionality added by this commit:\n\nScript gen_sonar_project_properties.py allows to generate\nsonar-project.properties file. This script can be used in CI server\n(e.g. Jenkins) to allow running a SonarQube analysis.\n    \nScript sonar.py run a SonarQube analysis and upload the results to the\nlocal SonarQube instance, similar to what `mvn sonar:sonar` would do.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "f03879616efb5ada98681376c7e51dae2caf873b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
