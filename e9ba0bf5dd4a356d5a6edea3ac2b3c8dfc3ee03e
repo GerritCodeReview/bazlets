@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5638dc28_2bc37de1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-04-30T19:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2342e16d_1c8da2de",
+      "range": {
+        "startLine": 14,
+        "startChar": 69,
+        "endLine": 14,
+        "endChar": 70
+      },
+      "revId": "e9ba0bf5dd4a356d5a6edea3ac2b3c8dfc3ee03e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "963b1ada_3cda39da",
         "filename": "tools/sonar/gen_sonar_project_properties.py",
         "patchSetId": 7
