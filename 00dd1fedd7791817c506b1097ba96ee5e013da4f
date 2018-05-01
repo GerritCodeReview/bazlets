@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7666f676_2fea6431",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-05-01T01:27:05Z",
+      "side": 1,
+      "message": "I get an exception here:\n\n Failed retrieve plugin name: cannot use a string pattern on a bytes-like object",
+      "revId": "00dd1fedd7791817c506b1097ba96ee5e013da4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a41e74d4_3cb092b3",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-05-01T01:27:05Z",
+      "side": 1,
+      "message": "\"Failed to\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "00dd1fedd7791817c506b1097ba96ee5e013da4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
