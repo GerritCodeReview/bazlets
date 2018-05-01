@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e9badcf_7569550d",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2018-05-01T15:30:08Z",
+      "side": 1,
+      "message": "Use the same name convention as other variables: \n\n  target_names",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 13
+      },
+      "revId": "6d0ecf83f6af5e58f69cdc2a11f2610acee67a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b552f43a_4f86f8d0",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1019328
+      },
+      "writtenOn": "2018-05-01T15:30:08Z",
+      "side": 1,
+      "message": "Additional line suggested between after function definition",
+      "revId": "6d0ecf83f6af5e58f69cdc2a11f2610acee67a8c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
