@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "203d0c20_03e30b01",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-05-01T13:15:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7666f676_2fea6431",
+      "revId": "00dd1fedd7791817c506b1097ba96ee5e013da4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a41e74d4_3cb092b3",
         "filename": "tools/sonar/sonar.py",
         "patchSetId": 8
@@ -30,6 +48,30 @@
       "writtenOn": "2018-05-01T01:27:05Z",
       "side": 1,
       "message": "\"Failed to\"",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "00dd1fedd7791817c506b1097ba96ee5e013da4f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fdc3b73b_93a45e65",
+        "filename": "tools/sonar/sonar.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1012987
+      },
+      "writtenOn": "2018-05-01T13:15:59Z",
+      "side": 1,
+      "message": "Done, I removed the try-catch so we get the full stack trace",
+      "parentUuid": "a41e74d4_3cb092b3",
       "range": {
         "startLine": 47,
         "startChar": 10,
