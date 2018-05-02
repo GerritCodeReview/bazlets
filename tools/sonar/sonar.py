@@ -68,6 +68,6 @@ try:
   except CalledProcessError as err:
     exit(1)
 finally:
-  rmtree(path.join(plugin_dir, '.sonar'), ignore_errors=True)
+  rmtree(path.join(plugin_dir, '.scannerwork'), ignore_errors=True)
   rmtree(temp_dir, ignore_errors=True)
 
