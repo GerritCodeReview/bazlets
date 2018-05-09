@@ -85,10 +85,8 @@ if __name__ == '__main__':
   opts = OptionParser()
   opts.add_option('-n', help='plugin name')
   opts.add_option('-c', help='classes directory')
-  opts.add_option('-t', help='test report directory')
   opts.add_option('-o', help='output file', default='sonar-project.properties')
   args, _ = opts.parse_args()
 
   plugin_dir = check_output(['bazel', 'info', 'workspace']).decode('utf-8').strip()
-  generate_project_properties(args.n, plugin_dir, path.abspath(args.c),
-                              path.abspath(args.t), args.o)
+  generate_project_properties(args.n, plugin_dir, path.abspath(args.c), args.o)
