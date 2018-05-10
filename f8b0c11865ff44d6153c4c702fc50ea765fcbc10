@@ -22,6 +22,30 @@
       "revId": "f8b0c11865ff44d6153c4c702fc50ea765fcbc10",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7fb18b63_c650805f",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1060002
+      },
+      "writtenOn": "2018-05-10T15:01:06Z",
+      "side": 1,
+      "message": "Changed to 2.16-SNAPSHOT",
+      "parentUuid": "5be209b7_a6c54396",
+      "range": {
+        "startLine": 8,
+        "startChar": 7,
+        "endLine": 8,
+        "endChar": 22
+      },
+      "revId": "f8b0c11865ff44d6153c4c702fc50ea765fcbc10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
