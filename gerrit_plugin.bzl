@@ -92,6 +92,7 @@ def gerrit_plugin(
     srcs = ['%s__non_stamped_deploy.jar' % name],
     cmd = " && ".join([
       "GEN_VERSION=$$(cat bazel-out/stable-status.txt | grep %s | cut -d ' ' -f 2)" % name.upper(),
+      "test -n $$GEN_VERSION || { echo '%s: stamping error, check tools/workspace-status.sh command' >&2; exit 1; }" % name,
       "cd $$TMP",
       "unzip -q $$ROOT/$<",
       "echo \"Implementation-Version: $$GEN_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
