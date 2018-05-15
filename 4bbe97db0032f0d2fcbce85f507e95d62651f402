@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7a8fac7_32338702",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-05-15T22:06:11Z",
+      "side": 1,
+      "message": "On the second thought, this \u003cplugin\u003e rule could be decomposed in two 1/ retrieve stamp information and 2/ merge it into plugin final artifact:\n\n* \u003cplugin\u003e__gen_stamp_info\n* \u003cplugin\u003e\n\nand the check and failure would take place in \u003cplugin\u003e__gen_stamp_info so that this would be even more clear, what going on here, because in this case the error message would be:\n\n  $ bazel build reviewers\n  INFO: Analysed target //:reviewers (28 packages loaded).\n  INFO: Found 1 target...\n  ERROR: /home/davido/projects/reviewers/BUILD:3:1: Executing genrule //:reviewers__gen_stamp_info failed (Exit 1)\n  Stamping error, check tools/workspace-status.sh command\n  Target //:reviewers failed to build",
+      "revId": "4bbe97db0032f0d2fcbce85f507e95d62651f402",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
