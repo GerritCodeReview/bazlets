@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "8bdac9d4_ba5ac21e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-05-16T21:33:55Z",
+      "side": 1,
+      "message": "Yes, this is possible, though, the implementation feels like a hack. It\u0027s not really easy to provide custom message in failed genrule. One way to do it is to check the size of the file and issue custom message and fail the command with exit 1.\n\n  cmd \u003d \" \u0026\u0026 \".join([\n      \"cat bazel-out/stable-status.txt | grep \\\"^STABLE_BUILD_%s_LABEL\\\" | awk \u0027{print $$NF}\u0027 \u003e $@\" % name.upper(),\n      \"test -s $@ || { echo \u0027Stamping error, check tools/workspace-status.sh command\u0027; exit 1; }\",\n    ]),\n\nI had this solution in previous patch set, but decided not to do it and just rely on Bazel to fail the build if one part of the command is failed.",
+      "parentUuid": "1c8de450_b0a2da12",
+      "revId": "ead0477d91c0b9e0f0899939d19c4b19a51688e2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "26b233a9_ca2edf30",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -30,6 +48,30 @@
       "writtenOn": "2018-05-16T20:24:18Z",
       "side": 1,
       "message": "From what I observe, the output file bazel-out/stable-status.txt is created\nbut an expected label, STABLE_BUILD_REVIEWERS_LABEL, is missing.",
+      "range": {
+        "startLine": 31,
+        "startChar": 14,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "ead0477d91c0b9e0f0899939d19c4b19a51688e2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ba733826_eb3751be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-05-16T21:33:55Z",
+      "side": 1,
+      "message": "You are right. The explanation is completely wrong. The opposite is here the case: the file is created as zero sized file, and this is fine for Bazel (the only related failure would be, if the file wouldn\u0027t be created at all, in which case we would get a different error message, e.g. cmd \u003d \"echo 42\").\n\nIn fact this is a perfect genrule:\n\n  genrule(\n      name \u003d \"foo\",\n      stamp \u003d 1,\n      cmd \u003d \"\u003e $@\",\n      outs \u003d [\"bar\"],\n  )\n\nThat would create zero sized out file and all is fine:\n\n  $ ls -all bazel-genfiles/bar\n  -r-xr-xr-x 1 davido users 0 May 16 22:49 bazel-genfiles/bar\n\nThe correct explanation, why gen_stamp_info rule above failed is because Bazel is using custom environment set-up script for genrule command invocation (you see it if you ask Bazel to execute your rule with -s):\n\n  external/bazel_tools/tools/genrule/genrule-setup.sh; \u003ccommand\u003e\n\nand one part of genrule-setup.sh is:\n\n  # exit code of a pipeline is 0, or the non-zero exit code of the rightmost failing command\n  set -o pipefail\n\nThis is the reason, why this command is failing:\n\n  \"cat foo | grep bar | cut -d \u0027 \u0027 -f 2 \u003e $@\"\n\n* cat returns 0\n* grep returns 1 (not found)\n* cut returns 0 and thus would normally shadow the failing return value of previous grep command\n\nBut, because of \"set -o pipefail\" the right most command, in this case: cut would fail and thus the whole command would fail. I will update the commit message.",
+      "parentUuid": "26b233a9_ca2edf30",
       "range": {
         "startLine": 31,
         "startChar": 14,
