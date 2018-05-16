@@ -22,6 +22,30 @@
       "revId": "2005cbc6068b2e67262082b13af1fb774a217b01",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea741066_c2271d39",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-05-16T18:38:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fba1d19_26b37956",
+      "range": {
+        "startLine": 90,
+        "startChar": 45,
+        "endLine": 90,
+        "endChar": 49
+      },
+      "revId": "2005cbc6068b2e67262082b13af1fb774a217b01",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
