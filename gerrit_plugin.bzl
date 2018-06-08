@@ -27,6 +27,7 @@ def gerrit_plugin(
     gwt_module = [],
     resources = [],
     manifest_entries = [],
+    dir_name = None,
     target_suffix = "",
     **kwargs):
 
@@ -35,6 +36,9 @@ def gerrit_plugin(
   if gwt_module:
     static_jars = [':%s-static' % name]
     gwt_deps = GWT_PLUGIN_DEPS_NEVERLINK
+
+  if not dir_name:
+    dir_name = name
 
   native.java_library(
     name = name + '__plugin',
@@ -87,7 +91,7 @@ def gerrit_plugin(
   native.genrule(
     name = name + "__gen_stamp_info",
     stamp = 1,
-    cmd = "cat bazel-out/stable-status.txt | grep \"^STABLE_BUILD_%s_LABEL\" | awk '{print $$NF}' > $@" % name.upper(),
+    cmd = "cat bazel-out/stable-status.txt | grep \"^STABLE_BUILD_%s_LABEL\" | awk '{print $$NF}' > $@" % dir_name.upper(),
     outs = ["%s__gen_stamp_info.txt" % name],
   )
 
