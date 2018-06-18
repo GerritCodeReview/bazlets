@@ -1,17 +1,17 @@
 java_binary(
-    name = "compiler_bin",
+    name = "compiler-bin",
     main_class = "PrologCompiler",
     visibility = ["//visibility:public"],
-    runtime_deps = [":compiler_lib"],
+    runtime_deps = [":compiler-lib"],
 )
 
 java_library(
-    name = "compiler_lib",
+    name = "compiler-lib",
     srcs = ["java/PrologCompiler.java"],
     visibility = ["//visibility:public"],
     deps = [
-        "@prolog_compiler//jar",
-        "@prolog_runtime//jar",
-        "@prolog_io//jar",
+        "@prolog-compiler//jar",
+        "@prolog-runtime//jar",
+        "@prolog-io//jar",
     ],
 )
