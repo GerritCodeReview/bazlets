@@ -24,49 +24,58 @@ sh_bang_template = (" && ".join([
 ]))
 
 def maven_package(
-    version,
-    group,
-    repository = None,
-    url = None,
-    jar = {},
-    src = {},
-    doc = {}):
+        version,
+        group,
+        repository = None,
+        url = None,
+        jar = {},
+        src = {},
+        doc = {}):
+    build_cmd = ["bazel", "build"]
+    mvn_cmd = [
+        "$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)",
+        "-v",
+        version,
+        "-g",
+        group,
+        "-r",
+        ".",
+    ]
+    api_cmd = mvn_cmd[:]
+    api_targets = []
+    for type, d in [("jar", jar), ("java-source", src), ("javadoc", doc)]:
+        for a, t in sorted(d.items()):
+            api_cmd.append("-s %s:%s:$(location %s)" % (a, type, t))
+            api_targets.append(t)
 
-  build_cmd = ['bazel', 'build']
-  mvn_cmd = [
-    '$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)',
-    '-v', version,
-    '-g', group,
-    '-r', '.',
-  ]
-  api_cmd = mvn_cmd[:]
-  api_targets = []
-  for type,d in [('jar', jar), ('java-source', src), ('javadoc', doc)]:
-    for a,t in sorted(d.items()):
-      api_cmd.append('-s %s:%s:$(location %s)' % (a,type,t))
-      api_targets.append(t)
-
-  native.genrule(
-    name = 'gen_api_install',
-    cmd = sh_bang_template % (
-      ' '.join(build_cmd + api_targets),
-      ' '.join(api_cmd + ['-a', 'install'])),
-    srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
-    outs = ['api_install.sh'],
-    executable = True,
-    testonly = 1,
-  )
-
-  if repository and url:
     native.genrule(
-      name = 'gen_api_deploy',
-      cmd = sh_bang_template % (
-        ' '.join(build_cmd + api_targets),
-        ' '.join(api_cmd + ['-a', 'deploy',
-                            '--repository', repository,
-                            '--url', url])),
-      srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
-      outs = ['api_deploy.sh'],
-      executable = True,
-      testonly = 1,
+        name = "gen_api_install",
+        cmd = sh_bang_template % (
+            " ".join(build_cmd + api_targets),
+            " ".join(api_cmd + ["-a", "install"]),
+        ),
+        srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
+        outs = ["api_install.sh"],
+        executable = True,
+        testonly = 1,
     )
+
+    if repository and url:
+        native.genrule(
+            name = "gen_api_deploy",
+            cmd = sh_bang_template % (
+                " ".join(build_cmd + api_targets),
+                " ".join(api_cmd + [
+                    "-a",
+                    "deploy",
+                    "--repository",
+                    repository,
+                    "--url",
+                    url,
+                ]),
+            ),
+            srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
+            outs = ["api_deploy.sh"],
+            executable = True,
+            testonly = 1,
+        )

@@ -17,82 +17,82 @@
 jar_filetype = FileType([".jar"])
 
 def _add_context(in_file, output):
-  input_path = in_file.path
-  return [
-    'unzip -qd %s %s' % (output, input_path)
-  ]
+    input_path = in_file.path
+    return [
+        "unzip -qd %s %s" % (output, input_path),
+    ]
 
 def _add_file(name, in_file, output):
-  output_path = output
-  input_path = in_file.path
-  short_path = in_file.short_path
-  n = in_file.basename
+    output_path = output
+    input_path = in_file.path
+    short_path = in_file.short_path
+    n = in_file.basename
 
-  if n != 'web.xml' and short_path.startswith('%s-' % name):
-    n = short_path.split('/')[0] + '-' + n
+    if n != "web.xml" and short_path.startswith("%s-" % name):
+        n = short_path.split("/")[0] + "-" + n
 
-  output_path = output_path + n
+    output_path = output_path + n
 
-  return [
-    'test -L %s || ln -s $(pwd)/%s %s' % (output_path, input_path, output_path)
-  ]
+    return [
+        "test -L %s || ln -s $(pwd)/%s %s" % (output_path, input_path, output_path),
+    ]
 
 def _make_war(input_dir, output):
-  return '(%s)' % ' && '.join([
-    'root=$(pwd)',
-    'cd %s' % input_dir,
-    "find . -exec touch -t 198001010000 '{}' ';' 2> /dev/null",
-    'zip -9qr ${root}/%s .' % (output.path),
-  ])
+    return "(%s)" % " && ".join([
+        "root=$(pwd)",
+        "cd %s" % input_dir,
+        "find . -exec touch -t 198001010000 '{}' ';' 2> /dev/null",
+        "zip -9qr ${root}/%s ." % (output.path),
+    ])
 
 def _war_impl(ctx):
-  war = ctx.outputs.war
-  build_output = war.path + '.build_output'
-  inputs = []
+    war = ctx.outputs.war
+    build_output = war.path + ".build_output"
+    inputs = []
 
-  cmd = [
-    'set -e;rm -rf ' + build_output,
-    'mkdir -p ' + build_output,
-    'mkdir -p %s/WEB-INF/lib' % build_output,
-  ]
+    cmd = [
+        "set -e;rm -rf " + build_output,
+        "mkdir -p " + build_output,
+        "mkdir -p %s/WEB-INF/lib" % build_output,
+    ]
 
-  transitive_lib_deps = depset()
-  for l in ctx.attr.libs:
-    if hasattr(l, 'java'):
-      transitive_lib_deps = transitive_lib_deps + l.java.transitive_runtime_deps
-    elif hasattr(l, 'files'):
-      transitive_lib_deps = transitive_lib_deps + l.files
+    transitive_lib_deps = depset()
+    for l in ctx.attr.libs:
+        if hasattr(l, "java"):
+            transitive_lib_deps = transitive_lib_deps + l.java.transitive_runtime_deps
+        elif hasattr(l, "files"):
+            transitive_lib_deps = transitive_lib_deps + l.files
 
-  for dep in transitive_lib_deps:
-    cmd = cmd + _add_file(ctx.attr.name, dep, build_output + '/WEB-INF/lib/')
-    inputs.append(dep)
+    for dep in transitive_lib_deps:
+        cmd = cmd + _add_file(ctx.attr.name, dep, build_output + "/WEB-INF/lib/")
+        inputs.append(dep)
 
-  if ctx.attr.web_xml:
-    for web_xml in ctx.attr.web_xml.files:
-      inputs.append(web_xml)
-      cmd = cmd + _add_file(ctx.attr.name, web_xml, build_output + '/WEB-INF/')
+    if ctx.attr.web_xml:
+        for web_xml in ctx.attr.web_xml.files:
+            inputs.append(web_xml)
+            cmd = cmd + _add_file(ctx.attr.name, web_xml, build_output + "/WEB-INF/")
 
-  transitive_context_deps = depset()
-  if ctx.attr.context:
-    for jar in ctx.attr.context:
-      if hasattr(jar, 'java'):
-        transitive_context_deps = transitive_context_deps + jar.java.transitive_runtime_deps
-      elif hasattr(jar, 'files'):
-        transitive_context_deps = transitive_context_deps + jar.files
-  for dep in transitive_context_deps:
-    cmd = cmd + _add_context(dep, build_output)
-    inputs.append(dep)
+    transitive_context_deps = depset()
+    if ctx.attr.context:
+        for jar in ctx.attr.context:
+            if hasattr(jar, "java"):
+                transitive_context_deps = transitive_context_deps + jar.java.transitive_runtime_deps
+            elif hasattr(jar, "files"):
+                transitive_context_deps = transitive_context_deps + jar.files
+    for dep in transitive_context_deps:
+        cmd = cmd + _add_context(dep, build_output)
+        inputs.append(dep)
 
-  # Add zip war
-  cmd.append(_make_war(build_output, war))
+    # Add zip war
+    cmd.append(_make_war(build_output, war))
 
-  ctx.action(
-    inputs = inputs,
-    outputs = [war],
-    mnemonic = 'WAR',
-    command = '\n'.join(cmd),
-    use_default_shell_env = True,
-  )
+    ctx.action(
+        inputs = inputs,
+        outputs = [war],
+        mnemonic = "WAR",
+        command = "\n".join(cmd),
+        use_default_shell_env = True,
+    )
 
 # context: go to the root directory
 # libs: go to the WEB-INF/lib directory
@@ -108,8 +108,8 @@ _pkg_war = rule(
 )
 
 def pkg_war(name, context = [], **kwargs):
-  _pkg_war(
-    name = name,
-    context = context,
-    **kwargs
-  )
+    _pkg_war(
+        name = name,
+        context = context,
+        **kwargs
+    )
