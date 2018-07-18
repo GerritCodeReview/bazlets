@@ -13,12 +13,12 @@
 # limitations under the License.
 
 def _py_binary_path_impl(ctx):
-  """rule to retrieve python script location."""
-  content = ""
-  for f in ctx.attr.py_binary_label.py.transitive_sources:
-    if ctx.attr.name in f.path:
-      content = content + f.path
-  ctx.file_action(output = ctx.outputs.output, content=content)
+    """rule to retrieve python script location."""
+    content = ""
+    for f in ctx.attr.py_binary_label.py.transitive_sources:
+        if ctx.attr.name in f.path:
+            content = content + f.path
+    ctx.file_action(output = ctx.outputs.output, content = content)
 
 py_binary_path = rule(
     attrs = {
