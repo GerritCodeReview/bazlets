@@ -24,67 +24,68 @@ MAVEN_CENTRAL = "MAVEN_CENTRAL:"
 MAVEN_LOCAL = "MAVEN_LOCAL:"
 
 def _maven_release(ctx, parts):
-  """induce jar and url name from maven coordinates."""
-  if len(parts) not in [3, 4]:
-    fail('%s:\nexpected id="groupId:artifactId:version[:classifier]"'
-         % ctx.attr.artifact)
-  if len(parts) == 4:
-    group, artifact, version, classifier = parts
-    file_version = version + '-' + classifier
-  else:
-    group, artifact, version = parts
-    file_version = version
+    """induce jar and url name from maven coordinates."""
+    if len(parts) not in [3, 4]:
+        fail('%s:\nexpected id="groupId:artifactId:version[:classifier]"' %
+             ctx.attr.artifact)
+    if len(parts) == 4:
+        group, artifact, version, classifier = parts
+        file_version = version + "-" + classifier
+    else:
+        group, artifact, version = parts
+        file_version = version
 
-  jar = artifact.lower() + '-' + file_version
-  url = '/'.join([
-    ctx.attr.repository,
-    group.replace('.', '/'),
-    artifact,
-    version,
-    artifact + '-' + file_version])
+    jar = artifact.lower() + "-" + file_version
+    url = "/".join([
+        ctx.attr.repository,
+        group.replace(".", "/"),
+        artifact,
+        version,
+        artifact + "-" + file_version,
+    ])
 
-  return jar, url
+    return jar, url
 
 # Creates a struct containing the different parts of an artifact's FQN
 def _create_coordinates(fully_qualified_name):
-  parts = fully_qualified_name.split(":")
-  packaging = None
-  classifier = None
+    parts = fully_qualified_name.split(":")
+    packaging = None
+    classifier = None
 
-  if len(parts) == 3:
-    group_id, artifact_id, version = parts
-  elif len(parts) == 4:
-    group_id, artifact_id, version, packaging = parts
-  elif len(parts) == 5:
-    group_id, artifact_id, version, packaging, classifier = parts
-  else:
-    fail("Invalid fully qualified name for artifact: %s" % fully_qualified_name)
+    if len(parts) == 3:
+        group_id, artifact_id, version = parts
+    elif len(parts) == 4:
+        group_id, artifact_id, version, packaging = parts
+    elif len(parts) == 5:
+        group_id, artifact_id, version, packaging, classifier = parts
+    else:
+        fail("Invalid fully qualified name for artifact: %s" % fully_qualified_name)
 
-  return struct(
-      fully_qualified_name = fully_qualified_name,
-      group_id = group_id,
-      artifact_id = artifact_id,
-      packaging = packaging,
-      classifier = classifier,
-      version = version,
-  )
+    return struct(
+        fully_qualified_name = fully_qualified_name,
+        group_id = group_id,
+        artifact_id = artifact_id,
+        packaging = packaging,
+        classifier = classifier,
+        version = version,
+    )
 
 def _format_deps(attr, deps):
-  formatted_deps = ""
-  if deps:
-    if len(deps) == 1:
-      formatted_deps = formatted_deps + "%s = [\'%s\']," % (attr, deps[0])
-    else:
-      formatted_deps = formatted_deps + "%s = [\n" % attr
-      for dep in deps:
-        formatted_deps = formatted_deps + "        \'%s\',\n" % dep
-      formatted_deps = formatted_deps + "    ],"
-  return formatted_deps
+    formatted_deps = ""
+    if deps:
+        if len(deps) == 1:
+            formatted_deps = formatted_deps + "%s = [\'%s\']," % (attr, deps[0])
+        else:
+            formatted_deps = formatted_deps + "%s = [\n" % attr
+            for dep in deps:
+                formatted_deps = formatted_deps + "        \'%s\',\n" % dep
+            formatted_deps = formatted_deps + "    ],"
+    return formatted_deps
 
 # Provides the syntax "@jar_name//jar" for bin classifier
 # and "@jar_name//src" for sources
 def _generate_build_file(ctx, classifier, filename):
-  contents = """
+    contents = """
 # DO NOT EDIT: automatically generated BUILD file for maven_jar rule {rule_name}
 java_import(
     name = '{classifier}',
@@ -105,56 +106,59 @@ filegroup(
     name = 'file',
     srcs = ['{filename}'],
     visibility = ['//visibility:public']
-)\n""".format(classifier = classifier,
-              rule_name = ctx.name,
-              filename = filename,
-              deps = _format_deps("deps", ctx.attr.deps),
-              exports = _format_deps("exports", ctx.attr.exports))
-  ctx.file('%s/BUILD' % ctx.path(classifier), contents, False)
+)\n""".format(
+        classifier = classifier,
+        rule_name = ctx.name,
+        filename = filename,
+        deps = _format_deps("deps", ctx.attr.deps),
+        exports = _format_deps("exports", ctx.attr.exports),
+    )
+    ctx.file("%s/BUILD" % ctx.path(classifier), contents, False)
 
 def _maven_jar_impl(ctx):
-  """rule to download a Maven archive."""
-  coordinates = _create_coordinates(ctx.attr.artifact)
+    """rule to download a Maven archive."""
+    coordinates = _create_coordinates(ctx.attr.artifact)
 
-  name = ctx.name
+    name = ctx.name
 
-  parts = ctx.attr.artifact.split(':')
-  # TODO(davido): Only releases for now, implement handling snapshots
-  jar, url = _maven_release(ctx, parts)
+    parts = ctx.attr.artifact.split(":")
 
-  binjar = jar + '.jar'
-  binjar_path = ctx.path('/'.join(['jar', binjar]))
-  binurl = url + '.jar'
+    # TODO(davido): Only releases for now, implement handling snapshots
+    jar, url = _maven_release(ctx, parts)
 
-  srcjar = jar + '-src.jar'
-  srcjar_path = ctx.path('/'.join(['src', srcjar]))
-  srcurl = url + '-sources.jar'
+    binjar = jar + ".jar"
+    binjar_path = ctx.path("/".join(["jar", binjar]))
+    binurl = url + ".jar"
 
-  python = ctx.which("python")
-  script = ctx.path(ctx.attr._download_script)
+    srcjar = jar + "-src.jar"
+    srcjar_path = ctx.path("/".join(["src", srcjar]))
+    srcurl = url + "-sources.jar"
 
-  args = [python, script, "-o", binjar_path, "-u", binurl]
-  if ctx.attr.sha1:
-    args.extend(['-v', ctx.attr.sha1])
-  if ctx.attr.unsign:
-    args.append('--unsign')
-  for x in ctx.attr.exclude:
-    args.extend(['-x', x])
+    python = ctx.which("python")
+    script = ctx.path(ctx.attr._download_script)
 
-  out = ctx.execute(args)
+    args = [python, script, "-o", binjar_path, "-u", binurl]
+    if ctx.attr.sha1:
+        args.extend(["-v", ctx.attr.sha1])
+    if ctx.attr.unsign:
+        args.append("--unsign")
+    for x in ctx.attr.exclude:
+        args.extend(["-x", x])
 
-  if out.return_code:
-    fail("failed %s: %s" % (' '.join(args), out.stderr))
-  _generate_build_file(ctx, "jar", binjar)
-
-  if ctx.attr.src_sha1 or ctx.attr.attach_source:
-    args = [python, script, "-o", srcjar_path, "-u", srcurl]
-    if ctx.attr.src_sha1:
-      args.extend(['-v', ctx.attr.src_sha1])
     out = ctx.execute(args)
+
     if out.return_code:
-      fail("failed %s: %s" % (args, out.stderr))
-    _generate_build_file(ctx, "src", srcjar)
+        fail("failed %s: %s" % (" ".join(args), out.stderr))
+    _generate_build_file(ctx, "jar", binjar)
+
+    if ctx.attr.src_sha1 or ctx.attr.attach_source:
+        args = [python, script, "-o", srcjar_path, "-u", srcurl]
+        if ctx.attr.src_sha1:
+            args.extend(["-v", ctx.attr.src_sha1])
+        out = ctx.execute(args)
+        if out.return_code:
+            fail("failed %s: %s" % (args, out.stderr))
+        _generate_build_file(ctx, "src", srcjar)
 
 maven_jar = repository_rule(
     attrs = {
