@@ -11,7 +11,7 @@ java_library(
     visibility = ["//visibility:public"],
     deps = [
         "@prolog-compiler//jar",
-        "@prolog-runtime//jar",
         "@prolog-io//jar",
+        "@prolog-runtime//jar",
     ],
 )
