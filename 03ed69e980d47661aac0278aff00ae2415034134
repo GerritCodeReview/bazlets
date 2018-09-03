@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e7bfac11_7e4dad9f",
+        "filename": "lib/BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-09-03T07:14:47Z",
+      "side": 1,
+      "message": "Add the \"empty marker file\" comment?",
+      "revId": "03ed69e980d47661aac0278aff00ae2415034134",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
