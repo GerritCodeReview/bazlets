@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b5c4b8da_8b073099",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2018-10-01T01:04:56Z",
+      "side": 1,
+      "message": "Conflict markers were not removed.",
+      "revId": "e9762c433ba1a2793f06d1a30ecdc7452e20db1f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
