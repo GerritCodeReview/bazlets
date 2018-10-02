@@ -123,7 +123,7 @@ def gen_classpath(ext):
       src.add(m.group(1).lstrip('/'))
     else:
       if p.startswith("external"):
-        p = path.join(ext, p)
+        p = path.join(ext, p.decode('utf-8'))
         lib.add(p)
 
   src_paths = {}
