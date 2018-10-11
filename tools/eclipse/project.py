@@ -122,7 +122,7 @@ def gen_classpath(ext):
     if m:
       src.add(m.group(1).lstrip('/'))
     else:
-      if p.startswith("external"):
+      if ext is not None and p.startswith("external"):
         p = path.join(ext, p)
         lib.add(p)
 
