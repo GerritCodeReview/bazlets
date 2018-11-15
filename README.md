@@ -62,7 +62,6 @@ load("//tools/bzl:plugin.bzl", "gerrit_plugin")
 gerrit_plugin(
     name = "reviewers",
     srcs = glob(["src/main/java/**/*.java"]),
-    gwt_module = "com.googlesource.gerrit.plugins.reviewers.ReviewersForm",
     manifest_entries = [
         "Gerrit-PluginName: reviewers",
         "Gerrit-Module: com.googlesource.gerrit.plugins.reviewers.Module",
@@ -81,7 +80,7 @@ For a real world example, see the
 ## gerrit_plugin
 
 ```python
-gerrit_plugin(name, srcs, resources, gwt_module, deps, manifest_entries):
+gerrit_plugin(name, srcs, resources, deps, manifest_entries):
 ```
 
 ### Implicit output target
@@ -122,15 +121,6 @@ gerrit_plugin(name, srcs, resources, gwt_module, deps, manifest_entries):
         <p>
           List of resource files that will be passed on the classpath to the Java
           compiler.
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <td><code>gwt_module</code></td>
-      <td>
-        <code>String, optional</code>
-        <p>
-          Name of GWT UI module.
         </p>
       </td>
     </tr>
