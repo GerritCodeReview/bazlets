@@ -16,12 +16,6 @@ def gerrit_api():
         sha1 = "c975dd1b2385af5af16535756de44a230413d4c3",
     )
     maven_jar(
-        name = "gerrit_plugin_gwtui",
-        artifact = "com.google.gerrit:gerrit-plugin-gwtui:" + VER,
-        sha1 = "d17100ab31b81bad4472c2ae08bbe60b931d7acb",
-        exclude = ["com/google/gwt/*"],
-    )
-    maven_jar(
         name = "gerrit_acceptance_framework",
         artifact = "com.google.gerrit:gerrit-acceptance-framework:" + VER,
         sha1 = "28225880e1dfb67408588f3e6f26f6bf944491f6",
@@ -31,20 +25,12 @@ def gerrit_api():
         actual = "@gerrit_plugin_api//jar",
     )
     native.bind(
-        name = "gerrit-plugin-gwtui",
-        actual = "@gerrit_plugin_gwtui//jar",
-    )
-    native.bind(
         name = "gerrit-acceptance-framework",
         actual = "@gerrit_acceptance_framework//jar",
     )
     native.bind(
         name = "gerrit-plugin-api-neverlink",
         actual = "@gerrit_plugin_api//jar:neverlink",
-    )
-    native.bind(
-        name = "gerrit-plugin-gwtui-neverlink",
-        actual = "@gerrit_plugin_gwtui//jar:neverlink",
     )
     native.bind(
         name = "gerrit-acceptance-framework-neverlink",
