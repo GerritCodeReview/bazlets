@@ -94,6 +94,30 @@
       "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aeb44744_ca39707d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2018-12-10T13:41:18Z",
+      "side": 1,
+      "message": "Could we then clarify this overall by saying something like this instead?:\n\n\"Gerrit cannot be built anymore with neither Bazel 0.20 nor upcoming 0.21 release.\"\n\n-But then, related Issue 10112 was set back to solely mention 0.21, so should it also mention 0.20 again?",
+      "parentUuid": "d118dbd5_9ae55b5a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
