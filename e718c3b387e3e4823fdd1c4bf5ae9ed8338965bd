@@ -118,6 +118,30 @@
       "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d7fd0990_08fcad38",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-12-10T13:47:39Z",
+      "side": 1,
+      "message": "Good point, so those problems are unrelated. The problm David was talking about was due to using native http_archive methods. In Recent rules_closure version, this was replaced with Starlark http_archive versions. Bazlets were not updated to reflect that.\n\nIssue 10112 was talking about different issue: package name is not a function dprecation falgged, that was flipped in upcoming Bazel 0.21.\n\nTo avoid confusion, we may split this change in two:\n\n* 1. Sync bazlets with the same rules_closure version used on master.\n* 2. Upgrade to new version, to fix: Issue 10112.",
+      "parentUuid": "aeb44744_ca39707d",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
