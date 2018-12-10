@@ -22,6 +22,30 @@
       "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6e7e5437_006a192d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2018-12-10T05:51:04Z",
+      "side": 1,
+      "message": "Well, this will also fix your problem in 0.20. rules_closure was outdated in bazlets.",
+      "parentUuid": "cb60df4d_9a37320c",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 65
+      },
+      "revId": "e718c3b387e3e4823fdd1c4bf5ae9ed8338965bd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
