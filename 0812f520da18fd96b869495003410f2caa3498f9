@@ -22,6 +22,30 @@
       "revId": "0812f520da18fd96b869495003410f2caa3498f9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "95a53946_d89a5591",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-01-08T07:03:40Z",
+      "side": 1,
+      "message": "Ack.  I don\u0027t want to edit the commit message because it\u0027ll change the sha1 and I\u0027ve already updated the plugins to use it as it is now.",
+      "parentUuid": "4c019384_d883ad8e",
+      "range": {
+        "startLine": 9,
+        "startChar": 37,
+        "endLine": 9,
+        "endChar": 45
+      },
+      "revId": "0812f520da18fd96b869495003410f2caa3498f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
