@@ -16,6 +16,24 @@
       "revId": "4060a48bcfee649382e32b214703c6139c1d7fa7",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ea6ce4c1_2fd0fc29",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-02-12T00:23:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17276656_069d43b1",
+      "revId": "4060a48bcfee649382e32b214703c6139c1d7fa7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
