@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb9763e9_c23f7db9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-02-28T07:11:22Z",
+      "side": 1,
+      "message": "The context is missing here.\n\nI assume this is a result of automatic changes done in these commits:\n\n* 88d0885a57c31420480e72cf336f20396f622639\n* 930f29e2fde16e546cbf4f895ad304d1318f2cb2\n\nWith Buildifier 0.19.2 and 0.20.0:\n\nInstead of picking up one single file, replicate all changes, using the latest used Buildifier version 0.20.0 and running something like:\n\n  $ find . \\( -name BUILD -o -name \"*.bzl\" \\) -print \\\n    | xargs buildifier --lint\u003dfix",
+      "revId": "da06a7a99eba0be4e32745fe73563c6f58b78fe6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
