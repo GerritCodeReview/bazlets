@@ -34,6 +34,24 @@
       "revId": "da06a7a99eba0be4e32745fe73563c6f58b78fe6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cb177f6_5b0ece42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2019-03-01T18:48:36Z",
+      "side": 1,
+      "message": "Thanks David O, I\u0027ll try to add that to a small doc on the stable-2.14 branch and see about merging the updates you made to stable-2.16 as well (I saw stable-2.15 merge was already done).",
+      "parentUuid": "bb34dc73_e8f94a05",
+      "revId": "da06a7a99eba0be4e32745fe73563c6f58b78fe6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
