@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0776042a_cf42af35",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-03-01T06:47:15Z",
+      "side": 0,
+      "message": "Will removing this, and PLUGIN_TEST_DEPS below, cause any issues for plugins that use this?",
+      "range": {
+        "startLine": 4,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 16
+      },
+      "revId": "2c39029a585bd1d5b785150948f162730f7b7e42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
