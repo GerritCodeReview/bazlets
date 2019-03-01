@@ -16,6 +16,24 @@
       "revId": "da06a7a99eba0be4e32745fe73563c6f58b78fe6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb34dc73_e8f94a05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-03-01T06:41:06Z",
+      "side": 1,
+      "message": "I have uploaded this change to stable-2.14 branch: [1]. Note, that js.bzl was only added on stable-2.16 branch in bazlets repository.\n\n* [1] https://gerrit-review.googlesource.com/c/bazlets/+/216137",
+      "parentUuid": "bb9763e9_c23f7db9",
+      "revId": "da06a7a99eba0be4e32745fe73563c6f58b78fe6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
