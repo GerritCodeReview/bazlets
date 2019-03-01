@@ -1,10 +1,10 @@
-load("//tools:genrule2.bzl", "genrule2")
 load(
     "//tools:commons.bzl",
     "PLUGIN_DEPS",
     "PLUGIN_DEPS_NEVERLINK",
     "PLUGIN_TEST_DEPS",
 )
+load("//tools:genrule2.bzl", "genrule2")
 load(
     "//tools:gwt.bzl",
     "GWT_COMPILER_ARGS",
@@ -57,7 +57,7 @@ def gerrit_plugin(
     if gwt_module:
         native.java_library(
             name = name + "__gwt_module",
-            resources = list(depset(srcs + resources)),
+            resources = depset(srcs + resources).to_list(),
             runtime_deps = deps + GWT_PLUGIN_DEPS,
             visibility = ["//visibility:public"],
         )
