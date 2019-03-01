@@ -22,6 +22,30 @@
       "revId": "2c39029a585bd1d5b785150948f162730f7b7e42",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c7c28111_66899a2f",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-03-01T06:50:36Z",
+      "side": 0,
+      "message": "But the plugins would have explicitly reference those variables in their BUILD files, in the standalone mode, e.g. reviewers plugin:\n\n  load(\n    \"//tools/bzl:plugin.bzl\",\n    \"PLUGIN_DEPS\",\n    \"PLUGIN_TEST_DEPS\",\n    \"gerrit_plugin\",\n  )",
+      "parentUuid": "0776042a_cf42af35",
+      "range": {
+        "startLine": 4,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 16
+      },
+      "revId": "2c39029a585bd1d5b785150948f162730f7b7e42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
