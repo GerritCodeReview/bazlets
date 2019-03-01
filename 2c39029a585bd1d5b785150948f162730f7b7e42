@@ -46,6 +46,30 @@
       "revId": "2c39029a585bd1d5b785150948f162730f7b7e42",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "09d0ee0f_998c83c7",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-03-01T07:27:55Z",
+      "side": 0,
+      "message": "This seems to be causing issues.\n\nERROR: /Users/dpursehouse/git/gerrit-plugins/gitiles/tools/bzl/plugin.bzl:1:1: file \u0027@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl\u0027 does not contain symbol \u0027PLUGIN_DEPS\u0027 (did you mean \u0027GWT_PLUGIN_DEPS\u0027?)",
+      "parentUuid": "c7c28111_66899a2f",
+      "range": {
+        "startLine": 4,
+        "startChar": 5,
+        "endLine": 4,
+        "endChar": 16
+      },
+      "revId": "2c39029a585bd1d5b785150948f162730f7b7e42",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
