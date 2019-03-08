@@ -1,5 +1,5 @@
-load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 load("//:bouncycastle.bzl", "bouncycastle_repos")
+load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_api is rule for fetching Gerrit plugin API using Bazel.

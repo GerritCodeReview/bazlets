@@ -33,9 +33,9 @@ BROWSERS = [
 
 ALIASES = {
     "chrome": "safari",
+    "edge": "gecko1_8",
     "firefox": "gecko1_8",
     "msie": "ie10",
-    "edge": "gecko1_8",
 }
 
 MODULE = "com.google.gerrit.GerritGwtUI"
@@ -110,14 +110,14 @@ def _gwt_user_agent_module(ctx):
         impl = ALIASES[ua]
 
     # intermediate artifact: user agent speific GWT xml file
-    gwt_user_agent_xml = ctx.new_file(ctx.label.name + "_gwt.xml")
-    ctx.file_action(
+    gwt_user_agent_xml = ctx.actions.declare_file(ctx.label.name + "_gwt.xml")
+    ctx.actions.write(
         output = gwt_user_agent_xml,
         content = USER_AGENT_XML % (MODULE, impl),
     )
 
     # intermediate artifact: user agent specific zip with GWT module
-    gwt_user_agent_zip = ctx.new_file(ctx.label.name + "_gwt.zip")
+    gwt_user_agent_zip = ctx.actions.declare_file(ctx.label.name + "_gwt.zip")
     gwt = "%s_%s.gwt.xml" % (MODULE.replace(".", "/"), ua)
     dir = gwt_user_agent_zip.path + ".dir"
     cmd = " && ".join([
@@ -128,7 +128,7 @@ def _gwt_user_agent_module(ctx):
         "cp $p/%s %s" % (gwt_user_agent_xml.path, gwt),
         "$p/%s cC $p/%s $(find . | sed 's|^./||')" % (ctx.executable._zip.path, gwt_user_agent_zip.path),
     ])
-    ctx.action(
+    ctx.actions.run_shell(
         inputs = [gwt_user_agent_xml] + ctx.files._zip,
         outputs = [gwt_user_agent_zip],
         command = cmd,
@@ -159,7 +159,8 @@ def _gwt_binary_impl(ctx):
         gwt_user_agent_modules.append(ua.zip)
         module = ua.module
 
-    cmd = "external/local_jdk/bin/java %s -Dgwt.normalizeTimestamps=true -cp %s %s -war %s -deploy %s " % (
+    cmd = "%s %s -Dgwt.normalizeTimestamps=true -cp %s %s -war %s -deploy %s " % (
+        ctx.attr._jdk[java_common.JavaRuntimeInfo].java_executable_exec_path,
         " ".join(ctx.attr.jvm_args),
         ":".join(paths),
         GWT_COMPILER,
@@ -183,7 +184,7 @@ def _gwt_binary_impl(ctx):
         ),
     ])
 
-    ctx.action(
+    ctx.actions.run_shell(
         inputs = list(deps) + ctx.files._jdk + ctx.files._zip + gwt_user_agent_modules,
         outputs = [output_zip],
         mnemonic = "GwtBinary",
@@ -192,36 +193,37 @@ def _gwt_binary_impl(ctx):
     )
 
 def _get_transitive_closure(ctx):
-    deps = depset()
+    deps = []
     for dep in ctx.attr.module_deps:
-        deps = deps + dep.java.transitive_runtime_deps
-        deps = deps + dep.java.transitive_source_jars
+        deps.append(dep.java.transitive_runtime_deps)
+        deps.append(dep.java.transitive_source_jars)
     for dep in ctx.attr.deps:
         if hasattr(dep, "java"):
-            deps = deps + dep.java.transitive_runtime_deps
+            deps.append(dep.java.transitive_runtime_deps)
         elif hasattr(dep, "files"):
-            deps = deps + dep.files
+            deps.append(dep.files)
 
-    return deps
+    return depset(transitive = deps)
 
 gwt_binary = rule(
     attrs = {
-        "user_agent": attr.string(),
-        "style": attr.string(default = "OBF"),
-        "optimize": attr.string(default = "9"),
-        "deps": attr.label_list(allow_files = jar_filetype),
-        "module": attr.string_list(default = [MODULE]),
-        "module_deps": attr.label_list(allow_files = jar_filetype),
         "compiler_args": attr.string_list(),
         "jvm_args": attr.string_list(),
+        "module": attr.string_list(default = [MODULE]),
+        "module_deps": attr.label_list(allow_files = jar_filetype),
+        "optimize": attr.string(default = "9"),
+        "style": attr.string(default = "OBF"),
+        "user_agent": attr.string(),
+        "deps": attr.label_list(allow_files = jar_filetype),
         "_jdk": attr.label(
-            default = Label("//tools/defaults:jdk"),
+            default = Label("@bazel_tools//tools/jdk:current_java_runtime"),
+            cfg = "host",
         ),
         "_zip": attr.label(
             default = Label("@bazel_tools//tools/zip:zipper"),
             cfg = "host",
             executable = True,
-            single_file = True,
+            allow_single_file = True,
         ),
     },
     outputs = {
