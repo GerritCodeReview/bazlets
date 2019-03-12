@@ -1,9 +1,9 @@
+load("//lib/js:npm.bzl", "NPM_SHA1S", "NPM_VERSIONS")
+load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_binary", "closure_js_library")
+
 NPMJS = "NPMJS"
 
 GERRIT = "GERRIT:"
-
-load("//lib/js:npm.bzl", "NPM_SHA1S", "NPM_VERSIONS")
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_binary", "closure_js_library")
 
 def _npm_tarball(name):
     return "%s@%s.npm_binary.tgz" % (name, NPM_VERSIONS[name])
@@ -247,7 +247,7 @@ def _bower_component_bundle_impl(ctx):
     out_versions = ctx.outputs.version_json
 
     ctx.actions.run_shell(
-        inputs = list(zips),
+        inputs = zips.to_list(),
         outputs = [out_zip],
         command = " && ".join([
             "p=$PWD",
@@ -256,7 +256,7 @@ def _bower_component_bundle_impl(ctx):
             "rm -rf %s.dir" % out_zip.path,
             "mkdir -p %s.dir/bower_components" % out_zip.path,
             "cd %s.dir/bower_components" % out_zip.path,
-            "for z in %s; do unzip -q $p/$z ; done" % " ".join(sorted([z.path for z in zips])),
+            "for z in %s; do unzip -q $p/$z ; done" % " ".join(sorted([z.path for z in zips.to_list()])),
             "cd ..",
             "find . -exec touch -t 198001010000 '{}' ';'",
             "zip -Xqr $p/%s bower_components/*" % out_zip.path,
@@ -265,10 +265,10 @@ def _bower_component_bundle_impl(ctx):
     )
 
     ctx.actions.run_shell(
-        inputs = list(versions),
+        inputs = versions.to_list(),
         outputs = [out_versions],
         mnemonic = "BowerVersions",
-        command = "(echo '{' ; for j in  %s ; do cat $j; echo ',' ; done ; echo \\\"\\\":\\\"\\\"; echo '}') > %s" % (" ".join([v.path for v in versions]), out_versions.path),
+        command = "(echo '{' ; for j in  %s ; do cat $j; echo ',' ; done ; echo \\\"\\\":\\\"\\\"; echo '}') > %s" % (" ".join([v.path for v in versions.to_list()]), out_versions.path),
     )
 
     return struct(
@@ -426,7 +426,7 @@ _bundle_rule = rule(
 
 def bundle_assets(*args, **kwargs):
     """Combine html, js, css files and optionally split into js and html bundles."""
-    _bundle_rule(*args, pkg = native.package_name(), **kwargs)
+    _bundle_rule(pkg = native.package_name(), *args, **kwargs)
 
 def polygerrit_plugin(name, app, srcs = [], assets = None, **kwargs):
     """Bundles plugin dependencies for deployment.
