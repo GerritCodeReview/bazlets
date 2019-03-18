@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "253d3e94_3d5ea978",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-03-18T17:51:43Z",
+      "side": 1,
+      "message": "I have 0.20.0\n\nSorry, I overlooked that other change.",
+      "parentUuid": "219712b3_0cb81fd5",
+      "revId": "70b83d715eaf4bbe3e5b4a0fd23687ca61fd27d9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbb6f25c_171b1179",
         "filename": "tools/js.bzl",
         "patchSetId": 1
