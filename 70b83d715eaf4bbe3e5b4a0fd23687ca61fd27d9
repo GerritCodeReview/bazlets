@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "50233f98_897b5224",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2019-03-18T18:21:12Z",
+      "side": 1,
+      "message": "No worries, I was just wondering. I found the note in dev-contributing about buildifier version, so I\u0027ll use that. Thanks!",
+      "parentUuid": "253d3e94_3d5ea978",
+      "revId": "70b83d715eaf4bbe3e5b4a0fd23687ca61fd27d9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbb6f25c_171b1179",
         "filename": "tools/js.bzl",
         "patchSetId": 1
