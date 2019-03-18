@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "219712b3_0cb81fd5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2019-03-18T17:40:38Z",
+      "side": 1,
+      "message": "Which buildifier version did you use? I had https://gerrit-review.googlesource.com/c/bazlets/+/215812 up for fixing with 0.22.0. Is that still needed or should I abandon it?",
+      "revId": "70b83d715eaf4bbe3e5b4a0fd23687ca61fd27d9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "dbb6f25c_171b1179",
         "filename": "tools/js.bzl",
         "patchSetId": 1
