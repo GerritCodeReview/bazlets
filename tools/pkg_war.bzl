@@ -14,8 +14,6 @@
 
 # War packaging.
 
-jar_filetype = FileType([".jar"])
-
 def _add_context(in_file, output):
     input_path = in_file.path
     return [
@@ -101,7 +99,7 @@ def _war_impl(ctx):
 _pkg_war = rule(
     attrs = {
         "context": attr.label_list(allow_files = True),
-        "libs": attr.label_list(allow_files = jar_filetype),
+        "libs": attr.label_list(allow_files = [".jar"]),
         "web_xml": attr.label(allow_files = True),
     },
     outputs = {"war": "%{name}.war"},
