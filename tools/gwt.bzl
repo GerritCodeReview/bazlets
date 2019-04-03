@@ -17,8 +17,6 @@
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:java.bzl", "java_library2")
 
-jar_filetype = FileType([".jar"])
-
 BROWSERS = [
     "chrome",
     "firefox",
@@ -210,11 +208,11 @@ gwt_binary = rule(
         "compiler_args": attr.string_list(),
         "jvm_args": attr.string_list(),
         "module": attr.string_list(default = [MODULE]),
-        "module_deps": attr.label_list(allow_files = jar_filetype),
+        "module_deps": attr.label_list(allow_files = [".jar"]),
         "optimize": attr.string(default = "9"),
         "style": attr.string(default = "OBF"),
         "user_agent": attr.string(),
-        "deps": attr.label_list(allow_files = jar_filetype),
+        "deps": attr.label_list(allow_files = [".jar"]),
         "_jdk": attr.label(
             default = Label("@bazel_tools//tools/jdk:current_java_runtime"),
             cfg = "host",
