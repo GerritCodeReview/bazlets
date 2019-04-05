@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c088d63_03cd1095",
+        "filename": "tools/pkg_war.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "2019-04-05T21:44:15Z",
+      "side": 1,
+      "message": "I wonder if this should follow https://github.com/GerritCodeReview/gerrit/blob/stable-2.14/tools/bzl/pkg_war.bzl#L85 ?",
+      "revId": "4e918eebf1c36d3d79c20a57d7d4cf6d3c14fa66",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
