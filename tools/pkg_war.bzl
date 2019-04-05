@@ -61,7 +61,7 @@ def _war_impl(ctx):
         elif hasattr(l, "files"):
             transitive_libs.append(l.files)
 
-    for dep in transitive_lib_deps.to_list():
+    for dep in transitive_libs.to_list():
         cmd = cmd + _add_file(ctx.attr.name, dep, build_output + "/WEB-INF/lib/")
         inputs.append(dep)
 
