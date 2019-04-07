@@ -34,6 +34,24 @@
       "revId": "ea1dd37eca4b3b46d337f47458d3f3599f957e2e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "479baeb4_715b712c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-07T11:07:02Z",
+      "side": 1,
+      "message": "For the record, this problem was introduced in [1].  I think the reason it was overlooked is that none of the plugins use pkg_war.bzl.\n\n[1] https://gerrit-review.googlesource.com/c/bazlets/+/216432",
+      "parentUuid": "a32331a4_e3995276",
+      "revId": "ea1dd37eca4b3b46d337f47458d3f3599f957e2e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
