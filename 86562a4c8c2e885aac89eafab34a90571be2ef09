@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5fc9c069_79c4f97a",
+        "filename": "tools/javadoc.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-04-08T00:23:59Z",
+      "side": 1,
+      "message": "This is a wrong conflict resolution.  Fixed in https://gerrit-review.googlesource.com/c/bazlets/+/220004",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 56
+      },
+      "revId": "86562a4c8c2e885aac89eafab34a90571be2ef09",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
