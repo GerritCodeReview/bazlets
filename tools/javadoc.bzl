@@ -63,7 +63,7 @@ java_doc = rule(
         "pkgs": attr.string_list(),
         "title": attr.string(),
         "_jdk": attr.label(
-            default = Label("@local_jdk//:bin/javadoc"),
+            default = Label("@bazel_tools//tools/jdk:current_java_runtime"),
             allow_files = True,
             providers = [java_common.JavaRuntimeInfo],
         ),
