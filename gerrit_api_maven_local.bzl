@@ -5,7 +5,7 @@ load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 gerrit_api is rule for fetching Gerrit plugin API using Bazel.
 """
 
-VER = "3.0.0-SNAPSHOT"
+VER = "3.1.0-SNAPSHOT"
 
 def gerrit_api_maven_local():
     bouncycastle_repos()
