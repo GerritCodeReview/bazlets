@@ -1,6 +1,6 @@
 load(
     "//tools:commons.bzl",
-    "PLUGIN_DEPS",
+    _plugin_deps = "PLUGIN_DEPS",
     "PLUGIN_DEPS_NEVERLINK",
     "PLUGIN_TEST_DEPS",
 )
@@ -68,3 +68,6 @@ def gerrit_plugin(
         outs = ["%s%s.jar" % (name, target_suffix)],
         visibility = ["//visibility:public"],
     )
+
+PLUGIN_DEPS = _plugin_deps
+
