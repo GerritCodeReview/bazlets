@@ -9,16 +9,17 @@ load(
     "//tools:gwt.bzl",
     "GWT_COMPILER_ARGS",
     "GWT_JVM_ARGS",
-    "GWT_PLUGIN_DEPS",
     "GWT_PLUGIN_DEPS_NEVERLINK",
     "GWT_TRANSITIVE_DEPS",
     "gwt_binary",
+    _gwt_plugin_deps = "GWT_PLUGIN_DEPS",
 )
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
 
+GWT_PLUGIN_DEPS = _gwt_plugin_deps
 PLUGIN_DEPS = _plugin_deps
 PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
 PLUGIN_TEST_DEPS = _plugin_test_deps
