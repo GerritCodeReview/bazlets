@@ -1,14 +1,18 @@
 load(
     "//tools:commons.bzl",
-    "PLUGIN_DEPS",
-    "PLUGIN_DEPS_NEVERLINK",
-    "PLUGIN_TEST_DEPS",
+    _plugin_deps = "PLUGIN_DEPS",
+    _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
+    _plugin_test_deps = "PLUGIN_TEST_DEPS",
 )
 load("//tools:genrule2.bzl", "genrule2")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
+
+PLUGIN_DEPS = _plugin_deps
+PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
+PLUGIN_TEST_DEPS = _plugin_test_deps
 
 def gerrit_plugin(
         name,
