@@ -1,5 +1,12 @@
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_binary", "closure_js_library")
+load(
+    "@io_bazel_rules_closure//closure:defs.bzl",
+    _closure_js_binary = "closure_js_binary",
+    _closure_js_library = "closure_js_library",
+)
 load("//lib/js:npm.bzl", "NPM_SHA1S", "NPM_VERSIONS")
+
+closure_js_binary = _closure_js_binary
+closure_js_library = _closure_js_library
 
 NPMJS = "NPMJS"
 
