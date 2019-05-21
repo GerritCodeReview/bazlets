@@ -1,5 +1,12 @@
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_binary", "closure_js_library")
+load(
+    "@io_bazel_rules_closure//closure:defs.bzl",
+    _closure_js_binary = "closure_js_binary",
+    _closure_js_library = "closure_js_library",
+)
 load("//lib/js:npm.bzl", "NPM_SHA1S", "NPM_VERSIONS")
+
+closure_js_binary = _closure_js_binary
+closure_js_library = _closure_js_library
 
 NPMJS = "NPMJS"
 
@@ -469,6 +476,13 @@ def polygerrit_plugin(name, app, srcs = [], assets = None, **kwargs):
         srcs = [name + "_combined.js"],
         convention = "GOOGLE",
         no_closure_library = True,
+        suppress = [
+            "JSC_HIDDEN_SUPERCLASS_PROPERTY",
+            "JSC_INEXISTENT_PROPERTY",
+            "JSC_POSSIBLE_INEXISTENT_PROPERTY",
+            "JSC_STRICT_INEXISTENT_PROPERTY",
+            "JSC_UNKNOWN_EXPR_TYPE",
+        ],
         deps = [
             "@com_googlesource_gerrit_bazlets//lib/polymer_externs:polymer_closure",
             "@com_googlesource_gerrit_bazlets//lib/js/externs:plugin",
