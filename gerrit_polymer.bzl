@@ -3,9 +3,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file"
 def gerrit_polymer():
     http_archive(
         name = "io_bazel_rules_closure",
-        sha256 = "d797d2410358bc8a4ceb1d26319b899acf4201f39cf2a99eb4b57212c01d76c7",
-        strip_prefix = "rules_closure-a34455e0c76769df13d25b67851252559fe7f83d",
-        urls = ["https://github.com/bazelbuild/rules_closure/archive/a34455e0c76769df13d25b67851252559fe7f83d.tar.gz"],
+        sha256 = "75c58680af5f7b938ce9fe2abe8ecd9d24c698d160c0b71a945bd100fa77632b",
+        strip_prefix = "rules_closure-10cb1a78bd6cc8927eb39c2644c0369934f4aed6",
+        urls = ["https://github.com/bazelbuild/rules_closure/archive/10cb1a78bd6cc8927eb39c2644c0369934f4aed6.tar.gz"],
     )
 
     # File is specific to Polymer and copied from the Closure Github -- should be
