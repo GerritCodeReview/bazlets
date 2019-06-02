@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f15af7db_0f0f12c1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-06-02T07:33:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f450cceb_ac110c3a",
+      "revId": "f585f3f5bee28c85e96e14378247f49a441b62b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8160f5d0_6c3fd306",
         "filename": "tools/download_file.py",
         "patchSetId": 2
@@ -39,6 +57,30 @@
       "revId": "f585f3f5bee28c85e96e14378247f49a441b62b9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a32fa094_14837278",
+        "filename": "tools/download_file.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-06-02T07:33:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8160f5d0_6c3fd306",
+      "range": {
+        "startLine": 106,
+        "startChar": 44,
+        "endLine": 106,
+        "endChar": 50
+      },
+      "revId": "f585f3f5bee28c85e96e14378247f49a441b62b9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
