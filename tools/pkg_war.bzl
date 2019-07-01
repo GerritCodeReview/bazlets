@@ -67,7 +67,7 @@ def _war_impl(ctx):
         inputs.append(dep)
 
     if ctx.attr.web_xml:
-        for web_xml in ctx.attr.web_xml.files:
+        for web_xml in ctx.attr.web_xml.files.to_list():
             inputs.append(web_xml)
             cmd = cmd + _add_file(ctx.attr.name, web_xml, build_output + "/WEB-INF/")
 
