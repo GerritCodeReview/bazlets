@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e25bf37e_9daf9bea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "do to",
+      "range": {
+        "startLine": 18,
+        "startChar": 47,
+        "endLine": 18,
+        "endChar": 52
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "068cfd69_307e38eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "master? -If so, not sure how it fits with the rest of this sentence. Maybe provide an example of a \u0027common\u0027 and \u0027earliest\u0027 branches combo that is often seen currently?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 6
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "67ce36ad_1c8ff399",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": ". This (Optional.)",
+      "range": {
+        "startLine": 21,
+        "startChar": 58,
+        "endLine": 21,
+        "endChar": 65
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "144054e9_d5a89d7f",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "Can we multi-line this array for easier maintenance or visual lookup?",
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "086295bd_e99d596d",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "Could these indexing values become named constants, based on the meaning of each (value)?",
+      "range": {
+        "startLine": 18,
+        "startChar": 33,
+        "endLine": 18,
+        "endChar": 34
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ff55cf93_df108a85",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "Another example pertaining to my previous question, here.",
+      "range": {
+        "startLine": 32,
+        "startChar": 33,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6555cba7_8e2d19d6",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2019-07-04T22:08:07Z",
+      "side": 1,
+      "message": "What happens if it does (start with \"3.\")? -Not sure I understand.",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
