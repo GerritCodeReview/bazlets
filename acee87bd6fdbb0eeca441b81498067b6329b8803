@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "835afdde_ac1b5515",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-07-04T23:14:16Z",
+      "side": 1,
+      "message": "common here means implicitly master, i.e. the master branch of the bazlets. For the plugins the current earliest still supported branch is stable-2.15 (or stable-2.14 if we consider also that we keep it buildable)",
+      "parentUuid": "068cfd69_307e38eb",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 6
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "67ce36ad_1c8ff399",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -88,6 +112,24 @@
     },
     {
       "key": {
+        "uuid": "399ce180_e729681f",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-07-04T23:14:16Z",
+      "side": 1,
+      "message": "I\u0027ll run buildifier on the final version to format it properly.",
+      "parentUuid": "144054e9_d5a89d7f",
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "086295bd_e99d596d",
         "filename": "gerrit_api.bzl",
         "patchSetId": 1
@@ -99,6 +141,30 @@
       "writtenOn": "2019-07-04T22:08:07Z",
       "side": 1,
       "message": "Could these indexing values become named constants, based on the meaning of each (value)?",
+      "range": {
+        "startLine": 18,
+        "startChar": 33,
+        "endLine": 18,
+        "endChar": 34
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6dff31bc_d8042498",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-07-04T23:14:16Z",
+      "side": 1,
+      "message": "I considered doing that, i.e. making each entry in the VERSIONS dict also be a dict, but I thought that would make the definitions a bit too verbose.",
+      "parentUuid": "086295bd_e99d596d",
       "range": {
         "startLine": 18,
         "startChar": 33,
@@ -145,6 +211,30 @@
       "writtenOn": "2019-07-04T22:08:07Z",
       "side": 1,
       "message": "What happens if it does (start with \"3.\")? -Not sure I understand.",
+      "range": {
+        "startLine": 43,
+        "startChar": 11,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bdb4a25c_fc74a545",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-07-04T23:14:16Z",
+      "side": 1,
+      "message": "GWT is removed on 3.0, so we don\u0027t need to include the GWT artifacts that are enclosed within this block.\n\nThis of course could be made more future proof, for example to handle the eventual case that we have a version 4.0, but for now this should be sufficient.",
+      "parentUuid": "6555cba7_8e2d19d6",
       "range": {
         "startLine": 43,
         "startChar": 11,
