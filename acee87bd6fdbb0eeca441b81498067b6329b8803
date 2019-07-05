@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "f9775083_37573e3e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-07-05T05:00:17Z",
+      "side": 1,
+      "message": "The standalone build mode will die in (very) near future.\n\nThe reason is recursive WORKSPACE support in Bazel. We worked around the problem using this options in .bazelrc:\n\n  build --incompatible_disallow_load_labels_to_cross_package_boundaries\u003dfalse\n\nHowever, the day, this option will be flip, and we will migrate to this Bazel version, standalone build mode will be dead.\n\nBefore we further invest in standalone build, e.g. something that is done in this change, I would like to see a solution to --incompatible_disallow_load_labels_to_cross_package_boundaries problem.\n\nSee these issues for more details: [1], [2], [3].\n\n* [1] https://bugs.chromium.org/p/gerrit/issues/detail?id\u003d11122\n* [2] https://github.com/bazelbuild/bazel/issues/6408\n* [3] https://github.com/bazelbuild/bazel/issues/8367",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 71
+      },
+      "revId": "acee87bd6fdbb0eeca441b81498067b6329b8803",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e25bf37e_9daf9bea",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
