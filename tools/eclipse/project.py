@@ -34,6 +34,11 @@ opts.add_argument('-n', '--name', help='Project name')
 opts.add_argument('-x', '--exclude', action='append', help='Exclude paths')
 opts.add_argument('-b', '--batch', action='store_true',
                   dest='batch', help='Bazel batch option')
+opts.add_argument('--bazel',
+                  help=('name of the bazel executable. Defaults to using'
+                        ' bazelisk if found, or bazel if bazelisk is not'
+                        ' found.'),
+                  action='store', default=None, dest='bazel_exe')
 args = opts.parse_args()
 
 if not args.root:
@@ -47,8 +52,29 @@ while not os.path.exists(os.path.join(ROOT, 'WORKSPACE')):
 
 batch_option = '--batch' if args.batch else None
 
+def find_bazel():
+  if args.bazel_exe:
+    try:
+      return subprocess.check_output(
+        ['which', args.bazel_exe]).strip().decode('UTF-8')
+    except subprocess.CalledProcessError:
+      print('Bazel command: %s not found' % args.bazel_exe, file=sys.stderr)
+      sys.exit(1)
+  try:
+    return subprocess.check_output(
+      ['which', 'bazelisk']).strip().decode('UTF-8')
+  except subprocess.CalledProcessError:
+    try:
+      return subprocess.check_output(
+        ['which', 'bazel']).strip().decode('UTF-8')
+    except subprocess.CalledProcessError:
+      print("Neither bazelisk nor bazel found. Please see"
+            " Documentation/dev-bazel for instructions on installing"
+            " one of them.")
+      sys.exit(1)
+
 def _build_bazel_cmd(*args):
-  cmd = ['bazel']
+  cmd = [bazel_exe]
   if batch_option:
     cmd.append('--batch')
   for arg in args:
