@@ -15,13 +15,12 @@
 #
 
 from __future__ import print_function
-# TODO(davido): use Google style for importing instead:
 import argparse
-from os import path
-from subprocess import CalledProcessError, check_call, check_output
-from xml.dom import minidom
+import os
+import subprocess
 import re
 import sys
+import xml.dom.minidom
 
 JRE = '/'.join([
   'org.eclipse.jdt.launching.JRE_CONTAINER',
@@ -42,9 +41,9 @@ if not args.root:
   sys.exit(1)
 
 root = args.root
-ROOT = path.abspath(root)
-while not path.exists(path.join(ROOT, 'WORKSPACE')):
-  ROOT = path.dirname(ROOT)
+ROOT = os.path.abspath(root)
+while not os.path.exists(os.path.join(ROOT, 'WORKSPACE')):
+  ROOT = os.path.dirname(ROOT)
 
 batch_option = '--batch' if args.batch else None
 
@@ -57,19 +56,19 @@ def _build_bazel_cmd(*args):
   return cmd
 
 def retrieve_ext_location():
-  return check_output(_build_bazel_cmd('info', 'output_base')).strip()
+  return subprocess.check_output(_build_bazel_cmd('info', 'output_base')).strip()
 
 def _query_classpath():
   t = '//tools/eclipse:main_classpath_collect'
   try:
-    check_call(_build_bazel_cmd('build', t))
-  except CalledProcessError:
+    subprocess.check_call(_build_bazel_cmd('build', t))
+  except subprocess.CalledProcessError:
     exit(1)
   name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
   return [line.rstrip('\n') for line in open(name)]
 
 def gen_project(name, root=ROOT):
-  p = path.join(root, '.project')
+  p = os.path.join(root, '.project')
   with open(p, 'w') as fd:
     print("""\
 <?xml version="1.0" encoding="UTF-8"?>
@@ -88,7 +87,7 @@ def gen_project(name, root=ROOT):
 
 def gen_classpath(ext):
   def make_classpath():
-    impl = minidom.getDOMImplementation()
+    impl = xml.dom.minidom.getDOMImplementation()
     return impl.createDocument(None, 'classpath', None)
 
   def classpathentry(kind, path, src=None, out=None, exported=None):
@@ -120,7 +119,7 @@ def gen_classpath(ext):
       src.add(m.group(1).lstrip('/'))
     else:
       if p.startswith("external"):
-        p = path.join(ext, p)
+        p = os.path.join(ext, p)
         lib.add(p)
 
   src_paths = {}
@@ -130,8 +129,8 @@ def gen_classpath(ext):
     if s.startswith('lib/'):
       out = 'eclipse-out/lib'
 
-    p = path.join(s, 'java')
-    if path.exists(p):
+    p = os.path.join(s, 'java')
+    if os.path.exists(p):
       classpathentry('src', p, out=out)
       continue
 
@@ -147,8 +146,8 @@ def gen_classpath(ext):
         continue
 
       for srctype in ['java', 'resources']:
-        p = path.join(s, 'src', env, srctype)
-        if path.exists(p):
+        p = os.path.join(s, 'src', env, srctype)
+        if os.path.exists(p):
           src_paths[p] = o
 
   for s in src_paths:
@@ -163,15 +162,15 @@ def gen_classpath(ext):
       if m:
         prefix = m.group(1)
         suffix = m.group(2)
-        p = path.join(prefix, "src", "%s-src.jar" % suffix)
-        if path.exists(p):
+        p = os.path.join(prefix, "src", "%s-src.jar" % suffix)
+        if os.path.exists(p):
           s = p
       classpathentry('lib', j, s)
 
   classpathentry('con', JRE)
   classpathentry('output', 'eclipse-out/classes')
 
-  p = path.join(ROOT, '.classpath')
+  p = os.path.join(ROOT, '.classpath')
   with open(p, 'w') as fd:
     doc.writexml(fd, addindent='\t', newl='\n', encoding='UTF-8')
 
@@ -183,7 +182,7 @@ def excluded(lib):
   return False
 
 try:
-  name = args.name if args.name else path.basename(ROOT)
+  name = args.name if args.name else os.path.basename(ROOT)
   gen_project(name)
   gen_classpath(retrieve_ext_location().decode('utf-8'))
 
