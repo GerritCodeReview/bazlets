@@ -1,4 +1,5 @@
 load("//:bouncycastle.bzl", "bouncycastle_repos")
+load("//:rules_python.bzl", "rules_python_repos")
 load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
@@ -9,6 +10,7 @@ VER = "2.14.11-SNAPSHOT"
 
 def gerrit_api_maven_local():
     bouncycastle_repos()
+    rules_python_repos()
 
     maven_jar(
         name = "gerrit_plugin_api",
