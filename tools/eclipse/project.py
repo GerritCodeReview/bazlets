@@ -16,10 +16,7 @@
 
 from __future__ import print_function
 # TODO(davido): use Google style for importing instead:
-# import optparse
-# ...
-# optparse.OptionParser
-from optparse import OptionParser
+import argparse
 from os import path
 from subprocess import CalledProcessError, check_call, check_output
 from xml.dom import minidom
@@ -32,13 +29,13 @@ JRE = '/'.join([
   'JavaSE-1.8',
 ])
 
-opts = OptionParser()
-opts.add_option('-r', '--root', help='Root directory entry')
-opts.add_option('-n', '--name', help='Project name')
-opts.add_option('-x', '--exclude', action='append', help='Exclude paths')
-opts.add_option('-b', '--batch', action='store_true',
-                dest='batch', help='Bazel batch option')
-args, _ = opts.parse_args()
+opts = argparse.ArgumentParser("Create Eclipse Project")
+opts.add_argument('-r', '--root', help='Root directory entry')
+opts.add_argument('-n', '--name', help='Project name')
+opts.add_argument('-x', '--exclude', action='append', help='Exclude paths')
+opts.add_argument('-b', '--batch', action='store_true',
+                  dest='batch', help='Bazel batch option')
+args = opts.parse_args()
 
 if not args.root:
   opts.error('Root option not provided')
