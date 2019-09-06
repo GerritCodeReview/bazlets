@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5e1cb409_d83adb94",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1011123
+      },
+      "writtenOn": "2019-09-06T06:47:24Z",
+      "side": 1,
+      "message": "this is not defined.  Need to assign it with a call to find_bazel()\n\nDone in ps2.",
+      "range": {
+        "startLine": 77,
+        "startChar": 9,
+        "endLine": 77,
+        "endChar": 18
+      },
+      "revId": "33bbddadfb4aa26fb7775363e404249702d06058",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
