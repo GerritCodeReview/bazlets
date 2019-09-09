@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+load("@rules_java//java:defs.bzl", "java_library")
+
 def prolog_cafe_library(
         name,
         srcs,
@@ -26,7 +28,7 @@ def prolog_cafe_library(
         tools = ["@com_googlesource_gerrit_bazlets//lib/prolog:compiler-bin"],
         outs = [name + ".srcjar"],
     )
-    native.java_library(
+    java_library(
         name = name,
         srcs = [":" + name + "__pl2j"],
         deps = ["@prolog-runtime//jar:neverlink"] + deps,
