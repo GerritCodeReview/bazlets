@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba13fc28_e252f983",
+        "filename": "tools/download_file.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-09-12T12:50:48Z",
+      "side": 0,
+      "message": "Buck? It is a left over from Buck build tool removal. Looking at the same place in Gerrit core, this line should be:\n\n  if n \u003d\u003d \u0027WORKSPACE\u0027:\n\nIt seems, that this change was missed to be applied to Bazlets. When it\u0027s done this change should be needed. I am pretty sure, I tested thta part on Windows with Bazel in gerrit core and it worked.\n\n[1] https://gerrit.googlesource.com/gerrit/+/fdbfcad77dfe0aacb2c9d3cdf2c22984f1c82954%5E%21/#F136",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "09a035e98077dce549d5f6a7472d06c4b8f792d2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
