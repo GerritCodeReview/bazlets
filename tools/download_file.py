@@ -85,9 +85,10 @@ args, _ = opts.parse_args()
 
 root_dir = args.o
 while root_dir and root_dir != "/":
-  root_dir, n = path.split(root_dir)
-  if n == 'buck-out':
+  path_part, n = path.split(root_dir)
+  if n == 'buck-out' or path_part == root_dir:
     break
+  root_dir = path_part
 
 redirects = download_properties(root_dir)
 cache_ent = cache_entry(args)
