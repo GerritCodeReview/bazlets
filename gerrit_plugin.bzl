@@ -1,3 +1,4 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load(
     "//tools:commons.bzl",
     _plugin_deps = "PLUGIN_DEPS",
@@ -29,7 +30,7 @@ def gerrit_plugin(
     if not dir_name:
         dir_name = name
 
-    native.java_library(
+    java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
@@ -37,8 +38,7 @@ def gerrit_plugin(
         visibility = ["//visibility:public"],
         **kwargs
     )
-
-    native.java_binary(
+    java_binary(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
         main_class = "Dummy",

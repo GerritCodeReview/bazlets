@@ -1,3 +1,5 @@
+load("@rules_java//java:defs.bzl", "java_binary", "java_library")
+
 java_binary(
     name = "compiler-bin",
     main_class = "PrologCompiler",
