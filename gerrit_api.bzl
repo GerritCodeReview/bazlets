@@ -6,7 +6,7 @@ load("//tools:maven_jar.bzl", "maven_jar")
 gerrit_api is rule for fetching Gerrit plugin API using Bazel.
 """
 
-VER = "3.1.0-rc0"
+VER = "3.1.0-rc1"
 
 def gerrit_api():
     bouncycastle_repos()
@@ -15,12 +15,12 @@ def gerrit_api():
     maven_jar(
         name = "gerrit_plugin_api",
         artifact = "com.google.gerrit:gerrit-plugin-api:" + VER,
-        sha1 = "156093f3b7eb0ea1c4fa58d44a37271dce304916",
+        sha1 = "9e81ffb444dcf78e8298c813b635223226403cdc",
     )
     maven_jar(
         name = "gerrit_acceptance_framework",
         artifact = "com.google.gerrit:gerrit-acceptance-framework:" + VER,
-        sha1 = "780e56a637cb74ccd33b61fbf9a85fdb95a1914f",
+        sha1 = "c658a91fa59a311c5217fcef02227d23fe9bb1b6",
     )
     native.bind(
         name = "gerrit-plugin-api",
