@@ -70,6 +70,30 @@
       "revId": "09a035e98077dce549d5f6a7472d06c4b8f792d2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7fa95149_7e1da689",
+        "filename": "tools/download_file.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2019-11-02T06:51:14Z",
+      "side": 0,
+      "message": "Well, it was changed to `WORKSPACE` in gerrit core, and we never see any issues with this: [1]. Can you just replace \u0027buck-out\u0027 with \u0027WORKSPACE\u0027 and move the another improvement in follow-up change?\n\n* [1] https://gerrit-review.googlesource.com/c/gerrit/+/91587",
+      "parentUuid": "0f707180_c5d4a56d",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 21
+      },
+      "revId": "09a035e98077dce549d5f6a7472d06c4b8f792d2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
