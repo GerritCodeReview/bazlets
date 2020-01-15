@@ -22,6 +22,30 @@
       "revId": "c4cfd97167ea40e4815d35b6f9f589c0a63220bc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "87c86689_84f48b96",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-01-15T22:25:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ac29dae_da55703f",
+      "range": {
+        "startLine": 25,
+        "startChar": 15,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "c4cfd97167ea40e4815d35b6f9f589c0a63220bc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
