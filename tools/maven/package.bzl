@@ -25,27 +25,31 @@ sh_bang_template = (" && ".join([
 
 def maven_package(
         version,
-        group,
+        group = None,
         repository = None,
         url = None,
         jar = {},
         src = {},
-        doc = {}):
+        doc = {},
+        pom = {}):
     build_cmd = ["bazel", "build"]
     mvn_cmd = [
         "$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)",
         "-v",
         version,
-        "-g",
-        group,
         "-r",
         ".",
     ]
+    if group:
+        mvn_cmd.extend(["-g", group])
     api_cmd = mvn_cmd[:]
     api_targets = []
     for type, d in [("jar", jar), ("java-source", src), ("javadoc", doc)]:
         for a, t in sorted(d.items()):
-            api_cmd.append("-s %s:%s:$(location %s)" % (a, type, t))
+            params = "-s %s:%s:$(location %s)" % (a, type, t)
+            if bool(pom):
+                params += ":$(location %s)" % pom[a]
+            api_cmd.append(params)
             api_targets.append(t)
 
     native.genrule(
@@ -54,7 +58,9 @@ def maven_package(
             " ".join(build_cmd + api_targets),
             " ".join(api_cmd + ["-a", "install"]),
         ),
-        srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
+        srcs = pom.values() + api_targets + [
+            "@com_googlesource_gerrit_bazlets//tools/maven:mvn.py",
+        ],
         outs = ["api_install.sh"],
         executable = True,
         testonly = 1,
@@ -74,7 +80,9 @@ def maven_package(
                     url,
                 ]),
             ),
-            srcs = api_targets + ["@com_googlesource_gerrit_bazlets//tools/maven:mvn.py"],
+            srcs = pom.values() + api_targets + [
+                "@com_googlesource_gerrit_bazlets//tools/maven:mvn.py",
+            ],
             outs = ["api_deploy.sh"],
             executable = True,
             testonly = 1,

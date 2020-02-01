@@ -19,9 +19,6 @@ from os import path, environ
 from subprocess import check_output
 from sys import stderr
 
-def mvn(action):
-  return ['mvn', '--file', path.join(root, 'fake_pom_%s.xml' % action)]
-
 opts = OptionParser()
 opts.add_option('--repository', help='maven repository id')
 opts.add_option('--url', help='maven repository url')
@@ -29,14 +26,11 @@ opts.add_option('-o')
 opts.add_option('-r', '--root', help='Root directory')
 opts.add_option('-g', help='maven group id')
 opts.add_option('-a', help='action (valid actions are: install,deploy)')
-opts.add_option('-v', help='gerrit version')
-opts.add_option('-s', action='append', help='triplet of artifactId:type:path')
+opts.add_option('-v', help='version')
+opts.add_option('-s', action='append',
+                help='triplet or quadruplet of artifactId:type:path[:pom]')
 
 args, ctx = opts.parse_args()
-if not args.g:
-  print('group is empty', file=stderr)
-  exit(1)
-
 if not args.v:
   print('version is empty', file=stderr)
   exit(1)
@@ -46,7 +40,6 @@ if not args.root:
   exit(1)
 
 common = [
-  '-DgroupId=%s' % args.g,
   '-Dversion=%s' % args.v,
 ]
 
@@ -54,10 +47,14 @@ root = path.abspath(args.root)
 while not path.exists(path.join(root, 'WORKSPACE')):
   root = path.dirname(root)
 
+if args.g:
+  common.append('-DgroupId=%s' % args.g)
+
 if 'install' == args.a:
-  cmd = mvn(args.a) + ['install:install-file'] + common
+  cmd = ['mvn', 'install:install-file'] + common
 elif 'deploy' == args.a:
-  cmd = mvn(args.a) + [
+  cmd = [
+    'mvn',
     'gpg:sign-and-deploy-file',
     '-DrepositoryId=%s' % args.repository,
     '-Durl=%s' % args.url,
@@ -67,18 +64,29 @@ else:
   exit(1)
 
 for spec in args.s:
-  artifact, packaging_type, src = spec.split(':')
-  exe = cmd + [
-    '-DartifactId=%s' % artifact,
-    '-Dpackaging=%s' % packaging_type,
-    '-Dfile=%s' % src,
+  # artifact:type:src[:pom]
+  a = spec.split(':')
+  parts = [
+    '-DartifactId=%s' % a[0],
+    '-Dpackaging=%s' % a[1],
   ]
+  if len(a) == 3:
+    parts.extend(['--file', path.join(root, 'fake_pom_%s.xml' % args.a)])
+  else:
+    parts.extend(['-DpomFile=%s' % path.join(root, '%s' % a[3])])
+
+  if path.isabs(a[2]):
+    parts.append('-Dfile=%s' % a[2])
+  else:
+    parts.append('-Dfile=%s' % path.join(root, a[2]))
+
+  cmd.extend(parts)
   try:
     if environ.get('VERBOSE'):
-      print(' '.join(exe), file=stderr)
-    check_output(exe)
+      print(' '.join(cmd), file=stderr)
+    check_output(cmd)
   except Exception as e:
-    print('%s command failed: %s\n%s' % (args.a, ' '.join(exe), e),
+    print('%s command failed: %s\n%s' % (args.a, ' '.join(cmd), e),
       file=stderr)
     exit(1)
 
