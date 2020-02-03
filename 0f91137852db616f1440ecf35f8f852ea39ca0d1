@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "2d92a34f_b8121e61",
+        "filename": "tools/maven/mvn.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-02-03T14:22:34Z",
+      "side": 1,
+      "message": "Paladox has uploded this change to review in Gerrit [1]. I have added you as reveiwer. Let us wait until thi change is merged and then we can apply a similar cange to Bazlts project.\n\n* [1] https://gerrit-review.googlesource.com/c/gerrit/+/252912",
+      "parentUuid": "2e326c31_a7ef06c6",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "0f91137852db616f1440ecf35f8f852ea39ca0d1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a61d862e_7a196ce2",
         "filename": "tools/maven/mvn.py",
         "patchSetId": 1
