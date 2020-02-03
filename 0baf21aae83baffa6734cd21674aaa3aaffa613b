@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "708cdbed_db037871",
+        "filename": "tools/maven/mvn.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-02-03T13:56:02Z",
+      "side": 1,
+      "message": "Unrelated?",
+      "revId": "0baf21aae83baffa6734cd21674aaa3aaffa613b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bc5d70ab_a14d5c07",
+        "filename": "tools/maven/package.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-02-03T13:56:02Z",
+      "side": 1,
+      "message": "Wrap line here to \u003c100 chars?",
+      "range": {
+        "startLine": 61,
+        "startChar": 41,
+        "endLine": 61,
+        "endChar": 42
+      },
+      "revId": "0baf21aae83baffa6734cd21674aaa3aaffa613b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
