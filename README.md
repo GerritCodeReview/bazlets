@@ -47,11 +47,12 @@ Suppose you have the following directory structure for a simple plugin:
 
 ```
 [workspace]/
-    WORKSPACE
-	BUILD
-    src/main/java/
-	src/main/resources/
-	[...]
+├── src
+│   └── main
+│       ├── java
+│       └── resources
+├── BUILD
+└── WORKSPACE
 ```
 
 To build this plugin, your `BUILD` can look like this:
