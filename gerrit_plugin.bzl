@@ -5,6 +5,7 @@ load(
     _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
     _plugin_test_deps = "PLUGIN_TEST_DEPS",
 )
+load("//:gerrit_api.bzl", "GERRIT_API_VERSION")
 load("//tools:genrule2.bzl", "genrule2")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
@@ -40,7 +41,10 @@ def gerrit_plugin(
     )
     java_binary(
         name = "%s__non_stamped" % name,
-        deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
+        deploy_manifest_lines = manifest_entries + [
+            "Gerrit-ApiType: plugin",
+            "Gerrit-ApiVersion: " + GERRIT_API_VERSION,
+        ],
         main_class = "Dummy",
         runtime_deps = [
             ":%s__plugin" % name,
