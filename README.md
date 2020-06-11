@@ -36,9 +36,9 @@ Maven repository (`~/.m2`). To use the snapshot version special method is
 provided:
 
 ```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api_maven_local.bzl",
-     "gerrit_api_maven_local")
-gerrit_api_maven_local()
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl",
+     "gerrit_api")
+gerrit_api(local=True)
 ```
 
 <a name="basic-example"></a>
