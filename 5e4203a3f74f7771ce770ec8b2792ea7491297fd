@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "560a418f_49b29545",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-11T19:59:20Z",
+      "side": 1,
+      "message": "GERRIT_API_VERSION could well live in a dedicated `version.bzl` file. But since we\ncurrently do not need it in external scripts, we could just as well\nkeep it here. Then (when Gerrit bumps its versions) we only need to update\nthis file with new version numbers and SHA1 sums. Otherwise, the change\nwould be split between `version.bzl` and the SHA1 sums in `gerrit_api.bzl`",
+      "revId": "5e4203a3f74f7771ce770ec8b2792ea7491297fd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ccd35ceb_a76152d3",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-11T19:59:20Z",
+      "side": 1,
+      "message": "That\u0027s kind of a bold move. I know. And I\u0027m not sure if it\u0027s wanted or not.\n\nBut having all the library dependencies only in a single place makes not only\nde-dupes but makes gerrit_api.bzl kind of the expected place for the api\nversion. Otherwise it would feel kind of weird to use the Gerrit Api version\nnumber from gerrit_api.bzl but the rest from gerrit_api_maven_local.bzl.",
+      "revId": "5e4203a3f74f7771ce770ec8b2792ea7491297fd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
