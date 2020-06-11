@@ -28,6 +28,7 @@ git_repository(
 )
 load("@com_github_davido_bazlets//:gerrit_api.bzl",
      "gerrit_api")
+gerrit_api()
 ```
 
 Another option is to consume snapshot version of gerrit plugin API from local
