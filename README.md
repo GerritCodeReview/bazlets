@@ -22,11 +22,11 @@ file, which will give you default versions for Gerrit plugin API.
 
 ```python
 git_repository(
-  name = "com_github_davido_bazlets",
-  remote = "https://github.com/davido/bazlets.git",
-  commit = "2ede19cb2d2dd9d04bcb70ffc896439a27e5d50d",
+  name = "com_googlesource_gerrit_bazlets",
+  remote = "https://gerrit.googlesource.com/bazlets",
+  commit = "928c928345646ae958b946e9bbdb462f58dd1384",
 )
-load("@com_github_davido_bazlets//:gerrit_api.bzl",
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl",
      "gerrit_api")
 gerrit_api()
 ```
