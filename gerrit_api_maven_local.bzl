@@ -1,4 +1,5 @@
 load("//:bouncycastle.bzl", "bouncycastle_repos")
+load("//:gerrit_api_version.bzl", "gerrit_api_version")
 load("//:rules_python.bzl", "rules_python_repos")
 load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 
@@ -6,9 +7,14 @@ load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "maven_jar")
 gerrit_api is rule for fetching Gerrit plugin API using Bazel.
 """
 
-VER = "2.16.5-SNAPSHOT"
+VER = "2.16.22-SNAPSHOT"
 
 def gerrit_api_maven_local():
+    gerrit_api_version(
+        name = "gerrit_api_version",
+        version = VER,
+    )
+
     bouncycastle_repos()
     rules_python_repos()
 
