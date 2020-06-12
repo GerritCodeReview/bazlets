@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e13fb0a_db1174e2",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-12T12:06:16Z",
+      "side": 1,
+      "message": "Unrelated to this commit, but this line could be unwrapped:\n\n  load(\"@com_googlesource_gerrit_bazlets//:gerrit_api.bzl\", \"gerrit_api\")\n\nand below.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 18
+      },
+      "revId": "2852b85f10945db9f90663618eba8f61d9629fd7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c22190b2_9767b44d",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-12T12:06:16Z",
+      "side": 1,
+      "message": "Nit: blank around \u003d here and below.",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "2852b85f10945db9f90663618eba8f61d9629fd7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
