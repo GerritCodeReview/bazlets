@@ -23,13 +23,13 @@ def gerrit_api(version = "3.0.10",
     maven_jar(
         name = "gerrit_plugin_api",
         artifact = "com.google.gerrit:gerrit-plugin-api:" + version,
-        sha1 = "" if local_repository else "90df648d9ef9e1a953e253972d9922fc1b753f83",
+        sha1 = "" if local_repository else plugin_api_sha1,
         repository = MAVEN_LOCAL if local_repository else MAVEN_CENTRAL,
     )
     maven_jar(
         name = "gerrit_acceptance_framework",
         artifact = "com.google.gerrit:gerrit-acceptance-framework:" + version,
-        sha1 = "" if local_repository else "9c30ee281fa9016d460d16dd08a87ef16cedbf84",
+        sha1 = "" if local_repository else acceptance_framework_sha1,
         repository = MAVEN_LOCAL if local_repository else MAVEN_CENTRAL,
     )
     native.bind(
