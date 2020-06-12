@@ -93,6 +93,30 @@
       "revId": "f639a57bb65805600b4f4795e1d24979faf64431",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d03ccc57_6c808fb6",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-06-12T17:24:47Z",
+      "side": 1,
+      "message": "This would add more update burden to the multiple (per plugin) callers. I think this file should still be the one to update for consistent sha1(s) purposes. Then callers only need to use the proper version of this file (the already used bazlets commit in WORKSPACE files). And the latter files can always override anyone of the version or sha1(s), whenever the gerrit_api defaults don\u0027t fit.\n\nThe snapshot case proposed above still works as such, based on [1]:\n[1] https://gerrit-review.googlesource.com/c/bazlets/+/271303/6/README.md",
+      "parentUuid": "05d3308a_af0e8a18",
+      "range": {
+        "startLine": 11,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 85
+      },
+      "revId": "f639a57bb65805600b4f4795e1d24979faf64431",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
