@@ -69,6 +69,30 @@
       "revId": "f639a57bb65805600b4f4795e1d24979faf64431",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05d3308a_af0e8a18",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-12T16:22:44Z",
+      "side": 1,
+      "message": "Alternatively, it could be just edited in WORKSPACE file, so that this file wouldn\u0027t have to be changed at all:\n\n  def gerrit_api(version, plugin_api_sha1, acceptance_framework_sha1):\n  [...]\n\nand the caller would say:\n\n  gerrit_api(version \u003d \"3.1.6\",\n             plugin_api_sha1 \u003d \"e57f6465c9805f568082bffffd61a2771f10d68a\",\n             acceptance_framework_sha1 \u003d \"ebfd50383f8593678b451c81dbc332db8e8da188\")\n\nand for snapshot plugin api, just:\n\n  gerrit_api(version \u003d \"3.1.7-SNAPSHOT\")",
+      "parentUuid": "1a1404c2_913baade",
+      "range": {
+        "startLine": 11,
+        "startChar": 33,
+        "endLine": 12,
+        "endChar": 85
+      },
+      "revId": "f639a57bb65805600b4f4795e1d24979faf64431",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
