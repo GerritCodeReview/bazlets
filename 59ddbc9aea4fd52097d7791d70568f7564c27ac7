@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "e9a72bd6_a0b99211",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-06-12T16:13:47Z",
+      "side": 1,
+      "message": "We concurrently noticed this, likely after me patching https://gerrit-review.googlesource.com/c/bazlets/+/271435/-1..2/gerrit_api.bzl",
+      "parentUuid": "e7024f59_8e2e625a",
+      "range": {
+        "startLine": 26,
+        "startChar": 43,
+        "endLine": 26,
+        "endChar": 85
+      },
+      "revId": "59ddbc9aea4fd52097d7791d70568f7564c27ac7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7acb7613_4701f3a2",
         "filename": "gerrit_api.bzl",
         "patchSetId": 6
@@ -82,6 +106,30 @@
       "writtenOn": "2020-06-12T16:11:31Z",
       "side": 1,
       "message": "acceptance_framework_sha1, rather?",
+      "range": {
+        "startLine": 32,
+        "startChar": 43,
+        "endLine": 32,
+        "endChar": 85
+      },
+      "revId": "59ddbc9aea4fd52097d7791d70568f7564c27ac7",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91e2c3bf_896badc6",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-06-12T16:13:47Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7ff0aad1_0b726178",
       "range": {
         "startLine": 32,
         "startChar": 43,
