@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "22c839b6_cdf93592",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "Done in PS6.",
+      "parentUuid": "699a08e6_b28f005c",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a3a1b8e_81f1a6c9",
         "filename": "gerrit_api.bzl",
         "patchSetId": 4
@@ -45,6 +69,30 @@
       "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46046ad0_7b37780a",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "Done in PS6.",
+      "parentUuid": "7a3a1b8e_81f1a6c9",
+      "range": {
+        "startLine": 12,
+        "startChar": 20,
+        "endLine": 12,
+        "endChar": 21
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     },
     {
       "key": {
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1c16f4eb_aedea02f",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "The way I used bazlets is to have a local clone and point the plugin to that.\nThen all I had to do was updating the VER constant and it automatically\nfetched it from either Maven Central or ~/.m2.\n\nObviously, you used it differently. But it\u0027s gone in PS6.",
+      "parentUuid": "c82410d4_a359673e",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 34
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b80970ab_ae28012a",
         "filename": "gerrit_api_maven_local.bzl",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "bb9cca97_7b875436",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "Done in PS6.",
+      "parentUuid": "b80970ab_ae28012a",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 64
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d3c81c4f_bd40aaad",
         "filename": "gerrit_api_maven_local.bzl",
         "patchSetId": 4
@@ -114,6 +210,30 @@
       "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f2e0de0_2817b0ef",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "No longer applies, as file is gone in PS6 per comment above.",
+      "parentUuid": "d3c81c4f_bd40aaad",
+      "range": {
+        "startLine": 7,
+        "startChar": 20,
+        "endLine": 7,
+        "endChar": 21
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }

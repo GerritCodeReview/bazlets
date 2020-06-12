@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "223171df_436d5e82",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "No longer relevant.",
+      "parentUuid": "560a418f_49b29545",
+      "revId": "5e4203a3f74f7771ce770ec8b2792ea7491297fd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccd35ceb_a76152d3",
         "filename": "gerrit_api_maven_local.bzl",
         "patchSetId": 3
@@ -33,6 +51,24 @@
       "revId": "5e4203a3f74f7771ce770ec8b2792ea7491297fd",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05a0b58c_c82cf4b1",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-12T11:45:46Z",
+      "side": 1,
+      "message": "Seems to be ok.",
+      "parentUuid": "ccd35ceb_a76152d3",
+      "revId": "5e4203a3f74f7771ce770ec8b2792ea7491297fd",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
