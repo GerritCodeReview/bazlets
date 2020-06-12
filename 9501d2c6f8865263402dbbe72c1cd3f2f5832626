@@ -71,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "b80970ab_ae28012a",
+        "filename": "gerrit_api_maven_local.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-06-12T11:16:01Z",
+      "side": 1,
+      "message": "I would just remove it. It\u0027s just for development and README documentation should be enough.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 64
+      },
+      "revId": "9501d2c6f8865263402dbbe72c1cd3f2f5832626",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "d3c81c4f_bd40aaad",
         "filename": "gerrit_api_maven_local.bzl",
         "patchSetId": 4
