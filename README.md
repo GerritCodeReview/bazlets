@@ -41,6 +41,27 @@ load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl",
 gerrit_api(local=True)
 ```
 
+The `version` parameter allows to override the default Api. For release version
+numbers, make sure to also provide artifacts' SHA1 sums via the
+`plugin_api_sha1` and `acceptance_framework_sha1` parameters:
+
+```python
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl",
+     "gerrit_api")
+gerrit_api(version="3.0.9",
+           plugin_api_sha1="dbcadf2c198b1ee1b74678855e8e10b2c403de1f",
+           acceptance_framework_sha1="799cb104f2c0de4394528e38ad487557dd69bb49")
+```
+
+If the version ends in `-SNAPSHOT`, the jars are per default assumed to be
+local and the SHA1 sums can be omitted:
+
+```python
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl",
+     "gerrit_api")
+gerrit_api(version="3.0.9-SNAPSHOT")
+```
+
 <a name="basic-example"></a>
 ## Basic Example
 
