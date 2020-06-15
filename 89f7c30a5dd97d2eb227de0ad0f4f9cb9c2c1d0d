@@ -46,6 +46,30 @@
       "revId": "89f7c30a5dd97d2eb227de0ad0f4f9cb9c2c1d0d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "216b6404_e2cc6576",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-15T20:41:59Z",
+      "side": 1,
+      "message": "\u003e I\u0027d rather have a 3.1 example for this branch, [...]\n\nCool beans :-) Marking resolved then.",
+      "parentUuid": "4c9702af_f660d619",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 80
+      },
+      "revId": "89f7c30a5dd97d2eb227de0ad0f4f9cb9c2c1d0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
