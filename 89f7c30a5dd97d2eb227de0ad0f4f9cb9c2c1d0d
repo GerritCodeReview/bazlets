@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7450476b_7c84dd0c",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2020-06-15T20:00:40Z",
+      "side": 1,
+      "message": "These are the SHA1 sums for version 3.0.9.\n\nNot sure if it\u0027s worth updating the version number to 3.1.6 here, but if\nwe choose to update them, it might be worth to also update the SHA1 sums.\n\nFor 3.1.6, they are `e57f6465c9805f568082bffffd61a2771f10d68a` for the plugin\napi and `ebfd50383f8593678b451c81dbc332db8e8da188` for the acceptance\nframework.\n\nBut maybe we can just keep the 3.0.9 here and avoid having to update the SHA1\nsums here? After all, this only serves as an example.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 80
+      },
+      "revId": "89f7c30a5dd97d2eb227de0ad0f4f9cb9c2c1d0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
+    }
+  ]
+}
