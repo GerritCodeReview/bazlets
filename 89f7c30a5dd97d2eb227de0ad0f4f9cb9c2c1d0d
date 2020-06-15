@@ -22,6 +22,30 @@
       "revId": "89f7c30a5dd97d2eb227de0ad0f4f9cb9c2c1d0d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4c9702af_f660d619",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-06-15T20:13:25Z",
+      "side": 1,
+      "message": "\u003e These are the SHA1 sums for version 3.0.9.\n\u003e \n\u003e Not sure if it\u0027s worth updating the version number to 3.1.6 here, but if\n\u003e we choose to update them, it might be worth to also update the SHA1 sums.\n\u003e \n\u003e For 3.1.6, they are `e57f6465c9805f568082bffffd61a2771f10d68a` for the plugin\n\u003e api and `ebfd50383f8593678b451c81dbc332db8e8da188` for the acceptance\n\u003e framework.\n\nMy bad, I forgot to update them here. Done.\n\n\u003e But maybe we can just keep the 3.0.9 here and avoid having to update the SHA1\n\u003e sums here? After all, this only serves as an example.\n\nI\u0027d rather have a 3.1 example for this branch, unless this generates more disagreement.",
+      "parentUuid": "7450476b_7c84dd0c",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 80
+      },
+      "revId": "89f7c30a5dd97d2eb227de0ad0f4f9cb9c2c1d0d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": true
     }
   ]
 }
