@@ -22,22 +22,32 @@ file, which will give you default versions for Gerrit plugin API.
 
 ```python
 git_repository(
-  name = "com_github_davido_bazlets",
-  remote = "https://github.com/davido/bazlets.git",
-  commit = "2ede19cb2d2dd9d04bcb70ffc896439a27e5d50d",
+  name = "com_googlesource_gerrit_bazlets",
+  remote = "https://gerrit.googlesource.com/bazlets",
+  commit = "928c928345646ae958b946e9bbdb462f58dd1384",
 )
-load("@com_github_davido_bazlets//:gerrit_api.bzl",
-     "gerrit_api")
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
+gerrit_api()
 ```
 
-Another option is to consume snapshot version of gerrit plugin API from local
-Maven repository (`~/.m2`). To use the snapshot version special method is
-provided:
+The `version` parameter allows to override the default API. For release version
+numbers, make sure to also provide artifacts' SHA1 sums via the
+`plugin_api_sha1` and `acceptance_framework_sha1` parameters:
 
 ```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api_maven_local.bzl",
-     "gerrit_api_maven_local")
-gerrit_api_maven_local()
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
+gerrit_api(version = "3.2.1",
+           plugin_api_sha1 = "47019cf43ef7e6e8d2d5c0aeba0407d23c93699c",
+           acceptance_framework_sha1 = "6252cab6d1f76202e57858fcffb428424e90b128")
+```
+
+If the version ends in `-SNAPSHOT`, the jars are consumed from the local
+Maven repository (`~/.m2`) per default assumed to be and the SHA1 sums can be
+omitted:
+
+```python
+load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
+gerrit_api(version = "3.3.0-SNAPSHOT")
 ```
 
 <a name="basic-example"></a>
@@ -47,11 +57,12 @@ Suppose you have the following directory structure for a simple plugin:
 
 ```
 [workspace]/
-    WORKSPACE
-	BUILD
-    src/main/java/
-	src/main/resources/
-	[...]
+├── src
+│   └── main
+│       ├── java
+│       └── resources
+├── BUILD
+└── WORKSPACE
 ```
 
 To build this plugin, your `BUILD` can look like this:
