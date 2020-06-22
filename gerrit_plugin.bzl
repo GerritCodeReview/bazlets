@@ -1,6 +1,7 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load(
     "//tools:commons.bzl",
+    _in_tree_build_mode = "IN_TREE_BUILD_MODE",
     _plugin_deps = "PLUGIN_DEPS",
     _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
     _plugin_test_deps = "PLUGIN_TEST_DEPS",
@@ -11,6 +12,7 @@ load("//tools:genrule2.bzl", "genrule2")
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
 
+IN_TREE_BUILD_MODE = _in_tree_build_mode
 PLUGIN_DEPS = _plugin_deps
 PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
 PLUGIN_TEST_DEPS = _plugin_test_deps
