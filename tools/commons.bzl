@@ -1,3 +1,5 @@
+IN_TREE_BUILD_MODE = False
+
 PLUGIN_DEPS_NEVERLINK = [
     "//external:gerrit-plugin-api-neverlink",
 ]
