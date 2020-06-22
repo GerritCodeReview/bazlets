@@ -142,8 +142,6 @@ def _maven_jar_impl(ctx):
     args = [python, script, "-o", binjar_path, "-u", binurl]
     if ctx.attr.sha1:
         args.extend(["-v", ctx.attr.sha1])
-    if ctx.attr.unsign:
-        args.append("--unsign")
     for x in ctx.attr.exclude:
         args.extend(["-x", x])
 
@@ -170,7 +168,6 @@ maven_jar = repository_rule(
         "repository": attr.string(default = MAVEN_CENTRAL),
         "sha1": attr.string(mandatory = False),
         "src_sha1": attr.string(),
-        "unsign": attr.bool(default = False),
         "exports": attr.string_list(),
         "deps": attr.string_list(),
         "_download_script": attr.label(default = Label("//tools:download_file.py")),
