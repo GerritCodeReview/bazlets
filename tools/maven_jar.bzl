@@ -15,6 +15,8 @@
 # Port of Buck native gwt_binary() rule. See discussion in context of
 # https://github.com/facebook/buck/issues/109
 
+ECLIPSE = "ECLIPSE:"
+
 GERRIT = "GERRIT:"
 
 GERRIT_API = "GERRIT_API:"

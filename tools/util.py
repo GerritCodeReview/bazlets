@@ -15,6 +15,7 @@
 from os import path
 
 REPO_ROOTS = {
+  'ECLIPSE': 'https://repo.eclipse.org/content/groups/releases',
   'GERRIT': 'https://gerrit-maven.storage.googleapis.com',
   'GERRIT_API': 'https://gerrit-api.commondatastorage.googleapis.com/release',
   'MAVEN_CENTRAL': 'https://repo1.maven.org/maven2',
