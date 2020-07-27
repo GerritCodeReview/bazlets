@@ -16,6 +16,24 @@
       "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "748402ea_04d9b33e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2020-07-27T18:51:47Z",
+      "side": 1,
+      "message": "We are about to let the release out and I should have more time to participate in the upstream work. Please go ahead and add me as an active reviewer but keep in mind that I don\u0027t have +2 to all plugins ;)",
+      "parentUuid": "9c3a5ecc_09ce7745",
+      "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
