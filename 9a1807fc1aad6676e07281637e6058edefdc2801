@@ -34,6 +34,24 @@
       "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7d684106_6da40374",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-27T19:37:36Z",
+      "side": 1,
+      "message": "\u003e We are about to let the release out and I should have more time to participate in the upstream work. Please go ahead and add me as an active reviewer but keep in mind that I don\u0027t have +2 to all plugins ;)\n\nAck. You could also help on preparing the actual changes if you\u0027d like. I can start adding you beside David-O for when I\u0027m the one preparing them, which is usually the case nowadays. This way you can see the matters unfold. Your +1\u0027s could become inputs for easier or faster +2\u0027s, as well.\n\nThe idea would be to share the creation, review and approval load between more than just two people again. But I do understand the limited approval grants. Maybe your team will recover in such ways again sooner or later.\n\nOverall, our goal would be to keep sharing the load of maintenance tasks on shared components. David\u0027s plugin list [1] was such a component list so far, even if we didn\u0027t install all of the listed plugins from our respective ends. Sharing the load made that recurring maintenance work sustainable; automation or scripting helps too.\n\nMy own team is currently about to \"grow\" again by one colleague of mine, beside @Khang and our recurring intern (being @Hamza as we speak). Them and other colleagues often have to focus on internal tasks, as I focus on external maintainership or google-sourced work and then CM.",
+      "parentUuid": "748402ea_04d9b33e",
+      "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
