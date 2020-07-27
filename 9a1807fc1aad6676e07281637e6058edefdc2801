@@ -52,6 +52,24 @@
       "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "790c1934_69a6f3c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2020-07-27T19:41:41Z",
+      "side": 1,
+      "message": "That sounds like a plan to me ;)",
+      "parentUuid": "7d684106_6da40374",
+      "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
