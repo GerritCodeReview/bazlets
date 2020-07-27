@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c3a5ecc_09ce7745",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-07-27T15:58:52Z",
+      "side": 1,
+      "message": "No-op. I\u0027m starting to work on upgrading plugins based on the latest releases.\n\nAdding you @Jacek here just so you know about this and the latter upcoming work. I\u0027ll be pushing changes based on [1]\u0027s list below. Please let me know if you\u0027d like to become an active reviewer for those, beside lfs \u0026co.\n\n-As you may know already, me, David O. and David P. (cc\u0027ed) were doing this. Now that David is focusing on his new mandate, Digital\u0027s help would be as welcome as before. Meanwhile, David O. and I pursue that maintenance work of course.\n\n[1] https://github.com/dpursehouse/gerrit-plugins",
+      "revId": "9a1807fc1aad6676e07281637e6058edefdc2801",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
