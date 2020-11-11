@@ -16,6 +16,23 @@
       "message": "SHAs match maven.org.",
       "revId": "7be854b98543c6429dd5038ff38846a1230b4dbe",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0284baff_8e81ca16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-11-11T19:48:44Z",
+      "side": 1,
+      "message": "Thanks Nasser for the check.",
+      "revId": "7be854b98543c6429dd5038ff38846a1230b4dbe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
