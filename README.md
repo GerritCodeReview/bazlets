@@ -68,7 +68,7 @@ Suppose you have the following directory structure for a simple plugin:
 To build this plugin, your `BUILD` can look like this:
 
 ```python
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load("@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl", "gerrit_plugin")
 
 gerrit_plugin(
     name = "reviewers",
