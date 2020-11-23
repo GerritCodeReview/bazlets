@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e36ae06_2101a979",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-11-23T07:04:25Z",
+      "side": 1,
+      "message": "There are actually two cases:\n\n1. Plugin should also support in gerrit tree build. In that case the current documentation is correct. For example check reviewers plugin on stable-3.0 branch. tools/bzl/plugin.bzl has the following content:\n\n  cat tools/bzl/plugin.bzl\n  load(\n    \"@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl\",\n    _gerrit_plugin \u003d \"gerrit_plugin\",\n    _plugin_deps \u003d \"PLUGIN_DEPS\",\n    _plugin_test_deps \u003d \"PLUGIN_TEST_DEPS\",\n  )\n  gerrit_plugin \u003d _gerrit_plugin\n  PLUGIN_DEPS \u003d _plugin_deps\n  PLUGIN_TEST_DEPS \u003d _plugin_test_deps\n\nThe idea is to be able to build in both modes: standalone and in build tree.\n\n2. Plugin shouldn\u0027t be built in gerrit tree mode (is this actually a realistic scenario). Then it can be imported directly.\n\nShould those two cases be documented? Right now the documentation is assuming that in tree build is always wanted...",
+      "revId": "68f4eda40713684bd35a737012d0dbadeaf7bd67",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
