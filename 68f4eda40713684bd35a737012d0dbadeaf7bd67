@@ -16,6 +16,24 @@
       "message": "There are actually two cases:\n\n1. Plugin should also support in gerrit tree build. In that case the current documentation is correct. For example check reviewers plugin on stable-3.0 branch. tools/bzl/plugin.bzl has the following content:\n\n  cat tools/bzl/plugin.bzl\n  load(\n    \"@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl\",\n    _gerrit_plugin \u003d \"gerrit_plugin\",\n    _plugin_deps \u003d \"PLUGIN_DEPS\",\n    _plugin_test_deps \u003d \"PLUGIN_TEST_DEPS\",\n  )\n  gerrit_plugin \u003d _gerrit_plugin\n  PLUGIN_DEPS \u003d _plugin_deps\n  PLUGIN_TEST_DEPS \u003d _plugin_test_deps\n\nThe idea is to be able to build in both modes: standalone and in build tree.\n\n2. Plugin shouldn\u0027t be built in gerrit tree mode (is this actually a realistic scenario). Then it can be imported directly.\n\nShould those two cases be documented? Right now the documentation is assuming that in tree build is always wanted...",
       "revId": "68f4eda40713684bd35a737012d0dbadeaf7bd67",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb3a4222_826aee5b",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1011722
+      },
+      "writtenOn": "2020-11-23T07:19:47Z",
+      "side": 1,
+      "message": "\u003e There are actually two cases:\n\u003e \n\u003e 1. Plugin should also support in gerrit tree build. In that case the current documentation is correct. For example check reviewers plugin on stable-3.0 branch. tools/bzl/plugin.bzl has the following content:\n\u003e \n\u003e   cat tools/bzl/plugin.bzl\n\u003e   load(\n\u003e     \"@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl\",\n\u003e     _gerrit_plugin \u003d \"gerrit_plugin\",\n\u003e     _plugin_deps \u003d \"PLUGIN_DEPS\",\n\u003e     _plugin_test_deps \u003d \"PLUGIN_TEST_DEPS\",\n\u003e   )\n\u003e   gerrit_plugin \u003d _gerrit_plugin\n\u003e   PLUGIN_DEPS \u003d _plugin_deps\n\u003e   PLUGIN_TEST_DEPS \u003d _plugin_test_deps\n\u003e \n\u003e The idea is to be able to build in both modes: standalone and in build tree.\n\nSeems reasonable to me. My only objection to this is that by having a `WORKSPACE` in the root of the tree in the above example, reading from `//tools//bzl:plugin.bzl` will be relative to THIS workspace and not the surrounding Gerrit `WORKSPACE` file.\n\nGiven that the quoted section you cite is effectively an alias to make `@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl`\u0027s `gerrit_plugin` available at `//tools/bzl:plugin.bzl`, why not use the absolute import so that the load is valid in both in-tree and out-of-tree? Gerrit still has the ability to globally control which `gerrit_plugin` is provided by changing where `@com_googlesource_gerrit_bazlets` is loaded from.\n\n\u003e 2. Plugin shouldn\u0027t be built in gerrit tree mode (is this actually a realistic scenario). Then it can be imported directly.\n\nI will tell you that out of tree how my plugins are configured. That\u0027s how I figured out that this wasn\u0027t going to work for my uses.\n\n\u003e Should those two cases be documented? Right now the documentation is assuming that in tree build is always wanted...\n\nI believe the documentation is in an awkward place between in and out-of-tree but would be happy to add two documentation lines.",
+      "parentUuid": "3e36ae06_2101a979",
+      "revId": "68f4eda40713684bd35a737012d0dbadeaf7bd67",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
