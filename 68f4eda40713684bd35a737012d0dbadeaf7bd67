@@ -34,6 +34,24 @@
       "parentUuid": "3e36ae06_2101a979",
       "revId": "68f4eda40713684bd35a737012d0dbadeaf7bd67",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c68e8f11_a1060a07",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2020-11-23T07:30:45Z",
+      "side": 1,
+      "message": "Yes. WORKSPACE is always project specific. Plugins have their own WORKSPACE file. You never include //tools//bzl:plugin.bzl in WORKSPACE file. Here is example for reviewers plugin (3.0 branch): [1].\n\n\u003e I believe the documentation is in an awkward place between in and out-of-tree but would be happy to add two documentation lines.\n\nTo keep the documentation as easy as possible, what if we left it as is, and just add one clarification statement, something like:\n\n  It\u0027s done with redirection to meet the location of the gerrit_plugin definition Bazelt macro in gerrit tree.\n  That way the plugin can be built in both in gerrit tree and in standalone build modes.\n\nOK, these are two statements.\n\nHave your implemented Bazel plugin build for your plugin, that supports both build modes? Do you have any specific question/problem? Note, that recently I removed standalone build mode from reviewers plugin, because JavaScript toolchain is a bit involved, and for me the complexity is not really justified. So that it\u0027s ok, to skip the standalone build mode altogether for plugin build. But in that case, the documentation in the base version should be kept as is.\n\n[1] http://paste.openstack.org/show/800303",
+      "parentUuid": "cb3a4222_826aee5b",
+      "revId": "68f4eda40713684bd35a737012d0dbadeaf7bd67",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
