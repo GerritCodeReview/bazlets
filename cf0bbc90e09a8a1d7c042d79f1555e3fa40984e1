@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb9f9f55_17db5a27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2020-11-24T22:48:18Z",
+      "side": 1,
+      "message": "Thanks for the reviews David. I\u0027m planning to work on the co-tagged plugin changes tomorrow, and further upstream.\n\nI decided to not do this for \u003c3.1, as 3.0 is soon EOL and 2.16 already is. We could decide to do those downstream updates eventually still. Standalone mode may eventually be stopped in some (or most) plugins as well. We shall see but for now I\u0027d like to see if they work with 3.3.0-rc7, next.",
+      "revId": "cf0bbc90e09a8a1d7c042d79f1555e3fa40984e1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
