@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3062f6fd_7a0005ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-01-13T07:01:29Z",
+      "side": 1,
+      "message": "Verified by building against the commit in question (using SHA-1 and local_path of events-log plugin).",
+      "revId": "20079f696c22c733053077b13c0dc6d9902e6b8e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
