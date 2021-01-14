@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82af4ab6_4cf18b51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-01-14T22:59:21Z",
+      "side": 1,
+      "message": "Tested against 293782: Fix errors against latest Gerrit core | https://gerrit-review.googlesource.com/c/plugins/batch/+/293782",
+      "revId": "5703ec25181046b60913d3510a0a5c2f0afa46f8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
