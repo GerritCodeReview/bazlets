@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f469e3_4e3e3256",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-01-14T12:23:07Z",
+      "side": 1,
+      "message": "Verified by building (bazel clean --expunge \u0026\u0026 bazel test //...) quota plugin locally against the commit in question",
+      "revId": "8dc0767541f16b35d2136eccebffd9ebe2b81133",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
