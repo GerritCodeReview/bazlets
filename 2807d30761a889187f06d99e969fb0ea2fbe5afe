@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ef4f0d_bad4fac2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-01-19T17:52:01Z",
+      "side": 1,
+      "message": "This is no-op merge hence I have given V+1 ;)",
+      "revId": "2807d30761a889187f06d99e969fb0ea2fbe5afe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
