@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6a95cd8_0a208164",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-02-03T15:27:19Z",
+      "side": 1,
+      "message": "Verified locally by calling tests of lfs plugin against the commit in question ;)",
+      "revId": "6c39deb06f58bb62162ccb6865964f531739f512",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
