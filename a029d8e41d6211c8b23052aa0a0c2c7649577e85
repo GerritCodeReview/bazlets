@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5983df98_74ed9742",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1025452
+      },
+      "writtenOn": "2021-02-08T14:41:08Z",
+      "side": 1,
+      "message": "I have verified it locally with gc-conductor plugin locally using this commit SHA-1",
+      "revId": "a029d8e41d6211c8b23052aa0a0c2c7649577e85",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
