@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11efd646_f9e397c7",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T20:50:43Z",
+      "side": 1,
+      "message": "Why does this not match https://gerrit-review.googlesource.com/c/gerrit/+/304185/8/tools/bzl/js.bzl ? Just curious how this file/method should be maintained in the future.",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
