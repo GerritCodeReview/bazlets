@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c092ceb_42f5567b",
+        "filename": "tools/js.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T15:43:58Z",
+      "side": 1,
+      "message": "doesn\u0027t do anything for html now, does it?",
+      "range": {
+        "startLine": 6,
+        "startChar": 68,
+        "endLine": 6,
+        "endChar": 73
+      },
+      "revId": "c4e5359082388976aa8d141f25fa81ccc0014375",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

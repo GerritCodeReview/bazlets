@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2cad59_51e82582",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T15:43:58Z",
+      "side": 1,
+      "message": "Still reading about these tools, but wanted to give some initial review",
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8674f26_cfd36315",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T15:43:58Z",
+      "side": 1,
+      "message": "unused?",
+      "range": {
+        "startLine": 3,
+        "startChar": 44,
+        "endLine": 3,
+        "endChar": 54
+      },
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

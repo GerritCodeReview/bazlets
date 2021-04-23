@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c2b57c2_1076b417",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T15:43:58Z",
+      "side": 0,
+      "message": "This is still listed as an available arg in PS3, should it still be documented?",
+      "range": {
+        "startLine": 443,
+        "startChar": 6,
+        "endLine": 443,
+        "endChar": 48
+      },
+      "revId": "2807d30761a889187f06d99e969fb0ea2fbe5afe",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
