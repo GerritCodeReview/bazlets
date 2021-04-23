@@ -39,6 +39,29 @@
       },
       "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817cd74e_5e5f5eb9",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-23T16:02:38Z",
+      "side": 1,
+      "message": "Not true now? (looks like maybe it wasn\u0027t true on tip either).",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 54
+      },
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
