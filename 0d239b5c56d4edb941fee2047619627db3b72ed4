@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a721bb58_3e5235b6",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T18:49:35Z",
+      "side": 1,
+      "message": "I copied this rule from gerrit core, that should be cleaned up. I uploaded fix to core repoistory. Let\u0027s wait for the review there and fix it later here.",
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c8674f26_cfd36315",
         "filename": "tools/js.bzl",
         "patchSetId": 3
