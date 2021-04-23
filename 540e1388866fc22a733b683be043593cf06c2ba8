@@ -52,6 +52,24 @@
       "parentUuid": "a2854ae3_1ebcf90d",
       "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e3e2e8_a159e260",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T21:45:02Z",
+      "side": 1,
+      "message": "Fixed in: change 304189.",
+      "parentUuid": "e13d5ff6_337e7fdd",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
