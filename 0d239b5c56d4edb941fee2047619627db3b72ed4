@@ -35,6 +35,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a64733c_430b9ac2",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T20:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a721bb58_3e5235b6",
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8674f26_cfd36315",
@@ -58,6 +76,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f24a7ae9_a1eea775",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T20:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8674f26_cfd36315",
+      "range": {
+        "startLine": 3,
+        "startChar": 44,
+        "endLine": 3,
+        "endChar": 54
+      },
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "817cd74e_5e5f5eb9",
@@ -71,6 +113,30 @@
       "writtenOn": "2021-04-23T16:02:38Z",
       "side": 1,
       "message": "Not true now? (looks like maybe it wasn\u0027t true on tip either).",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 8,
+        "endChar": 54
+      },
+      "revId": "0d239b5c56d4edb941fee2047619627db3b72ed4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bf39805_3012caf8",
+        "filename": "tools/js.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T20:14:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "817cd74e_5e5f5eb9",
       "range": {
         "startLine": 8,
         "startChar": 4,
