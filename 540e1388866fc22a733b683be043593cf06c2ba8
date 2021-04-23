@@ -34,6 +34,24 @@
       "parentUuid": "11efd646_f9e397c7",
       "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13d5ff6_337e7fdd",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-23T21:40:40Z",
+      "side": 1,
+      "message": "And in case you are wondering why I omitted here the plugin_name? It\u0027s not needed, and if you look at the caller sites, most of them duplicated name and plugin_name and it could (and should) be removed, like here: [1]:\n\n  polygerrit_plugin(\n    name \u003d \"rv-reviewers\",\n    app \u003d \"reviewers-bundle.js\",\n    plugin_name \u003d \"rv-reviewers\",\n  )\n\n[1] https://gerrit.googlesource.com/plugins/reviewers/+/refs/heads/master/BUILD#40",
+      "parentUuid": "a2854ae3_1ebcf90d",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
