@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a65f600d_c25d1ac2",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-24T09:01:38Z",
+      "side": 1,
+      "message": "Turns out the whole polygerrit_plugin is actually not really needed.\n\nAfter clean up in core, I eliminated its usage entirely in codemirror-editior: [1] and task: [2] plugins.\n\n[1] https://gerrit-review.googlesource.com/c/plugins/codemirror-editor/+/304192\n[2] https://gerrit-review.googlesource.com/c/plugins/task/+/302442",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11efd646_f9e397c7",
         "filename": "tools/js.bzl",
         "patchSetId": 6
