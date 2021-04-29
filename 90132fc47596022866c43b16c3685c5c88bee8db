@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf4e7a8b_27e361a7",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "Do you need this part or can you just do the rest of the line? (since we\u0027re in bazlets)",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b19859_38ab1fc8",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "frontend",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0c6bb1_22c16847",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "Call this \u0027Plugin name\u0027 now? Or does it not matter if the value doesn\u0027t match the plugin name?",
+      "range": {
+        "startLine": 15,
+        "startChar": 12,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b3b3ce_2073951e",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "I think we can do this?\n\n src \u003d \":\" + name + \"-bundle\"\n\nThen we don\u0027t have to know that rollup_bundle output is its rule name + \".js\".\n\nAlso, is there a pattern in bazel files to define variables for the names? Like at the top of this method we\u0027d have:\n\n bundle \u003d name + \"-bundle\"\n min \u003d name + \".min\"\n main \u003d name + \".js\"\n\nand then the references to the files those rules create would reference the rule instead?",
+      "range": {
+        "startLine": 30,
+        "startChar": 14,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

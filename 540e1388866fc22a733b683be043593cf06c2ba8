@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c94b06f_b6a3cbe7",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a65f600d_c25d1ac2",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11efd646_f9e397c7",
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "Fixed in: change 304189.",
       "parentUuid": "e13d5ff6_337e7fdd",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f9dc033_dfd711b1",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T17:38:20Z",
+      "side": 1,
+      "message": "I\u0027m glad this can be simple, but I want to make sure I understand how this relates to the in-tree support for UI plugins. Also, I know the task plugin does need assets in the future because our GWT-based not-yet-upstreamed UI has them, but we haven\u0027t ported all of it to PG yet.\n\nI see you added gerrit_js_bundle to core in [1]. Is your plan to switch pg plugins away from using the improved polygerrit_plugin rule from [2] and to use gerrit_js_bundle instead? If there are different situations where each should be used, should we update bazlets/README.md and/or core\u0027s dev-plugins doc?\n\nSorry I\u0027m asking so many questions. I want to be able to help maintain bazlets/bazel/plugins better and right now I don\u0027t understand enough to do that.\n\n[1] https://gerrit-review.googlesource.com/c/gerrit/+/304225\n[2] https://gerrit-review.googlesource.com/c/gerrit/+/304185",
+      "parentUuid": "21e3e2e8_a159e260",
       "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
