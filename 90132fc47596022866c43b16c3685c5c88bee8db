@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a707c892_3004b296",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T19:10:12Z",
+      "side": 1,
+      "message": "It could, but then the caller site would have to mount tools/genrule2.bzl in their workspace. Given that it\u0027s only needed here we could remove it on caller site altogether, as I did in task plugin.",
+      "parentUuid": "bf4e7a8b_27e361a7",
+      "range": {
+        "startLine": 3,
+        "startChar": 6,
+        "endLine": 3,
+        "endChar": 38
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2b19859_38ab1fc8",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-04-29T17:38:20Z",
       "side": 1,
       "message": "frontend",
+      "range": {
+        "startLine": 11,
+        "startChar": 11,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d86fccc3_6ee19945",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T19:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2b19859_38ab1fc8",
       "range": {
         "startLine": 11,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbabfcb2_0ddba6a0",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T19:10:12Z",
+      "side": 1,
+      "message": "Yeah this decides what would be the name of the output file. Done.",
+      "parentUuid": "cb0c6bb1_22c16847",
+      "range": {
+        "startLine": 15,
+        "startChar": 12,
+        "endLine": 15,
+        "endChar": 21
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "60b3b3ce_2073951e",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-04-29T17:38:20Z",
       "side": 1,
       "message": "I think we can do this?\n\n src \u003d \":\" + name + \"-bundle\"\n\nThen we don\u0027t have to know that rollup_bundle output is its rule name + \".js\".\n\nAlso, is there a pattern in bazel files to define variables for the names? Like at the top of this method we\u0027d have:\n\n bundle \u003d name + \"-bundle\"\n min \u003d name + \".min\"\n main \u003d name + \".js\"\n\nand then the references to the files those rules create would reference the rule instead?",
+      "range": {
+        "startLine": 30,
+        "startChar": 14,
+        "endLine": 30,
+        "endChar": 33
+      },
+      "revId": "90132fc47596022866c43b16c3685c5c88bee8db",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dde3df93_0b2d888c",
+        "filename": "tools/js.bzl",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T19:10:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60b3b3ce_2073951e",
       "range": {
         "startLine": 30,
         "startChar": 14,
