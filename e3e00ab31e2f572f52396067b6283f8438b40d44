@@ -46,6 +46,30 @@
       },
       "revId": "e3e00ab31e2f572f52396067b6283f8438b40d44",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fa3103c_85473b1b",
+        "filename": "tools/js.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T20:14:31Z",
+      "side": 1,
+      "message": "Ah! I had no idea about the colon being optional, thank you!",
+      "parentUuid": "0fa104c9_e420b473",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "e3e00ab31e2f572f52396067b6283f8438b40d44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
