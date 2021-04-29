@@ -159,6 +159,24 @@
       "parentUuid": "3f15dd9c_94984ff4",
       "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8fab868_ea0e2770",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T20:44:30Z",
+      "side": 1,
+      "message": "I uploaded alternative Polymer 3 conversion implementationin change 304595, to create rollup: [1] bundle outside of the Bazel and omit minification step (terser: [2]) entirely.\n\nNeedless to say, standalone build mode works immediately, without any changes to Bazlets. See commit message for details. Feel free to ask any questions.\n\n[1] https://www.npmjs.com/package/rollup\n[2] https://www.npmjs.com/package/terser",
+      "parentUuid": "77fceaef_8aa27e43",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
