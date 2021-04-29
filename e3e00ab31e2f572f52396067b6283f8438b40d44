@@ -22,6 +22,30 @@
       },
       "revId": "e3e00ab31e2f572f52396067b6283f8438b40d44",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fa104c9_e420b473",
+        "filename": "tools/js.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-04-29T19:59:39Z",
+      "side": 1,
+      "message": "I missed to use variable bundle, but colon is optional. If we omit colon, then the rule is looked in the same package. Done.",
+      "parentUuid": "9b4b73ab_1ed86967",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "e3e00ab31e2f572f52396067b6283f8438b40d44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
