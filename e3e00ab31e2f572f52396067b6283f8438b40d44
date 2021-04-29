@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4b73ab_1ed86967",
+        "filename": "tools/js.bzl",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T19:24:32Z",
+      "side": 1,
+      "message": "Did you mean to do this?\n\n src \u003d \":\" + bundle\n\notherwise you miss the .js suffix",
+      "range": {
+        "startLine": 35,
+        "startChar": 14,
+        "endLine": 35,
+        "endChar": 30
+      },
+      "revId": "e3e00ab31e2f572f52396067b6283f8438b40d44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

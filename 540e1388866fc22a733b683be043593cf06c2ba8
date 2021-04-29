@@ -141,6 +141,24 @@
       "parentUuid": "4f9dc033_dfd711b1",
       "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77fceaef_8aa27e43",
+        "filename": "tools/js.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-04-29T19:24:32Z",
+      "side": 1,
+      "message": "\u003e \u003e I\u0027m glad this can be simple, but I want to make sure I understand how this relates to the in-tree support for UI plugins. \n\u003e \n\u003e No problem. I am happy to help. We could set up a call, or have a Bazel build related session during upcoming virtual hackathon.\n\nI would totally attend a Bazel session! If we don\u0027t do it this time, we should try to chat more soon.",
+      "parentUuid": "3f15dd9c_94984ff4",
+      "revId": "540e1388866fc22a733b683be043593cf06c2ba8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
