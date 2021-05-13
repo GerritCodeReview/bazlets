@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53678c49_3bfede89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-13T22:26:41Z",
+      "side": 1,
+      "message": "We should submit and merge up https://gerrit-review.googlesource.com/c/bazlets/+/306445 first and then this change can remove the unnecessary support.",
+      "revId": "653b598632919daf0b852eca58936d04d50836ff",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
