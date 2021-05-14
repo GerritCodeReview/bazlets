@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0e05396_689c1ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-14T21:32:26Z",
+      "side": 1,
+      "message": "Tested working with https://gerrit-review.googlesource.com/c/plugins/task/+/302442/18",
+      "revId": "b1c8fb66cdd06334245800b3adbc891aa1a4e0c6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
