@@ -16,6 +16,23 @@
       "message": "Hey David, I split this off from 304117: Add Polymer 3 support | https://gerrit-review.googlesource.com/c/bazlets/+/304117 so that I could add it in 3.2 without breaking other plugins that still depend on the older rules. Does it look good to you?\n\nIt works for me against the task plugin on 3.2 (I\u0027ll push soon).",
       "revId": "bd28cc1eaeb01b2118e85e76e00ef4f39a6c9958",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10c99cae_08ec0868",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2021-05-14T01:15:58Z",
+      "side": 1,
+      "message": "Just to note one thing though: On stable 3.2 branch an older rules_nodes version is used in gerrit core. But we shouldn\u0027t really care. ",
+      "revId": "bd28cc1eaeb01b2118e85e76e00ef4f39a6c9958",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
