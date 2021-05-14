@@ -33,6 +33,24 @@
       "message": "Just to note one thing though: On stable 3.2 branch an older rules_nodes version is used in gerrit core. But we shouldn\u0027t really care. ",
       "revId": "bd28cc1eaeb01b2118e85e76e00ef4f39a6c9958",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eddfa8c4_1fff1422",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-14T03:56:39Z",
+      "side": 1,
+      "message": "Thanks for confirming it shouldn\u0027t matter. I did see it was different but figured if the newer version worked that would be better.",
+      "parentUuid": "10c99cae_08ec0868",
+      "revId": "bd28cc1eaeb01b2118e85e76e00ef4f39a6c9958",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
