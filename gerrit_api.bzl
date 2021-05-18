@@ -7,9 +7,9 @@ load("//tools:maven_jar.bzl", "MAVEN_LOCAL", "MAVEN_CENTRAL", "maven_jar")
 gerrit_api is rule for fetching Gerrit plugin API using Bazel.
 """
 
-def gerrit_api(version = "3.3.1",
-               plugin_api_sha1 = "5369f0eb208a93137da198a35ff2dc9f1e921cd7",
-               acceptance_framework_sha1 = "363f1cdb6db418c1105db27071d0f5c4a1a04c22"):
+def gerrit_api(version = "3.3.4",
+               plugin_api_sha1 = "3dc1507083f558ddde2c3b1cd1b85efaa6ea9aa2",
+               acceptance_framework_sha1 = "70dce08e44b47630cf8321c8ad2800e87259a223"):
     gerrit_api_version(
         name = "gerrit_api_version",
         version = version,
