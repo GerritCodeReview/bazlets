@@ -16,6 +16,24 @@
       "message": "Sort out missing stable-3.3 in bazlets repository, before merging this.",
       "revId": "284b12ffc4ec8cbe71f749b57ded0ded6624482c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d1afd20_7f926020",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-19T15:34:42Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "7e3e7f28_43bbbd1f",
+      "revId": "284b12ffc4ec8cbe71f749b57ded0ded6624482c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
