@@ -16,6 +16,24 @@
       "message": "This is reverted by the follow-up change, so that we are missing stable-3.3 branch.",
       "revId": "427c0a3519f38a09024bf9512ee2222ad7dfa7ec",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7622ee1f_5e22f1a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-19T15:07:26Z",
+      "side": 1,
+      "message": "Yes, I know. I\u0027ll create stable-3.3 from this commit after it\u0027s submitted. Less merge work that way 😊",
+      "parentUuid": "431e208e_9e909fdf",
+      "revId": "427c0a3519f38a09024bf9512ee2222ad7dfa7ec",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
