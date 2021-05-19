@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9bc3593_5c7c1f1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2021-05-19T14:10:38Z",
+      "side": 1,
+      "message": "Confirmed this allows us to update bazlets on stable-3.2 task plugin.",
+      "revId": "46c85e733fba22b66941a0ac7a9f1102be213959",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
