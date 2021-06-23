@@ -91,6 +91,7 @@ java_import(
     name = '{classifier}',
     jars = ['{filename}'],
     visibility = ['//visibility:public'],
+    testonly = '{testOnly}',
     {deps}
     {exports}
 )
@@ -99,6 +100,7 @@ java_import(
     jars = ['{filename}'],
     neverlink = 1,
     visibility = ['//visibility:public'],
+    testonly = '{testOnly}',
     {deps}
     {exports}
 )
@@ -112,6 +114,7 @@ filegroup(
         filename = filename,
         deps = _format_deps("deps", ctx.attr.deps),
         exports = _format_deps("exports", ctx.attr.exports),
+        testOnly = ctx.attr.testonly,
     )
     ctx.file("%s/BUILD" % ctx.path(classifier), contents, False)
 
@@ -169,6 +172,7 @@ maven_jar = repository_rule(
         "exports": attr.string_list(),
         "deps": attr.string_list(),
         "_download_script": attr.label(default = Label("//tools:download_file.py")),
+        "testonly": attr.bool(default = False),
     },
     local = True,
     implementation = _maven_jar_impl,
