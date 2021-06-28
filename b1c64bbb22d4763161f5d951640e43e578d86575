@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e106f4_90a9d4f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1012732
+      },
+      "writtenOn": "2021-06-28T15:43:01Z",
+      "side": 1,
+      "message": "Would you have a related change(s) review that makes use of this new support? Maybe link that from this review so we understand the context.",
+      "revId": "b1c64bbb22d4763161f5d951640e43e578d86575",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
