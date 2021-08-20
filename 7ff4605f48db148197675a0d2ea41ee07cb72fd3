@@ -16,6 +16,24 @@
       "message": "Removing the new line was not intended ?",
       "revId": "7ff4605f48db148197675a0d2ea41ee07cb72fd3",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49861202_91709049",
+        "filename": "tools/js/BUILD",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1117824
+      },
+      "writtenOn": "2021-08-20T15:34:42Z",
+      "side": 0,
+      "message": "yes it was not intended",
+      "parentUuid": "ea4da2c9_c4e15c4b",
+      "revId": "7ff4605f48db148197675a0d2ea41ee07cb72fd3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
