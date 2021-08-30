@@ -16,6 +16,23 @@
       "message": "can i please get a review on this one",
       "revId": "2cf5fc973e193b4abedc3cfbbe50eae1fa8edfa6",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af9acb18_b71431ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117824
+      },
+      "writtenOn": "2021-08-30T05:03:44Z",
+      "side": 1,
+      "message": "this change can be tested with following change :\n\nhttps://gerrit-review.googlesource.com/c/plugins/task/+/316622",
+      "revId": "2cf5fc973e193b4abedc3cfbbe50eae1fa8edfa6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
