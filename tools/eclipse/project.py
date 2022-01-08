@@ -25,7 +25,7 @@ import xml.dom.minidom
 JRE = '/'.join([
   'org.eclipse.jdt.launching.JRE_CONTAINER',
   'org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType',
-  'JavaSE-1.8',
+  'JavaSE-11',
 ])
 
 opts = argparse.ArgumentParser("Create Eclipse Project")
