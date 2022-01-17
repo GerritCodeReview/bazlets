@@ -16,6 +16,23 @@
       "message": "Note to the reviewers: I created stable-3.4 branch from bazlets@HEAD.",
       "revId": "8fa44957c3b3b89ce1d96eba67441882c54503fc",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "736353b6_56367a46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-01-17T18:20:10Z",
+      "side": 1,
+      "message": "Verified, that build and test in oauth plugin in standalone mode works as expected with this change.",
+      "revId": "8fa44957c3b3b89ce1d96eba67441882c54503fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
