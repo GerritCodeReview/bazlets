@@ -20,7 +20,7 @@ sh_bang_template = (" && ".join([
     "echo \"\" >> $@",
     "echo %s >> $@",
     "echo \"\" >> $@",
-    "echo 'python $$OUTPUT_BASE/%s' >> $@",
+    "echo 'python3 $$OUTPUT_BASE/%s' >> $@",
 ]))
 
 def maven_package(
