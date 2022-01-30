@@ -31,7 +31,7 @@ def maven_package(
         jar = {},
         src = {},
         doc = {}):
-    build_cmd = ["bazel", "build"]
+    build_cmd = ["bazelisk", "build"]
     mvn_cmd = [
         "$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)",
         "-v",
