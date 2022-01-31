@@ -16,6 +16,23 @@
       "message": "This is needed to release gitiles.",
       "revId": "a52e3f381e2fe2a53f7641150ff723171a2dda1e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "671bc0ff_8387bdec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-01-31T12:03:43Z",
+      "side": 1,
+      "message": "Verified, that gitiles can be built from this commit.",
+      "revId": "a52e3f381e2fe2a53f7641150ff723171a2dda1e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
