@@ -20,7 +20,7 @@ sh_bang_template = (" && ".join([
     "echo \"\" >> $@",
     "echo %s >> $@",
     "echo \"\" >> $@",
-    "echo 'python $$OUTPUT_BASE/%s' >> $@",
+    "echo 'python3 $$OUTPUT_BASE/%s' >> $@",
 ]))
 
 def maven_package(
@@ -31,7 +31,7 @@ def maven_package(
         jar = {},
         src = {},
         doc = {}):
-    build_cmd = ["bazel", "build"]
+    build_cmd = ["bazelisk", "build"]
     mvn_cmd = [
         "$(location @com_googlesource_gerrit_bazlets//tools/maven:mvn.py)",
         "-v",
