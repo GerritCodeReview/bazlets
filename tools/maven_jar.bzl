@@ -136,7 +136,7 @@ def _maven_jar_impl(ctx):
     srcjar_path = ctx.path("/".join(["src", srcjar]))
     srcurl = url + "-sources.jar"
 
-    python = ctx.which("python")
+    python = ctx.which("python3")
     script = ctx.path(ctx.attr._download_script)
 
     args = [python, script, "-o", binjar_path, "-u", binurl]
