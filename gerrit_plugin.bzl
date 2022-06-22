@@ -25,8 +25,6 @@ def gerrit_plugin(
         dir_name = None,
         target_suffix = "",
         **kwargs):
-    static_jars = []
-
     if not dir_name:
         dir_name = name
 
@@ -42,9 +40,7 @@ def gerrit_plugin(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
         main_class = "Dummy",
-        runtime_deps = [
-            ":%s__plugin" % name,
-        ] + static_jars,
+        runtime_deps = [":%s__plugin" % name],
         visibility = ["//visibility:public"],
     )
 
