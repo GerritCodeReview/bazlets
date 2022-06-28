@@ -50,6 +50,24 @@
       "message": "Thank you so much davido! I was just about to mention Change Owners do not have the Submit permission on bazlets.git :)",
       "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03dc3203_31941826",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-06-28T08:45:27Z",
+      "side": 1,
+      "message": "Thanks for pointing this out, should be fixed in change 339958.",
+      "parentUuid": "46814f24_c16ba91a",
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
