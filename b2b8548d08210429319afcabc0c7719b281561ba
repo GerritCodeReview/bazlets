@@ -16,6 +16,23 @@
       "message": "It is a port of https://gerrit-review.googlesource.com/c/gerrit/+/305127\n\nI have hit the same issue when building a plugin in standalone mode which get tools/download_file.py from this bazlets.git ;)",
       "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0814e6_3bc84cd5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-06-28T08:34:18Z",
+      "side": 1,
+      "message": "Thanks davido. Looks like there is no CI so I am self voting verified +1  given I did test it locally :)",
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
