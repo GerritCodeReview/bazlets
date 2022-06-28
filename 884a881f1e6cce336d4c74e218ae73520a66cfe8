@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fd8af17_60631ad7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-06-28T11:24:20Z",
+      "side": 1,
+      "message": "For the context:\n\nI am not in the Gerrit maintainer (rightfully so). On the Bazlets.git change https://gerrit-review.googlesource.com/c/bazlets/+/339932  davido issued a CR+2, I did a V+1 on my change to unblock submit requirements and could not submit since the repo lacked the permission for Change Owner to submit a change ;)",
+      "revId": "884a881f1e6cce336d4c74e218ae73520a66cfe8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
