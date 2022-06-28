@@ -68,6 +68,23 @@
       "parentUuid": "46814f24_c16ba91a",
       "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d8a923f_e1fc9939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-06-28T11:22:42Z",
+      "side": 1,
+      "message": "After updating my plugin to use this commit, I can confirm my CI is happily downloading to the directory pointed by GERRIT_CACHE_HOME :)",
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
