@@ -1,0 +1,6 @@
+#!/bin/bash
+
+COVERAGE="python3 -m coverage"
+
+$COVERAGE run --branch --include=project.py test_project.py
+$COVERAGE html
