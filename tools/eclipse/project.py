@@ -29,7 +29,7 @@ JRE = '/'.join([
 ])
 
 opts = argparse.ArgumentParser("Create Eclipse Project")
-opts.add_argument('-r', '--root', help='Root directory entry')
+opts.add_argument('-r', '--root', help='Root directory entry', required=True)
 opts.add_argument('-n', '--name', help='Project name')
 opts.add_argument('-x', '--exclude', action='append', help='Exclude paths')
 opts.add_argument('-b', '--batch', action='store_true',
@@ -40,10 +40,6 @@ opts.add_argument('--bazel',
                         ' found.'),
                   action='store', default=None, dest='bazel_exe')
 args = opts.parse_args()
-
-if not args.root:
-  opts.error('Root option not provided')
-  sys.exit(1)
 
 root = args.root
 ROOT = os.path.abspath(root)
