@@ -44,6 +44,10 @@ args = opts.parse_args()
 root = args.root
 ROOT = os.path.abspath(root)
 while not os.path.exists(os.path.join(ROOT, 'WORKSPACE')):
+  if ROOT == '/':
+    print('Could not find root of project: no WORKSPACE file found',
+          file=sys.stderr)
+    sys.exit(1)
   ROOT = os.path.dirname(ROOT)
 
 batch_option = '--batch' if args.batch else None
