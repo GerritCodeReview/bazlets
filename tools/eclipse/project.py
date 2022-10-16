@@ -116,7 +116,7 @@ class EclipseProject():
     name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
     return [line.rstrip('\n') for line in open(name)]
 
-  def gen_project(name, root):
+  def gen_project(self, name, root):
     p = os.path.join(root, '.project')
     with open(p, 'w') as fd:
       print("""\
@@ -159,10 +159,19 @@ class EclipseProject():
     doc = make_classpath()
     src = set()
     lib = set()
+    rule_jvm_externals = set()
 
+    rule_jvm_external = re.compile('bazel-out/.*?-fastbuild/bin/external/maven/(.*[.]jar)$')
     java_library = re.compile('bazel-out/(?:.*)-fastbuild/bin(.*)/[^/]+[.]jar$')
     srcs = re.compile('(.*/external/[^/]+)/jar/(.*)[.]jar')
     for p in self._query_classpath():
+
+      m = rule_jvm_external.match(p)
+      if m and ext is not None:
+        p = os.path.join(ext, 'external/unpinned_maven', m.group(1))
+        rule_jvm_externals.add(p)
+        continue
+
       m = java_library.match(p)
       if m:
         src.add(m.group(1).lstrip('/'))
@@ -215,6 +224,10 @@ class EclipseProject():
           if os.path.exists(p):
             s = p
         classpathentry('lib', j, s)
+
+    for r in sorted(rule_jvm_externals):
+      s = r.replace('.jar', '-sources.jar')
+      classpathentry('lib', r, s)
 
     classpathentry('con', JRE)
     classpathentry('output', 'eclipse-out/classes')
