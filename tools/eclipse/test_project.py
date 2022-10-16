@@ -11,7 +11,7 @@
 
 from io import StringIO
 import unittest
-from unittest.mock import call, patch
+from unittest.mock import call, mock_open, patch
 from subprocess import CalledProcessError
 
 import project
@@ -38,7 +38,7 @@ class EclipseProjectTestCase(unittest.TestCase):
         project.main()
 
     self.assertIn('Interrupted by user\n', stderr.getvalue())
-    self.assertEquals(c.exception.code, 1)
+    self.assertEqual(c.exception.code, 1)
 
   @patch('sys.stderr', new_callable=StringIO)
   def test_requires_root_option(self, stderr):
@@ -55,10 +55,10 @@ class EclipseProjectTestCase(unittest.TestCase):
       ep = EclipseProject()
       ep.parse_args(['-r', '/dev/null'])
       ep.bazel_exe = 'my_bazel'
-      self.assertEquals(ep._build_bazel_cmd(), ['my_bazel'])
+      self.assertEqual(ep._build_bazel_cmd(), ['my_bazel'])
 
       ep.parse_args(['-r', '/dev/null', '--batch'])
-      self.assertEquals(ep._build_bazel_cmd(), ['my_bazel', '--batch'])
+      self.assertEqual(ep._build_bazel_cmd(), ['my_bazel', '--batch'])
 
   def test_find_root_raises_when_no_WORKSPACE_found(self):
     with patch('os.path.exists') as exists:
@@ -126,6 +126,80 @@ class EclipseProjectTestCase(unittest.TestCase):
     ep = EclipseProject()
     ep.parse_args(['-r' '/dev/null', '--bazel', 'my_bazel'])
     assert not ep.retrieve_ext_location().endswith('\n')
+
+class GenClassPathTestCase(unittest.TestCase):
+
+  maxDiff = None
+
+  def gen_classpath(self, classpath):
+    ep = EclipseProject()
+    ep.parse_args(['-r', '/dev/null'])
+    ep.ROOT = '/path/to'
+
+    with patch.object(ep, '_query_classpath', return_value=[classpath]):
+      opener = mock_open()
+      with patch('builtins.open', opener):
+        ep.gen_classpath(ext='ext_loc')
+
+    written = ''
+    for write_call in opener().write.mock_calls:
+      written += write_call[1][0]
+
+    return written
+
+  def test_includes_external_gerrit_plugin_api(self):
+    self.assertIn(
+      ('<classpathentry kind="lib" '
+       'path="ext_loc/external/gerrit_plugin_api/jar/gerrit-plugin-api-3.4.0.jar"'
+      ),
+      # TODO we should check the sourcepath has been detected by mocking os.path.exists
+      self.gen_classpath(
+        'external/gerrit_plugin_api/jar/gerrit-plugin-api-3.4.0.jar'
+        ),
+      msg='plugin code is included'
+      )
+
+  def test_recognizes_maven_jar_dependencies(self):
+    self.assertIn(
+      ('<classpathentry kind="lib" '
+        'path="ext_loc/external/gerrit_plugin_api/jar/'
+        'gerrit-plugin-api-X.X.X.jar"/>'),
+      self.gen_classpath(
+        'external/gerrit_plugin_api/jar/gerrit-plugin-api-X.X.X.jar',
+        ),
+      msg='maven_jar() dependency listed as a "lib" classpathentry'
+      )
+
+  def test_finds_rules_jvm_external_dependencies(self):
+    self.assertIn(
+      ('<classpathentry kind="lib" '
+       'path="ext_loc/external/unpinned_maven/v1/https/repo1.maven.org'
+       '/maven2/com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar" '
+       'sourcepath="ext_loc/external/unpinned_maven/v1/https/repo1.maven.org'
+       '/maven2/com/fasterxml/classmate/1.5.1/classmate-1.5.1-sources.jar"/>'),
+      self.gen_classpath(
+        ('bazel-out/k8-fastbuild/bin/external/maven/v1/'
+         'https/repo1.maven.org/maven2/'
+         'com/fasterxml/classmate/1.5.1/classmate-1.5.1.jar')
+      ),
+      msg='artifact on Maven Central'
+    )
+
+  def test_finds_rules_jvm_external_dependencies_out_of_maven_central(self):
+    self.assertIn(
+      ('<classpathentry kind="lib" '
+       'path="ext_loc/external/unpinned_maven/v1/https/archiva.wikimedia.org'
+       '/repository/releases/org/wikimedia/eventutilities/1.1.0/eventutilities-1.1.0.jar" '
+       'sourcepath="ext_loc/external/unpinned_maven/v1/https/archiva.wikimedia.org'
+       '/repository/releases/org/wikimedia/eventutilities/1.1.0/eventutilities-1.1.0-sources.jar"/>'
+      ),
+      self.gen_classpath(
+        ('bazel-out/k8-fastbuild/bin/external/maven/v1/'
+         'https/archiva.wikimedia.org/repository/releases/'
+         'org/wikimedia/eventutilities/1.1.0/eventutilities-1.1.0.jar')
+      ),
+      msg='artifact hosted outside of Maven Central'
+    )
 
 
 if __name__ == "__main__":
