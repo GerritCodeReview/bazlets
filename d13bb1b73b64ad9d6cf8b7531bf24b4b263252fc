@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e844b30_b5662d37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-10-17T08:54:47Z",
+      "side": 1,
+      "message": "I went on a cruise to teach tools/eclipse/project.py about rules_jvm_external and found this little oddity.\n\nThe commit message gives all the details, I have also commented each of the altered lines one by one to ease the review.",
+      "revId": "d13bb1b73b64ad9d6cf8b7531bf24b4b263252fc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d46a4aa_871372e1",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-10-17T08:54:47Z",
+      "side": 0,
+      "message": "Does the same thing as passing \"required\u003dTrue\" to add_argument().",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 17
+      },
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d43948b_75b775d9",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-10-17T08:54:47Z",
+      "side": 0,
+      "message": "From the documentation, error() prints the generated usage message, the given argument and then exit(2):\n\n\u003e This method prints a usage message including the message to the standard error and terminates the program with a status code of 2.\n\nThen if the argument is required, that already output a message and would exit(2).",
+      "range": {
+        "startLine": 45,
+        "startChar": 2,
+        "endLine": 45,
+        "endChar": 40
+      },
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef4e256d_e7712149",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-10-17T08:54:47Z",
+      "side": 0,
+      "message": "sys.exit(1) is dead code since opts.error() exits (unless one creates ArgumentParser with exit_on_error\u003dFalse).",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 13
+      },
+      "revId": "b2b8548d08210429319afcabc0c7719b281561ba",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
