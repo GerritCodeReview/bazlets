@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9642abb_2c122bec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2022-10-28T20:40:50Z",
+      "side": 1,
+      "message": "I would expect this support to show up in other places of bazlets before coming just to the eclipse piece. Will this really work on its own?",
+      "revId": "0b135e2ac99e76966203c7307d01f57d427e23f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
