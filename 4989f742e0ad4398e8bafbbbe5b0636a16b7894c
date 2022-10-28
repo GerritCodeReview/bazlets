@@ -16,6 +16,29 @@
       "message": "A small bug I found in tools/eclipse/project.py while refactoring it.  The script is supposedly always run from a Bazel workspace, but in the case it is not that would end up with an infinite loop on:\n\n    os.path.exists(\u0027/WORKSPACE\u0027)",
       "revId": "4989f742e0ad4398e8bafbbbe5b0636a16b7894c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e8871c8_6d32c736",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2022-10-28T20:28:08Z",
+      "side": 1,
+      "message": "would it make sense to do this using args.error()?",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 15
+      },
+      "revId": "4989f742e0ad4398e8bafbbbe5b0636a16b7894c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
