@@ -18,6 +18,23 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9148ae_e930a869",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-02T09:04:09Z",
+      "side": 1,
+      "message": "args.error() could have been used, then all this code is refactored to raise an exception in the child change https://gerrit-review.googlesource.com/c/bazlets/+/348294/ :)",
+      "revId": "4989f742e0ad4398e8bafbbbe5b0636a16b7894c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e8871c8_6d32c736",
@@ -31,6 +48,30 @@
       "writtenOn": "2022-10-28T20:28:08Z",
       "side": 1,
       "message": "would it make sense to do this using args.error()?",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 15
+      },
+      "revId": "4989f742e0ad4398e8bafbbbe5b0636a16b7894c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f526a3c3_68a040a6",
+        "filename": "tools/eclipse/project.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-02T09:04:09Z",
+      "side": 1,
+      "message": "It could be, I made it exit(1) which was the pattern used previously.\n\nIn the child change https://gerrit-review.googlesource.com/c/bazlets/+/348294/ , the code is refactored to a find_root() method which raises an exception instead and I got rid of all the sys.exit() calls.\n\nEssentially this change is transient. I wanted to focus solely on the infinite loop handling.",
+      "parentUuid": "9e8871c8_6d32c736",
       "range": {
         "startLine": 48,
         "startChar": 4,
