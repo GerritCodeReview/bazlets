@@ -16,6 +16,24 @@
       "message": "I would expect this support to show up in other places of bazlets before coming just to the eclipse piece. Will this really work on its own?",
       "revId": "0b135e2ac99e76966203c7307d01f57d427e23f0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63b5765c_d999a311",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-03T10:32:30Z",
+      "side": 1,
+      "message": "I have prefixed the commit message with `tools/eclipse:` to indicate it is only about supporting .classpath generation when using rules_jvm_external. But it was not that clear.\n\nI have rephrased to:\n\n    tools/eclipse: find jar from rules_jvm_external\n\nWhich does not mislead people in thinking the bazlets now magically support rules_jvm_external.  I have made some extra additions to the commit message to explain artifacts are downloaded at a different place than maven_jar.",
+      "parentUuid": "f9642abb_2c122bec",
+      "revId": "0b135e2ac99e76966203c7307d01f57d427e23f0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
