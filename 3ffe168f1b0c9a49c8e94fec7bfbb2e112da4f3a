@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b49c5655_6a9a0222",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-07T21:16:38Z",
+      "side": 1,
+      "message": "+ David who introduced the script and wrote the logic to find the various .jar\n\nThe summary of this change is rules_jvm_external downloads jar files under a different scheme than maven_jar so I had to do some adjustments.",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
