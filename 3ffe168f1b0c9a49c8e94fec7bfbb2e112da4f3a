@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4099a48_a9b4ca19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Definitely, I would like to write such a guide then I am still exploring how to set it up and use it for a plugin.  I guess I should start with a WIP change against Gerrit Documentation.",
+      "parentUuid": "c1a8c572_1bc5e896",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 45
+      },
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb2c3734_4ad9fa05",
         "filename": "/COMMIT_MSG",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-11-08T10:49:38Z",
       "side": 1,
       "message": "adds",
+      "range": {
+        "startLine": 20,
+        "startChar": 12,
+        "endLine": 20,
+        "endChar": 15
+      },
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "649f4be2_2884350c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb2c3734_4ad9fa05",
       "range": {
         "startLine": 20,
         "startChar": 12,
@@ -70,6 +118,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef81654_352aec9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "262224d3_279bf321",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1f18cf1_7082cd63",
@@ -93,6 +165,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db7e5d1b_c41cda03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Done, replaced by a comma and while at it I have updated -sources-.jar to be surrounded by backticks rather than single quotes.",
+      "parentUuid": "c1f18cf1_7082cd63",
+      "range": {
+        "startLine": 33,
+        "startChar": 15,
+        "endLine": 33,
+        "endChar": 56
+      },
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19f82b95_5b275d85",
@@ -106,6 +202,24 @@
       "writtenOn": "2022-11-08T10:49:38Z",
       "side": 1,
       "message": "Release notes are missing.",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d9459a_21a24a24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Isn\u0027t the `Release-Notes` pseudo headers used solely for `gerrit.git`?",
+      "parentUuid": "19f82b95_5b275d85",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -141,6 +255,24 @@
       "side": 1,
       "message": "\u003e David who introduced the script [...]\n\nActually Shawn Pearce added the very first version of this script in context of Buck build change 45110, see:\n\n  https://gerrit-review.googlesource.com/c/gerrit/+/45110/32/tools/eclipse_classpath.py",
       "parentUuid": "b49c5655_6a9a0222",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "783bcb71_6ad4f848",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-08T11:21:31Z",
+      "side": 1,
+      "message": "Ah thank you! I merely looked at the history of `bazlets.git` and assumed you were the original author. Thank you for the review!",
+      "parentUuid": "4a9e00f3_cd10f7dc",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
