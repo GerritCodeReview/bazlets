@@ -48,6 +48,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "331f9ac5_2aa1029b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-11-08T11:25:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a4099a48_a9b4ca19",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 45
+      },
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb2c3734_4ad9fa05",
@@ -220,6 +244,24 @@
       "side": 1,
       "message": "Isn\u0027t the `Release-Notes` pseudo headers used solely for `gerrit.git`?",
       "parentUuid": "19f82b95_5b275d85",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f75d6c6_f427bb09",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-11-08T11:25:25Z",
+      "side": 1,
+      "message": "You are right, sorry for messing up with repositories. That remains me, that all your cool work on the project.py, including adding the tests (that is great btw), in Bazlets repository should be ported to gerrit core repository as well.",
+      "parentUuid": "e3d9459a_21a24a24",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
