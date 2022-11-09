@@ -370,6 +370,24 @@
       "message": "Nasser told me he is very busy this week. Davido may you +2 it? ;)",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "878f524d_477a1523",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-11-09T09:02:38Z",
+      "side": 1,
+      "message": "Still waiting for you to upload the new patch set.",
+      "parentUuid": "01d67fa7_8fb49c7a",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
