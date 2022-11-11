@@ -388,6 +388,41 @@
       "parentUuid": "01d67fa7_8fb49c7a",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "465b0747_cc57c437",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-11T09:19:03Z",
+      "side": 1,
+      "message": "\u003e Still waiting for you to upload the new patch set.\n\nAh ah, that is what I call a review deadlock when both sides are genuinely waiting on each others.  \n\nI am not sure why I haven\u0027t send the adjusted commit message immediately after crafting it, I must have been interrupted for lunch or something.  Thank you for pointing it out.\n\nDiff:\n\nhttps://gerrit-review.googlesource.com/c/bazlets/+/348367/2..3//COMMIT_MSG",
+      "parentUuid": "878f524d_477a1523",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31e660fd_653b56a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-11T09:19:03Z",
+      "side": 1,
+      "message": "I have send the adjusted commit message which has been sitting on my laptop since Tuesday noon ;)",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
