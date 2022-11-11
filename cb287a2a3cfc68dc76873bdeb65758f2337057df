@@ -16,6 +16,23 @@
       "message": "Can you please put VRFY+1?",
       "revId": "cb287a2a3cfc68dc76873bdeb65758f2337057df",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d536026_3a76f26d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2022-11-11T09:27:55Z",
+      "side": 1,
+      "message": "Sure thing! I am so used to have bots/CI to set the Verified label ;)",
+      "revId": "cb287a2a3cfc68dc76873bdeb65758f2337057df",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
