@@ -423,6 +423,24 @@
       "message": "I have send the adjusted commit message which has been sitting on my laptop since Tuesday noon ;)",
       "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38606ead_ef51473f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2022-11-11T09:26:51Z",
+      "side": 1,
+      "message": "😊",
+      "parentUuid": "31e660fd_653b56a7",
+      "revId": "3ffe168f1b0c9a49c8e94fec7bfbb2e112da4f3a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
