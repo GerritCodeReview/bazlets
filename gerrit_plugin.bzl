@@ -19,6 +19,7 @@ def gerrit_plugin(
         name,
         deps = [],
         provided_deps = [],
+        runtime_deps = [],
         srcs = [],
         resources = [],
         manifest_entries = [],
@@ -42,7 +43,7 @@ def gerrit_plugin(
         main_class = "Dummy",
         runtime_deps = [
             ":%s__plugin" % name,
-        ],
+        ] + runtime_deps,
         visibility = ["//visibility:public"],
     )
 
