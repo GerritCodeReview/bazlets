@@ -25,8 +25,6 @@ def gerrit_plugin(
         dir_name = None,
         target_suffix = "",
         **kwargs):
-    static_jars = []
-
     if not dir_name:
         dir_name = name
 
@@ -44,7 +42,7 @@ def gerrit_plugin(
         main_class = "Dummy",
         runtime_deps = [
             ":%s__plugin" % name,
-        ] + static_jars,
+        ],
         visibility = ["//visibility:public"],
     )
 
