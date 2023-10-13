@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The Android Open Source Project
+# Copyright (C) 2023 Serge 'q3k' Bazanski
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,6 +16,8 @@
 # Port of Buck native gwt_binary() rule. See discussion in context of
 # https://github.com/facebook/buck/issues/109
 
+load(":base64.bzl", "hex_to_b64")
+
 ECLIPSE = "ECLIPSE:"
 
 GERRIT = "GERRIT:"
@@ -24,6 +27,72 @@ GERRIT_API = "GERRIT_API:"
 MAVEN_CENTRAL = "MAVEN_CENTRAL:"
 
 MAVEN_LOCAL = "MAVEN_LOCAL:"
+
+REPO_ROOTS = {
+  'GERRIT': 'https://gerrit-maven.storage.googleapis.com',
+  'GERRIT_API': 'https://gerrit-api.commondatastorage.googleapis.com/release',
+  'MAVEN_CENTRAL': 'https://repo1.maven.org/maven2',
+  'MAVEN_SNAPSHOT': 'https://oss.sonatype.org/content/repositories/snapshots',
+}
+
+def _sha1_to_integrity(ctx, sha1):
+    """
+    Convert a hex-encoded SHA1 hash into a Subresource Integrity format, as
+    used by repository_ctx.download.
+    """
+    b64 = hex_to_b64(sha1)
+    return "sha1-" + b64
+
+def _resolve_url(url):
+    """
+    Resolve URL of a Maven artifact.  prefix:path is passed as URL. prefix
+    identifies known or custom repositories.
+
+    A special case is supported, when prefix doesn't exists in REPO_ROOTS: the
+    url is returned as is.  This enables plugins to pass custom
+    maven_repository URL as is directly to maven_jar().
+
+    Returns a resolved path for Maven artifact.
+    """
+    s = url.find(':')
+    if s < 0:
+      return url
+    scheme, rest = url[:s], url[s+1:]
+    if scheme in REPO_ROOTS:
+      root = REPO_ROOTS[scheme]
+    else:
+      return url
+    root = root.rstrip('/')
+    rest = rest.lstrip('/')
+    return '/'.join([root, rest])
+
+def _download_hashed(ctx, url, output, src):
+    """
+    Download a URL and check against source/binary hashes in the given ctx.
+
+    Returns a dictionary of 'fixups' that can be used to indicate to the rule
+    instantiator on how the rule should be reconfigured to be hermetic. Here,
+    we return only the 'src_sha256' and 'sha256' keys if applicable.
+    """
+    sha1 = ctx.attr.src_sha1 if src else ctx.attr.sha1
+    sha256 = ctx.attr.src_sha256 if src else ctx.attr.sha256
+    integrity = ''
+
+    if sha1 != '' and sha256 == '':
+        integrity = _sha1_to_integrity(ctx, sha1)
+    dl = ctx.download(
+        url = url,
+        output = output,
+        integrity = integrity,
+        sha256 = sha256,
+    )
+    if sha1 == '' and sha256 == '':
+        # Notify the user that sha256 should be set.
+        if src:
+            return {'src_sha256': dl.sha256}
+        else:
+            return {'sha256': dl.sha256}
+    return {}
 
 def _maven_release(ctx, parts):
     """induce jar and url name from maven coordinates."""
@@ -136,42 +205,53 @@ def _maven_jar_impl(ctx):
     srcjar_path = ctx.path("/".join(["src", srcjar]))
     srcurl = url + "-sources.jar"
 
-    python = ctx.which("python3")
-    script = ctx.path(ctx.attr._download_script)
+    sha256 = ctx.attr.sha256
+    sha1 = ctx.attr.sha1
+    integrity = ''
+    if sha1 != '' and sha256 == '':
+        integrity = _sha1_to_integrity(ctx, sha1)
 
-    args = [python, script, "-o", binjar_path, "-u", binurl]
-    if ctx.attr.sha1:
-        args.extend(["-v", ctx.attr.sha1])
-    for x in ctx.attr.exclude:
-        args.extend(["-x", x])
-
-    out = ctx.execute(args)
-
-    if out.return_code:
-        fail("failed %s: %s" % (args, out.stderr))
+    fixup = {}
+    fixup.update(_download_hashed(
+        ctx = ctx,
+        url = _resolve_url(binurl),
+        output = "jar/" + binjar,
+        src = False,
+     ))
     _generate_build_file(ctx, "jar", binjar)
 
-    if ctx.attr.src_sha1 or ctx.attr.attach_source:
-        args = [python, script, "-o", srcjar_path, "-u", srcurl]
-        if ctx.attr.src_sha1:
-            args.extend(["-v", ctx.attr.src_sha1])
-        out = ctx.execute(args)
-        if out.return_code:
-            fail("failed %s: %s" % (args, out.stderr))
+    if ctx.attr.attach_source:
+        fixup.update(_download_hashed(
+            ctx = ctx,
+            url = _resolve_url(srcurl),
+            output = "src/" + srcjar,
+            src = True,
+         ))
         _generate_build_file(ctx, "src", srcjar)
 
+    # Notify user about fixup to attributes for hermeticity.
+    ret = {'name': ctx.attr.name}
+    for key in _maven_jar_attrs.keys():
+        if getattr(ctx.attr, key) != None:
+            ret[key] = getattr(ctx.attr, key)
+    ret.update(fixup)
+    return ret
+
+_maven_jar_attrs = {
+    "artifact": attr.string(mandatory = True),
+    "attach_source": attr.bool(default = True),
+    "exclude": attr.string_list(),
+    "repository": attr.string(default = MAVEN_CENTRAL),
+    "sha1": attr.string(),
+    "sha256": attr.string(),
+    "src_sha1": attr.string(),
+    "src_sha256": attr.string(),
+    "exports": attr.string_list(),
+    "deps": attr.string_list(),
+}
+
 maven_jar = repository_rule(
-    attrs = {
-        "artifact": attr.string(mandatory = True),
-        "attach_source": attr.bool(default = True),
-        "exclude": attr.string_list(),
-        "repository": attr.string(default = MAVEN_CENTRAL),
-        "sha1": attr.string(mandatory = False),
-        "src_sha1": attr.string(),
-        "exports": attr.string_list(),
-        "deps": attr.string_list(),
-        "_download_script": attr.label(default = Label("//tools:download_file.py")),
-    },
+    attrs = _maven_jar_attrs,
     local = True,
     implementation = _maven_jar_impl,
 )
