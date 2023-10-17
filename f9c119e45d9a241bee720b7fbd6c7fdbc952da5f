@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a071ec91_8f555a2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2023-10-17T11:01:09Z",
+      "side": 1,
+      "message": "verified with https://git.eclipse.org/r/c/jgit/jgit/+/204980",
+      "revId": "f9c119e45d9a241bee720b7fbd6c7fdbc952da5f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
