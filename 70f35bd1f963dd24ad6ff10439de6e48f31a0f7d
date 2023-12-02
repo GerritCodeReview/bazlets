@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea70866f_f6482282",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-02T00:07:14Z",
+      "side": 1,
+      "message": "Working as expected in 395805: Update bazel version to 5.3.1 | https://gerrit-review.googlesource.com/c/plugins/depends-on/+/395805",
+      "revId": "70f35bd1f963dd24ad6ff10439de6e48f31a0f7d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
