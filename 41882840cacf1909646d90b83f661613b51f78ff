@@ -70,6 +70,24 @@
       "parentUuid": "69d5da60_88f2d8b1",
       "revId": "41882840cacf1909646d90b83f661613b51f78ff",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8c4a5da_de24a112",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2023-12-02T00:24:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6a3dbbf3_eabb4a24",
+      "revId": "41882840cacf1909646d90b83f661613b51f78ff",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
