@@ -52,6 +52,24 @@
       "parentUuid": "c3cc5ece_9a1e4b29",
       "revId": "41882840cacf1909646d90b83f661613b51f78ff",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3dbbf3_eabb4a24",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-02T00:15:05Z",
+      "side": 1,
+      "message": "It seemed like extra work. I\u0027ll resolve the conflict when I merge it up.",
+      "parentUuid": "69d5da60_88f2d8b1",
+      "revId": "41882840cacf1909646d90b83f661613b51f78ff",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
