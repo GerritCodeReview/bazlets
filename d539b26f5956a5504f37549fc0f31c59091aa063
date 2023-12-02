@@ -34,6 +34,24 @@
       "parentUuid": "1bd7b2da_51a5feb5",
       "revId": "d539b26f5956a5504f37549fc0f31c59091aa063",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00fdf349_f6c44c15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2023-12-02T00:37:44Z",
+      "side": 1,
+      "message": "Let\u0027s not do it, and not on stable branch. I would also prefer that bazlets toolchain is not deverting from gerrit core toolchain. From my perspective, we should add/remove in gerrit core\u0027s features to the toolchain, and replicate those changes in bazlets. Gerrit core version of gerrit_plugin() doesn\u0027t offer runtime_jars, so I wouldn\u0027t expect to be it here as well.",
+      "parentUuid": "be85510a_c7ce86ca",
+      "revId": "d539b26f5956a5504f37549fc0f31c59091aa063",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
