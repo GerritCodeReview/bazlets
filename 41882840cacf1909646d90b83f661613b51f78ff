@@ -34,6 +34,24 @@
       "parentUuid": "80a822c1_7159d7ab",
       "revId": "41882840cacf1909646d90b83f661613b51f78ff",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69d5da60_88f2d8b1",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2023-12-02T00:14:10Z",
+      "side": 1,
+      "message": "Should we cherry-pick the removal change then to stable-3.5 branch?",
+      "parentUuid": "c3cc5ece_9a1e4b29",
+      "revId": "41882840cacf1909646d90b83f661613b51f78ff",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
