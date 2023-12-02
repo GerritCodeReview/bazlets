@@ -16,6 +16,24 @@
       "message": "But support for resource_jars was added in the previous change, right? Why this change is needed?",
       "revId": "d539b26f5956a5504f37549fc0f31c59091aa063",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be85510a_c7ce86ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-02T00:14:18Z",
+      "side": 1,
+      "message": "It\u0027s not strictly needed, but someone using gerrit_plugin probably expects it to to honor the kwargs supported by java_binary. We should probably also pass through provided_deps for the same reason. We give both to java_library, but not to java_binary since we don\u0027t pass our kwargs to it.\n\nI can remove this from the series if you have concerns with it.",
+      "parentUuid": "1bd7b2da_51a5feb5",
+      "revId": "d539b26f5956a5504f37549fc0f31c59091aa063",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
