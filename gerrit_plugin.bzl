@@ -21,6 +21,7 @@ def gerrit_plugin(
         provided_deps = [],
         srcs = [],
         resources = [],
+        resource_jars = [],
         manifest_entries = [],
         dir_name = None,
         target_suffix = "",
@@ -40,7 +41,9 @@ def gerrit_plugin(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
         main_class = "Dummy",
-        runtime_deps = [":%s__plugin" % name],
+        runtime_deps = [
+            ":%s__plugin" % name,
+        ] + resource_jars,
         visibility = ["//visibility:public"],
     )
 
