@@ -16,6 +16,23 @@
       "message": "Somehow I had the wrong sha1 for gerrit-plugin-api before. It\u0027s working now.",
       "revId": "f930de7dc62e319c82d2afc8f10efd1290fd62b8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d2b3e90_e9b54f96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-05T23:12:05Z",
+      "side": 1,
+      "message": "Used in 396599: 3.9.1 support | https://gerrit-review.googlesource.com/c/plugins/depends-on/+/396599",
+      "revId": "f930de7dc62e319c82d2afc8f10efd1290fd62b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
