@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c38b15e4_37b49651",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-05T23:00:02Z",
+      "side": 1,
+      "message": "Somehow I had the wrong sha1 for gerrit-plugin-api before. It\u0027s working now.",
+      "revId": "f930de7dc62e319c82d2afc8f10efd1290fd62b8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
