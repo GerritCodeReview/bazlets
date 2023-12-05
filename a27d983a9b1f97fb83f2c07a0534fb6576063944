@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcdb81fc_3f9dc666",
+        "filename": "gerrit_api.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2023-12-05T19:20:56Z",
+      "side": 1,
+      "message": "I think you probably want a separate rule for extensions, something like `gerrit_extension_api()`. It doesn\u0027t make sense to have a plugin that builds against both the plugin api and the extension api.",
+      "range": {
+        "startLine": 12,
+        "startChar": 15,
+        "endLine": 12,
+        "endChar": 33
+      },
+      "revId": "a27d983a9b1f97fb83f2c07a0534fb6576063944",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
