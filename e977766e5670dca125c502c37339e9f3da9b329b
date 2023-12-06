@@ -16,6 +16,23 @@
       "message": "Confirmed `bazel fetch //...` works with a `WORKSPACE` using this commit and the `gerrit_api()` and `gerrit_polymer()` rules.",
       "revId": "e977766e5670dca125c502c37339e9f3da9b329b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e725732_d6d13c30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3202206
+      },
+      "writtenOn": "2023-12-06T18:11:22Z",
+      "side": 1,
+      "message": "errr",
+      "revId": "e977766e5670dca125c502c37339e9f3da9b329b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
