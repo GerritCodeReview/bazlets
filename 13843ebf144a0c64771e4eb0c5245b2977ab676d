@@ -16,6 +16,24 @@
       "message": "Just FYI, with change Ib0595628 applied on stable-3.5, I no longer get this error.",
       "revId": "13843ebf144a0c64771e4eb0c5245b2977ab676d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90cebb2b_febaaf4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1010788
+      },
+      "writtenOn": "2023-12-15T16:43:47Z",
+      "side": 1,
+      "message": "Thank you for having checked! I have abandoned the change.",
+      "parentUuid": "834524f5_905e4caf",
+      "revId": "13843ebf144a0c64771e4eb0c5245b2977ab676d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
