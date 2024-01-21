@@ -57,7 +57,7 @@ def _war_impl(ctx):
     transitive_libs = []
     for l in ctx.attr.libs:
         if JavaInfo in l:
-            transitive_libs.append(l[JavaInfo].transitive_runtime_deps)
+            transitive_libs.append(l[JavaInfo].transitive_runtime_jars)
         elif hasattr(l, "files"):
             transitive_libs.append(l.files)
 
@@ -75,7 +75,7 @@ def _war_impl(ctx):
     if ctx.attr.context:
         for jar in ctx.attr.context:
             if JavaInfo in jar:
-                transitive_context_libs.append(jar[JavaInfo].transitive_runtime_deps)
+                transitive_context_libs.append(jar[JavaInfo].transitive_runtime_jars)
             elif hasattr(jar, "files"):
                 transitive_context_libs.append(jar.files)
     transitive_context_deps = depset(transitive = transitive_context_libs)
