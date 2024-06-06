@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2923664d_5a3ffbed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2024-06-06T02:28:06Z",
+      "side": 1,
+      "message": "Verified that I can build `oauth` plugin in standalone build mode with this change, and tests are passing as well.",
+      "revId": "cc68cb5ffdab500e36674cb7558911b180ea61c3",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
