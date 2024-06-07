@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5912da4_cdf84290",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2024-06-07T09:02:21Z",
+      "side": 1,
+      "message": "I\u0027ve verified, that `gitiles` project can be built with this change.",
+      "revId": "f569863092268145e2b8a994bd594544d1b9c87d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
