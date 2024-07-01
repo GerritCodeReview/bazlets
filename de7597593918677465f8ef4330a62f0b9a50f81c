@@ -16,6 +16,24 @@
       "message": "Verified with task plugin.",
       "revId": "de7597593918677465f8ef4330a62f0b9a50f81c",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bdb1692_7d92c57e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2024-07-01T18:04:14Z",
+      "side": 1,
+      "message": "I also verified with depends-on plugin stable-3.9 branch (with `gerrit_api` set appropriately).",
+      "parentUuid": "1b4ef2bf_fb04f1cf",
+      "revId": "de7597593918677465f8ef4330a62f0b9a50f81c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
