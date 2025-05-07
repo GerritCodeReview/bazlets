@@ -13,6 +13,7 @@
 # limitations under the License.
 
 # War packaging.
+load("@rules_java//java:defs.bzl", "JavaInfo")
 
 def _add_context(in_file, output):
     input_path = in_file.path
