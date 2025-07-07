@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed41aebf_08684da8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-07-07T18:39:05Z",
+      "side": 1,
+      "message": "Works in https://gerrit-review.googlesource.com/c/plugins/events/+/488481",
+      "revId": "e3a8273dbfced5c41f6f08f49d063c4366be0278",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
