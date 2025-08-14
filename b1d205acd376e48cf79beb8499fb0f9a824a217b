@@ -16,6 +16,23 @@
       "message": "Works in 498308: Use new gerrit_java_setup rule from bazlets | https://gerrit-review.googlesource.com/c/plugins/events/+/498308",
       "revId": "b1d205acd376e48cf79beb8499fb0f9a824a217b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199fc38b_3c2aa5f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-08-14T04:58:54Z",
+      "side": 1,
+      "message": "Bah, fails in CI in a way I didn\u0027t expect. Let me try to fix that.",
+      "revId": "b1d205acd376e48cf79beb8499fb0f9a824a217b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
