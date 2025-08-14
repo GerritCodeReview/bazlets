@@ -156,3 +156,22 @@ gerrit_plugin(name, srcs, resources, deps, manifest_entries):
     </tr>
   </tbody>
 </table>
+
+## javac / Error Prone setup
+If you want your plugin to use the same javac and Error Prone options as Gerrit
+core, 1) in your plugin repo, create a `tools/BUILD` file with contents like:
+```python
+load(
+    "@com_googlesource_gerrit_bazlets//:gerrit_java_setup.bzl",
+    "gerrit_java_setup",
+)
+
+gerrit_java_setup(["//reviwer"])
+```
+where all plugin packages in your workspace are listed, and
+
+2) register the targets in that file as toolchains:
+
+```python
+register_toolchains("//tools:all")
+```
