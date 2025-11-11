@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b65235f_2c0121f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-11-11T23:46:31Z",
+      "side": 1,
+      "message": "Do we need `maven_jar` or should we be moving to `rules_jvm_external.maven_install()` anyway?\n\nMaybe try migrating `gerrit_plugin()`?",
+      "revId": "af8027caa5d19cccade6cec9380a89e5f2768986",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
