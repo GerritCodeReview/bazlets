@@ -1,0 +1,4 @@
+module(name = "com_googlesource_gerrit_bazlets")
+
+bazel_dep(name = "rules_java", version = "7.6.1")
+bazel_dep(name = "rules_python", version = "1.6.3")

@@ -15,21 +15,14 @@
 # Port of Buck native gwt_binary() rule. See discussion in context of
 # https://github.com/facebook/buck/issues/109
 
-ECLIPSE = "ECLIPSE:"
+load("//maven:defs.bzl", "MAVEN_CENTRAL")
 
-GERRIT = "GERRIT:"
-
-GERRIT_API = "GERRIT_API:"
-
-MAVEN_CENTRAL = "MAVEN_CENTRAL:"
-
-MAVEN_LOCAL = "MAVEN_LOCAL:"
-
-def _maven_release(ctx, parts):
+def _maven_release(artifact, repository=MAVEN_CENTRAL):
     """induce jar and url name from maven coordinates."""
+    parts = artifact.split(":")
     if len(parts) not in [3, 4]:
         fail('%s:\nexpected id="groupId:artifactId:version[:classifier]"' %
-             ctx.attr.artifact)
+             artifact)
     if len(parts) == 4:
         group, artifact, version, classifier = parts
         file_version = version + "-" + classifier
@@ -39,7 +32,7 @@ def _maven_release(ctx, parts):
 
     jar = artifact.lower() + "-" + file_version
     url = "/".join([
-        ctx.attr.repository,
+        repository,
         group.replace(".", "/"),
         artifact,
         version,
@@ -47,30 +40,6 @@ def _maven_release(ctx, parts):
     ])
 
     return jar, url
-
-# Creates a struct containing the different parts of an artifact's FQN
-def _create_coordinates(fully_qualified_name):
-    parts = fully_qualified_name.split(":")
-    packaging = None
-    classifier = None
-
-    if len(parts) == 3:
-        group_id, artifact_id, version = parts
-    elif len(parts) == 4:
-        group_id, artifact_id, version, packaging = parts
-    elif len(parts) == 5:
-        group_id, artifact_id, version, packaging, classifier = parts
-    else:
-        fail("Invalid fully qualified name for artifact: %s" % fully_qualified_name)
-
-    return struct(
-        fully_qualified_name = fully_qualified_name,
-        group_id = group_id,
-        artifact_id = artifact_id,
-        packaging = packaging,
-        classifier = classifier,
-        version = version,
-    )
 
 def _format_deps(attr, deps):
     formatted_deps = ""
@@ -110,7 +79,7 @@ filegroup(
     visibility = ['//visibility:public']
 )\n""".format(
         classifier = classifier,
-        rule_name = ctx.name,
+        rule_name = ctx.attr.name,
         filename = filename,
         deps = _format_deps("deps", ctx.attr.deps),
         exports = _format_deps("exports", ctx.attr.exports),
@@ -118,15 +87,8 @@ filegroup(
     ctx.file("%s/BUILD" % ctx.path(classifier), contents, False)
 
 def _maven_jar_impl(ctx):
-    """rule to download a Maven archive."""
-    coordinates = _create_coordinates(ctx.attr.artifact)
-
-    name = ctx.name
-
-    parts = ctx.attr.artifact.split(":")
-
     # TODO(davido): Only releases for now, implement handling snapshots
-    jar, url = _maven_release(ctx, parts)
+    jar, url = _maven_release(ctx.attr.artifact, ctx.attr.repository)
 
     binjar = jar + ".jar"
     binjar_path = ctx.path("/".join(["jar", binjar]))
@@ -170,8 +132,35 @@ maven_jar = repository_rule(
         "src_sha1": attr.string(),
         "exports": attr.string_list(),
         "deps": attr.string_list(),
-        "_download_script": attr.label(default = Label("//tools:download_file.py")),
+        "_download_script": attr.label(default = Label("//maven/private:download_file.py")),
     },
     local = True,
     implementation = _maven_jar_impl,
+)
+
+def _maven_collection_impl(ctx):
+    for name, jar in ctx.attr.jars.items():
+        rules = """
+# DO NOT EDIT: automatically generated BUILD file for maven_collection rule
+java_import(
+    name = "jar",
+    jars = ["{jar}"],
+    visibility = ["//visibility:public"],
+)
+
+java_import(
+    name = "neverlink",
+    jars = ["{jar}"],
+    neverlink = True,
+    visibility = ["//visibility:public"],
+)
+""".format(jar = jar)
+        ctx.file("%s/BUILD" % ctx.path("%s/jar" % name), rules, False)
+
+maven_collection = repository_rule(
+    attrs = {
+      "jars": attr.string_keyed_label_dict(mandatory = True),
+    },
+    local = True,
+    implementation = _maven_collection_impl,
 )
