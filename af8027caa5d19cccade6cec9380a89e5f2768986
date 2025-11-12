@@ -16,6 +16,24 @@
       "message": "Do we need `maven_jar` or should we be moving to `rules_jvm_external.maven_install()` anyway?\n\nMaybe try migrating `gerrit_plugin()`?",
       "revId": "af8027caa5d19cccade6cec9380a89e5f2768986",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22de80ba_4c138762",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2025-11-12T07:30:53Z",
+      "side": 1,
+      "message": "I have tried `rules_jvm_external.maven_install()`. Unfortunately it doesn\u0027t pin versions exactly, which caused issues with Guice, because it installed 7.0 instead of 6.0, which would have required jakarta.inject instead of javax.inject. Thus, I don\u0027t believe that this would be a good and stable solution.",
+      "parentUuid": "7b65235f_2c0121f8",
+      "revId": "af8027caa5d19cccade6cec9380a89e5f2768986",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
