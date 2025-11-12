@@ -52,6 +52,24 @@
       "parentUuid": "22de80ba_4c138762",
       "revId": "af8027caa5d19cccade6cec9380a89e5f2768986",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eda37f8c_06dd3fec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2025-11-12T20:31:04Z",
+      "side": 1,
+      "message": "Oh, or maybe it was because of the default policy in https://github.com/bazel-contrib/rules_jvm_external?tab\u003dreadme-ov-file#resolving-user-specified-and-transitive-dependency-version-conflicts ? Did you try setting `version_conflict_policy \u003d \"pinned\"`?",
+      "parentUuid": "00f6c8c7_dd138970",
+      "revId": "af8027caa5d19cccade6cec9380a89e5f2768986",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
