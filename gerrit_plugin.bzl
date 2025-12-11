@@ -3,22 +3,12 @@ Build rules for plugins.
 """
 
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
-load(
-    "//tools:commons.bzl",
-    _plugin_deps = "PLUGIN_DEPS",
-    _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
-    _plugin_test_deps = "PLUGIN_TEST_DEPS",
-)
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:junit.bzl", "junit_tests")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
-
-PLUGIN_DEPS = _plugin_deps
-PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
-PLUGIN_TEST_DEPS = _plugin_test_deps
 
 def gerrit_plugin(
         name,
@@ -52,12 +42,7 @@ def gerrit_plugin(
     This rule creates a deployable .jar file for a Gerrit plugin."""
 
     # Determine where to get Gerrit API dependencies from
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        gerrit_api_neverlink = PLUGIN_DEPS_NEVERLINK
-    elif (native.module_name() == "gerrit"):
+    if (native.module_name() == "gerrit"):
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
         # source tree
         gerrit_api_neverlink = ["//plugins:plugin-lib-neverlink"]
@@ -146,12 +131,7 @@ def gerrit_plugin_tests(
     """
 
     # Determine where to get Gerrit API dependencies from
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        gerrit_api_deps = PLUGIN_DEPS + PLUGIN_TEST_DEPS
-    elif (native.module_name() == "gerrit"):
+    if (native.module_name() == "gerrit"):
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
         # source tree
         gerrit_api_deps = [
