@@ -17,37 +17,61 @@ dependencies.
 ## Setup
 
 To be able to use the Gerrit rules, you must provide bindings for the plugin
-API jars. The easiest way to do so is to add the following to your `WORKSPACE`
+API jars. The easiest way to do so is to add the following to your `MODULE.bazel`
 file, which will give you default versions for Gerrit plugin API.
 
 ```python
-git_repository(
-  name = "com_googlesource_gerrit_bazlets",
+bazel_dep(name = "com_googlesource_gerrit_bazlets")
+git_override(
+  module_name = "com_googlesource_gerrit_bazlets",
   remote = "https://gerrit.googlesource.com/bazlets",
   commit = "928c928345646ae958b946e9bbdb462f58dd1384",
 )
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api()
+
+gerrit_api_version = use_repo_rule(
+  "@com_googlesource_gerrit_bazlets//:gerrit_api_version.bzl",
+  "gerrit_api_version"
+)
+gerrit_api_version(
+    name = "gerrit_api_version",
+    visibility = ["//visibility:public"],
+)
 ```
 
 The `version` parameter allows to override the default API. For release version
-numbers, make sure to also provide artifacts' SHA1 sums via the
-`plugin_api_sha1` and `acceptance_framework_sha1` parameters:
+numbers:
 
 ```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api(version = "3.2.1",
-           plugin_api_sha1 = "47019cf43ef7e6e8d2d5c0aeba0407d23c93699c",
-           acceptance_framework_sha1 = "6252cab6d1f76202e57858fcffb428424e90b128")
+gerrit_api_version = use_repo_rule(
+  "@com_googlesource_gerrit_bazlets//:gerrit_api_version.bzl",
+  "gerrit_api_version"
+)
+gerrit_api_version(
+    name = "gerrit_api_version",
+    version = "3.11.0",
+    visibility = ["//visibility:public"],
+)
 ```
 
-If the version ends in `-SNAPSHOT`, the jars are consumed from the local
-Maven repository (`~/.m2`) per default assumed to be and the SHA1 sums can be
-omitted:
+To use a snapshot version of the Gerrit API, clone the `bazlets` repository. Then
+add the `file://`-URL to the lis tof repositories in the `MODULE.bazel` file and
+adapt the `GERRIT_API_VERSION`-constant, e.g.:
 
 ```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api(version = "3.3.0-SNAPSHOT")
+GERRIT_API_VERS = "3.11.0-SNAPSHOT"
+
+maven.install(
+    name = "maven",
+    artifacts = [
+    ...
+    ],
+    repositories = [
+        "file:///home/user/.m2/repository",
+        "https://repo1.maven.org/maven2",
+        "https://gerrit-maven.storage.googleapis.com",
+    ],
+    ...
+)
 ```
 
 <a name="basic-example"></a>
@@ -62,13 +86,13 @@ Suppose you have the following directory structure for a simple plugin:
 │       ├── java
 │       └── resources
 ├── BUILD
-└── WORKSPACE
+└── MODULE.bazel
 ```
 
 To build this plugin, your `BUILD` can look like this:
 
 ```python
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load("@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl", "gerrit_plugin")
 
 gerrit_plugin(
     name = "reviewers",

@@ -1,14 +1,10 @@
-PLUGIN_DEPS_NEVERLINK = [
-    "//external:gerrit-plugin-api-neverlink",
-]
-
 PLUGIN_DEPS = [
-    "//external:gerrit-plugin-api",
+    "@maven//:com_google_gerrit_gerrit_plugin_api",
 ]
 
 PLUGIN_TEST_DEPS = [
-    "//external:bcpg",
-    "//external:bcpkix",
-    "//external:bcprov",
-    "//external:gerrit-acceptance-framework",
+    "@maven//:org_bouncycastle_bcpg_jdk18on",
+    "@maven//:org_bouncycastle_bcprov_jdk18on",
+    "@maven//:org_bouncycastle_bcpkix_jdk18on",
+    "@maven//:com_google_gerrit_gerrit_acceptance_framework",
 ]
