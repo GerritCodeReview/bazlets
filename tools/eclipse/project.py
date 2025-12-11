@@ -47,7 +47,7 @@ if not args.root:
 
 root = args.root
 ROOT = os.path.abspath(root)
-while not os.path.exists(os.path.join(ROOT, 'WORKSPACE')):
+while not os.path.exists(os.path.join(ROOT, 'MODULE.bazel')):
   ROOT = os.path.dirname(ROOT)
 
 batch_option = '--batch' if args.batch else None
