@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Skylark rule to generate a Junit4 TestSuite
+# Starlark rule to generate a Junit4 TestSuite
 # Assumes srcs are all .java Test files
 # Assumes junit4 is already added to deps by the user.
 
@@ -58,7 +58,7 @@ def _impl(ctx):
         ctx.attr.outname,
     ))
 
-_GenSuite = rule(
+_gen_suite = rule(
     attrs = {
         "srcs": attr.label_list(allow_files = True),
         "outname": attr.string(),
@@ -69,14 +69,16 @@ _GenSuite = rule(
 
 def junit_tests(name, srcs, **kwargs):
     s_name = name.replace("-", "_") + "TestSuite"
-    _GenSuite(
+    _gen_suite(
         name = s_name,
         srcs = srcs,
         outname = s_name,
     )
+    jvm_flags = kwargs.get("jvm_flags", [])
+    jvm_flags = jvm_flags
     java_test(
         name = name,
         test_class = s_name,
         srcs = srcs + [":" + s_name],
-        **kwargs
+        **dict(kwargs, jvm_flags = jvm_flags)
     )
