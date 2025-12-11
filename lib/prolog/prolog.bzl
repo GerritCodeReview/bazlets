@@ -31,6 +31,7 @@ def prolog_cafe_library(
     java_library(
         name = name,
         srcs = [":" + name + "__pl2j"],
-        deps = ["@prolog-runtime//jar:neverlink"] + deps,
+        neverlink = 1,
+        deps = ["@external_deps//:com_googlecode_prolog_cafe_prolog_runtime"] + deps,
         **kwargs
     )

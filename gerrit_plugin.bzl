@@ -29,14 +29,25 @@ def gerrit_plugin(
     if not dir_name:
         dir_name = name
 
+    if native.module_name():
+        java_library(
+            name = "gerrit-api-neverlink",
+            neverlink = 1,
+            exports = ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
+        )
+        plugin_deps_neverlink = [":gerrit-api-neverlink"]
+    else:
+        plugin_deps_neverlink = PLUGIN_DEPS_NEVERLINK
+
     java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = provided_deps + deps + PLUGIN_DEPS_NEVERLINK,
+        deps = provided_deps + deps + plugin_deps_neverlink,
         visibility = ["//visibility:public"],
         **kwargs
     )
+
     java_binary(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],

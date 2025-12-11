@@ -16,6 +16,11 @@ dependencies.
 <a name="setup"></a>
 ## Setup
 
+The setup depends on whether the plugin uses the deprecated Bazel WORKSPACE or
+has already transitioned to Bazel modules.
+
+### WORKSPACE
+
 To be able to use the Gerrit rules, you must provide bindings for the plugin
 API jars. The easiest way to do so is to add the following to your `WORKSPACE`
 file, which will give you default versions for Gerrit plugin API.
@@ -49,6 +54,79 @@ omitted:
 load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
 gerrit_api(version = "3.3.0-SNAPSHOT")
 ```
+
+### MODULE.bazel
+
+When using a Bazel module, the plugin will have to install the Gerrit API in its
+`MODULE.bazel` itself:
+
+```python
+# The name has to be unique
+module(name = "gerrit-plugin")
+
+bazel_dep(name = "rules_jvm_external", version = "6.10")
+bazel_dep(name = "com_googlesource_gerrit_bazlets")
+git_override(
+  module_name = "com_googlesource_gerrit_bazlets",
+  remote = "https://gerrit.googlesource.com/bazlets",
+  commit = "928c928345646ae958b946e9bbdb462f58dd1384",
+)
+
+GERRIT_API_VERSION = "3.12.0"
+
+gerrit_api_version = use_repo_rule(
+    "@com_googlesource_gerrit_bazlets//:gerrit_api_version.bzl",
+    "gerrit_api_version"
+)
+
+gerrit_api_version(
+    name = "gerrit_api_version",
+    version = GERRIT_API_VERSION,
+    visibility = ["//visibility:public"],
+)
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+maven.install(
+    name = "external_plugin_deps",
+    artifacts = [
+        "com.google.gerrit:gerrit-acceptance-framework:" + GERRIT_API_VERSION,
+        "com.google.gerrit:gerrit-plugin-api:" + GERRIT_API_VERSION,
+    ],
+    duplicate_version_warning = "error",
+    fail_if_repin_required = True,
+    fail_on_missing_checksum = True,
+    fetch_sources = True,
+    lock_file = "//:external_plugin_deps.lock.json",
+    repositories = [
+        "https://repo1.maven.org/maven2",
+        "https://gerrit-maven.storage.googleapis.com",
+    ],
+    version_conflict_policy = "pinned",
+)
+
+use_repo(maven, "external_plugin_deps")
+```
+
+To use a snapshot version of the Gerrit API, add the `file://`-URL to the list
+of repositories in the `MODULE.bazel` file and adapt the `GERRIT_API_VERSION`-
+constant, e.g.:
+
+```python
+GERRIT_API_VERSION = "3.11.0-SNAPSHOT"
+
+maven.install(
+    name = "external_plugin_deps",
+    artifacts = [
+    ...
+    ],
+    repositories = [
+        "file:///home/user/.m2/repository",
+        "https://repo1.maven.org/maven2",
+        "https://gerrit-maven.storage.googleapis.com",
+    ],
+    ...
+)
 
 <a name="basic-example"></a>
 ## Basic Example

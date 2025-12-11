@@ -12,8 +12,8 @@ java_library(
     srcs = ["java/PrologCompiler.java"],
     visibility = ["//visibility:public"],
     deps = [
-        "@prolog-compiler//jar",
-        "@prolog-io//jar",
-        "@prolog-runtime//jar",
+        "@external_deps//:com_googlecode_prolog_cafe_prolog_compiler",
+        "@external_deps//:com_googlecode_prolog_cafe_prolog_io",
+        "@external_deps//:com_googlecode_prolog_cafe_prolog_runtime",
     ],
 )
