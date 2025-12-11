@@ -3,21 +3,11 @@ Build rules for plugins.
 """
 
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
-load(
-    "//tools:commons.bzl",
-    _plugin_deps = "PLUGIN_DEPS",
-    _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
-    _plugin_test_deps = "PLUGIN_TEST_DEPS",
-)
 load("//tools:genrule2.bzl", "genrule2")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
-
-PLUGIN_DEPS = _plugin_deps
-PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
-PLUGIN_TEST_DEPS = _plugin_test_deps
 
 def gerrit_plugin(
         name,
@@ -50,9 +40,7 @@ def gerrit_plugin(
 
     This rule creates a deployable .jar file for a Gerrit plugin."""
 
-    if not native.module_name():
-        gerrit_api_neverlink = PLUGIN_DEPS_NEVERLINK
-    elif (native.module_name() == "gerrit"):
+    if (native.module_name() == "gerrit"):
         gerrit_api_neverlink = ["//plugins:plugin-lib-neverlink"]
     else:
         java_library(
