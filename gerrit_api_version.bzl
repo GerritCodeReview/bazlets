@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+GERRIT_API_VERS = "3.11.0"
+
 def _gerrit_api_version_impl(ctx):
     ctx.file("version.txt", "Gerrit-ApiVersion: " + ctx.attr.version, False)
     ctx.file("BUILD.bazel", 'exports_files(["version.txt"])', False)
@@ -21,7 +23,7 @@ gerrit_api_version = repository_rule(
     local = True,
     attrs = {
         "version": attr.string(
-            mandatory = True,
+            default = GERRIT_API_VERS,
         ),
     },
 )

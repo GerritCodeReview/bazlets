@@ -1,0 +1,39 @@
+module(
+    name = "com_googlesource_gerrit_bazlets",
+)
+
+bazel_dep(name = "rules_java", version = "7.6.1")
+bazel_dep(name = "rules_jvm_external", version = "6.9")
+bazel_dep(name = "rules_nodejs", version = "6.5.2")
+bazel_dep(name = "rules_python", version = "1.7.0")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+BC_VERS = "1.80"
+GERRIT_API_VERS = "3.11.0"
+PROLOG_VERS = "1.4.4"
+
+maven.install(
+    name = "maven",
+    artifacts = [
+        "com.google.gerrit:gerrit-acceptance-framework:" + GERRIT_API_VERS,
+        "com.google.gerrit:gerrit-plugin-api:" + GERRIT_API_VERS,
+        "com.googlecode.prolog-cafe:prolog-compiler:" + PROLOG_VERS,
+        "com.googlecode.prolog-cafe:prolog-io:" + PROLOG_VERS,
+        "com.googlecode.prolog-cafe:prolog-runtime:" + PROLOG_VERS,
+        "org.bouncycastle:bcpg-jdk18on:" + BC_VERS,
+        "org.bouncycastle:bcpkix-jdk18on:" + BC_VERS,
+        "org.bouncycastle:bcprov-jdk18on:" + BC_VERS,
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+        "https://gerrit-maven.storage.googleapis.com",
+    ],
+    duplicate_version_warning = "error",
+    fail_on_missing_checksum = True,
+    fetch_sources = True,
+    strict_visibility = True,
+    version_conflict_policy = "pinned",
+)
+
+use_repo(maven, "maven")
