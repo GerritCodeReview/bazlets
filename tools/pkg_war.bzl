@@ -1,4 +1,4 @@
-# Copyright (C) 2017 The Android Open Source Project
+# Copyright (C) 2016 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,14 @@
 # limitations under the License.
 
 # War packaging.
+
 load("@rules_java//java:defs.bzl", "JavaInfo")
+
+jar_filetype = [".jar"]
+
+# Special prefix added by rules_jvm_external.jvm_import() to stamped jars
+# https://github.com/bazel-contrib/rules_jvm_external/blob/6.9/private/rules/jvm_import.bzl#L32
+PROCESSED_PREFIX = "processed_"
 
 def _add_context(in_file, output):
     input_path = in_file.path
@@ -21,17 +28,19 @@ def _add_context(in_file, output):
         "unzip -qd %s %s" % (output, input_path),
     ]
 
-def _add_file(name, in_file, output):
+def _add_file(in_file, output):
     output_path = output
     input_path = in_file.path
     short_path = in_file.short_path
     n = in_file.basename
 
-    if n != "web.xml" and short_path.startswith("%s-" % name):
-        n = short_path.split("/")[0] + "-" + n
+    if n != "web.xml" and short_path.startswith("java/"):
+        n = short_path[5:].replace("/", "_")
 
-    output_path = output_path + n
+    if n.startswith(PROCESSED_PREFIX):
+        n = n[len(PROCESSED_PREFIX):]
 
+    output_path += n
     return [
         "test -L %s || ln -s $(pwd)/%s %s" % (output_path, input_path, output_path),
     ]
@@ -41,7 +50,7 @@ def _make_war(input_dir, output):
         "root=$(pwd)",
         "cd %s" % input_dir,
         "find . -exec touch -t 198001010000 '{}' ';' 2> /dev/null",
-        "zip -9qr ${root}/%s ." % (output.path),
+        "zip -X -9qr ${root}/%s ." % (output.path),
     ])
 
 def _war_impl(ctx):
@@ -49,12 +58,15 @@ def _war_impl(ctx):
     build_output = war.path + ".build_output"
     inputs = []
 
+    # Create war layout
     cmd = [
         "set -e;rm -rf " + build_output,
         "mkdir -p " + build_output,
         "mkdir -p %s/WEB-INF/lib" % build_output,
+        "mkdir -p %s/WEB-INF/pgm-lib" % build_output,
     ]
 
+    # Add lib
     transitive_libs = []
     for l in ctx.attr.libs:
         if JavaInfo in l:
@@ -64,14 +76,25 @@ def _war_impl(ctx):
 
     transitive_lib_deps = depset(transitive = transitive_libs)
     for dep in transitive_lib_deps.to_list():
-        cmd = cmd + _add_file(ctx.attr.name, dep, build_output + "/WEB-INF/lib/")
+        if dep.basename.startswith("auto-value-") or dep.basename.startswith("auto-factory-"):
+            continue
+        cmd += _add_file(dep, build_output + "/WEB-INF/lib/")
         inputs.append(dep)
 
-    if ctx.attr.web_xml:
-        for web_xml in ctx.attr.web_xml.files.to_list():
-            inputs.append(web_xml)
-            cmd = cmd + _add_file(ctx.attr.name, web_xml, build_output + "/WEB-INF/")
+    # Add pgm lib
+    transitive_pgmlibs = []
+    for l in ctx.attr.pgmlibs:
+        transitive_pgmlibs.append(l[JavaInfo].transitive_runtime_jars)
 
+    transitive_pgmlib_deps = depset(transitive = transitive_pgmlibs)
+    for dep in transitive_pgmlib_deps.to_list():
+        if dep.basename.startswith("auto-value-") or dep.basename.startswith("auto-factory-"):
+            continue
+        if dep not in inputs:
+            cmd += _add_file(dep, build_output + "/WEB-INF/pgm-lib/")
+            inputs.append(dep)
+
+    # Add context
     transitive_context_libs = []
     if ctx.attr.context:
         for jar in ctx.attr.context:
@@ -79,9 +102,10 @@ def _war_impl(ctx):
                 transitive_context_libs.append(jar[JavaInfo].transitive_runtime_jars)
             elif hasattr(jar, "files"):
                 transitive_context_libs.append(jar.files)
+
     transitive_context_deps = depset(transitive = transitive_context_libs)
     for dep in transitive_context_deps.to_list():
-        cmd = cmd + _add_context(dep, build_output)
+        cmd += _add_context(dep, build_output)
         inputs.append(dep)
 
     # Add zip war
@@ -97,11 +121,13 @@ def _war_impl(ctx):
 
 # context: go to the root directory
 # libs: go to the WEB-INF/lib directory
+# pgmlibs: go to the WEB-INF/pgm-lib directory
 # web_xml: go to the WEB-INF directory
 _pkg_war = rule(
     attrs = {
         "context": attr.label_list(allow_files = True),
-        "libs": attr.label_list(allow_files = [".jar"]),
+        "libs": attr.label_list(allow_files = jar_filetype),
+        "pgmlibs": attr.label_list(allow_files = False),
         "web_xml": attr.label(allow_files = True),
     },
     outputs = {"war": "%{name}.war"},
