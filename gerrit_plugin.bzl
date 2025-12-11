@@ -1,19 +1,9 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
-load(
-    "//tools:commons.bzl",
-    _plugin_deps = "PLUGIN_DEPS",
-    _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
-    _plugin_test_deps = "PLUGIN_TEST_DEPS",
-)
 load("//tools:genrule2.bzl", "genrule2")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
-
-PLUGIN_DEPS = _plugin_deps
-PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
-PLUGIN_TEST_DEPS = _plugin_test_deps
 
 def gerrit_plugin(
         name,
@@ -30,13 +20,20 @@ def gerrit_plugin(
         dir_name = name
 
     java_library(
+        name = "gerrit-api-neverlink",
+        neverlink = 1,
+        exports = ["@maven//:com_google_gerrit_gerrit_plugin_api"],
+    )
+
+    java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = provided_deps + deps + PLUGIN_DEPS_NEVERLINK,
+        deps = provided_deps + deps + [":gerrit-api-neverlink"],
         visibility = ["//visibility:public"],
         **kwargs
     )
+
     java_binary(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
