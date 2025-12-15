@@ -13,8 +13,9 @@
 # limitations under the License.
 
 def _gerrit_api_version_impl(ctx):
-    ctx.file("version.txt", "Gerrit-ApiVersion: " + ctx.attr.version, False)
-    ctx.file("BUILD.bazel", 'exports_files(["version.txt"])', False)
+    ctx.file("version.bzl", "GERRIT_API_VERSION = \"" + ctx.attr.version + "\"", False)
+    ctx.file("version.txt", ctx.attr.version, False)
+    ctx.file("BUILD.bazel", "exports_files([\"version.txt\"])", False)
 
 gerrit_api_version = repository_rule(
     implementation = _gerrit_api_version_impl,
