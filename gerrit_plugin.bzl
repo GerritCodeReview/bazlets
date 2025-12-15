@@ -1,3 +1,8 @@
+"""
+Build rules for plugins.
+"""
+
+load("@gerrit_api_version//:version.bzl", "GERRIT_API_VERSION")
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load(
     "//tools:commons.bzl",
@@ -20,43 +25,63 @@ def gerrit_plugin(
         srcs = [],
         resources = [],
         resource_jars = [],
+        runtime_deps = [],
         manifest_entries = [],
         dir_name = None,
         target_suffix = "",
+        deploy_env = [],
+        gerrit_api_version = GERRIT_API_VERSION,
         **kwargs):
-    if not dir_name:
-        dir_name = name
+    """Builds a Gerrit plugin.
 
-    java_library(
-        name = "gerrit-api-neverlink",
-        neverlink = 1,
-        exports = ["@maven//:com_google_gerrit_gerrit_plugin_api"],
-    )
+    Args:
+      name: The name of the plugin.
+      deps: List of additional dependencies for the plugin.
+      provided_deps: List of dependencies that are provided by Gerrit and should not be bundled.
+      srcs: List of Java source files for the plugin.
+      resources: List of resource files to be included in the plugin JAR.
+      resource_jars: List of JARs containing resources.
+      runtime_deps: List of runtime dependencies.
+      manifest_entries: List of additional lines to add to the plugin's manifest file.
+      dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
+      target_suffix: Suffix to append to the final plugin JAR name.
+      deploy_env: Environment variables for the deploy JAR.
+      gerrit_api_version: The Gerrit API version to declare in the manifest.
+      **kwargs: Additional arguments passed to the underlying `java_library` and `java_binary` rules.
+
+    This rule creates a deployable .jar file for a Gerrit plugin."""
+
+    if (native.module_name() == "gerrit"):
+        gerrit_api_neverlink = ["//plugins:plugin-lib-neverlink"]
+    else:
+        gerrit_api_neverlink = ["//:gerrit-api-neverlink"]
 
     java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = provided_deps + deps + [":gerrit-api-neverlink"],
+        deps = provided_deps + deps + gerrit_api_neverlink,
+        runtime_deps = runtime_deps,
         visibility = ["//visibility:public"],
         **kwargs
     )
 
+    if not dir_name:
+        dir_name = name
+
     java_binary(
         name = "%s__non_stamped" % name,
-        deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
+        deploy_manifest_lines = manifest_entries + [
+            "Gerrit-ApiType: plugin",
+            "Gerrit-ApiVersion: " + gerrit_api_version,
+        ],
         main_class = "Dummy",
         runtime_deps = [
             ":%s__plugin" % name,
-        ] + resource_jars,
+        ] + runtime_deps + resource_jars,
+        deploy_env = deploy_env,
         visibility = ["//visibility:public"],
-    )
-
-    native.genrule(
-        name = name + "__gen_stamp_info",
-        stamp = 1,
-        cmd = "cat bazel-out/stable-status.txt | grep \"^STABLE_BUILD_%s_LABEL\" | awk '{print $$NF}' > $@" % dir_name.upper(),
-        outs = ["%s__gen_stamp_info.txt" % name],
+        **kwargs
     )
 
     # TODO(davido): Remove manual merge of manifest file when this feature
@@ -70,18 +95,13 @@ def gerrit_plugin(
         cmd = " && ".join([
             "TZ=UTC",
             "export TZ",
-            "GEN_VERSION=$$(cat $(location :%s__gen_stamp_info))" % name,
-            "API_VERSION=$$(cat $(location @gerrit_api_version//:version.txt))",
+            "GEN_VERSION=$$(cat bazel-out/stable-status.txt | grep -w STABLE_BUILD_%s_LABEL | cut -d ' ' -f 2)" % dir_name.upper(),
             "cd $$TMP",
-            "unzip -q $$ROOT/$<",
-            "echo \"Implementation-Version: $$GEN_VERSION\n$$API_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
+            "unzip -qo $$ROOT/$<",
+            "echo \"Implementation-Version: $$GEN_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
             "find . -exec touch '{}' ';'",
             "zip -Xqr $$ROOT/$@ .",
         ]),
-        tools = [
-            ":%s__gen_stamp_info" % name,
-            "@gerrit_api_version//:version.txt",
-        ],
         outs = ["%s%s.jar" % (name, target_suffix)],
         visibility = ["//visibility:public"],
     )
