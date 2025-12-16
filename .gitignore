@@ -4,6 +4,7 @@
 /bazel-bazlets
 /bazel-out
 /bazel-testlogs
+/node_modules
 *.pyc
 .DS_Store
 *.swp
