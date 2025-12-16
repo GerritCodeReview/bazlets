@@ -29,13 +29,16 @@ def _impl(ctx):
     source = ctx.outputs.zip.path + ".source"
     external_docs = ["https://docs.oracle.com/en/java/javase/11/docs/api"] + ctx.attr.external_docs
     cmd = [
+        "TZ=UTC",
+        "export TZ",
         "rm -rf %s" % source,
         "mkdir %s" % source,
-        " && ".join(["unzip -qud %s %s" % (source, j.path) for j in source_jars.to_list()]),
+        " && ".join(["unzip -qoud %s %s" % (source, j.path) for j in source_jars.to_list()]),
         "rm -rf %s" % dir,
         "mkdir %s" % dir,
         " ".join([
             "%s/bin/javadoc" % ctx.attr._jdk[java_common.JavaRuntimeInfo].java_home,
+            " ".join(["-J%s" % opt for opt in ctx.fragments.java.default_jvm_opts]),
             "-Xdoclint:-missing",
             "-protected",
             "-encoding UTF-8",
@@ -52,7 +55,7 @@ def _impl(ctx):
             "-d %s" % dir,
         ]),
         "find %s -exec touch -t 198001010000 '{}' ';'" % dir,
-        "(cd %s && zip -qr ../%s *)" % (dir, ctx.outputs.zip.basename),
+        "(cd %s && zip -Xqr ../%s *)" % (dir, ctx.outputs.zip.basename),
     ]
     ctx.actions.run_shell(
         inputs = transitive_jars.to_list() + source_jars.to_list() + ctx.files._jdk,
@@ -74,4 +77,5 @@ java_doc = rule(
     },
     outputs = {"zip": "%{name}.zip"},
     implementation = _impl,
+    fragments = ["java"],
 )
