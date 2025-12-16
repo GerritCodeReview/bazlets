@@ -1,0 +1,16 @@
+{
+  "name": "gerrit",
+  "version": "3.13.5",
+  "description": "Gerrit Code Review",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "rollup": "^4.49.0",
+    "terser": "~5.39.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gerrit.googlesource.com/bazlets"
+  },
+  "author": "",
+  "license": "Apache-2.0"
+}
