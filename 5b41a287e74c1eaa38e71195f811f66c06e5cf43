@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e92b1e04_c18f0d71",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1014252
+      },
+      "writtenOn": "2025-12-17T07:07:23Z",
+      "side": 1,
+      "message": "It feels odd to me that this is set independently from the actual version of the API being used.",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "5b41a287e74c1eaa38e71195f811f66c06e5cf43",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
