@@ -22,6 +22,30 @@
       },
       "revId": "5b41a287e74c1eaa38e71195f811f66c06e5cf43",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b63842c_fc9c5ae1",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2025-12-18T17:21:43Z",
+      "side": 1,
+      "message": "Agreed. I believe I found a better solution that would also allow setting the Gerrit API version in standalone builds. I will finish those changes tomorrow.",
+      "parentUuid": "e92b1e04_c18f0d71",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "5b41a287e74c1eaa38e71195f811f66c06e5cf43",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
