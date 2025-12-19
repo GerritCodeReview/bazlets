@@ -70,6 +70,30 @@
       },
       "revId": "5b41a287e74c1eaa38e71195f811f66c06e5cf43",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca5ae4d_338ce573",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2025-12-19T09:01:47Z",
+      "side": 1,
+      "message": "The version does not have to be provided manually now. Also the Gerrit API will be provided by the plugin itself. This allows to set the API version yourself, when using the standalone build.",
+      "parentUuid": "3b63842c_fc9c5ae1",
+      "range": {
+        "startLine": 33,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "5b41a287e74c1eaa38e71195f811f66c06e5cf43",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
