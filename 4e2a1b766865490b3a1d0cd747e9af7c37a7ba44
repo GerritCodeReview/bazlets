@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dddac175_7000426c",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-10T16:03:31Z",
+      "side": 1,
+      "message": "Would it make sense to use the Gerrit API version as the Bazel module version here, as is done in Gerrit core?\n\n```python\n\nGERRIT_API_VERSION \u003d \"3.12.0\"\nmodule(\n    name \u003d \"com_googlesource_gerrit_bazlets\",\n    version \u003d GERRIT_API_VERSION\n)\n```\n\nAlternatively, we could define:\n\n```python\nBAZLETS_VERSION \u003d GERRIT_API_VERSION\n```\n\nand use it in both places:\n\n```python\nBAZLETS_VERSION \u003d \"3.12.0\"\nmodule(\n    name \u003d \"com_googlesource_gerrit_bazlets\",\n    version \u003d BAZLETS_VERSION\n)\n[...]\ngerrit_api_version(\n    name \u003d \"gerrit_api_version\",\n    version \u003d BAZLETS_VERSION,\n    visibility \u003d [\"//visibility:public\"],\n)\n```\n\nThis would avoid duplicating the version string and keep the module and API versions in sync.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be805715_6426aba2",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-10T16:03:31Z",
+      "side": 1,
+      "message": "To stay consistent with Gerrit core, should this be named `GERRIT_API_VERSION`?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
