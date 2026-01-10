@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe7c682_9cc88085",
+        "filename": "tools/js.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-10T16:20:21Z",
+      "side": 0,
+      "message": "This would immediately affect standalone build mode for plugins, correct?\n\nWould it be possible to keep both versions for a while, or would that be significantly more complex to support?\n\nThe UI build is quite complex and brittle, and as far as I know only a small number of UI plugins still rely on the standalone build mode. Given that, it might be acceptable to drop support for the old UI build in standalone mode - but it would be good to confirm.",
+      "revId": "80c91af2a5baca9d1772311692a5c1bf2780ce12",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
