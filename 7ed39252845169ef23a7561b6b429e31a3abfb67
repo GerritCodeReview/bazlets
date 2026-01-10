@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "986e4898_60fc21ae",
+        "filename": "tools/maven_jar.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-10T15:48:11Z",
+      "side": 0,
+      "message": "This is similar to the comment here: [1].\n\nThe standalone plugin build mode still depends on the legacy `maven_jar` machinery, so this is likely something we’ll want to remove at the end of the transition period.\n\nDo we expect it to be an additional hurdle to support both toolchains (WORKSPACE/JRE vs. Bzlmod) for standalone build mode during the migration?\n\n[1]: https://gerrit-review.googlesource.com/c/gerrit/+/526631/26/WORKSPACE.bzlmod#b146",
+      "revId": "7ed39252845169ef23a7561b6b429e31a3abfb67",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
