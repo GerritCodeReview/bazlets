@@ -24,6 +24,54 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85dd0ee8_b2a15887",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:01:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dddac175_7000426c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96dbb851_80efc758",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:01:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dddac175_7000426c",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 1
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be805715_6426aba2",
@@ -37,6 +85,54 @@
       "writtenOn": "2026-01-10T16:03:31Z",
       "side": 1,
       "message": "To stay consistent with Gerrit core, should this be named `GERRIT_API_VERSION`?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3ffd89_1dc2e469",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:01:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be805715_6426aba2",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 15
+      },
+      "revId": "4e2a1b766865490b3a1d0cd747e9af7c37a7ba44",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0697a5a_c7551ca8",
+        "filename": "MODULE.bazel",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:01:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be805715_6426aba2",
       "range": {
         "startLine": 8,
         "startChar": 0,
