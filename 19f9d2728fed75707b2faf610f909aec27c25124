@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fd34c34_074c54f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:00:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fbedc38_c90322de",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "19f9d2728fed75707b2faf610f909aec27c25124",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c649186f_5bcda73a",
@@ -37,6 +61,30 @@
       "writtenOn": "2026-01-10T15:51:07Z",
       "side": 1,
       "message": "Would it means, that we should differentiate between new RJE and old `maven_jar` dependencies?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "19f9d2728fed75707b2faf610f909aec27c25124",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f5ff844_516ec799",
+        "filename": "tools/pkg_war.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-01-12T14:00:47Z",
+      "side": 1,
+      "message": "We kind of do, because these jars would be in different bazel repositories, so in principle it would be possible to import the same dependency twice, which would lead to two jars being packaged into the war-file, since one has the prefix, while the other hasn\u0027t. We will have to be careful with that. Best not to mix both approaches in a single project.",
+      "parentUuid": "c649186f_5bcda73a",
       "range": {
         "startLine": 21,
         "startChar": 0,
