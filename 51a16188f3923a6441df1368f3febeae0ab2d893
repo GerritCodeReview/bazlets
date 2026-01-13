@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c2c4f6_21efcbc5",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-13T14:37:25Z",
+      "side": 1,
+      "message": "Why this build mode detection if looks differently here compared to gerrit_plugin_tests?\n\nMay be add a comment here to simplify understanding, what module without name means and where the API is coming from?",
+      "revId": "51a16188f3923a6441df1368f3febeae0ab2d893",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ad48b1_c6b92598",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 8
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-13T14:37:25Z",
+      "side": 1,
+      "message": "Can you inline it and assign it on line 146?",
+      "revId": "51a16188f3923a6441df1368f3febeae0ab2d893",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
