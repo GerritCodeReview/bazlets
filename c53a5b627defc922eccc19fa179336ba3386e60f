@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51b0834_17e7eb04",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-18T08:41:11Z",
+      "side": 1,
+      "message": "GERRIT_API_VERSION?",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f127480_59095148",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-18T08:41:11Z",
+      "side": 1,
+      "message": "`@gerrit_deps`?",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70b75916_4aa73c98",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-01-18T08:41:11Z",
+      "side": 1,
+      "message": "This repository name was changed to `@gerrit_nongoogle_deps`.",
+      "range": {
+        "startLine": 35,
+        "startChar": 17,
+        "endLine": 35,
+        "endChar": 23
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
