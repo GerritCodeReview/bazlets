@@ -68,7 +68,7 @@ def gerrit_plugin(
             name = name + "-gerrit-api-neverlink",
             neverlink = 1,
             visibility = ["//visibility:public"],
-            exports = ["@gerrit_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
+            exports = ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
         )
         gerrit_api_neverlink = [":" + name + "-gerrit-api-neverlink"]
 
@@ -161,15 +161,10 @@ def gerrit_plugin_tests(
     else:
         # Standalone build; use Gerrit API from maven repository as defined in
         # plugin's module
-        java_library(
-            name = name + "-gerrit-test-api",
-            visibility = ["//visibility:public"],
-            exports = [
-                "@gerrit_plugin_deps//:com_google_gerrit_gerrit_acceptance_framework",
-                "@gerrit_plugin_deps//:com_google_gerrit_gerrit_plugin_api",
-            ],
-        )
-        gerrit_api_deps = [":" + name + "-gerrit-test-api"]
+        gerrit_api_deps = [
+            "@external_plugin_deps//:com_google_gerrit_gerrit_acceptance_framework",
+            "@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api",
+        ]
 
     junit_tests(
         name = name,
