@@ -4,6 +4,7 @@
   <h2>Rules</h2>
   <ul>
     <li><a href="#gerrit_plugin">gerrit_plugin</a></li>
+    <li><a href="#runtime_jars_allowlist_test">runtime_jars_allowlist_test</a></li>
   </ul>
 </div>
 
@@ -180,3 +181,39 @@ gerrit_plugin(name, srcs, resources, deps, manifest_entries):
     </tr>
   </tbody>
 </table>
+
+<a name="runtime_jars_allowlist_test"></a>
+## runtime_jars_allowlist_test
+
+This macro helps plugins track the set of third-party runtime dependencies that
+would be packaged into the plugin and detect accidental dependency changes in CI.
+
+Example usage in a plugin BUILD file:
+
+```python
+    load(
+        "@com_googlesource_gerrit_bazlets//tools:runtime_jars_allowlist.bzl",
+        "runtime_jars_allowlist_test",
+    )
+
+    runtime_jars_allowlist_test(
+        name = "check_oauth_third_party_runtime_jars",
+        allowlist = ":oauth_third_party_runtime_jars.allowlist.txt",
+        hint = ":check_oauth_third_party_runtime_jars_manifest",
+        target = ":oauth__plugin",
+    )
+```
+
+To refresh the allowlist after an expected change:
+
+```bash
+    bazelisk build //:check_oauth_third_party_runtime_jars_manifest
+    cp bazel-bin/check_oauth_third_party_runtime_jars_manifest.txt \
+       oauth_third_party_runtime_jars.allowlist.txt
+```
+
+Optional arguments:
+
+- normalize (default: True) — strip version suffixes from jar basenames.
+- exclude_self (default: True) — omit the target's own output jar(s).
+- size (default: "small") — Bazel test size classification.
