@@ -4,6 +4,7 @@ module(
     version = GERRIT_API_VERSION,
 )
 
+bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_java", version = "7.6.1")
 bazel_dep(name = "rules_python", version = "1.7.0")
 
