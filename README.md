@@ -5,6 +5,7 @@
   <ul>
     <li><a href="#gerrit_plugin">gerrit_plugin</a></li>
     <li><a href="#runtime_jars_allowlist_test">runtime_jars_allowlist_test</a></li>
+    <li><a href="#runtime_jars_overlap_test">runtime_jars_overlap_test</a></li>
   </ul>
 </div>
 
@@ -217,3 +218,47 @@ Optional arguments:
 - normalize (default: True) — strip version suffixes from jar basenames.
 - exclude_self (default: True) — omit the target's own output jar(s).
 - size (default: "small") — Bazel test size classification.
+
+<a name="runtime_jars_overlap_test"></a>
+## runtime_jars_overlap_test
+
+This macro helps plugins detect accidental bundling of third-party runtime JARs
+that are already shipped by Gerrit. It compares the plugin's packaged runtime
+JAR list against a provided manifest (for example Gerrit's
+`//:release.war.jars.txt`) and fails on overlap.
+
+This check is typically meaningful only when the plugin is built inside the
+Gerrit source tree where Gerrit's runtime manifest exists. Standalone plugin
+workspaces should gate the test via `target_compatible_with` so it is reported
+as **SKIPPED** rather than failing.
+
+Example usage in a plugin BUILD file:
+
+```python
+load(
+    "@com_googlesource_gerrit_bazlets//tools:runtime_jars_overlap.bzl",
+    "runtime_jars_overlap_test",
+)
+load(
+    "@com_googlesource_gerrit_bazlets//tools:in_gerrit_tree.bzl",
+    "in_gerrit_tree_enabled",
+)
+
+runtime_jars_overlap_test(
+    name = "no_overlap_with_gerrit",
+    target = ":my_plugin__plugin",
+    against = "//:release.war.jars.txt",
+    hint = "Exclude overlaps via maven.install(excluded_artifacts=[...]) and re-run this test.",
+    target_compatible_with = in_gerrit_tree_enabled(),
+)
+```
+
+Optional arguments:
+
+- normalize (default: True) — strip version suffixes from jar basenames.
+- exclude_self (default: True) — omit the target's own output jar(s).
+- size (default: "small") — Bazel test size classification.
+- hint (default: "") — optional guidance printed on failure.
+
+On failure, the test prints the overlapping normalized jar IDs and exits
+non-zero.
