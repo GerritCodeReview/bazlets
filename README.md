@@ -6,6 +6,7 @@
     <li><a href="#gerrit_plugin">gerrit_plugin</a></li>
     <li><a href="#runtime_jars_allowlist_test">runtime_jars_allowlist_test</a></li>
     <li><a href="#runtime_jars_overlap_test">runtime_jars_overlap_test</a></li>
+    <li><a href="#gerrit_tree_only_checks">Gerrit-tree-only checks</a></li>
   </ul>
 </div>
 
@@ -316,3 +317,39 @@ Optional arguments:
 
 On failure, the test prints the overlapping normalized jar IDs and exits
 non-zero.
+
+<a name="gerrit_tree_only_checks"></a>
+## Gerrit-tree-only checks
+
+Some plugin tests and guardrails are meaningful only when the plugin is built
+inside the Gerrit source tree (e.g. checks that compare against
+`//:release.war.jars.txt`). Such checks should run when building in-tree, but be
+automatically skipped in standalone plugin workspaces.
+
+Bazlets provides a typed Bazel build setting and helper to support this pattern.
+
+### Usage in plugin BUILD files
+
+```python
+load(
+    "@com_googlesource_gerrit_bazlets//tools:in_gerrit_tree.bzl",
+    "in_gerrit_tree_enabled",
+)
+
+runtime_jars_overlap_test(
+    name = "no_overlap_with_gerrit",
+    against = "//:release.war.jars.txt",
+    target = ":my_plugin",
+    target_compatible_with = in_gerrit_tree_enabled(),
+)
+```
+
+In the Gerrit source tree, enable these checks by setting the following in
+`.bazelrc`:
+
+```
+common --@com_googlesource_gerrit_bazlets//flags:in_gerrit_tree=true
+```
+
+Standalone plugin workspaces should not set this flag. In that case, the
+corresponding targets are marked incompatible and reported as SKIPPED by Bazel.

@@ -1,0 +1,16 @@
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+
+package(default_visibility = ["//visibility:public"])
+
+# Set to true by the Gerrit source tree .bazelrc. Defaults to false for
+# standalone plugin workspaces.
+bool_flag(
+    name = "in_gerrit_tree",
+    build_setting_default = False,
+)
+
+config_setting(
+    name = "in_gerrit_tree_enabled",
+    flag_values = {":in_gerrit_tree": "true"},
+)
+
