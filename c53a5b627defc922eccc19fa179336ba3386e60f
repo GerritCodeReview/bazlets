@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "449fa00b_cf4c5dd1",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-02-17T09:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e51b0834_17e7eb04",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f127480_59095148",
@@ -47,6 +71,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a4f72a_987d0175",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-02-17T09:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f127480_59095148",
+      "range": {
+        "startLine": 64,
+        "startChar": 12,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70b75916_4aa73c98",
@@ -60,6 +108,30 @@
       "writtenOn": "2026-01-18T08:41:11Z",
       "side": 1,
       "message": "This repository name was changed to `@gerrit_nongoogle_deps`.",
+      "range": {
+        "startLine": 35,
+        "startChar": 17,
+        "endLine": 35,
+        "endChar": 23
+      },
+      "revId": "c53a5b627defc922eccc19fa179336ba3386e60f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b9807d_846259e1",
+        "filename": "lib/prolog/prolog.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-02-17T09:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70b75916_4aa73c98",
       "range": {
         "startLine": 35,
         "startChar": 17,
