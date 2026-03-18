@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6453dc14_e72b7559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-03-18T12:43:48Z",
+      "side": 1,
+      "message": "This needs to be merged to move forward with `bzlmod` series in gerrit core.",
+      "revId": "01ec9c2481186396dde1bc6f5166f7d95bdae134",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
