@@ -93,6 +93,30 @@
       },
       "revId": "19f9d2728fed75707b2faf610f909aec27c25124",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8addf47_67f23dd4",
+        "filename": "tools/pkg_war.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-03-21T09:57:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5f5ff844_516ec799",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "19f9d2728fed75707b2faf610f909aec27c25124",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
