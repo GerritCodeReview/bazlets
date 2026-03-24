@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59819457_19b51b52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2026-03-24T15:21:04Z",
+      "side": 1,
+      "message": "I know Thomas has a [pending change](https://gerrit-review.googlesource.com/c/bazlets/+/536282) that will remove this file and introduce Core\u0027s `gerrit_js_bundle` and it looks like that would also solve my issue, but that will require migrating to bazel modules (and possibly in-tree builds?). It also has some pending review comments. I need this sooner and don\u0027t want to block on those other issues.",
+      "revId": "9d7bbb961d25185e9bb75f8e40246ed1be437b37",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
