@@ -2,7 +2,15 @@ load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
 load("@com_googlesource_gerrit_bazlets//tools:genrule2.bzl", "genrule2")
 
-def gerrit_js_bundle(name, srcs, entry_point):
+def gerrit_js_bundle(
+        name,
+        srcs,
+        entry_point,
+        deps = [],
+        args = [],
+        config_file = None,
+        rollup_bin = None,
+        include_node_modules = False):
     """Produces a Gerrit JavaScript bundle archive.
 
     This rule bundles and minifies the javascript files of a frontend plugin and
@@ -15,19 +23,36 @@ def gerrit_js_bundle(name, srcs, entry_point):
       name: Plugin name.
       srcs: Plugin sources.
       entry_point: Plugin entry_point.
+      deps: Additional JavaScript deps required by Rollup.
+      args: Extra args for Rollup.
+      config_file: Optional Rollup config file.
+      rollup_bin: Optional Rollup binary target.
+      include_node_modules: Whether to include @npm//:node_modules in srcs.
     """
 
     bundle = name + "-bundle"
     minified = name + ".min"
     main = name + ".js"
 
-    rollup_bundle(
+    rollup_srcs = srcs
+    if include_node_modules:
+        rollup_srcs = rollup_srcs + ["@npm//:node_modules"]
+
+    rollup_kwargs = dict(
         name = bundle,
-        srcs = srcs,
+        srcs = rollup_srcs,
         entry_point = entry_point,
         format = "iife",
         sourcemap = "hidden",
+        deps = deps,
+        args = args,
     )
+    if config_file:
+        rollup_kwargs["config_file"] = config_file
+    if rollup_bin:
+        rollup_kwargs["rollup_bin"] = rollup_bin
+
+    rollup_bundle(**rollup_kwargs)
 
     terser_minified(
         name = minified,
