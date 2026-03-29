@@ -1,4 +1,4 @@
-GERRIT_API_VERSION = "3.12.0"
+GERRIT_API_VERSION = "3.13.5"
 module(
     name = "com_googlesource_gerrit_bazlets",
     version = GERRIT_API_VERSION,
