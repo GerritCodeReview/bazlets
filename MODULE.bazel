@@ -1,4 +1,5 @@
 GERRIT_API_VERSION = "3.13.5"
+
 module(
     name = "com_googlesource_gerrit_bazlets",
     version = GERRIT_API_VERSION,
@@ -6,17 +7,18 @@ module(
 
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_java", version = "8.16.1")
-
 bazel_dep(name = "aspect_bazel_lib", version = "2.21.2")
 bazel_dep(name = "aspect_rules_js", version = "2.8.3")
 bazel_dep(name = "aspect_rules_rollup", version = "2.0.1")
 bazel_dep(name = "rules_nodejs", version = "6.7.3")
 bazel_dep(name = "rules_python", version = "1.7.0")
+bazel_dep(name = "rules_shell", version = "0.7.1")
 
 gerrit_api_version = use_repo_rule(
     "//:gerrit_api_version.bzl",
     "gerrit_api_version",
 )
+
 gerrit_api_version(
     name = "gerrit_api_version",
     version = GERRIT_API_VERSION,
@@ -39,7 +41,6 @@ node.toolchain(
     node_repositories = NODE_20_REPO,
     node_version = "20.19.5",
 )
-
 use_repo(node, "nodejs_toolchains")
 use_repo(node, "nodejs_darwin_arm64")
 use_repo(node, "nodejs_darwin_amd64")
@@ -50,11 +51,9 @@ use_repo(node, "nodejs_linux_amd64")
 use_repo(node, "nodejs_windows_amd64")
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
-
 npm.npm_translate_lock(
     name = "bazlets_npm",
     data = ["//:package.json"],
     pnpm_lock = "@@//:pnpm-lock.yaml",
 )
-
 use_repo(npm, "bazlets_npm")

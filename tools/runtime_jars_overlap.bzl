@@ -1,3 +1,4 @@
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load("//tools:java_runtime_jars_manifest.bzl", "java_runtime_jars_manifest")
 
 def runtime_jars_overlap_test(
@@ -17,7 +18,7 @@ def runtime_jars_overlap_test(
       against: label of a generated text manifest (e.g. "//:release.war.jars.txt").
       normalize/exclude_self: controls jar ID normalization and self-jar exclusion.
       hint: optional help printed on failure.
-      **kwargs: forwarded to native.sh_test (e.g. tags, target_compatible_with).
+      **kwargs: forwarded to sh_test (e.g. tags, target_compatible_with).
     """
     plugin_manifest = name + "_manifest"
 
@@ -35,7 +36,7 @@ def runtime_jars_overlap_test(
     if hint:
         args.append(hint)
 
-    native.sh_test(
+    sh_test(
         name = name,
         size = size,
         srcs = ["@com_googlesource_gerrit_bazlets//tools:diff_overlap.sh"],

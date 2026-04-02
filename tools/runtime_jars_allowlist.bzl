@@ -1,3 +1,4 @@
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load("//tools:java_runtime_jars_manifest.bzl", "java_runtime_jars_manifest")
 
 def runtime_jars_allowlist_test(
@@ -35,7 +36,7 @@ def runtime_jars_allowlist_test(
     if hint:
         args.append(hint)
 
-    native.sh_test(
+    sh_test(
         name = name,
         size = size,
         srcs = ["@com_googlesource_gerrit_bazlets//tools:diff_allowlist.sh"],
