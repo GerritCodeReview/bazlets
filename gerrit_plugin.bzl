@@ -20,6 +20,7 @@ def gerrit_plugin(
         runtime_deps = [],
         manifest_entries = [],
         dir_name = None,
+        license = None,
         target_suffix = "",
         deploy_env = [],
         **kwargs):
@@ -35,6 +36,7 @@ def gerrit_plugin(
       runtime_deps: List of runtime dependencies.
       manifest_entries: List of additional lines to add to the plugin's manifest file.
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
+      license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
       deploy_env: Environment variables for the deploy JAR.
       **kwargs: Additional arguments passed to the underlying `java_library` and `java_binary` rules.
@@ -94,6 +96,11 @@ def gerrit_plugin(
     # request is implemented: https://github.com/bazelbuild/bazel/issues/2009
     # TODO(davido): Remove manual touch command when this issue is resolved:
     # https://github.com/bazelbuild/bazel/issues/10789
+    license_tools = [license] if license else []
+    copy_license_cmd = (
+        "mkdir -p META-INF && cp -f $$ROOT/$(location %s) META-INF/LICENSE" % license if license else "true"
+    )
+
     genrule2(
         name = name + target_suffix,
         stamp = 1,
@@ -105,6 +112,7 @@ def gerrit_plugin(
             "API_VERSION=$$(cat $(location @gerrit_api_version//:version.txt))",
             "cd $$TMP",
             "unzip -qo $$ROOT/$< -x 'META-INF/LICENSE' 'META-INF/LICENSE.txt' 'META-INF/NOTICE' 'META-INF/NOTICE.txt' 'META-INF/license' 'META-INF/license/*' 'META-INF/notice' 'META-INF/notice/*'",
+            copy_license_cmd,
             "echo \"Implementation-Version: $$GEN_VERSION\nGerrit-ApiVersion: $$API_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
             "find . -exec touch '{}' ';'",
             "zip -Xqr $$ROOT/$@ .",
@@ -112,7 +120,7 @@ def gerrit_plugin(
         tools = [
             ":%s__gen_stamp_info" % name,
             "@gerrit_api_version//:version.txt",
-        ],
+        ] + license_tools,
         outs = ["%s%s.jar" % (name, target_suffix)],
         visibility = ["//visibility:public"],
     )
