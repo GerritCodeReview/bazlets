@@ -23,6 +23,28 @@ PLUGIN_DEPS = _plugin_deps
 PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
 PLUGIN_TEST_DEPS = _plugin_test_deps
 
+def gerrit_api_neverlink(name):
+    """Return the correct Gerrit API neverlink dependency for the current build mode."""
+    if not native.module_name():
+        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
+        # maven repository as defined in gerrit_api.bzl
+        # TODO(thomas): Remove after migration to Bazel modules is complete
+        return PLUGIN_DEPS_NEVERLINK
+    elif (native.module_name() == "gerrit"):
+        # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
+        # source tree
+        return ["//plugins:plugin-lib-neverlink"]
+    else:
+        # Standalone build; use Gerrit API from maven repository as defined in
+        # plugin's module
+        java_library(
+            name = name + "-gerrit-api-neverlink",
+            neverlink = 1,
+            visibility = ["//visibility:public"],
+            exports = ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
+        )
+        return [":" + name + "-gerrit-api-neverlink"]
+
 def gerrit_plugin(
         name,
         deps = [],
@@ -54,32 +76,11 @@ def gerrit_plugin(
 
     This rule creates a deployable .jar file for a Gerrit plugin."""
 
-    # Determine where to get Gerrit API dependencies from
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        gerrit_api_neverlink = PLUGIN_DEPS_NEVERLINK
-    elif (native.module_name() == "gerrit"):
-        # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
-        # source tree
-        gerrit_api_neverlink = ["//plugins:plugin-lib-neverlink"]
-    else:
-        # Standalone build; use Gerrit API from maven repository as defined in
-        # plugin's module
-        java_library(
-            name = name + "-gerrit-api-neverlink",
-            neverlink = 1,
-            visibility = ["//visibility:public"],
-            exports = ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
-        )
-        gerrit_api_neverlink = [":" + name + "-gerrit-api-neverlink"]
-
     java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = provided_deps + deps + gerrit_api_neverlink,
+        deps = provided_deps + deps + gerrit_api_neverlink(name),
         runtime_deps = runtime_deps,
         visibility = ["//visibility:public"],
         **kwargs
@@ -173,6 +174,31 @@ def gerrit_plugin_tests(
         name = name,
         srcs = srcs,
         deps = deps + gerrit_api_deps,
+        **kwargs
+    )
+
+def gerrit_plugin_test_util(
+        name,
+        srcs = [],
+        deps = [],
+        **kwargs):
+    """Creates a test utility library for a Gerrit plugin.
+
+     This is intended for code that is only used by tests and should not be
+     included in the plugin JAR.
+
+    Args:
+      name: The name of the test utility library.
+      deps: List of additional dependencies for the test utility library.
+      srcs: List of Java source files for the test utility library.
+      **kwargs: Additional arguments passed to the underlying `java_library` rule.
+    """
+
+    java_library(
+        name = name,
+        testonly = True,
+        srcs = srcs,
+        deps = deps + gerrit_api_neverlink(name),
         **kwargs
     )
 
