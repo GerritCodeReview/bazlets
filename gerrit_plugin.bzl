@@ -11,6 +11,9 @@ load(
 )
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:junit.bzl", "junit_tests")
+load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
+load("//tools:runtime_jars_allowlist.bzl", "runtime_jars_allowlist_test")
+load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
@@ -171,4 +174,82 @@ def gerrit_plugin_tests(
         srcs = srcs,
         deps = deps + gerrit_api_deps,
         **kwargs
+    )
+
+def gerrit_plugin_dependency_tests(
+        plugin,
+        name = "dependency_tests",
+        allowlist = None,
+        overlap_against = None):
+    """Generates runtime JAR safety tests for a Gerrit plugin.
+
+    Targets the `:{plugin}__plugin` library created by `gerrit_plugin()`, so
+    the `plugin` argument must match the `name` passed to `gerrit_plugin()`.
+
+    Always creates two test targets:
+      - `{plugin}_dependency_allowlist_test`: verifies the set of bundled
+        third-party JARs exactly matches the allowlist.
+      - `{plugin}_dependency_overlap_test`: verifies the plugin does not bundle
+        JARs already shipped by Gerrit at runtime (automatically skipped in
+        standalone plugin workspaces; see `in_gerrit_tree_enabled()`).
+
+    Both targets are discovered by `bazelisk test //plugins/{plugin}/...`.
+
+    Args:
+      plugin: Plugin name as passed to `gerrit_plugin()`. Used to derive the
+              checked target `:{plugin}__plugin` and to name the generated
+              test targets.
+      name: Unused; accepted for API compatibility. Defaults to
+            "dependency_tests".
+      allowlist: Label of a text file listing the expected bundled third-party
+                 JAR IDs, one per line. Defaults to
+                 `:{plugin}_third_party_runtime_jars.allowlist.txt`.
+                 Refresh it by building the corresponding manifest target and
+                 copying its output over the allowlist file.
+      overlap_against: Label of a JAR-ID manifest to check for overlap (e.g.
+                       the Gerrit WAR's `//:headless.war.jars.txt`). Defaults
+                       to `//:headless.war.jars.txt`.
+
+    Example:
+      load(
+          "@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl",
+          "gerrit_plugin",
+          "gerrit_plugin_dependency_tests",
+      )
+
+      gerrit_plugin(
+          name = "my-plugin",
+          srcs = glob(["src/main/java/**/*.java"]),
+          manifest_entries = [
+              "Gerrit-PluginName: my-plugin",
+              "Gerrit-Module: com.example.MyModule",
+          ],
+      )
+
+      gerrit_plugin_dependency_tests(
+          plugin = "my-plugin",
+          # Optional: supply a custom allowlist or overlap manifest.
+          # allowlist = ":my_plugin_third_party_runtime_jars.allowlist.txt",
+          # overlap_against = "//:release.war.jars.txt",
+      )
+    """
+    plugin_target = ":%s__plugin" % plugin
+
+    if not allowlist:
+        allowlist = ":%s_third_party_runtime_jars.allowlist.txt" % plugin
+
+    runtime_jars_allowlist_test(
+        name = plugin + "_dependency_allowlist_test",
+        target = plugin_target,
+        allowlist = allowlist,
+    )
+
+    if not overlap_against:
+        overlap_against = "//:headless.war.jars.txt"
+
+    runtime_jars_overlap_test(
+        name = plugin + "_dependency_overlap_test",
+        target = plugin_target,
+        against = overlap_against,
+        target_compatible_with = in_gerrit_tree_enabled(),
     )
