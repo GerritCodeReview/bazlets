@@ -56,6 +56,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6369ae3e_a637b28a",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-14T14:03:24Z",
+      "side": 1,
+      "message": "nit: unrelated formatting",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 40
+      },
+      "revId": "b30931b93680c88463c07965ce8c934032dbe2a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8716fa2f_6dd29866",
         "filename": "gerrit_plugin.bzl",
         "patchSetId": 2
