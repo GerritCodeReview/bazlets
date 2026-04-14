@@ -16,6 +16,24 @@
       "message": "I tested this change and got strange result(s): if the plugins LICENSE is included in the plugin jar then it is stored directly under the root and not under the META-INF. For another plugin (which depends on the high-availability plugin) the LICENSE file wasn\u0027t included at all in the plugin jar.\n\nFurther, it seems like the LICENSE file is not really considered to be a source artifact. TEST: build the plugin, change the license file content, build again. The second build finished immediately and the new license content is not included",
       "revId": "b30931b93680c88463c07965ce8c934032dbe2a0",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543676e4_f9372e5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2026-04-14T11:19:46Z",
+      "side": 1,
+      "message": "Oh sorry, I posted this commend on wrong change. It was intended for the follow-up change.",
+      "parentUuid": "bf05247e_04a40e8c",
+      "revId": "b30931b93680c88463c07965ce8c934032dbe2a0",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
