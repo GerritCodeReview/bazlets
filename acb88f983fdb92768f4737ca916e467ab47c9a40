@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2313a1df_55d1aa63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-14T12:40:43Z",
+      "side": 1,
+      "message": "Nice!",
+      "revId": "acb88f983fdb92768f4737ca916e467ab47c9a40",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5336cc_eaf43aab",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-14T12:40:43Z",
+      "side": 1,
+      "message": "headless. There is a problem with `release`, because it requires all plugin submodules available in CI environment. Those are missing in Zuul.",
+      "range": {
+        "startLine": 233,
+        "startChar": 34,
+        "endLine": 233,
+        "endChar": 41
+      },
+      "revId": "acb88f983fdb92768f4737ca916e467ab47c9a40",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
