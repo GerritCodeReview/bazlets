@@ -41,6 +41,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e221985_4ab3d846",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-14T13:28:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7583d55_186f7e4e",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 22
+      },
+      "revId": "6cb1bdad58b366dcd8d7ddb3b0b82e2f6520bea9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dcdd38b_4580e58a",
@@ -54,6 +78,30 @@
       "writtenOn": "2026-04-14T11:44:59Z",
       "side": 1,
       "message": "This fails, since there is now more than one input file, if `plugin_license` is set:\n\n```\nin cmd attribute of genrule rule //plugins/spanner-refdb:spanner-refdb: variable \u0027$\u003c\u0027 : more than one input file. Since this rule was created by the macro \u0027gerrit_plugin\u0027, the error might have been caused by the macro implementation\n```",
+      "range": {
+        "startLine": 115,
+        "startChar": 30,
+        "endLine": 115,
+        "endChar": 32
+      },
+      "revId": "6cb1bdad58b366dcd8d7ddb3b0b82e2f6520bea9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e7e75e9_4113f27a",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-14T13:28:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dcdd38b_4580e58a",
       "range": {
         "startLine": 115,
         "startChar": 30,
