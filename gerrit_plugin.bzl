@@ -157,7 +157,7 @@ def gerrit_plugin(
             "GEN_VERSION=$$(cat $(location :%s__gen_stamp_info))" % name,
             "API_VERSION=$$(cat $(location @gerrit_api_version//:version.txt))",
             "cd $$TMP",
-            "unzip -qo $$ROOT/$<",
+            "unzip -qo $$ROOT/$< -x 'META-INF/LICENSE' 'META-INF/LICENSE.txt' 'META-INF/NOTICE' 'META-INF/NOTICE.txt' 'META-INF/license' 'META-INF/license/*' 'META-INF/notice' 'META-INF/notice/*'",
             "echo \"Implementation-Version: $$GEN_VERSION\nGerrit-ApiVersion: $$API_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
             "find . -exec touch '{}' ';'",
             "zip -Xqr $$ROOT/$@ .",
