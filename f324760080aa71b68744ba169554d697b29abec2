@@ -16,6 +16,24 @@
       "message": "What would be `$(location \"true\")`? This is the case when the `license` is `None`",
       "revId": "f324760080aa71b68744ba169554d697b29abec2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f640935f_6db30f98",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2026-04-14T14:13:22Z",
+      "side": 1,
+      "message": "This was my wrong understanding of the python syntax. The whole expression then evaluates to just `\"true\"`",
+      "parentUuid": "2333464c_e827af80",
+      "revId": "f324760080aa71b68744ba169554d697b29abec2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
