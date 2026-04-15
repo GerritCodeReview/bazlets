@@ -24,7 +24,7 @@ fi
 tmpdir="$(mktemp -d)"
 trap 'rm -rf "${tmpdir}"' EXIT
 
-grep -vE '^\s*(#|$)' "${ALLOWLIST}" | sort -u > "${tmpdir}/allowlist.norm"
+grep -vE '^\s*(#|$)' "${ALLOWLIST}" | sort -u > "${tmpdir}/allowlist.norm" || true
 grep -vE '^\s*$' "${GENERATED}" | sort -u > "${tmpdir}/generated.norm"
 
 if ! diff -u "${tmpdir}/allowlist.norm" "${tmpdir}/generated.norm" >&2; then
