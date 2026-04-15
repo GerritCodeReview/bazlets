@@ -16,6 +16,24 @@
       "message": "What does an empty allowlist mean? Does it indicate that the plugin has no external dependencies? In that case, would a dependency test still make sense, or am I overlooking something?\n\nWhich plugin did you use to reproduce this?",
       "revId": "b645a9a8e00e5d3842064d02f79afdd024601112",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b48f1c_cf5b5961",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-15T14:06:53Z",
+      "side": 1,
+      "message": "It is more of a bootstrapping issue. You anyway have to create the file manual, because Bazel fails, if an input file is missing. However, if you just create an empty file, the diff is empty.\nThere might also be a usecase, where you have external dependencies, but none of those should be in the JAR, consider e.g. JDBC drivers with lcienses that don\u0027t allow us to ship them, like it was with mysql (at least in the past). In that case, this could be made clear with an empty allowlist file.",
+      "parentUuid": "5b862781_2c568ce1",
+      "revId": "b645a9a8e00e5d3842064d02f79afdd024601112",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
