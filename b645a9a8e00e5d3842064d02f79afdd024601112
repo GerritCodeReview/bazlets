@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b862781_2c568ce1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-15T13:58:16Z",
+      "side": 1,
+      "message": "What does an empty allowlist mean? Does it indicate that the plugin has no external dependencies? In that case, would a dependency test still make sense, or am I overlooking something?\n\nWhich plugin did you use to reproduce this?",
+      "revId": "b645a9a8e00e5d3842064d02f79afdd024601112",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
