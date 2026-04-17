@@ -293,3 +293,11 @@ def gerrit_plugin_dependency_tests(
         against = overlap_against,
         target_compatible_with = in_gerrit_tree_enabled(),
     )
+
+    native.test_suite(
+        name = name,
+        tests = [
+            ":" + plugin + "_dependency_allowlist_test",
+            ":" + plugin + "_dependency_overlap_test",
+        ],
+    )
