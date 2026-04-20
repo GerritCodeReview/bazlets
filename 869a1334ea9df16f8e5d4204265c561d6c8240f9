@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f0be3e4_0016703c",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-20T09:09:43Z",
+      "side": 1,
+      "message": "This will cause issues, if that rule already exists, i.e. this is a breaking change.",
+      "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
