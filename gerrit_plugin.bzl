@@ -172,6 +172,7 @@ def gerrit_plugin(
 
 def gerrit_plugin_tests(
         name,
+        plugin = "",
         srcs = [],
         deps = [],
         **kwargs):
@@ -183,6 +184,18 @@ def gerrit_plugin_tests(
       srcs: List of Java source files for the plugin.
       **kwargs: Additional arguments passed to the underlying `junit_tests` rule.
     """
+
+    if not plugin and name.endswith("_tests"):
+        plugin = name.replace("_tests", "")
+
+    if plugin:
+        java_library(
+            name = plugin + "__plugin_test_deps",
+            testonly = True,
+            visibility = ["//visibility:public"],
+            exports = deps,
+        )
+        deps = [name + "__plugin_test_deps"]
 
     junit_tests(
         name = name,
