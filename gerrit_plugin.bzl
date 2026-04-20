@@ -174,6 +174,8 @@ def gerrit_plugin_tests(
         name,
         srcs = [],
         deps = [],
+        plugin = "",
+        exports = [],
         **kwargs):
     """Runs junit tests for a Gerrit plugin.
 
@@ -181,8 +183,23 @@ def gerrit_plugin_tests(
       name: The name of the plugin.
       deps: List of additional dependencies for the plugin.
       srcs: List of Java source files for the plugin.
+      plugin: The name of the plugin to test. Only required, if exports is specified.
+      exports: List of targets to export for in-tree testing. Must be used together
+        with `plugin` argument. Targets will also be added as dependencies to
+        the test target created by this rule.
       **kwargs: Additional arguments passed to the underlying `junit_tests` rule.
     """
+
+    if exports:
+        if not plugin:
+            fail("plugin argument must be set when exports are provided")
+        java_library(
+            name = plugin + "__plugin_test_deps",
+            testonly = True,
+            visibility = ["//visibility:public"],
+            exports = exports,
+        )
+        deps = deps + [plugin + "__plugin_test_deps"]
 
     junit_tests(
         name = name,
