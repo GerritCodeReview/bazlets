@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3414d60c_e382d437",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-21T14:08:26Z",
+      "side": 1,
+      "message": "I believe we should only generate this rule if it was explicitly requested. \n\nOnly very few plugins require now additional test dependencies (e.g. `spanner-refdb`).\n\nIn the past, we haven\u0027t exposed `mockito` and friends, but now we do:\n\n./java/com/google/gerrit/acceptance/BUILD\n```python\nexported_deps \u003d [\n    \":function\",\n    \"//lib:jgit-junit\",\n    \"//lib:jimfs\",\n    \"//lib:servlet-api\",\n    \"//lib/httpcomponents:fluent-hc\",\n    \"//lib/httpcomponents:httpclient\",\n    \"//lib/httpcomponents:httpcore\",\n    \"//lib/mockito\",\n    \"//lib/truth\",\n    \"//lib/truth:truth-java8-extension\",\n    \"//lib/greenmail\",\n    \"//lib:guava-testlib\",\n]\n```",
+      "parentUuid": "6c3d6a22_a651d2ab",
+      "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f0be3e4_0016703c",
         "filename": "gerrit_plugin.bzl",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-20T09:09:43Z",
       "side": 1,
       "message": "This will cause issues, if that rule already exists, i.e. this is a breaking change.",
+      "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ee63f8_a1703db6",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-21T14:08:26Z",
+      "side": 1,
+      "message": "Right. This rule is not necessary in all these cases:\n\n* plugins provide own rule for test dependencies, and we shouldn\u0027t break them\n* there is no external test dependencies\n* plugin maintainers don\u0027t use eclipse\n\nTo address all issues, should we rather have special parameter for this rule, e.g. `expose_test_deps_for_plugin \u003d \"\"`?\n\nAnd then do something if it was actually provided, like this:\n\n```python\n if expose_test_deps_for_plugin:\n   java_library(\n       name \u003d expose_test_deps_for_plugin + \"__plugin_test_deps\",\n       [...]\n```",
+      "parentUuid": "1f0be3e4_0016703c",
       "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
