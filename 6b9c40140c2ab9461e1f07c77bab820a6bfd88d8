@@ -18,6 +18,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96273dcb_b63ffb50",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T08:08:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "091e9b31_4423e061",
+      "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5efdda91_6a3066c6",
@@ -31,6 +49,24 @@
       "writtenOn": "2026-04-22T07:07:37Z",
       "side": 1,
       "message": "Mention, that it is only needed if `exports` provided to generate test dependencies rule?",
+      "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d378606d_5b04dc92",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T08:08:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5efdda91_6a3066c6",
       "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
@@ -52,6 +88,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb97c5c7_b16482df",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T08:08:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ff83a6a_e235dec3",
+      "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09bfabff_3b8c27d5",
@@ -65,6 +119,24 @@
       "writtenOn": "2026-04-22T07:07:37Z",
       "side": 1,
       "message": "Mention, that it is currently only used in combination with eclipse classpath generation utility?",
+      "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24b60cb9_6b13983b",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T08:08:24Z",
+      "side": 1,
+      "message": "But this might change and then we will quickly have a wrong comment here. In the end this should anyways be provided to support Eclipse users.",
+      "parentUuid": "09bfabff_3b8c27d5",
       "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
