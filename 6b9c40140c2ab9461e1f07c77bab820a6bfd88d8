@@ -139,6 +139,24 @@
       "parentUuid": "09bfabff_3b8c27d5",
       "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd5681f_7e047282",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-22T08:55:52Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24b60cb9_6b13983b",
+      "revId": "6b9c40140c2ab9461e1f07c77bab820a6bfd88d8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
