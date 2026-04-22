@@ -36,6 +36,24 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c09fda7d_13a23ce9",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T06:44:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3414d60c_e382d437",
+      "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f0be3e4_0016703c",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Right. This rule is not necessary in all these cases:\n\n* plugins provide own rule for test dependencies, and we shouldn\u0027t break them\n* there is no external test dependencies\n* plugin maintainers don\u0027t use eclipse\n\nTo address all issues, should we rather have special parameter for this rule, e.g. `expose_test_deps_for_plugin \u003d \"\"`?\n\nAnd then do something if it was actually provided, like this:\n\n```python\n if expose_test_deps_for_plugin:\n   java_library(\n       name \u003d expose_test_deps_for_plugin + \"__plugin_test_deps\",\n       [...]\n```",
       "parentUuid": "1f0be3e4_0016703c",
+      "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67621056_b191f936",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-22T06:44:01Z",
+      "side": 1,
+      "message": "Good point. I have found a similar solution that is fully backwards compatible and is intuitive IMO.",
+      "parentUuid": "03ee63f8_a1703db6",
       "revId": "869a1334ea9df16f8e5d4204265c561d6c8240f9",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
