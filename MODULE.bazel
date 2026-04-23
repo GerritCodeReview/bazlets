@@ -6,6 +6,7 @@ module(
 
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "rules_java", version = "7.6.1")
+bazel_dep(name = "rules_jvm_external", version = "6.10")
 bazel_dep(name = "rules_python", version = "1.7.0")
 
 gerrit_api_version = use_repo_rule(
