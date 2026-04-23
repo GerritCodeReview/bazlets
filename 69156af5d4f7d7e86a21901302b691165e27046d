@@ -16,6 +16,24 @@
       "message": "nit: line too long",
       "revId": "69156af5d4f7d7e86a21901302b691165e27046d",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "304e1f13_f7a80cd9",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2026-04-23T08:33:32Z",
+      "side": 1,
+      "message": "there are actually many existing lines that are too long... so we can leave this change as-is and consider reformatting in a new change.",
+      "parentUuid": "44afd926_30a1ee2b",
+      "revId": "69156af5d4f7d7e86a21901302b691165e27046d",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
