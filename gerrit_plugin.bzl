@@ -155,14 +155,17 @@ def gerrit_plugin(
     )
 
     EXCLUDES = " ".join([
-        "'META-INF/LICENSE'",
-        "'META-INF/LICENSE.txt'",
-        "'META-INF/NOTICE'",
-        "'META-INF/NOTICE.txt'",
-        "'META-INF/license'",
-        "'META-INF/license/*'",
-        "'META-INF/notice'",
-        "'META-INF/notice/*'",
+        "'META-INF/%s'" % p
+        for p in [
+            "LICENSE",
+            "LICENSE.txt",
+            "NOTICE",
+            "NOTICE.txt",
+            "license",
+            "license/*",
+            "notice",
+            "notice/*",
+        ]
     ])
     genrule2(
         name = name + target_suffix,
