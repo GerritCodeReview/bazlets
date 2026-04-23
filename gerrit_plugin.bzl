@@ -129,6 +129,16 @@ def gerrit_plugin(
         "mkdir -p META-INF && cp -f $$ROOT/$(location %s) META-INF/LICENSE" % license if license else "true"
     )
 
+    EXCLUDES = " ".join([
+        "'META-INF/LICENSE'",
+        "'META-INF/LICENSE.txt'",
+        "'META-INF/NOTICE'",
+        "'META-INF/NOTICE.txt'",
+        "'META-INF/license'",
+        "'META-INF/license/*'",
+        "'META-INF/notice'",
+        "'META-INF/notice/*'",
+    ])
     genrule2(
         name = name + target_suffix,
         stamp = 1,
@@ -139,7 +149,7 @@ def gerrit_plugin(
             "GEN_VERSION=$$(cat $(location :%s__gen_stamp_info))" % name,
             "API_VERSION=$$(cat $(location @gerrit_api_version//:version.txt))",
             "cd $$TMP",
-            "unzip -qo $$ROOT/$< -x 'META-INF/LICENSE' 'META-INF/LICENSE.txt' 'META-INF/NOTICE' 'META-INF/NOTICE.txt' 'META-INF/license' 'META-INF/license/*' 'META-INF/notice' 'META-INF/notice/*'",
+            "unzip -qo $$ROOT/$< -x " + EXCLUDES + " 2>/dev/null",
             copy_license_cmd,
             "echo \"Implementation-Version: $$GEN_VERSION\nGerrit-ApiVersion: $$API_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
             "find . -exec touch '{}' ';'",
