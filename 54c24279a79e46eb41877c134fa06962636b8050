@@ -22,6 +22,30 @@
       },
       "revId": "54c24279a79e46eb41877c134fa06962636b8050",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c571dbcd_36cc53d7",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-23T12:40:51Z",
+      "side": 1,
+      "message": "Good call, something like:\n\n```python:\nEXCLUDES \u003d \" \".join([\n    \"\u0027META-INF/%s\u0027\" % p\n    for p in [\n        \"LICENSE\",\n        \"LICENSE.txt\",\n        \"NOTICE\",\n        \"NOTICE.txt\",\n        \"license\",\n        \"license/*\",\n        \"notice\",\n        \"notice/*\",\n    ]\n])\n```",
+      "parentUuid": "54d1061b_4aaa4107",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 32
+      },
+      "revId": "54c24279a79e46eb41877c134fa06962636b8050",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
