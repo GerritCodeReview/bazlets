@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd10485_3b47b92c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-24T07:38:36Z",
+      "side": 1,
+      "message": "Nice! Reformatting the ext deps was really annoying. Didn\u0027t know that we could use `artifact()` in that way.",
+      "revId": "c6c3113dfc559c75881343cad111f984583c8adc",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
