@@ -1,11 +1,11 @@
-GERRIT_API_VERSION = "3.12.0"
+GERRIT_API_VERSION = "3.13.5"
 module(
     name = "com_googlesource_gerrit_bazlets",
     version = GERRIT_API_VERSION,
 )
 
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
-bazel_dep(name = "rules_java", version = "7.6.1")
+bazel_dep(name = "rules_java", version = "8.16.1")
 bazel_dep(name = "rules_python", version = "1.7.0")
 
 gerrit_api_version = use_repo_rule(
