@@ -22,6 +22,30 @@
       },
       "revId": "a565dcb5b4502d0be6b1a02b97b68df1e53a3aa1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "febcbd0d_1e9b505e",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T09:47:54Z",
+      "side": 1,
+      "message": "Yes, exactly. With the current version, `ext_deps` implies that dependency tests are generated when `plugin` is set. That makes the common case simple, but there is no explicit escape hatch for a plugin that has external dependencies but does not want these dependency tests.\n\nI think adding an opt-out flag would address that:\n\n```python\nskip_dependency_tests \u003d False\n```\n\nand then:\n\n```python\nif not skip_dependency_tests and ext_deps and plugin:\n    gerrit_plugin_dependency_tests(\n        plugin \u003d plugin,\n        name \u003d dependency_test_name,\n        allowlist \u003d dependency_test_allowlist,\n        overlap_against \u003d dependency_test_overlap_against,\n    )\n```\n\nThe intended behavior would be:\n\nFor the standard case with external dependencies:\n\n```python\ngerrit_plugin_tests(\n    srcs \u003d glob([\"src/test/java/**/*.java\"]),\n    ext_deps \u003d EXT_DEPS,\n    plugin \u003d \"oauth\",\n)\n```\n\ndependency tests are generated automatically.\n\nFor plugins without external dependencies:\n\n```python\ngerrit_plugin_tests(\n    srcs \u003d glob([\"src/test/java/**/*.java\"]),\n    plugin \u003d \"reviewers\",\n)\n```\n\ndependency tests are not generated.\n\nFor the exception case, where a plugin has external dependencies but wants to opt out:\n\n```python\ngerrit_plugin_tests(\n    srcs \u003d glob([\"src/test/java/**/*.java\"]),\n    ext_deps \u003d EXT_DEPS,\n    plugin \u003d \"foo\",\n    skip_dependency_tests \u003d True,\n)\n```\n\nI considered the inverse option, `enable_dependency_tests \u003d False`, but that would make the common case more verbose. Since `ext_deps` usually means there are dependencies worth checking, I think automatic generation with an explicit opt-out keeps the standard case simple while still allowing exceptions.\n\nWDYT?",
+      "parentUuid": "d72d5076_2309e2e4",
+      "range": {
+        "startLine": 308,
+        "startChar": 15,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "a565dcb5b4502d0be6b1a02b97b68df1e53a3aa1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
