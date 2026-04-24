@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b66bac09_4927b7ee",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T08:47:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34ba836b_8fa713aa",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 88
+      },
+      "revId": "3599ad344d672c22157eb7a2a71bd4ad4364070b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffe6f8a4_54b314b4",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-04-24T07:53:49Z",
       "side": 1,
       "message": "Ok. Here we need the check, whether `plugin` is set. I guess you wanted it to fail early, but from a perspective of code maintainability, IMO this is not a good idea. I would suggest to move the rule call to the conditional above. Then we fulfill both needs.",
+      "revId": "3599ad344d672c22157eb7a2a71bd4ad4364070b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c3e36d7_ee052335",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T08:47:45Z",
+      "side": 1,
+      "message": "Done.\n\nI removed the hard requirement for `plugin` when `ext_deps` is provided. Now `ext_deps` only requires `ext_repo`; `plugin` is only needed to derive the default `ext_repo` and to generate the optional dependency test target.",
+      "parentUuid": "ffe6f8a4_54b314b4",
       "revId": "3599ad344d672c22157eb7a2a71bd4ad4364070b",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
