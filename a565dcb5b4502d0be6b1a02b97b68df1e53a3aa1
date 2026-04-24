@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d72d5076_2309e2e4",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-24T09:07:45Z",
+      "side": 1,
+      "message": "Should we print a warning, if ext_deps are defined, but that test can\u0027t be created?",
+      "range": {
+        "startLine": 308,
+        "startChar": 15,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "a565dcb5b4502d0be6b1a02b97b68df1e53a3aa1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
