@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ba836b_8fa713aa",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-24T07:53:49Z",
+      "side": 1,
+      "message": "Why is this required? For cases we are generating `ext_repo`, this is already checked in L267, otherwise we anyway take whatever is provided by `ext_repo` and don\u0027t need the plugin name at all.",
+      "range": {
+        "startLine": 296,
+        "startChar": 0,
+        "endLine": 297,
+        "endChar": 88
+      },
+      "revId": "3599ad344d672c22157eb7a2a71bd4ad4364070b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe6f8a4_54b314b4",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-24T07:53:49Z",
+      "side": 1,
+      "message": "Ok. Here we need the check, whether `plugin` is set. I guess you wanted it to fail early, but from a perspective of code maintainability, IMO this is not a good idea. I would suggest to move the rule call to the conditional above. Then we fulfill both needs.",
+      "revId": "3599ad344d672c22157eb7a2a71bd4ad4364070b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
