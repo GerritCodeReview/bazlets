@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3749b4a7_4bae2dbc",
+        "filename": "MODULE.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T16:53:41Z",
+      "side": 1,
+      "message": "2.22.5",
+      "range": {
+        "startLine": 10,
+        "startChar": 48,
+        "endLine": 10,
+        "endChar": 54
+      },
+      "revId": "73d4cf0cf4e4aac62b0dbdbd0cda170904099c9b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "668d7b6f_3e9ae8dd",
+        "filename": "MODULE.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T16:53:41Z",
+      "side": 1,
+      "message": "I did it in two steps in core: 1/ 2.9.2 2/ 3.0.3.",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 52
+      },
+      "revId": "73d4cf0cf4e4aac62b0dbdbd0cda170904099c9b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5de43f1e_0c2f768e",
+        "filename": "MODULE.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T16:53:41Z",
+      "side": 1,
+      "message": "6.7.4",
+      "range": {
+        "startLine": 13,
+        "startChar": 44,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "73d4cf0cf4e4aac62b0dbdbd0cda170904099c9b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e71e69_a8fa97d6",
+        "filename": "MODULE.bazel",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-04-24T16:53:41Z",
+      "side": 1,
+      "message": "I\u0027ve updated NodeJS to 24.14.1 in gerrit core. We should probably do the same here as well.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 1
+      },
+      "revId": "73d4cf0cf4e4aac62b0dbdbd0cda170904099c9b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
