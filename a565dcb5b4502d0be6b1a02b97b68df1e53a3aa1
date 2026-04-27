@@ -46,6 +46,30 @@
       },
       "revId": "a565dcb5b4502d0be6b1a02b97b68df1e53a3aa1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89d53690_9fbf44da",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-04-27T06:53:02Z",
+      "side": 1,
+      "message": "Yes, that sounds like a good solution.",
+      "parentUuid": "febcbd0d_1e9b505e",
+      "range": {
+        "startLine": 308,
+        "startChar": 15,
+        "endLine": 308,
+        "endChar": 26
+      },
+      "revId": "a565dcb5b4502d0be6b1a02b97b68df1e53a3aa1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
