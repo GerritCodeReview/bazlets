@@ -24,6 +24,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d12964_6094240a",
+        "filename": "js/private/runner.cjs",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-01T14:23:55Z",
+      "side": 1,
+      "message": "I\u0027ve found a way to remove this fork. We no longer use standalone Terser\nfor JavaScript minification, and instead align with Gerrit core by using\nRollup with the @rollup/plugin-terser plugin.",
+      "parentUuid": "016318ab_10a370f2",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 3
+      },
+      "revId": "0db6ee6af4a860cfeb16f47f6a7f0eac5d667bc8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e480d01_18f14aa3",
@@ -37,6 +61,24 @@
       "writtenOn": "2026-01-10T16:20:21Z",
       "side": 1,
       "message": "Unrelated change?",
+      "revId": "0db6ee6af4a860cfeb16f47f6a7f0eac5d667bc8",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbf6880e_a6f0116f",
+        "filename": "tools/javadoc.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-01T14:23:55Z",
+      "side": 1,
+      "message": "Ignore — this change is just buildifier reformatting.",
+      "parentUuid": "5e480d01_18f14aa3",
       "revId": "0db6ee6af4a860cfeb16f47f6a7f0eac5d667bc8",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }

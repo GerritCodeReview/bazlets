@@ -16,6 +16,24 @@
       "message": "This would immediately affect standalone build mode for plugins, correct?\n\nWould it be possible to keep both versions for a while, or would that be significantly more complex to support?\n\nThe UI build is quite complex and brittle, and as far as I know only a small number of UI plugins still rely on the standalone build mode. Given that, it might be acceptable to drop support for the old UI build in standalone mode - but it would be good to confirm.",
       "revId": "80c91af2a5baca9d1772311692a5c1bf2780ce12",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b317bac0_74bb7918",
+        "filename": "tools/js.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-01T14:23:55Z",
+      "side": 0,
+      "message": "Never mind, I commented on the wrong file.\n\nIn another change I added [routing] to the `gerrit_js_bundle` macro in bazlets.\n\n[routing]: https://gerrit-review.googlesource.com/c/gerrit/+/520342/70/tools/bzl/js.bzl",
+      "parentUuid": "5fe7c682_9cc88085",
+      "revId": "80c91af2a5baca9d1772311692a5c1bf2780ce12",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
