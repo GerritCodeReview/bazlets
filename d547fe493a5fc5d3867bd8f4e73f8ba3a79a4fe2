@@ -22,6 +22,30 @@
       },
       "revId": "d547fe493a5fc5d3867bd8f4e73f8ba3a79a4fe2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e993918c_9397089c",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-12T05:23:38Z",
+      "side": 1,
+      "message": "Done in change 582061.",
+      "parentUuid": "12091899_b1249ce1",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 131,
+        "endChar": 39
+      },
+      "revId": "d547fe493a5fc5d3867bd8f4e73f8ba3a79a4fe2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
