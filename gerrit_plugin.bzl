@@ -128,7 +128,9 @@ def gerrit_plugin(
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
       license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
-      deploy_env: Environment variables for the deploy JAR.
+      deploy_env: List of java_binary targets representing the runtime/deployment
+        environment that will load this plugin. Dependencies shared with these
+        targets are excluded from this binary's runtime classpath and deploy jar.
       **kwargs: Additional arguments passed to the underlying `java_library` and `java_binary` rules.
 
     This rule creates a deployable .jar file for a Gerrit plugin."""
