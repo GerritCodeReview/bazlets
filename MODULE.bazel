@@ -19,5 +19,4 @@ gerrit_api_version = use_repo_rule(
 gerrit_api_version(
     name = "gerrit_api_version",
     version = GERRIT_API_VERSION,
-    visibility = ["//visibility:public"],
 )
