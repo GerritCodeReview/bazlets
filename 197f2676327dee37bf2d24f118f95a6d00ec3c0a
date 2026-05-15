@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f2eef4_5a95803f",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 3
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2026-05-15T14:07:47Z",
+      "side": 1,
+      "message": "ignoring exports may be confusing: someone may add something to exports and be puzzled that it has no effect.",
+      "range": {
+        "startLine": 258,
+        "startChar": 52,
+        "endLine": 258,
+        "endChar": 59
+      },
+      "revId": "197f2676327dee37bf2d24f118f95a6d00ec3c0a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
