@@ -280,24 +280,19 @@ def gerrit_plugin_tests(
     if plugin and plugin not in tags:
         tags = tags + [plugin]
 
-    if exports:
-        if not plugin:
-            fail("plugin argument must be set when exports are provided")
-        java_library(
-            name = plugin + "__plugin_test_deps",
-            testonly = True,
-            visibility = ["//visibility:public"],
-            exports = exports,
-        )
-        deps = deps + [":" + plugin + "__plugin_test_deps"]
-
     if plugin:
         deps = [":%s__plugin" % plugin] + deps
 
     if ext_deps:
-        if ext_repo == None:
-            fail("gerrit_plugin_tests: `ext_repo` must be set when `ext_deps` are provided without `plugin`")
-        deps = deps + _artifacts(ext_deps, ext_repo)
+        if not plugin:
+            fail("gerrit_plugin_tests: `plugin` must be set when `ext_deps` is provided")
+        java_library(
+            name = plugin + "__plugin_test_deps",
+            testonly = True,
+            visibility = ["//visibility:public"],
+            exports = _artifacts(ext_deps, ext_repo),
+        )
+        deps = deps + [":" + plugin + "__plugin_test_deps"]
 
     junit_tests(
         name = name,
