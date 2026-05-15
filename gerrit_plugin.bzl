@@ -232,7 +232,6 @@ def gerrit_plugin_tests(
         ext_deps = [],
         ext_repo = None,
         tags = None,
-        exports = [],
         skip_dependency_tests = False,
         dependency_test_name = None,
         dependency_test_allowlist = None,
@@ -252,9 +251,6 @@ def gerrit_plugin_tests(
         Defaults to `<plugin>_plugin_deps`.
       tags: Optional list of tags for the test target. If `plugin` is set, it
         is added automatically if not already present.
-      exports: List of targets to export for in-tree testing. Must be used together
-        with `plugin` argument. Targets will also be added as dependencies to
-        the test target created by this rule.
       skip_dependency_tests: Whether to skip generating dependency tests when
         `ext_deps` and `plugin` are set. Defaults to `False`.
       dependency_test_name: Name of the generated dependency test suite.
@@ -280,24 +276,19 @@ def gerrit_plugin_tests(
     if plugin and plugin not in tags:
         tags = tags + [plugin]
 
-    if exports:
-        if not plugin:
-            fail("plugin argument must be set when exports are provided")
-        java_library(
-            name = plugin + "__plugin_test_deps",
-            testonly = True,
-            visibility = ["//visibility:public"],
-            exports = exports,
-        )
-        deps = deps + [":" + plugin + "__plugin_test_deps"]
-
     if plugin:
         deps = [":%s__plugin" % plugin] + deps
 
     if ext_deps:
-        if ext_repo == None:
-            fail("gerrit_plugin_tests: `ext_repo` must be set when `ext_deps` are provided without `plugin`")
-        deps = deps + _artifacts(ext_deps, ext_repo)
+        if not plugin:
+            fail("gerrit_plugin_tests: `plugin` must be set when `ext_deps` is provided")
+        java_library(
+            name = plugin + "__plugin_test_deps",
+            testonly = True,
+            visibility = ["//visibility:public"],
+            exports = _artifacts(ext_deps, ext_repo),
+        )
+        deps = deps + [":" + plugin + "__plugin_test_deps"]
 
     junit_tests(
         name = name,
