@@ -254,7 +254,8 @@ def gerrit_plugin_tests(
         is added automatically if not already present.
       exports: List of targets to export for in-tree testing. Must be used together
         with `plugin` argument. Targets will also be added as dependencies to
-        the test target created by this rule.
+        the test target created by this rule. Deprecated in favor of `ext_deps`.
+        If `ext_deps` is provided `exports` will be ignored.
       skip_dependency_tests: Whether to skip generating dependency tests when
         `ext_deps` and `plugin` are set. Defaults to `False`.
       dependency_test_name: Name of the generated dependency test suite.
@@ -280,9 +281,15 @@ def gerrit_plugin_tests(
     if plugin and plugin not in tags:
         tags = tags + [plugin]
 
-    if exports:
+    if plugin:
+        deps = [":%s__plugin" % plugin] + deps
+
+    if ext_deps or exports:
         if not plugin:
-            fail("plugin argument must be set when exports are provided")
+            fail("gerrit_plugin_tests: `plugin` must be set when `ext_deps` is provided")
+        if ext_deps:
+            exports = _artifacts(ext_deps, ext_repo)
+
         java_library(
             name = plugin + "__plugin_test_deps",
             testonly = True,
@@ -290,14 +297,6 @@ def gerrit_plugin_tests(
             exports = exports,
         )
         deps = deps + [":" + plugin + "__plugin_test_deps"]
-
-    if plugin:
-        deps = [":%s__plugin" % plugin] + deps
-
-    if ext_deps:
-        if ext_repo == None:
-            fail("gerrit_plugin_tests: `ext_repo` must be set when `ext_deps` are provided without `plugin`")
-        deps = deps + _artifacts(ext_deps, ext_repo)
 
     junit_tests(
         name = name,
