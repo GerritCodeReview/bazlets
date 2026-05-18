@@ -16,6 +16,24 @@
       "message": "Did you mean \"All **core** plugins\"? There\u0027s definitely other plugins out there (including ones relying on standalone builds) that haven\u0027t migrated to TS.",
       "revId": "11a526f3f8154146d1c312759252c1637a121e83",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb7f4a4c_5bdf1562",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-18T20:26:58Z",
+      "side": 1,
+      "message": "I searched for `polygerrit_plugin` usage and only found a single remaining reference: [1]. \n\nAlso, @thomasmulhall410@yahoo.com previously confirmed that this plugin has been discontinued. Based on that, I concluded that `polygerrit_plugin` is obsolete and can be removed.\n\n[1]: https://gerrit.googlesource.com/plugins/zuul-status/+/refs/heads/master/BUILD#31",
+      "parentUuid": "05eeeb14_827dc38b",
+      "revId": "11a526f3f8154146d1c312759252c1637a121e83",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
