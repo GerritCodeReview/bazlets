@@ -16,6 +16,24 @@
       "message": "We could just remove exports. It is a new macro and wasn\u0027t widely adopted yet.",
       "revId": "8cfaa23b2ae9df72174c926c9730b651fbc39ce1",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4806a00e_69faf49f",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 5
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-05-18T06:24:13Z",
+      "side": 1,
+      "message": "Yes. I did that in an earlier patchset and would also do so soon. Having this intermittent commit at leats allows users to always have a working version.",
+      "parentUuid": "1a57c2d2_42011b78",
+      "revId": "8cfaa23b2ae9df72174c926c9730b651fbc39ce1",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ],
   "submitRequirementResults": [
