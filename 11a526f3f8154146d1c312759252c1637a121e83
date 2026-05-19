@@ -34,6 +34,24 @@
       "parentUuid": "05eeeb14_827dc38b",
       "revId": "11a526f3f8154146d1c312759252c1637a121e83",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4561354_313bb6fe",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2026-05-19T19:32:37Z",
+      "side": 1,
+      "message": "Ok, yes, agreed on that. But `gerrit_js_bundle` also supports JavaScript plugins, so it\u0027s not required that all plugins have migrated to TypeScript.",
+      "parentUuid": "eb7f4a4c_5bdf1562",
+      "revId": "11a526f3f8154146d1c312759252c1637a121e83",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
