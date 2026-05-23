@@ -48,6 +48,30 @@
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c41ed12_36943639",
+        "filename": "js/private/gerrit_js_bundle.bzl",
+        "patchSetId": 17
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-05-23T08:04:09Z",
+      "side": 1,
+      "message": "Let\u0027s keep it AS-IS for now.",
+      "parentUuid": "e6dc9886_e69943e3",
+      "range": {
+        "startLine": 8,
+        "startChar": 25,
+        "endLine": 8,
+        "endChar": 48
+      },
+      "revId": "1c2c915a84126e21f6d2cbb4fa3c62ab3fbd047f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a065f80_9543a745",
