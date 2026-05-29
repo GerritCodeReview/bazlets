@@ -29,21 +29,15 @@ import org.junit.runner.RunWith;
 public class %s {}
 """
 
-_PREFIXES = ("org", "com", "edu")
-
-def _SafeIndex(l, val):
-    for i, v in enumerate(l):
-        if val == v:
-            return i
-    return -1
+_PREFIXES = ("org", "com", "edu", "au", "nz", "uk", "io", "net")
 
 def _AsClassName(fname):
     fname = [x.path for x in fname.files.to_list()][0]
     toks = fname[:-5].split("/")
     findex = -1
-    for s in _PREFIXES:
-        findex = _SafeIndex(toks, s)
-        if findex != -1:
+    for i, tok in enumerate(toks):
+        if tok in _PREFIXES:
+            findex = i
             break
     if findex == -1:
         fail("%s does not contain any of %s" % (fname, _PREFIXES))
