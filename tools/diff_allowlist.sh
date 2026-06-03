@@ -5,6 +5,20 @@ ALLOWLIST="${1:?missing allowlist file}"
 GENERATED="${2:?missing generated manifest file}"
 HINT="${3:-}"
 
+copy_source_from_hint() {
+  local hint="$1"
+
+  if [[ "${hint}" =~ ^//([^:]+):(.+)$ ]]; then
+    echo "bazel-bin/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}.txt"
+  elif [[ "${hint}" =~ ^([^:]+):(.+)$ ]]; then
+    echo "bazel-bin/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}.txt"
+  elif [[ "${hint}" =~ ^:(.+)$ ]]; then
+    echo "bazel-bin/${BASH_REMATCH[1]}.txt"
+  else
+    echo "bazel-bin/$(basename "${GENERATED}")"
+  fi
+}
+
 if [[ ! -f "${ALLOWLIST}" ]]; then
   echo "" >&2
   echo "FAIL: Missing allowlist:" >&2
@@ -13,7 +27,7 @@ if [[ ! -f "${ALLOWLIST}" ]]; then
   if [[ -n "${HINT}" ]]; then
     echo "To refresh it:" >&2
     echo "  bazelisk build ${HINT}" >&2
-    echo "  cp bazel-bin/$(basename "${GENERATED}") ${ALLOWLIST}" >&2
+    echo "  cp $(copy_source_from_hint "${HINT}") ${ALLOWLIST}" >&2
   else
     echo "To refresh it: build the corresponding manifest target and copy its output to the allowlist." >&2
   fi
@@ -34,11 +48,10 @@ if ! diff -u "${tmpdir}/allowlist.norm" "${tmpdir}/generated.norm" >&2; then
   if [[ -n "${HINT}" ]]; then
     echo "If expected, refresh the allowlist with:" >&2
     echo "  bazelisk build ${HINT}" >&2
-    echo "  cp bazel-bin/$(basename "${GENERATED}") ${ALLOWLIST}" >&2
+    echo "  cp $(copy_source_from_hint "${HINT}") ${ALLOWLIST}" >&2
   else
     echo "If expected, refresh the allowlist by rebuilding the manifest and copying it over." >&2
   fi
   echo "" >&2
   exit 1
 fi
-

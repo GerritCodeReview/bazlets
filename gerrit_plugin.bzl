@@ -409,10 +409,19 @@ def gerrit_plugin_dependency_tests(
     if not allowlist:
         allowlist = ":%s_third_party_runtime_jars.allowlist.txt" % plugin
 
+    allowlist_test = plugin + "_dependency_allowlist_test"
+    allowlist_manifest = allowlist_test + "_manifest"
+    package_name = native.package_name()
+    if package_name:
+        allowlist_hint = "//%s:%s" % (package_name, allowlist_manifest)
+    else:
+        allowlist_hint = ":%s" % allowlist_manifest
+
     runtime_jars_allowlist_test(
-        name = plugin + "_dependency_allowlist_test",
+        name = allowlist_test,
         target = plugin_target,
         allowlist = allowlist,
+        hint = allowlist_hint,
     )
 
     if not overlap_against:
