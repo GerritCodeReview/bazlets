@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3524414d_ce537bfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4879341
+      },
+      "writtenOn": "2026-06-04T15:15:31Z",
+      "side": 1,
+      "message": "gerrit_plugin_test_util: make it aware of external dependencies\n\nBring its API surface in line with gerrit_plugin and gerrit_plugin_tests\nwhich both already accept `plugin` and `ext_deps`. Without these,\ncallers have had to hardcode raw @\u003cplugin\u003e_plugin_deps//:\u003cartifact\u003e\nBazel labels in `deps`.\n\nAdd three optional parameters:\n\n* `plugin`: when set, prepend `:\u003cplugin\u003e__plugin` to `deps` and\n  derive the default `ext_repo`. Matches gerrit_plugin_tests.\n* `ext_deps`: Maven coordinates resolved via _artifacts() and\n  appended to `deps`. Matches gerrit_plugin.\n* `ext_repo`: rules_jvm_external repository name. Defaults to\n  `\u003cplugin\u003e_plugin_deps`.\n\nAll three default to None/[], so existing callers are unaffected.\next_deps without plugin or ext_repo fails loudly rather than\nsilently emitting unresolvable labels.\n\nChange-Id: I450b75af92f64ae8c749b37c6d690d60930105ab",
+      "revId": "23fef01b03f111696adc398c7f1b0a42726268c6",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
