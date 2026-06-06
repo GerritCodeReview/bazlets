@@ -376,7 +376,8 @@ def gerrit_plugin_dependency_tests(
         plugin,
         name = "dependency_tests",
         allowlist = None,
-        overlap_against = None):
+        overlap_against = None,
+        target = None):
     """Generates runtime JAR safety tests for a Gerrit plugin.
 
     Targets the `:{plugin}__plugin` library created by `gerrit_plugin()`, so
@@ -405,6 +406,12 @@ def gerrit_plugin_dependency_tests(
       overlap_against: Label of a JAR-ID manifest to check for overlap (e.g.
                        the Gerrit WAR's `//:headless.war.jars.txt`). Defaults
                        to `//:headless.war.jars.txt`.
+      target: Optional Bazel label of the runtime-classpath-providing target
+              to inspect. Defaults to `:{plugin}__plugin` (the library created
+              by `gerrit_plugin()`). Pass an explicit label when the runtime
+              jars are carried by something other than a `gerrit_plugin()`
+              target — e.g. a standalone `java_library` consumed by a sibling
+              `java_binary`.
 
     Example:
       load(
@@ -429,7 +436,7 @@ def gerrit_plugin_dependency_tests(
           # overlap_against = "//:headless.war.jars.txt",
       )
     """
-    plugin_target = ":%s__plugin" % plugin
+    plugin_target = target if target else ":%s__plugin" % plugin
 
     if not allowlist:
         allowlist = ":%s_third_party_runtime_jars.allowlist.txt" % plugin
