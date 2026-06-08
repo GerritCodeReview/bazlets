@@ -16,6 +16,24 @@
       "message": "I already added it recently.",
       "revId": "78d1d609f6634eeabb3add24f42cbb75289d2817",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ad2903_2c3ad191",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-08T11:33:22Z",
+      "side": 1,
+      "message": "See change 590822.",
+      "parentUuid": "86b70071_b02e5642",
+      "revId": "78d1d609f6634eeabb3add24f42cbb75289d2817",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
