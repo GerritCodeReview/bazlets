@@ -16,6 +16,23 @@
       "message": "I verified this fixes build errors in https://gerrit-review.googlesource.com/c/plugins/high-availability/+/592081",
       "revId": "7d6806975ed4ea9ecdf04adbb20041f802619519",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf051793_7aedcad2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2026-06-09T09:00:11Z",
+      "side": 1,
+      "message": "also fixes test errors in https://gerrit-review.googlesource.com/c/modules/index-opensearch/+/576041",
+      "revId": "7d6806975ed4ea9ecdf04adbb20041f802619519",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
