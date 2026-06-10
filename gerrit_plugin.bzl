@@ -290,13 +290,19 @@ def gerrit_plugin_tests(
     if plugin:
         deps = [":%s__plugin" % plugin] + deps
 
-    if ext_deps:
-        if not ext_repo:
-            fail("gerrit_plugin_tests: `plugin` or `ext_repo` must be set when `ext_deps` is provided")
-        deps = deps + _artifacts(ext_deps, ext_repo)
+    if ext_deps or exports:
+        if not plugin:
+            fail("gerrit_plugin_tests: `plugin` must be set when `ext_deps` or `exports` is provided")
+        if ext_deps:
+            exports = _artifacts(ext_deps, ext_repo)
 
-    if exports:
-        deps = deps + exports
+        java_library(
+            name = plugin + "__plugin_test_deps",
+            testonly = True,
+            visibility = ["//visibility:public"],
+            exports = exports,
+        )
+        deps = deps + [":" + plugin + "__plugin_test_deps"]
 
     junit_tests(
         name = name,
