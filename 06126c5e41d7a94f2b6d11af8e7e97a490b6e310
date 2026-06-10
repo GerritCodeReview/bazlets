@@ -33,6 +33,24 @@
       "message": "Should we provide a way to skip this librsry generation, in case plugin build invokes gerrit_plugin_tests multiple times? Say `skip_plugin_test_deps \u003d False`? This could je done in follow-up, though.",
       "revId": "06126c5e41d7a94f2b6d11af8e7e97a490b6e310",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3fe06d7_343a3134",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-10T13:04:35Z",
+      "side": 1,
+      "message": "DOn\u0027t know if that makes sense. In that case you would anyway have to create a java_library manually to be able to create the classpath and then you can just add it to the deps manually, omitting `ext_deps` and thereby the `java_library` craetion and the conflicts.",
+      "parentUuid": "422fc025_61eccde4",
+      "revId": "06126c5e41d7a94f2b6d11af8e7e97a490b6e310",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
