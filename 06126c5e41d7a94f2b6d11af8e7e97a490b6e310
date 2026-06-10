@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c85000_4ed065e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-10T12:53:07Z",
+      "side": 1,
+      "message": "Should have remembered that.\nIn general, relying on given names is fragile. I will think about another possibility. Maybe it would be better to rely on tags, which can appear multiple times.",
+      "revId": "06126c5e41d7a94f2b6d11af8e7e97a490b6e310",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
