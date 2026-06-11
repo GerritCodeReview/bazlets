@@ -296,13 +296,15 @@ def gerrit_plugin_tests(
         if ext_deps:
             exports = _artifacts(ext_deps, ext_repo)
 
-        java_library(
-            name = plugin + "__plugin_test_deps",
-            testonly = True,
-            visibility = ["//visibility:public"],
-            exports = exports,
-        )
-        deps = deps + [":" + plugin + "__plugin_test_deps"]
+        test_deps_name = plugin + "__plugin_test_deps"
+        if not native.existing_rule(test_deps_name):
+            java_library(
+                name = test_deps_name,
+                testonly = True,
+                visibility = ["//visibility:public"],
+                exports = exports,
+            )
+        deps = deps + [":" + test_deps_name]
 
     junit_tests(
         name = name,
@@ -449,27 +451,31 @@ def gerrit_plugin_dependency_tests(
     else:
         allowlist_hint = ":%s" % allowlist_manifest
 
-    runtime_jars_allowlist_test(
-        name = allowlist_test,
-        target = plugin_target,
-        allowlist = allowlist,
-        hint = allowlist_hint,
-    )
+    if not native.existing_rule(allowlist_test):
+        runtime_jars_allowlist_test(
+            name = allowlist_test,
+            target = plugin_target,
+            allowlist = allowlist,
+            hint = allowlist_hint,
+        )
 
     if not overlap_against:
         overlap_against = "//:headless.war.jars.txt"
 
-    runtime_jars_overlap_test(
-        name = plugin + "_dependency_overlap_test",
-        target = plugin_target,
-        against = overlap_against,
-        target_compatible_with = in_gerrit_tree_enabled(),
-    )
+    overlap_test = plugin + "_dependency_overlap_test"
+    if not native.existing_rule(overlap_test):
+        runtime_jars_overlap_test(
+            name = overlap_test,
+            target = plugin_target,
+            against = overlap_against,
+            target_compatible_with = in_gerrit_tree_enabled(),
+        )
 
-    native.test_suite(
-        name = name,
-        tests = [
-            ":" + plugin + "_dependency_allowlist_test",
-            ":" + plugin + "_dependency_overlap_test",
-        ],
-    )
+    if not native.existing_rule(name):
+        native.test_suite(
+            name = name,
+            tests = [
+                ":" + allowlist_test,
+                ":" + overlap_test,
+            ],
+        )
