@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7301092_edfe0e1f",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-12T06:23:04Z",
+      "side": 1,
+      "message": "In principle multiple tests in the same plugin might define a differing list of external dependencies. In such a case, this would fail. At the very least this should be documented, e.g. with a log message. Another way could be to add a checksum based on the ext-deps contents.",
+      "revId": "2a2bcafc8c50855be6a94df9e407da6efb640c13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
