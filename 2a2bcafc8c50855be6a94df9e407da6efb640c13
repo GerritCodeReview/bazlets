@@ -16,6 +16,24 @@
       "message": "In principle multiple tests in the same plugin might define a differing list of external dependencies. In such a case, this would fail. At the very least this should be documented, e.g. with a log message. Another way could be to add a checksum based on the ext-deps contents.",
       "revId": "2a2bcafc8c50855be6a94df9e407da6efb640c13",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7033d5_be35b7be",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-13T14:56:35Z",
+      "side": 1,
+      "message": "Done.\n\nRepeated gerrit_plugin_tests() calls now reuse generated rules only when their behavior-defining attributes match the new call. If they differ, the macro fails with the existing and new values in the error message so the mismatch is easy to debug.\n\nI applied this beyond the test-deps aggregator as well: the generated dependency-test manifest rules, allowlist/overlap tests, and test_suite are all guarded the same way.",
+      "parentUuid": "d7301092_edfe0e1f",
+      "revId": "2a2bcafc8c50855be6a94df9e407da6efb640c13",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
