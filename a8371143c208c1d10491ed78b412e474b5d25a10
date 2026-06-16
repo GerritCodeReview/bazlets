@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f6196b_bf6e3b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-16T13:52:59Z",
+      "side": 1,
+      "message": "Still has issues to be fixed, but is supposed to represent the concept",
+      "revId": "a8371143c208c1d10491ed78b412e474b5d25a10",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
