@@ -110,6 +110,10 @@ def gerrit_plugin(
         license = None,
         target_suffix = "",
         deploy_env = [],
+        skip_dependency_tests = False,
+        dependency_test_name = None,
+        dependency_test_allowlist = None,
+        dependency_test_overlap_against = None,
         **kwargs):
     """Builds a Gerrit plugin.
 
@@ -131,6 +135,14 @@ def gerrit_plugin(
       deploy_env: List of java_binary targets representing the runtime/deployment
         environment that will load this plugin. Dependencies shared with these
         targets are excluded from this binary's runtime classpath and deploy jar.
+      skip_dependency_tests: Whether to skip generating dependency tests when
+        `ext_deps` and `plugin` are set. Defaults to `False`.
+      dependency_test_name: Name of the generated dependency test suite.
+        Defaults to `<plugin>_dependency_tests`.
+      dependency_test_allowlist: Optional allowlist passed to
+        `gerrit_plugin_dependency_tests()`.
+      dependency_test_overlap_against: Optional overlap manifest passed to
+        `gerrit_plugin_dependency_tests()`.
       **kwargs: Additional arguments passed to the underlying `java_library` and `java_binary` rules.
 
     This rule creates a deployable .jar file for a Gerrit plugin."""
@@ -226,6 +238,16 @@ def gerrit_plugin(
         visibility = ["//visibility:public"],
     )
 
+    if not skip_dependency_tests and ext_deps and plugin:
+        if dependency_test_name == None:
+            dependency_test_name = plugin + "_dependency_tests"
+        gerrit_plugin_dependency_tests(
+            plugin = plugin,
+            name = dependency_test_name,
+            allowlist = dependency_test_allowlist,
+            overlap_against = dependency_test_overlap_against,
+        )
+
 def _expected_ext_deps_java_library_name(plugin):
     return plugin + "__plugin_test_deps"
 
@@ -277,10 +299,6 @@ def gerrit_plugin_tests(
         plugin = "",
         ext_deps = "",
         tags = None,
-        skip_dependency_tests = False,
-        dependency_test_name = None,
-        dependency_test_allowlist = None,
-        dependency_test_overlap_against = None,
         **kwargs):
     """Runs junit tests for a Gerrit plugin.
 
@@ -296,14 +314,6 @@ def gerrit_plugin_tests(
         When set, dependency tests are generated automatically.
       tags: Optional list of tags for the test target. If `plugin` is set, it
         is added automatically if not already present.
-      skip_dependency_tests: Whether to skip generating dependency tests when
-        `ext_deps` and `plugin` are set. Defaults to `False`.
-      dependency_test_name: Name of the generated dependency test suite.
-        Defaults to `<plugin>_dependency_tests`.
-      dependency_test_allowlist: Optional allowlist passed to
-        `gerrit_plugin_dependency_tests()`.
-      dependency_test_overlap_against: Optional overlap manifest passed to
-        `gerrit_plugin_dependency_tests()`.
       **kwargs: Additional arguments passed to the underlying `junit_tests` rule.
     """
 
@@ -337,16 +347,6 @@ def gerrit_plugin_tests(
         tags = tags,
         **kwargs
     )
-
-    if not skip_dependency_tests and ext_deps and plugin:
-        if dependency_test_name == None:
-            dependency_test_name = plugin + "_dependency_tests"
-        gerrit_plugin_dependency_tests(
-            plugin = plugin,
-            name = dependency_test_name,
-            allowlist = dependency_test_allowlist,
-            overlap_against = dependency_test_overlap_against,
-        )
 
 def gerrit_plugin_test_util(
         name,
