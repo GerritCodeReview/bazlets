@@ -172,7 +172,7 @@ For a real world example, see the
 ## gerrit_plugin
 
 ```python
-gerrit_plugin(name, srcs, resources, deps, manifest_entries):
+gerrit_plugin(name, srcs, resources, deps, manifest_entries, main_class):
 ```
 
 ### Implicit output target
@@ -222,6 +222,18 @@ gerrit_plugin(name, srcs, resources, deps, manifest_entries):
         <code>List of labels, optional</code>
         <p>
           List of other java_libraries on which the plugin depends.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>main_class</code></td>
+      <td>
+        <code>String, optional</code>
+        <p>
+          Main class for the plugin JAR. Defaults to <code>Dummy</code> for
+          regular Gerrit plugins. Plugins that also provide a standalone
+          command line entry point can set this so the plugin JAR can be run
+          with <code>java -jar</code>.
         </p>
       </td>
     </tr>
