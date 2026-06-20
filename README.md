@@ -172,7 +172,7 @@ For a real world example, see the
 ## gerrit_plugin
 
 ```python
-gerrit_plugin(name, srcs, resources, deps, manifest_entries):
+gerrit_plugin(name, srcs, resources, deps, manifest_entries, main_class):
 ```
 
 ### Implicit output target
@@ -222,6 +222,22 @@ gerrit_plugin(name, srcs, resources, deps, manifest_entries):
         <code>List of labels, optional</code>
         <p>
           List of other java_libraries on which the plugin depends.
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <td><code>main_class</code></td>
+      <td>
+        <code>String, optional</code>
+        <p>
+          Value written as the <code>Main-Class</code> manifest entry of the plugin
+          JAR. Defaults to <code>Dummy</code>, a placeholder that is never loaded:
+          the plugin <code>java_binary</code> has only <code>runtime_deps</code> (no
+          <code>srcs</code>), so Bazel requires a non-empty main class, but Gerrit
+          loads plugins via its plugin loader rather than <code>java -jar</code>, so
+          it is never invoked. Plugins that also provide a standalone command line
+          entry point can set this to their real main class so the JAR can be run
+          with <code>java -jar</code>.
         </p>
       </td>
     </tr>

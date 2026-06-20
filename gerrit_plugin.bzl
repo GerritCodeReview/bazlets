@@ -112,6 +112,7 @@ def gerrit_plugin(
         dir_name = None,
         license = None,
         target_suffix = "",
+        main_class = "Dummy",
         deploy_env = [],
         dependency_test_name = None,
         dependency_test_allowlist = None,
@@ -134,6 +135,10 @@ def gerrit_plugin(
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
       license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
+      main_class: Main class for the plugin JAR. Defaults to `Dummy` for
+        regular Gerrit plugins. Plugins that also provide a standalone command
+        line entry point can set this so the plugin JAR can be run with
+        `java -jar`.
       deploy_env: List of java_binary targets representing the runtime/deployment
         environment that will load this plugin. Dependencies shared with these
         targets are excluded from this binary's runtime classpath and deploy jar.
@@ -176,7 +181,7 @@ def gerrit_plugin(
     java_binary(
         name = "%s__non_stamped" % name,
         deploy_manifest_lines = manifest_entries + ["Gerrit-ApiType: plugin"],
-        main_class = "Dummy",
+        main_class = main_class,
         runtime_deps = [
             ":%s__plugin" % name,
         ] + runtime_deps + resource_jars,
