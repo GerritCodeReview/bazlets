@@ -16,6 +16,24 @@
       "message": "Thanks for making this work. However, to me this looks very overcomplicated. I pushed a change that takes a completely different approach: https://gerrit-review.googlesource.com/c/bazlets/+/596381. That change is currently breaking existing setups, but I would work on a migration path. WDYT?",
       "revId": "5021688dae25fd7638924462fac30d893241095e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65c4b83d_4b7d3b50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-21T09:55:05Z",
+      "side": 1,
+      "message": "Thanks, I agree that this idempotent approach is overcomplicated.\n\nIt keeps the old API working, but the cost is too high: `existing_rule()` checks, label normalization, and validation of attrs from earlier macro calls. That is a lot of Starlark machinery for this problem.\n\nYour change helped clarify the better direction: make the `\u003cplugin\u003e__plugin_test_deps` target explicit instead of generating it from every `gerrit_plugin_tests()` call.\n\nI think we should still keep two concerns separate though:\n\n1. Gerrit\u0027s Eclipse classpath machinery expects the special `\u003cplugin\u003e__plugin_test_deps` target for plugins listed in `CUSTOM_PLUGINS_TEST_DEPS`.\n2. `gerrit_plugin_tests(ext_deps \u003d ...)` is the normal Bazel test deps API and should keep meaning Maven coordinates.\n\nI prepared a compromise (change 598801) along those lines: `gerrit_plugin_ext_test_deps()` creates the Eclipse helper explicitly, `gerrit_plugin_tests(ext_deps \u003d ...)` keeps its current Maven-coordinate semantics so plugins like `oauth` and `javamelody` work as-is, and the new `ext_deps_label` lets callers explicitly reuse the helper target for Bazel tests when they want that.\n\nThere is no implicit *generation* or *auto-discovery* of `\u003cplugin\u003e__plugin_test_deps` from `gerrit_plugin_tests()`. In other words, the common Bazel test-deps case stays simple, and the Eclipse classpath helper is opt-in and explicit.\n\nWDYT? If we agree on that approach, I will abandon this idempotency change.",
+      "parentUuid": "9e99f1a3_b5c79722",
+      "revId": "5021688dae25fd7638924462fac30d893241095e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
