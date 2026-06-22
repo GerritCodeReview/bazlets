@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83917c94_7971f369",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-22T05:20:34Z",
+      "side": 1,
+      "message": "Also add ext_deps_label here?",
+      "revId": "ae35534eb02380691dbf79c52748eebcc5d2c48c",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
