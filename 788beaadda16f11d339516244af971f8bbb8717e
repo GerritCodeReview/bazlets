@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5706ec1e_4a359cd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-22T13:58:28Z",
+      "side": 1,
+      "message": "Right. I also considered that. Even if a plugin with external dependencies doesn\u0027t have test, we still want to generate them.",
+      "revId": "788beaadda16f11d339516244af971f8bbb8717e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e629c372_9fb09e05",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-22T13:58:28Z",
+      "side": 1,
+      "message": "Optional: arguably, we don\u0027t need this at the moment.\n\nWhile the test macro can be invoked multiple times, the `gerrit_plugin` macro is called only once per plugin. Given that, we could omit this for now and introduce it later if a real use case emerges.",
+      "revId": "788beaadda16f11d339516244af971f8bbb8717e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
