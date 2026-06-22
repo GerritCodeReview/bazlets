@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caee1224_505c55de",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-22T06:26:14Z",
+      "side": 1,
+      "message": "```suggestion\n        fail(\"gerrit_plugin_tests: `exports` is no longer supported; use `deps`, `ext_deps`, or `ext_deps_label`\")\n\n    if ext_deps and ext_deps_label:\n        fail(\"Only one of `ext_deps` or `ext_deps_label` may be provided.\")\n\n    if plugin:\n        if name \u003d\u003d None:\n            name \u003d plugin + \"_tests\"\n        if ext_repo \u003d\u003d None:\n            ext_repo \u003d plugin + \"_plugin_deps\"\n    elif name \u003d\u003d None:\n        fail(\"gerrit_plugin_tests: `name` must be set when `plugin` is empty\")\n    elif ext_deps or ext_deps_label:\n        fail(\"gerrit_plugin_tests: `plugin` must be set when test dependencies are provided\")\n\n    if tags \u003d\u003d None:\n        tags \u003d []\n\n    if plugin and plugin not in tags:\n        tags \u003d tags + [plugin]\n\n    if plugin:\n        deps \u003d [\":%s__plugin\" % plugin] + deps\n\n    if ext_deps:\n        deps \u003d deps + _artifacts(ext_deps, ext_repo)\n    if ext_deps_label:\n        deps \u003d deps + [ext_deps_label]\n```",
+      "range": {
+        "startLine": 321,
+        "startChar": 1,
+        "endLine": 349,
+        "endChar": 42
+      },
+      "revId": "f283f9ee34943abf984d8b1a0a4e15d8ba224723",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    }
+  ]
+}
