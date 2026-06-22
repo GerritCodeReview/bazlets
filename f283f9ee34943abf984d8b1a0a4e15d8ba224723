@@ -22,6 +22,30 @@
       },
       "revId": "f283f9ee34943abf984d8b1a0a4e15d8ba224723",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf205c59_7de39e55",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-22T06:31:42Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "caee1224_505c55de",
+      "range": {
+        "startLine": 321,
+        "startChar": 1,
+        "endLine": 349,
+        "endChar": 42
+      },
+      "revId": "f283f9ee34943abf984d8b1a0a4e15d8ba224723",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
