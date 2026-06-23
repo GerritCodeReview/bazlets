@@ -33,6 +33,24 @@
       "message": "Optional: arguably, we don\u0027t need this at the moment.\n\nWhile the test macro can be invoked multiple times, the `gerrit_plugin` macro is called only once per plugin. Given that, we could omit this for now and introduce it later if a real use case emerges.",
       "revId": "788beaadda16f11d339516244af971f8bbb8717e",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa74fda1_de8a0c48",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 4
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1065256
+      },
+      "writtenOn": "2026-06-23T04:50:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e629c372_9fb09e05",
+      "revId": "788beaadda16f11d339516244af971f8bbb8717e",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
