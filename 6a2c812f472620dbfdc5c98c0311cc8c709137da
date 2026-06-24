@@ -70,6 +70,30 @@
       },
       "revId": "6a2c812f472620dbfdc5c98c0311cc8c709137da",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74ba693_bda1a3de",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-24T13:20:23Z",
+      "side": 1,
+      "message": "Reasonable idea, but I\u0027d keep it out of this change.\n\nThis CL is deliberately a **no-op** for existing plugins: same default, same `Main-Class`, same packaging — it only makes the value overridable. Renaming the sentinel would change the `Main-Class` header of every plugin JAR built through the macro — churn across all produced artifacts for no runtime benefit (the value is inert, as noted above). This CL is meant to leave existing plugins\u0027 manifests byte-identical, so I\u0027d keep that out.\n\n`Dummy` is also the established idiom in the tree — `git grep main_class` in `gerrit` shows it in `acceptance/BUILD`, `extensions/BUILD` and `plugins/BUILD` as well as here in `bazlets`. Renaming only this occurrence would diverge from the rest; renaming all of them is a separate, tree-wide cleanup rather than something to fold into a feature change.\n\nHappy to do that rename as an independent follow-up if we want it — ideally across all occurrences so the idiom stays consistent.\n\nMinor: with the new suggested default, main_class is always provided, just defaulted, so a `MainClassNotProvided...` name would itself be a bit inaccurate — it\u0027s \"not overridden\" rather than \"not provided.\"\n\nThe trick is to remember where this name is ever seen by a human: it only surfaces in the JVM\u0027s failure when someone runs `java -jar plugin.jar` on a plugin that wasn\u0027t built for it. The JVM prints the literal class name back:\n\n```\nError: Could not find or load main class \u003cNAME\u003e\nCaused by: java.lang.ClassNotFoundException: \u003cNAME\u003e\n```\n\nAlternative suggestion could be: `NoStandaloneMainClass` or `GerritPluginHasNoMainClass`.\nBut then again: good suggestion, better as its own change.\n\nKeeping this CL as-is.",
+      "parentUuid": "def026fd_a95040ed",
+      "range": {
+        "startLine": 233,
+        "startChar": 59,
+        "endLine": 233,
+        "endChar": 64
+      },
+      "revId": "6a2c812f472620dbfdc5c98c0311cc8c709137da",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
