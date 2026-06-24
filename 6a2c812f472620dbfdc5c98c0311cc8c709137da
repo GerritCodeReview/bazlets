@@ -22,6 +22,30 @@
       },
       "revId": "6a2c812f472620dbfdc5c98c0311cc8c709137da",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8fd9eab_019e91f2",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-06-24T05:16:50Z",
+      "side": 1,
+      "message": "Nobody provides it — Dummy is an intentional placeholder, not a real class.\n\nThis java_binary has only `runtime_deps` and no srcs. With `create_executable\u003dTrue` (the default), Bazel then requires a non-empty `main_class`, otherwise analysis fails with \"cannot determine main class for launching\".\n\nThere\u0027s no build-time check that the class actually exists, and for a regular plugin it\u0027s never invoked: Gerrit loads the JAR through its plugin loader (`Gerrit-ApiType`, `Gerrit-PluginName`, ...), not via `java -jar`. So Main-Class: Dummy is inert by design — it\u0027s the same idiom already used elsewhere in the tree.\n\nThe point of this change is exactly to lift that limitation: a plugin that legitimately ships a standalone command line entry point can now override `main_class` with its real class, so `java -jar \u003cplugin\u003e.jar` works — without duplicating the `gerrit_plugin` packaging logic. The Dummy default keeps the existing manifest and behaviour for every plugin that doesn\u0027t need this.\n\nI\u0027ll reword the docs so the placeholder nature is explicit and this question doesn\u0027t come up again.\n\nSee also: [1].\n\nDone.\n\n[1]: https://bazel.build/reference/be/java#java_binary.main_class",
+      "parentUuid": "120821ac_106539f5",
+      "range": {
+        "startLine": 233,
+        "startChar": 59,
+        "endLine": 233,
+        "endChar": 64
+      },
+      "revId": "6a2c812f472620dbfdc5c98c0311cc8c709137da",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
