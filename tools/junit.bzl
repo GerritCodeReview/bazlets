@@ -67,12 +67,35 @@ _gen_suite = rule(
     implementation = _impl,
 )
 
-def junit_tests(name, srcs, **kwargs):
+def junit_tests(name, srcs, suite_srcs = None, **kwargs):
+    """Generate a JUnit4 @RunWith(Suite) test class and run it as a java_test.
+
+    Args:
+      name: name of the java_test target.
+      srcs: sources compiled into the test. May be plain `.java` files or a
+          generated `.srcjar` (for example a transformed servlet-flavour test
+          srcjar).
+      suite_srcs: optional. The sources whose file *paths* are scanned to derive
+          the `@Suite.SuiteClasses` list. Defaults to `srcs`.
+
+          Pass this only when `srcs` is a `.srcjar`: a srcjar is a single opaque
+          artifact whose entries cannot be enumerated at analysis time, so the
+          suite cannot be generated from it. Point `suite_srcs` at the canonical
+          `.java` test files instead. This is valid because the servlet-flavour
+          transform preserves package and class names, so the canonical files
+          yield exactly the class names present in the transformed srcjar.
+          The canonical EE8/EE10 generated-test targets use this.
+      **kwargs: forwarded to java_test (deps, runtime_deps, size, ...).
+    """
     s_name = name.replace("-", "_") + "TestSuite"
     _gen_suite(
         name = s_name,
-        srcs = srcs,
+        srcs = suite_srcs if suite_srcs else srcs,
         outname = s_name,
+        # The generated suite is always test-scoped; marking it testonly also
+        # lets suite_srcs reference testonly filegroups (the canonical test
+        # sources of a generated-flavour module).
+        testonly = True,
     )
     jvm_flags = kwargs.get("jvm_flags", [])
     jvm_flags = jvm_flags
