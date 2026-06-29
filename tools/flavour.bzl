@@ -53,6 +53,40 @@ ee10_flavour_jar = rule(
     },
 )
 
+def _ee10_flavour_file_impl(ctx):
+    files = ctx.files.actual
+    if len(files) != 1:
+        fail("ee10_flavour_file: expected exactly one file from %s, got %s" %
+             (ctx.attr.actual.label, files))
+    src = files[0]
+    ext = ("." + src.extension) if src.extension else ""
+    # Avoid double-suffixing when the target name already ends with the input's
+    # extension (e.g. a "release-ee10.war.jars.txt" target fed a ".txt" file).
+    name = ctx.label.name if (ext and ctx.label.name.endswith(ext)) else ctx.label.name + ext
+    out = ctx.actions.declare_file(name)
+    ctx.actions.symlink(output = out, target_file = src)
+    return [DefaultInfo(files = depset([out]))]
+
+ee10_flavour_file = rule(
+    implementation = _ee10_flavour_file_impl,
+    cfg = ee10_transition,
+    doc = ("Like ee10_flavour_jar but for a single output file of any type " +
+           "(e.g. a deploy jar, a -sources.jar, or a javadoc .zip). Builds " +
+           "`actual` with flavour=ee10 forced and republishes its one output, " +
+           "preserving the original extension. Used by the Maven publishing of " +
+           "the gerrit-plugin-api-ee10 jar/sources/javadoc artifacts."),
+    attrs = {
+        "actual": attr.label(
+            allow_files = True,
+            mandatory = True,
+            doc = "The single-output target to build in the EE10 flavour.",
+        ),
+        "_allowlist_function_transition": attr.label(
+            default = "@bazel_tools//tools/allowlists/function_transition_allowlist",
+        ),
+    },
+)
+
 def _ee10_war_impl(ctx):
     wars = [f for f in ctx.files.war if f.extension == "war"]
     if len(wars) != 1:
