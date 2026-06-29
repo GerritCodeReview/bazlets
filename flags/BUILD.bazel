@@ -1,4 +1,4 @@
-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -12,5 +12,25 @@ bool_flag(
 config_setting(
     name = "in_gerrit_tree_enabled",
     flag_values = {":in_gerrit_tree": "true"},
+)
+
+# Servlet flavour of the build: "ee8" (default, javax.servlet) or "ee10"
+# (jakarta.servlet). Lives here (not in Gerrit) so the shared gerrit_plugin
+# `flavour = "ee10"` attribute can transition its own target onto it -- letting
+# an EE10 plugin be built directly (`bazelisk build //plugins/foo:foo-ee10`)
+# alongside its EE8 sibling in a single invocation. Gerrit's //tools:ee10
+# config_setting and ee10_war transition key off this flag.
+string_flag(
+    name = "flavour",
+    build_setting_default = "ee8",
+    values = [
+        "ee8",
+        "ee10",
+    ],
+)
+
+config_setting(
+    name = "ee10",
+    flag_values = {":flavour": "ee10"},
 )
 
