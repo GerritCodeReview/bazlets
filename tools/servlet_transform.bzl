@@ -19,10 +19,10 @@
 # numbers (debugger breakpoints line up). The servlet/Jetty package mapping is
 # universal and lives here once; a consumer selects only the direction:
 #
-#   to_javax    jakarta.servlet -> javax.servlet, Jetty ee10 -> ee8
+#   to_javax    jakarta.servlet -> javax.servlet, Jetty ee11 -> ee8
 #               (JGit's .ee8 bridge: jakarta-canonical -> javax consumers)
-#   to_jakarta  javax.servlet -> jakarta.servlet, Jetty ee8 -> ee10
-#               (Gitiles' .ee10 bridge: javax-canonical -> jakarta consumers)
+#   to_jakarta  javax.servlet -> jakarta.servlet, Jetty ee8 -> ee11
+#               (Gitiles' .ee11 bridge: javax-canonical -> jakarta consumers)
 #
 # The rewrite is a plain `sed` package-prefix substitution, so it needs no
 # external dependency and is self-contained. Consumers carry no renames data.
@@ -31,20 +31,20 @@
 _RENAMES = {
     "to_javax": [
         ("jakarta.servlet", "javax.servlet"),
-        # SessionHandler moved from ee8.nested to ee10.servlet. Must precede the
-        # broad ee10.servlet -> ee8.servlet rule below (otherwise it would become
+        # SessionHandler moved from ee8.nested to ee11.servlet. Must precede the
+        # broad ee11.servlet -> ee8.servlet rule below (otherwise it would become
         # ee8.servlet.SessionHandler). Other ee8.nested types (Request, Response,
-        # ErrorHandler) map to core, not ee10.servlet, so only SessionHandler
+        # ErrorHandler) map to core, not ee11.servlet, so only SessionHandler
         # gets a rule.
-        ("org.eclipse.jetty.ee10.servlet.SessionHandler", "org.eclipse.jetty.ee8.nested.SessionHandler"),
-        ("org.eclipse.jetty.ee10.servlet.security", "org.eclipse.jetty.ee8.security"),
-        ("org.eclipse.jetty.ee10.servlet", "org.eclipse.jetty.ee8.servlet"),
+        ("org.eclipse.jetty.ee11.servlet.SessionHandler", "org.eclipse.jetty.ee8.nested.SessionHandler"),
+        ("org.eclipse.jetty.ee11.servlet.security", "org.eclipse.jetty.ee8.security"),
+        ("org.eclipse.jetty.ee11.servlet", "org.eclipse.jetty.ee8.servlet"),
     ],
     "to_jakarta": [
         ("javax.servlet", "jakarta.servlet"),
-        ("org.eclipse.jetty.ee8.nested.SessionHandler", "org.eclipse.jetty.ee10.servlet.SessionHandler"),
-        ("org.eclipse.jetty.ee8.security", "org.eclipse.jetty.ee10.servlet.security"),
-        ("org.eclipse.jetty.ee8.servlet", "org.eclipse.jetty.ee10.servlet"),
+        ("org.eclipse.jetty.ee8.nested.SessionHandler", "org.eclipse.jetty.ee11.servlet.SessionHandler"),
+        ("org.eclipse.jetty.ee8.security", "org.eclipse.jetty.ee11.servlet.security"),
+        ("org.eclipse.jetty.ee8.servlet", "org.eclipse.jetty.ee11.servlet"),
     ],
 }
 
