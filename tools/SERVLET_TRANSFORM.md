@@ -14,7 +14,7 @@ Consumers carry **no** renames data — they select only the direction:
 
 | `direction` | Rewrites | Used by |
 |---|---|---|
-| `to_javax` | jakarta.servlet -> javax.servlet, Jetty ee10 -> ee8 | JGit `.ee8` bridge (jakarta-canonical) |
+| `to_javax` | jakarta.servlet -> javax.servlet, Jetty ee10/ee11 -> ee8 | JGit `.ee8` bridge (jakarta-canonical) |
 | `to_jakarta` | javax.servlet -> jakarta.servlet, Jetty ee8 servlet/security -> ee10 servlet/security | Gitiles `.ee10` bridge (javax-canonical) |
 
 If a consumer ever needs a rename outside this universal set, add an optional
