@@ -152,13 +152,19 @@ def gerrit_plugin(
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
       license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
-      flavour: Servlet flavour of the produced plugin: `None`/`"ee8"` (default,
-        javax.servlet) or `"ee10"` (jakarta.servlet). When `"ee10"`, the plugin
-        sources are rewritten javax->jakarta by the shared `to_jakarta` transform,
-        a `Gerrit-Flavour: ee10` manifest entry is injected, and the jakarta
-        Gerrit plugin API is selected. Build the ee10 target with a distinct
-        `name` (e.g. `<plugin>-ee10`) and `dir_name = "<plugin>"`; the ee8 default
-        target is left unchanged. See `tools/servlet_transform.bzl`.
+      flavour: Servlet flavour marker stamped into the plugin manifest as
+        `Gerrit-Flavour`, which Gerrit's plugin loader checks to reject a flavour
+        mismatch at load time. One of:
+          `None`  default: no marker (an unmarked plugin is treated as ee8, for
+                  backward compatibility with the existing plugin base).
+          `"ee8"`  javax.servlet; emits `Gerrit-Flavour: ee8`.
+          `"ee10"` jakarta.servlet; rewrites the sources javax->jakarta via the
+                   shared `to_jakarta` transform, emits `Gerrit-Flavour: ee10`,
+                   and selects the jakarta Gerrit plugin API. Build with a
+                   distinct `name` (e.g. `<plugin>-ee10`) and `dir_name`.
+          `"any"`  audited servlet-neutral; emits `Gerrit-Flavour: any` so the
+                   plugin loads under either flavour. No transform.
+        The ee8 default target is left unchanged. See `tools/servlet_transform.bzl`.
       flavour_src_prefix: Path prefix stripped from each source when building the
         ee10 srcjar. Defaults to `"src/main/java/"` (the standard plugin layout).
       deploy_env: List of java_binary targets representing the runtime/deployment
@@ -182,21 +188,21 @@ def gerrit_plugin(
     if name == None:
         fail("gerrit_plugin: one of `name` or `plugin` must be set")
 
-    if flavour not in (None, "ee8", "ee10"):
-        fail("gerrit_plugin: `flavour` must be one of None, \"ee8\", \"ee10\"")
+    if flavour not in (None, "ee8", "ee10", "any"):
+        fail("gerrit_plugin: `flavour` must be one of None, \"ee8\", \"ee10\", \"any\"")
 
     if ext_repo == None:
         ext_repo = name + "_plugin_deps"
 
     deps = deps + _artifacts(ext_deps, ext_repo)
 
-    # EE10 (jakarta.servlet) flavour: rewrite the plugin's own servlet/Jetty
-    # imports javax->jakarta via the shared transform, compile against the
-    # jakarta plugin API (selected in gerrit_api_neverlink), and stamp the jar
-    # with a `Gerrit-Flavour: ee10` manifest marker (so a future loader-side
-    # guard can reject a flavour mismatch; that runtime check is not implemented
-    # yet). The canonical (ee8) sources are untouched; this is a parallel target
-    # with a distinct name.
+    # Stamp the servlet flavour into the manifest as `Gerrit-Flavour`, which
+    # Gerrit's plugin loader (GerritServerFlavour) checks to reject a flavour
+    # mismatch at load time. Only the ee10 flavour rewrites sources (its
+    # servlet/Jetty imports javax->jakarta via the shared transform) and compiles
+    # against the jakarta plugin API (selected in gerrit_api_neverlink); ee8 and
+    # any use the canonical javax sources unchanged and only add a marker. An
+    # unmarked (flavour = None) plugin is treated as ee8 by the loader.
     if flavour == "ee10":
         srcjar = name + "__" + flavour + "_srcjar"
         transform_srcjar(
@@ -207,6 +213,8 @@ def gerrit_plugin(
         )
         srcs = [":" + srcjar]
         manifest_entries = manifest_entries + ["Gerrit-Flavour: ee10"]
+    elif flavour in ("ee8", "any"):
+        manifest_entries = manifest_entries + ["Gerrit-Flavour: " + flavour]
 
     java_library(
         name = name + "__plugin",
