@@ -1,4 +1,5 @@
 load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
+load("//tools:flavour_constants.bzl", "KNOWN_FLAVOURS")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -23,10 +24,12 @@ config_setting(
 string_flag(
     name = "flavour",
     build_setting_default = "ee8",
-    values = [
-        "ee8",
-        "ee10",
-    ],
+    values = KNOWN_FLAVOURS,
+)
+
+config_setting(
+    name = "ee8",
+    flag_values = {":flavour": "ee8"},
 )
 
 config_setting(
@@ -34,3 +37,7 @@ config_setting(
     flag_values = {":flavour": "ee10"},
 )
 
+# Toolchain type for the servlet-flavour toolchain (tools/servlet_flavour.bzl):
+# consuming rules depend on this type and Bazel resolves the concrete per-flavour
+# toolchain whose `target_settings` match the active `:flavour` value.
+toolchain_type(name = "servlet_flavour_toolchain_type")

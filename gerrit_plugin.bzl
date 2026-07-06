@@ -10,7 +10,7 @@ load(
     _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
     _plugin_test_deps = "PLUGIN_TEST_DEPS",
 )
-load("//tools:flavour.bzl", "ee10_flavour_jar")
+load("//tools:flavour.bzl", "flavoured_jar")
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
@@ -270,7 +270,8 @@ def gerrit_plugin(
             "notice/*",
         ]
     ])
-    # For the EE10 flavour the public target is an ee10_flavour_jar wrapper that
+
+    # For the EE10 flavour the public target is a flavoured_jar wrapper that
     # builds the (transform-fed) jar under a flavour=ee10 transition, so the
     # plugin self-selects the jakarta config. The genrule that assembles the jar
     # therefore gets an internal name and the wrapper takes the public one.
@@ -302,9 +303,10 @@ def gerrit_plugin(
     )
 
     if flavour == "ee10":
-        ee10_flavour_jar(
+        flavoured_jar(
             name = final_target,
             actual = ":" + jar_target,
+            flavour = flavour,
             visibility = ["//visibility:public"],
         )
 
