@@ -1,4 +1,5 @@
-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
+load("//tools:flavour_constants.bzl", "KNOWN_FLAVOURS")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -14,3 +15,29 @@ config_setting(
     flag_values = {":in_gerrit_tree": "true"},
 )
 
+# Servlet flavour of the build: "ee8" (default, javax.servlet) or "ee11"
+# (jakarta.servlet). Lives here (not in Gerrit) so the shared gerrit_plugin
+# `flavour = "ee11"` attribute can transition its own target onto it -- letting
+# an EE11 plugin be built directly (`bazelisk build //plugins/foo:foo-ee11`)
+# alongside its EE8 sibling in a single invocation. Gerrit's //tools:ee11
+# config_setting and ee11_war transition key off this flag.
+string_flag(
+    name = "flavour",
+    build_setting_default = "ee8",
+    values = KNOWN_FLAVOURS,
+)
+
+config_setting(
+    name = "ee8",
+    flag_values = {":flavour": "ee8"},
+)
+
+config_setting(
+    name = "ee11",
+    flag_values = {":flavour": "ee11"},
+)
+
+# Toolchain type for the servlet-flavour toolchain (tools/servlet_flavour.bzl):
+# consuming rules depend on this type and Bazel resolves the concrete per-flavour
+# toolchain whose `target_settings` match the active `:flavour` value.
+toolchain_type(name = "servlet_flavour_toolchain_type")

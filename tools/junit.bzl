@@ -84,7 +84,7 @@ def junit_tests(name, srcs, suite_srcs = None, **kwargs):
           `.java` test files instead. This is valid because the servlet-flavour
           transform preserves package and class names, so the canonical files
           yield exactly the class names present in the transformed srcjar.
-          The canonical EE8/EE10 generated-test targets use this.
+          The canonical EE8/EE11 generated-test targets use this.
       **kwargs: forwarded to java_test (deps, runtime_deps, size, ...).
     """
     s_name = name.replace("-", "_") + "TestSuite"
