@@ -10,11 +10,13 @@ load(
     _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
     _plugin_test_deps = "PLUGIN_TEST_DEPS",
 )
+load("//tools:flavour.bzl", "flavoured_jar")
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
 load("//tools:runtime_jars_allowlist.bzl", "runtime_jars_allowlist_test")
 load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
+load("//tools:servlet_transform.bzl", "transform_srcjar")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
@@ -24,8 +26,17 @@ PLUGIN_DEPS = _plugin_deps
 PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
 PLUGIN_TEST_DEPS = _plugin_test_deps
 
-def gerrit_api_neverlink(name):
-    """Return the correct Gerrit API neverlink dependency for the current build mode."""
+def gerrit_api_neverlink(name, flavour = None):
+    """Return the correct Gerrit API neverlink dependency for the current build mode.
+
+    When flavour == "ee10" the jakarta.servlet plugin API is selected instead of
+    the default javax.servlet one. In-tree (Gerrit is the main module) the
+    flavour-aware `//plugins:plugin-lib-neverlink` already flips to jakarta under
+    `--@com_googlesource_gerrit_bazlets//flags:flavour=ee10`, so no per-flavour
+    label is needed there. Standalone
+    builds resolve the suffixed `..._gerrit_plugin_api_ee10` artifact, which the
+    plugin's own module must declare in its `external_plugin_deps` maven.install.
+    """
     if not native.module_name():
         # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
         # maven repository as defined in gerrit_api.bzl
@@ -33,16 +44,21 @@ def gerrit_api_neverlink(name):
         return PLUGIN_DEPS_NEVERLINK
     elif native.module_name() == "gerrit":
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
-        # source tree
+        # source tree. This target is flavour-aware via select() on //tools:ee10;
+        # the ee10 jar is produced by the gerrit_plugin(flavour = "ee10") target,
+        # which self-transitions the flavour (no command-line flag needed).
         return ["//plugins:plugin-lib-neverlink"]
     else:
         # Standalone build; use Gerrit API from maven repository as defined in
-        # plugin's module
+        # plugin's module.
+        api = "com_google_gerrit_gerrit_plugin_api"
+        if flavour == "ee10":
+            api = "com_google_gerrit_gerrit_plugin_api_ee10"
         java_library(
             name = name + "-gerrit-api-neverlink",
             neverlink = 1,
             visibility = ["//visibility:public"],
-            exports = ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"],
+            exports = ["@external_plugin_deps//:" + api],
         )
         return [":" + name + "-gerrit-api-neverlink"]
 
@@ -112,6 +128,8 @@ def gerrit_plugin(
         dir_name = None,
         license = None,
         target_suffix = "",
+        flavour = None,
+        flavour_src_prefix = "src/main/java/",
         deploy_env = [],
         dependency_test_name = None,
         dependency_test_allowlist = None,
@@ -134,6 +152,21 @@ def gerrit_plugin(
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
       license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
+      flavour: Servlet flavour marker stamped into the plugin manifest as
+        `Gerrit-Flavour`, which Gerrit's plugin loader checks to reject a flavour
+        mismatch at load time. One of:
+          `None`  default: no marker (an unmarked plugin is treated as ee8, for
+                  backward compatibility with the existing plugin base).
+          `"ee8"`  javax.servlet; emits `Gerrit-Flavour: ee8`.
+          `"ee10"` jakarta.servlet; rewrites the sources javax->jakarta via the
+                   shared `to_jakarta` transform, emits `Gerrit-Flavour: ee10`,
+                   and selects the jakarta Gerrit plugin API. Build with a
+                   distinct `name` (e.g. `<plugin>-ee10`) and `dir_name`.
+          `"any"`  audited servlet-neutral; emits `Gerrit-Flavour: any` so the
+                   plugin loads under either flavour. No transform.
+        The ee8 default target is left unchanged. See `tools/servlet_transform.bzl`.
+      flavour_src_prefix: Path prefix stripped from each source when building the
+        ee10 srcjar. Defaults to `"src/main/java/"` (the standard plugin layout).
       deploy_env: List of java_binary targets representing the runtime/deployment
         environment that will load this plugin. Dependencies shared with these
         targets are excluded from this binary's runtime classpath and deploy jar.
@@ -155,16 +188,39 @@ def gerrit_plugin(
     if name == None:
         fail("gerrit_plugin: one of `name` or `plugin` must be set")
 
+    if flavour not in (None, "ee8", "ee10", "any"):
+        fail("gerrit_plugin: `flavour` must be one of None, \"ee8\", \"ee10\", \"any\"")
+
     if ext_repo == None:
         ext_repo = name + "_plugin_deps"
 
     deps = deps + _artifacts(ext_deps, ext_repo)
 
+    # Stamp the servlet flavour into the manifest as `Gerrit-Flavour`, which
+    # Gerrit's plugin loader (GerritServerFlavour) checks to reject a flavour
+    # mismatch at load time. Only the ee10 flavour rewrites sources (its
+    # servlet/Jetty imports javax->jakarta via the shared transform) and compiles
+    # against the jakarta plugin API (selected in gerrit_api_neverlink); ee8 and
+    # any use the canonical javax sources unchanged and only add a marker. An
+    # unmarked (flavour = None) plugin is treated as ee8 by the loader.
+    if flavour == "ee10":
+        srcjar = name + "__" + flavour + "_srcjar"
+        transform_srcjar(
+            name = srcjar,
+            direction = "to_jakarta",
+            sources = srcs,
+            src_prefix = flavour_src_prefix,
+        )
+        srcs = [":" + srcjar]
+        manifest_entries = manifest_entries + ["Gerrit-Flavour: ee10"]
+    elif flavour in ("ee8", "any"):
+        manifest_entries = manifest_entries + ["Gerrit-Flavour: " + flavour]
+
     java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = deps + gerrit_api_neverlink(name),
+        deps = deps + gerrit_api_neverlink(name, flavour),
         runtime_deps = runtime_deps,
         visibility = ["//visibility:public"],
         **kwargs
@@ -214,8 +270,16 @@ def gerrit_plugin(
             "notice/*",
         ]
     ])
+
+    # For the EE10 flavour the public target is a flavoured_jar wrapper that
+    # builds the (transform-fed) jar under a flavour=ee10 transition, so the
+    # plugin self-selects the jakarta config. The genrule that assembles the jar
+    # therefore gets an internal name and the wrapper takes the public one.
+    final_target = name + target_suffix
+    jar_target = final_target + "__flavour_jar" if flavour == "ee10" else final_target
+
     genrule2(
-        name = name + target_suffix,
+        name = jar_target,
         stamp = 1,
         srcs = ["%s__non_stamped_deploy.jar" % name],
         cmd = " && ".join([
@@ -234,9 +298,17 @@ def gerrit_plugin(
             ":%s__gen_stamp_info" % name,
             "@gerrit_api_version//:version.txt",
         ] + license_tools,
-        outs = ["%s%s.jar" % (name, target_suffix)],
+        outs = ["%s.jar" % jar_target],
         visibility = ["//visibility:public"],
     )
+
+    if flavour == "ee10":
+        flavoured_jar(
+            name = final_target,
+            actual = ":" + jar_target,
+            flavour = flavour,
+            visibility = ["//visibility:public"],
+        )
 
     if ext_deps and plugin:
         if dependency_test_name == None:
