@@ -194,6 +194,7 @@ def flavoured_library(
         srcs,
         flavours = None,
         default_flavour = "ee8",
+        canonical = None,
         src_prefix = "java/",
         direction = "to_jakarta",
         visibility = ["//visibility:public"],
@@ -234,8 +235,17 @@ def flavoured_library(
         missing-twin risk to justify spelling this per
         call, unlike flavoured_twin_alias.
       default_flavour: the default (no-flag) flavour (default "ee8").
+      canonical: which flavour the `srcs` are written in. Defaults to
+        `default_flavour` (the javax-canonical layout: the default leaf
+        compiles `srcs`, every other flavour is transform-generated). Set
+        `canonical = "ee11"` for jakarta-canonical sources (the JGit-style
+        reversed bridge): the ee11 leaf compiles `srcs` directly and the
+        default ee8 leaf is generated through `to_javax`, while the alias
+        still routes the default configuration to the ee8 twin.
       src_prefix: `transform_srcjar` src_prefix (default "java/").
-      direction: `transform_srcjar` direction (default "to_jakarta").
+      direction: `transform_srcjar` direction for generated twins. Defaults
+        to "to_jakarta" for javax-canonical srcs and "to_javax" for
+        jakarta-canonical srcs.
       visibility: applied to the alias, every twin, and the generated transforms
         (default public).
       **kwargs: forwarded to EVERY generated library twin (deps, resources,
@@ -247,14 +257,23 @@ def flavoured_library(
         fail("flavoured_library: `flavours` must be a list, got %s" % type(flavours))
     for flavour in flavours:
         _check_non_default_flavour("flavoured_library", flavour, default_flavour)
+    if canonical == None:
+        canonical = default_flavour
+    if canonical not in [default_flavour] + flavours:
+        fail("flavoured_library: `canonical` must be the default flavour or " +
+             "one of `flavours`, got %s" % canonical)
+    if canonical != default_flavour and direction == "to_jakarta":
+        direction = "to_javax"
     flavoured_java_library(
-        name = "%s-%s" % (name, default_flavour),
+        name = "%s-%s" % (name, canonical),
         srcs = srcs,
-        flavour = default_flavour,
+        flavour = canonical,
         visibility = visibility,
         **kwargs
     )
-    for flavour in flavours:
+    for flavour in [default_flavour] + flavours:
+        if flavour == canonical:
+            continue
         transform_srcjar(
             name = "%s-%s-srcs" % (name, flavour),
             direction = direction,
@@ -289,6 +308,7 @@ def flavoured_tests(
         srcs,
         flavours = None,
         default_flavour = "ee8",
+        canonical = None,
         src_prefix = "javatests/",
         direction = "to_jakarta",
         **kwargs):
@@ -310,6 +330,10 @@ def flavoured_tests(
 
     Args:
       name: the default-flavour (runnable) suite; also the twin prefix.
+      canonical: which flavour the `srcs` are written in; defaults to
+        `default_flavour`. With `canonical = "ee11"` the ee11 suite compiles
+        `srcs` directly and the runnable default `<name>` suite is generated
+        through `to_javax` (suite_srcs still derived from the originals).
       srcs: the test sources (e.g. `glob(["**/*.java"])`), reused for the
         default suite, the transform input, and each transformed suite's
         `suite_srcs`.
@@ -328,22 +352,33 @@ def flavoured_tests(
         fail("flavoured_tests: `flavours` must be a list, got %s" % type(flavours))
     for flavour in flavours:
         _check_non_default_flavour("flavoured_tests", flavour, default_flavour)
+    if canonical == None:
+        canonical = default_flavour
+    if canonical not in [default_flavour] + flavours:
+        fail("flavoured_tests: `canonical` must be the default flavour or " +
+             "one of `flavours`, got %s" % canonical)
+    if canonical != default_flavour and direction == "to_jakarta":
+        direction = "to_javax"
+    canonical_target = name if canonical == default_flavour else "%s-%s" % (name, canonical)
     flavoured_junit_tests(
-        name = name,
+        name = canonical_target,
         srcs = srcs,
-        flavour = default_flavour,
+        flavour = canonical,
         **kwargs
     )
-    for flavour in flavours:
+    for flavour in [default_flavour] + flavours:
+        if flavour == canonical:
+            continue
+        target = name if flavour == default_flavour else "%s-%s" % (name, flavour)
         transform_srcjar(
-            name = "%s-%s-srcs" % (name, flavour),
+            name = "%s-srcs" % target,
             direction = direction,
             sources = srcs,
             src_prefix = src_prefix,
         )
         flavoured_junit_tests(
-            name = "%s-%s" % (name, flavour),
-            srcs = [":%s-%s-srcs" % (name, flavour)],
+            name = target,
+            srcs = [":%s-srcs" % target],
             flavour = flavour,
             suite_srcs = srcs,
             **kwargs
