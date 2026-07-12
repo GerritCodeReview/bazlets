@@ -15,21 +15,15 @@ config_setting(
     flag_values = {":in_gerrit_tree": "true"},
 )
 
-# Servlet flavour of the build: "ee8" (default, javax.servlet) or "ee11"
-# (jakarta.servlet). Lives here (not in Gerrit) so the shared gerrit_plugin
-# `flavour = "ee11"` attribute can transition its own target onto it -- letting
-# an EE11 plugin be built directly (`bazelisk build //plugins/foo:foo-ee11`)
-# alongside its EE8 sibling in a single invocation. Gerrit's //tools:ee11
-# config_setting and ee11_war transition key off this flag.
+# Servlet flavour of the build: "ee11" (jakarta.servlet), the only value
+# since the EE8 retirement. Lives here (not in Gerrit) so the shared
+# gerrit_plugin `flavour` attribute can transition its own target onto it.
+# The next servlet generation (EE12) arrives as another KNOWN_FLAVOURS value
+# with its own config_setting below.
 string_flag(
     name = "flavour",
-    build_setting_default = "ee8",
+    build_setting_default = "ee11",
     values = KNOWN_FLAVOURS,
-)
-
-config_setting(
-    name = "ee8",
-    flag_values = {":flavour": "ee8"},
 )
 
 config_setting(
