@@ -10,13 +10,11 @@ load(
     _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
     _plugin_test_deps = "PLUGIN_TEST_DEPS",
 )
-load("//tools:flavour.bzl", "flavour_only", "flavoured_jar")
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
 load("//tools:runtime_jars_allowlist.bzl", "runtime_jars_allowlist_test")
 load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
-load("//tools:servlet_transform.bzl", "transform_srcjar")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
@@ -26,17 +24,8 @@ PLUGIN_DEPS = _plugin_deps
 PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
 PLUGIN_TEST_DEPS = _plugin_test_deps
 
-def gerrit_api_neverlink(name, flavour = None):
-    """Return the correct Gerrit API neverlink dependency for the current build mode.
-
-    When flavour == "ee11" the jakarta.servlet plugin API is selected instead of
-    the default javax.servlet one. In-tree (Gerrit is the main module) the
-    flavour-aware `//plugins:plugin-lib-neverlink` already flips to jakarta under
-    `--@com_googlesource_gerrit_bazlets//flags:flavour=ee11`, so no per-flavour
-    label is needed there. Standalone
-    builds resolve the suffixed `..._gerrit_plugin_api_ee11` artifact, which the
-    plugin's own module must declare in its `external_plugin_deps` maven.install.
-    """
+def gerrit_api_neverlink(name):
+    """Return the correct Gerrit API neverlink dependency for the current build mode."""
     if not native.module_name():
         # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
         # maven repository as defined in gerrit_api.bzl
@@ -44,16 +33,12 @@ def gerrit_api_neverlink(name, flavour = None):
         return PLUGIN_DEPS_NEVERLINK
     elif native.module_name() == "gerrit":
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
-        # source tree. This target is flavour-aware via select() on //tools:ee11;
-        # the ee11 jar is produced by the gerrit_plugin(flavour = "ee11") target,
-        # which self-transitions the flavour (no command-line flag needed).
+        # source tree.
         return ["//plugins:plugin-lib-neverlink"]
     else:
         # Standalone build; use Gerrit API from maven repository as defined in
         # plugin's module.
         api = "com_google_gerrit_gerrit_plugin_api"
-        if flavour == "ee11":
-            api = "com_google_gerrit_gerrit_plugin_api_ee11"
         java_library(
             name = name + "-gerrit-api-neverlink",
             neverlink = 1,
@@ -62,17 +47,8 @@ def gerrit_api_neverlink(name, flavour = None):
         )
         return [":" + name + "-gerrit-api-neverlink"]
 
-def gerrit_api(flavour = None):
-    """Return the correct Gerrit API dependency for the current build mode.
-
-    Args:
-      flavour: Optional servlet flavour. When `"ee11"`, standalone builds
-        resolve the suffixed `..._gerrit_plugin_api_ee11` artifact, which the
-        plugin's own module must declare in its `external_plugin_deps`
-        maven.install (mirroring `gerrit_api_neverlink`). In-tree the
-        unsuffixed target is flavour-aware via select() on the active
-        configuration and needs no per-flavour label.
-    """
+def gerrit_api():
+    """Return the correct Gerrit API dependency for the current build mode."""
     if not native.module_name():
         # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
         # maven repository as defined in gerrit_api.bzl
@@ -85,22 +61,12 @@ def gerrit_api(flavour = None):
     else:
         # Standalone build; use Gerrit API from maven repository as defined in
         # plugin's module
-        api = "com_google_gerrit_gerrit_plugin_api"
-        if flavour == "ee11":
-            api = "com_google_gerrit_gerrit_plugin_api_ee11"
-        return ["@external_plugin_deps//:" + api]
+        return ["@external_plugin_deps//:com_google_gerrit_gerrit_plugin_api"]
 
-def gerrit_acceptance_framework(flavour = None):
+def gerrit_acceptance_framework():
     """
     Return the correct Gerrit Acceptance Framework dependency for the current
     build mode.
-
-    Args:
-      flavour: Optional servlet flavour. When `"ee11"`, standalone builds
-        resolve the suffixed `..._gerrit_acceptance_framework_ee11` artifact,
-        which the plugin's own module must declare in its
-        `external_plugin_deps` maven.install. In-tree the acceptance library
-        is flavour-aware via the active configuration.
     """
     if not native.module_name():
         # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
@@ -114,10 +80,7 @@ def gerrit_acceptance_framework(flavour = None):
     else:
         # Standalone build; use Gerrit API from maven repository as defined in
         # plugin's module
-        framework = "com_google_gerrit_gerrit_acceptance_framework"
-        if flavour == "ee11":
-            framework = "com_google_gerrit_gerrit_acceptance_framework_ee11"
-        return ["@external_plugin_deps//:" + framework]
+        return ["@external_plugin_deps//:com_google_gerrit_gerrit_acceptance_framework"]
 
 def _artifacts(coords, repository_name):
     """Convert Maven coordinates to Bazel labels in the given external repo.
@@ -151,8 +114,7 @@ def gerrit_plugin(
         license = None,
         target_suffix = "",
         flavour = None,
-        canonical = "javax",
-        flavour_src_prefix = "src/main/java/",
+        canonical = None,
         deploy_env = [],
         dependency_test_name = None,
         dependency_test_allowlist = None,
@@ -175,28 +137,10 @@ def gerrit_plugin(
       dir_name: The directory name for the plugin, used in stamping. Defaults to `name`.
       license: Optional plugin-owned license file to package as `META-INF/LICENSE`.
       target_suffix: Suffix to append to the final plugin JAR name.
-      flavour: Servlet flavour marker stamped into the plugin manifest as
-        `Gerrit-Flavour`. Gerrit releases with the flavour loader contract
-        reject a mismatch at load time (and treat an unmarked jar as ee8);
-        later releases ignore the marker. One of:
-          `None`  default: no marker.
-          `"ee11"` jakarta.servlet; for javax-canonical sources, rewrites them
-                   javax->jakarta via the shared `to_jakarta` transform;
-                   emits `Gerrit-Flavour: ee11` and selects the jakarta
-                   Gerrit plugin API.
-          `"any"`  audited servlet-neutral; emits `Gerrit-Flavour: any`. No
-                   transform.
-        The ee8 flavour is retired. See `tools/servlet_transform.bzl`.
-      canonical: Which servlet namespace the plugin sources are written in.
-        `"javax"` (default): sources are javax.servlet; `flavour = "ee11"`
-        generates the jakarta jar via the `to_jakarta` transform.
-        `"jakarta"`: sources are jakarta.servlet; `flavour = "ee11"` compiles
-        them directly (still self-transitioning, since the jakarta plugin API
-        resolves under flavour=ee11). Jakarta-canonical plugins must declare
-        `flavour = "ee11"`: enforcing Gerrit releases treat an unmarked jar
-        as ee8, which would be wrong for a jakarta jar.
-      flavour_src_prefix: Path prefix stripped from each source when building the
-        flavour srcjar. Defaults to `"src/main/java/"` (the standard plugin layout).
+      flavour: Deprecated, ignored. Formerly stamped the Gerrit-Flavour
+        loader marker during the javax-to-jakarta migration; kept as an
+        accepted no-op so plugins can drop it on their own schedule.
+      canonical: Deprecated, ignored (same migration-era attribute).
       deploy_env: List of java_binary targets representing the runtime/deployment
         environment that will load this plugin. Dependencies shared with these
         targets are excluded from this binary's runtime classpath and deploy jar.
@@ -218,57 +162,17 @@ def gerrit_plugin(
     if name == None:
         fail("gerrit_plugin: one of `name` or `plugin` must be set")
 
-    if flavour not in (None, "ee11", "any"):
-        fail("gerrit_plugin: `flavour` must be one of None, \"ee11\", \"any\"")
-
-    if canonical not in ("javax", "jakarta"):
-        fail("gerrit_plugin: `canonical` must be \"javax\" or \"jakarta\"")
-
-    if canonical == "jakarta" and flavour != "ee11":
-        fail("gerrit_plugin: jakarta-canonical plugins must declare " +
-             "flavour = \"ee11\"")
-
     if ext_repo == None:
         ext_repo = name + "_plugin_deps"
 
     deps = deps + _artifacts(ext_deps, ext_repo)
 
-    # Stamp the servlet flavour into the manifest as `Gerrit-Flavour`
-    # (checked by Gerrit releases with the flavour loader contract; ignored
-    # by later releases). javax-canonical sources are rewritten to_jakarta
-    # for ee11; jakarta-canonical sources are used unchanged.
-    transform_direction = None
-    if canonical == "javax" and flavour == "ee11":
-        transform_direction = "to_jakarta"
-
-    if transform_direction:
-        srcjar = name + "__" + flavour + "_srcjar"
-        transform_srcjar(
-            name = srcjar,
-            direction = transform_direction,
-            sources = srcs,
-            src_prefix = flavour_src_prefix,
-        )
-        srcs = [":" + srcjar]
-
-    if flavour:
-        manifest_entries = manifest_entries + ["Gerrit-Flavour: " + flavour]
-
-    # The ee11 intermediates compile jakarta sources, which only resolve under
-    # the flavour=ee11 configuration. Guard them so default wildcard builds
-    # skip them; the public flavoured_jar wrapper transitions the flavour and
-    # builds them in the jakarta configuration.
-    flavour_compatible = []
-    if flavour == "ee11":
-        flavour_compatible = flavour_only("ee11")
-
     java_library(
         name = name + "__plugin",
         srcs = srcs,
         resources = resources,
-        deps = deps + gerrit_api_neverlink(name, flavour),
+        deps = deps + gerrit_api_neverlink(name),
         runtime_deps = runtime_deps,
-        target_compatible_with = flavour_compatible,
         visibility = ["//visibility:public"],
         **kwargs
     )
@@ -318,12 +222,7 @@ def gerrit_plugin(
         ]
     ])
 
-    # For the EE11 flavour the public target is a flavoured_jar wrapper that
-    # builds the (transform-fed) jar under a flavour=ee11 transition, so the
-    # plugin self-selects the jakarta config. The genrule that assembles the jar
-    # therefore gets an internal name and the wrapper takes the public one.
-    final_target = name + target_suffix
-    jar_target = final_target + "__flavour_jar" if flavour == "ee11" else final_target
+    jar_target = name + target_suffix
 
     genrule2(
         name = jar_target,
@@ -348,14 +247,6 @@ def gerrit_plugin(
         outs = ["%s.jar" % jar_target],
         visibility = ["//visibility:public"],
     )
-
-    if flavour == "ee11":
-        flavoured_jar(
-            name = final_target,
-            actual = ":" + jar_target,
-            flavour = flavour,
-            visibility = ["//visibility:public"],
-        )
 
     if ext_deps and plugin:
         if dependency_test_name == None:
@@ -419,8 +310,8 @@ def gerrit_plugin_tests(
         ext_repo = None,
         tags = None,
         flavour = None,
-        canonical = "javax",
-        flavour_src_prefix = "src/test/java/",
+        canonical = None,
+        flavour_src_prefix = None,
         **kwargs):
     """Runs junit tests for a Gerrit plugin.
 
@@ -430,10 +321,7 @@ def gerrit_plugin_tests(
       deps: List of additional Bazel dependencies for the test target.
       plugin: Name of the plugin under test. Only required if `ext_deps`,
         `ext_deps_label`, or automatic plugin target wiring is used. Only one
-        of `ext_deps` or `ext_deps_label` is allowed. For a flavoured test
-        twin, pass the flavoured plugin target's name (e.g.
-        `"my-plugin-ee11"`): the plugin library dep, the default `name`, and
-        the default `ext_repo` all derive from it.
+        of `ext_deps` or `ext_deps_label` is allowed.
       ext_deps: List of Maven coordinates for external test dependencies.
         When set, dependencies are added directly to the test target. Use
         `gerrit_plugin_ext_test_deps()` to create the optional Eclipse
@@ -446,27 +334,12 @@ def gerrit_plugin_tests(
         Defaults to `<plugin>_plugin_deps`.
       tags: Optional list of tags for the test target. If `plugin` is set, it
         is added automatically if not already present.
-      flavour: Servlet flavour the tests execute in, mirroring the
-        `gerrit_plugin` attribute. A flavoured plugin jar without a flavoured
-        test execution is only half migrated: the artifact would be audited
-        but never run. One of:
-          `None`  default: the tests run in the default configuration,
-                  unguarded (the pre-flavour behaviour).
-          `"ee11"` jakarta.servlet tests, guarded to the ee11 configuration
-                  and compiled against the jakarta plugin API and acceptance
-                  framework. With the default `canonical = "javax"` the test
-                  sources are generated via the `to_jakarta` transform.
-        The ee8 flavour is retired. A test target cannot self-transition the
-        flavour the way the `-ee11` jar targets do, so a flavoured test
-        carries a `target_compatible_with` guard instead and runs when its
-        flavour's configuration is active (since the ee8 retirement, ee11
-        is the default).
-      canonical: Which servlet namespace the plugin's test sources are written
-        in; same contract as `gerrit_plugin`. Jakarta-canonical tests must
-        declare `flavour = "ee11"`.
-      flavour_src_prefix: Path prefix stripped from each test source when
-        building the flavour srcjar. Defaults to `"src/test/java/"` (the
-        standard plugin layout).
+      flavour: Deprecated, ignored. Formerly ran the tests in the given
+        servlet flavour's configuration during the javax-to-jakarta
+        migration; kept as an accepted no-op so plugins can drop it on
+        their own schedule.
+      canonical: Deprecated, ignored (same migration-era attribute).
+      flavour_src_prefix: Deprecated, ignored (same migration-era attribute).
       **kwargs: Additional arguments passed to the underlying `junit_tests` rule.
     """
 
@@ -475,16 +348,6 @@ def gerrit_plugin_tests(
 
     if ext_deps and ext_deps_label:
         fail("Only one of `ext_deps` or `ext_deps_label` may be provided.")
-
-    if flavour not in (None, "ee11"):
-        fail("gerrit_plugin_tests: `flavour` must be one of None, \"ee11\"")
-
-    if canonical not in ("javax", "jakarta"):
-        fail("gerrit_plugin_tests: `canonical` must be \"javax\" or \"jakarta\"")
-
-    if canonical == "jakarta" and flavour != "ee11":
-        fail("gerrit_plugin_tests: jakarta-canonical tests must declare " +
-             "flavour = \"ee11\"")
 
     if plugin:
         if name == None:
@@ -510,41 +373,10 @@ def gerrit_plugin_tests(
     if ext_deps_label:
         deps = deps + [ext_deps_label]
 
-    # The non-canonical flavour's tests are generated by the shared servlet
-    # transform, exactly like the plugin jar they exercise. The transform
-    # preserves package and class names, so the canonical files still yield
-    # the suite class list (see `suite_srcs` in junit_tests).
-    transform_direction = None
-    if canonical == "javax" and flavour == "ee11":
-        transform_direction = "to_jakarta"
-
-    suite_srcs = None
-    if transform_direction:
-        srcjar = name + "__" + flavour + "_srcjar"
-        transform_srcjar(
-            name = srcjar,
-            direction = transform_direction,
-            sources = srcs,
-            src_prefix = flavour_src_prefix,
-            testonly = True,
-        )
-        suite_srcs = srcs
-        srcs = [":" + srcjar]
-
-    # A test target cannot self-transition the flavour, so an explicitly
-    # flavoured test carries a guard instead: it is skipped (not failed)
-    # unless its flavour's configuration is active.
-    if flavour:
-        if "target_compatible_with" in kwargs:
-            fail("gerrit_plugin_tests: `target_compatible_with` cannot be " +
-                 "combined with `flavour`; the flavour guard sets it")
-        kwargs = dict(kwargs, target_compatible_with = flavour_only(flavour))
-
     junit_tests(
         name = name,
         srcs = srcs,
-        suite_srcs = suite_srcs,
-        deps = deps + gerrit_api(flavour) + gerrit_acceptance_framework(flavour),
+        deps = deps + gerrit_api() + gerrit_acceptance_framework(),
         tags = tags,
         **kwargs
     )
