@@ -1,5 +1,4 @@
-load("@bazel_skylib//rules:common_settings.bzl", "bool_flag", "string_flag")
-load("//tools:flavour_constants.bzl", "KNOWN_FLAVOURS")
+load("@bazel_skylib//rules:common_settings.bzl", "bool_flag")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -14,24 +13,3 @@ config_setting(
     name = "in_gerrit_tree_enabled",
     flag_values = {":in_gerrit_tree": "true"},
 )
-
-# Servlet flavour of the build: "ee11" (jakarta.servlet), the only value
-# since the EE8 retirement. Lives here (not in Gerrit) so the shared
-# gerrit_plugin `flavour` attribute can transition its own target onto it.
-# The next servlet generation (EE12) arrives as another KNOWN_FLAVOURS value
-# with its own config_setting below.
-string_flag(
-    name = "flavour",
-    build_setting_default = "ee11",
-    values = KNOWN_FLAVOURS,
-)
-
-config_setting(
-    name = "ee11",
-    flag_values = {":flavour": "ee11"},
-)
-
-# Toolchain type for the servlet-flavour toolchain (tools/servlet_flavour.bzl):
-# consuming rules depend on this type and Bazel resolves the concrete per-flavour
-# toolchain whose `target_settings` match the active `:flavour` value.
-toolchain_type(name = "servlet_flavour_toolchain_type")
