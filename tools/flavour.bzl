@@ -116,7 +116,7 @@ def flavour_only(*flavours):
         conditions[Label("//flags:" + flavour)] = []
     return select(conditions)
 
-def flavoured_alias(name, default, flavours, visibility = None):
+def flavoured_alias(name, default, flavours, default_flavour = "ee8", visibility = None):
     """`alias` resolving to `default` by default, or a per-flavour target under the flag.
 
     Collapses the repeated boundary pattern `alias(actual = select({...}))`:
@@ -129,14 +129,18 @@ def flavoured_alias(name, default, flavours, visibility = None):
 
     Args:
       name: the flavour-neutral alias label consumers depend on.
-      default: target for the default (EE8/no-flag) flavour.
+      default: target for the default (no-flag) flavour.
       flavours: {flavour: target} for each non-default flavour, e.g.
         {"ee11": ":httpd-ee11"}.
+      default_flavour: the default (no-flag) flavour that `default` serves,
+        used to validate that `flavours` lists only non-default flavours
+        (default "ee8"). Pass "ee11" once the consuming tree has flipped its
+        default, so the ee8 twin may be listed as a non-default flavour.
       visibility: alias visibility.
     """
     conditions = {"//conditions:default": default}
     for flavour, target in flavours.items():
-        _check_non_default_flavour("flavoured_alias", flavour)
+        _check_non_default_flavour("flavoured_alias", flavour, default_flavour)
 
         # Label() anchors the config_setting to THIS (bazlets) repo; a bare
         # string would resolve in the calling BUILD's repo (e.g. Gerrit).
@@ -173,6 +177,7 @@ def flavoured_twin_alias(name, flavours, default_flavour = "ee8", **kwargs):
         name = name,
         default = ":%s-%s" % (name, default_flavour),
         flavours = {flavour: ":%s-%s" % (name, flavour) for flavour in flavours},
+        default_flavour = default_flavour,
         **kwargs
     )
 
