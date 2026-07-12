@@ -240,16 +240,11 @@ def flavoured_library(
         call, unlike flavoured_twin_alias.
       default_flavour: the default (no-flag) flavour (default "ee11").
       canonical: which flavour the `srcs` are written in. Defaults to
-        `default_flavour` (the javax-canonical layout: the default leaf
-        compiles `srcs`, every other flavour is transform-generated). Set
-        `canonical = "ee11"` for jakarta-canonical sources (the JGit-style
-        reversed bridge): the ee11 leaf compiles `srcs` directly and the
-        default ee8 leaf is generated through `to_javax`, while the alias
-        still routes the default configuration to the ee8 twin.
+        `default_flavour`: the default leaf compiles `srcs`, every other
+        flavour is transform-generated.
       src_prefix: `transform_srcjar` src_prefix (default "java/").
-      direction: `transform_srcjar` direction for generated twins. Defaults
-        to "to_jakarta" for javax-canonical srcs and "to_javax" for
-        jakarta-canonical srcs.
+      direction: `transform_srcjar` direction for generated twins
+        (default "to_jakarta").
       visibility: applied to the alias, every twin, and the generated transforms
         (default public).
       **kwargs: forwarded to EVERY generated library twin (deps, resources,
@@ -266,8 +261,6 @@ def flavoured_library(
     if canonical not in [default_flavour] + flavours:
         fail("flavoured_library: `canonical` must be the default flavour or " +
              "one of `flavours`, got %s" % canonical)
-    if canonical != default_flavour and direction == "to_jakarta":
-        direction = "to_javax"
     flavoured_java_library(
         name = "%s-%s" % (name, canonical),
         srcs = srcs,
@@ -335,9 +328,8 @@ def flavoured_tests(
     Args:
       name: the default-flavour (runnable) suite; also the twin prefix.
       canonical: which flavour the `srcs` are written in; defaults to
-        `default_flavour`. With `canonical = "ee11"` the ee11 suite compiles
-        `srcs` directly and the runnable default `<name>` suite is generated
-        through `to_javax` (suite_srcs still derived from the originals).
+        `default_flavour` (the canonical suite compiles `srcs` directly;
+        other flavours' suites are transform-generated).
       srcs: the test sources (e.g. `glob(["**/*.java"])`), reused for the
         default suite, the transform input, and each transformed suite's
         `suite_srcs`.
@@ -361,8 +353,6 @@ def flavoured_tests(
     if canonical not in [default_flavour] + flavours:
         fail("flavoured_tests: `canonical` must be the default flavour or " +
              "one of `flavours`, got %s" % canonical)
-    if canonical != default_flavour and direction == "to_jakarta":
-        direction = "to_javax"
     canonical_target = name if canonical == default_flavour else "%s-%s" % (name, canonical)
     flavoured_junit_tests(
         name = canonical_target,
