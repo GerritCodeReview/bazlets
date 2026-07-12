@@ -7,17 +7,17 @@ against more than one Servlet API namespace *and version*. A *flavour* is the
 whole coordinated bundle that must move together; you cannot mix pieces from two
 rows on one classpath:
 
-    flavour   Servlet API             Jetty environment    Guice
-    -------   ---------------------   ------------------   -----
-    ee8       javax.servlet 4.0       Jetty EE8            6
-    ee11      jakarta.servlet 6.1     Jetty EE11           7
+    flavour   Servlet API             Jetty environment     Guice
+    -------   ---------------------   -------------------   -----
+    ee11      jakarta.servlet 6.1     Jetty EE11            7
     ee12      jakarta.servlet 7.0     Jetty EE12 (Jetty 13) ...
+    (retired: ee8 -- javax.servlet 4.0, Jetty EE8, Guice 6)
 
 The active flavour is chosen by the `//flags:flavour` string build setting (see
-flags/BUILD.bazel): `ee8` is the default (the javax servlet tier -- the same
-dependency tower as a non-flavoured build); any other value opts into jakarta.
-`//flags:ee11` is the config_setting that matches when the flag equals `ee11`,
-and every flavour-bearing `select()` / guard in the tree keys off it.
+flags/BUILD.bazel): `ee11` is the default and, since the EE8 retirement, the
+only value. `//flags:ee11` is the config_setting that matches when the flag
+equals `ee11`, and every flavour-bearing `select()` / guard keys off such
+per-flavour settings.
 
 `flavour` is a *string*, not a boolean, precisely because this is an open set:
 new jakarta flavours are added over time as Jakarta EE / Jetty advance, and more
@@ -88,7 +88,7 @@ def _check_known_flavour(caller, flavour):
         fail("%s: unsupported flavour %s; known flavours are %s" %
              (caller, flavour, KNOWN_FLAVOURS))
 
-def _check_non_default_flavour(caller, flavour, default_flavour = "ee8"):
+def _check_non_default_flavour(caller, flavour, default_flavour = "ee11"):
     _check_known_flavour(caller, flavour)
     if flavour == default_flavour:
         fail("%s: `flavours` lists non-default flavours; got default flavour %s" %
@@ -97,7 +97,7 @@ def _check_non_default_flavour(caller, flavour, default_flavour = "ee8"):
 def flavour_only(*flavours):
     """`target_compatible_with` value: buildable ONLY when a listed flavour is active.
 
-    In the default (EE8) config the target is marked incompatible, so
+    In any other flavour's config the target is marked incompatible, so
     `bazel build //...` / `bazel test //...` skip it instead of failing to
     compile its jakarta sources against the javax tier. Build/run it under
     `--//flags:flavour=<flavour>` or via a self-transitioning `-<flavour>` target.
@@ -116,12 +116,12 @@ def flavour_only(*flavours):
         conditions[Label("//flags:" + flavour)] = []
     return select(conditions)
 
-def flavoured_alias(name, default, flavours, default_flavour = "ee8", visibility = None):
+def flavoured_alias(name, default, flavours, default_flavour = "ee11", visibility = None):
     """`alias` resolving to `default` by default, or a per-flavour target under the flag.
 
     Collapses the repeated boundary pattern `alias(actual = select({...}))`:
     consumers depend on the flavour-neutral `name` and transparently get the
-    `default` (EE8/javax) target, or the matching jakarta target when that
+    `default` flavour's target, or the matching per-flavour target when that
     flavour's flag is active. The impls share FQDNs, so only one is ever on a
     classpath. Keeping the `select()` inside this macro means the `//flags:*`
     seam is written once, not per boundary target, and adding a flavour is a new
@@ -134,8 +134,7 @@ def flavoured_alias(name, default, flavours, default_flavour = "ee8", visibility
         {"ee11": ":httpd-ee11"}.
       default_flavour: the default (no-flag) flavour that `default` serves,
         used to validate that `flavours` lists only non-default flavours
-        (default "ee8"). Pass "ee11" once the consuming tree has flipped its
-        default, so the ee8 twin may be listed as a non-default flavour.
+        (default "ee11").
       visibility: alias visibility.
     """
     conditions = {"//conditions:default": default}
@@ -147,7 +146,7 @@ def flavoured_alias(name, default, flavours, default_flavour = "ee8", visibility
         conditions[Label("//flags:" + flavour)] = target
     native.alias(name = name, actual = select(conditions), visibility = visibility)
 
-def flavoured_twin_alias(name, flavours, default_flavour = "ee8", **kwargs):
+def flavoured_twin_alias(name, flavours, default_flavour = "ee11", **kwargs):
     """`flavoured_alias` for same-package "twin" targets named `:<name>-<flavour>`.
 
     Convention over configuration for source-divergent library twins (e.g.
@@ -163,7 +162,7 @@ def flavoured_twin_alias(name, flavours, default_flavour = "ee8", **kwargs):
       flavours: non-default flavour names that have a `:<name>-<flavour>` twin,
         e.g. `["ee11"]`.
       default_flavour: the default (no-flag) flavour, whose twin is
-        `:<name>-<default_flavour>` (default "ee8").
+        `:<name>-<default_flavour>` (default "ee11").
       **kwargs: forwarded to `flavoured_alias` (e.g. `visibility`).
     """
     _check_known_flavour("flavoured_twin_alias", default_flavour)
@@ -198,7 +197,7 @@ def flavoured_library(
         name,
         srcs,
         flavours = None,
-        default_flavour = "ee8",
+        default_flavour = "ee11",
         canonical = None,
         src_prefix = "java/",
         direction = "to_jakarta",
@@ -239,7 +238,7 @@ def flavoured_library(
         first.) Because the twins are generated (not hand-written), there is no
         missing-twin risk to justify spelling this per
         call, unlike flavoured_twin_alias.
-      default_flavour: the default (no-flag) flavour (default "ee8").
+      default_flavour: the default (no-flag) flavour (default "ee11").
       canonical: which flavour the `srcs` are written in. Defaults to
         `default_flavour` (the javax-canonical layout: the default leaf
         compiles `srcs`, every other flavour is transform-generated). Set
@@ -312,7 +311,7 @@ def flavoured_tests(
         name,
         srcs,
         flavours = None,
-        default_flavour = "ee8",
+        default_flavour = "ee11",
         canonical = None,
         src_prefix = "javatests/",
         direction = "to_jakarta",
@@ -346,7 +345,7 @@ def flavoured_tests(
         every non-default flavour in KNOWN_FLAVOURS (like flavoured_library), so
         a mechanical test suite gains a new flavour's twin when it is added to
         KNOWN_FLAVOURS, subject to the same transform caveat as flavoured_library.
-      default_flavour: the default (no-flag) flavour (default "ee8").
+      default_flavour: the default (no-flag) flavour (default "ee11").
       src_prefix: `transform_srcjar` src_prefix (default "javatests/").
       direction: `transform_srcjar` direction (default "to_jakarta").
       **kwargs: forwarded to every generated suite (deps, ...).
