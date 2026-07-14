@@ -37,21 +37,32 @@ def _SafeIndex(l, val):
             return i
     return -1
 
-def _AsClassName(fname):
-    fname = [x.path for x in fname.files.to_list()][0]
-    toks = fname[:-5].split("/")
+def _AsClassName(path):
+    toks = path[:-5].split("/")
     findex = -1
     for s in _PREFIXES:
         findex = _SafeIndex(toks, s)
         if findex != -1:
             break
     if findex == -1:
-        fail("%s does not contain any of %s" % (fname, _PREFIXES))
+        fail("%s does not contain any of %s" % (path, _PREFIXES))
     return ".".join(toks[findex:]) + ".class"
+
+def _AsClassNames(src):
+    # Expand EVERY file behind the label: an aggregate label (filegroup,
+    # glob wrapped in one target) carries many test files, and taking only
+    # the first would silently drop the rest from the generated suite --
+    # tests that never run but look green.
+    names = []
+    for f in src.files.to_list():
+        if not f.path.endswith(".java"):
+            fail("junit_tests suite sources must be .java files, got %s" % f.path)
+        names.append(_AsClassName(f.path))
+    return names
 
 def _impl(ctx):
     classes = ",".join(
-        [_AsClassName(x) for x in ctx.attr.srcs],
+        [name for src in ctx.attr.srcs for name in _AsClassNames(src)],
     )
     ctx.actions.write(output = ctx.outputs.out, content = _OUTPUT % (
         classes,
