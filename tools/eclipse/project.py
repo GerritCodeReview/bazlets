@@ -116,6 +116,18 @@ def _resolve_repo_path(ext, p):
     return os.path.join(ext, p)
   return p
 
+def _prefer_unprocessed_jar(jar):
+  b = os.path.basename(jar)
+  if b.startswith('processed_'):
+    alt = os.path.join(os.path.dirname(jar), b[len('processed_'):])
+  elif b.startswith('header_'):
+    alt = os.path.join(os.path.dirname(jar), b[len('header_'):])
+  else:
+    return jar
+  if os.path.exists(alt):
+    return alt
+  return jar
+
 def gen_project(name, root=ROOT):
   p = os.path.join(root, '.project')
   with open(p, 'w') as fd:
@@ -223,6 +235,16 @@ def gen_classpath(ext):
     for j in sorted(libs):
       if excluded(j):
         continue
+
+      j = _prefer_unprocessed_jar(j)
+
+      # Skip processed_/header_ jars that were not materialized locally;
+      # Eclipse would otherwise flag a missing required library.
+      b = os.path.basename(j)
+      if (b.startswith("processed_") or b.startswith("header_")) \
+         and not os.path.exists(j):
+        continue
+
       s = None
       # Attach the source jar published by the collector on an unambiguous
       # basename match; if several source jars normalize to the same basename,
