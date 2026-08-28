@@ -95,6 +95,11 @@ def _query_classpath():
   name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
   return [line.rstrip('\n') for line in open(name)]
 
+def _resolve_repo_path(ext, p):
+  if ext is not None and p.startswith("external"):
+    return os.path.join(ext, p)
+  return p
+
 def gen_project(name, root=ROOT):
   p = os.path.join(root, '.project')
   with open(p, 'w') as fd:
@@ -143,12 +148,21 @@ def gen_classpath(ext):
   srcs = re.compile('(.*/external/[^/]+)/jar/(.*)[.]jar')
   for p in _query_classpath():
     m = java_library.match(p)
-    if m:
+    # In-repo java_library outputs live under bazel-out/.../bin with a path
+    # that does not start with /external/. Everything else is an external
+    # library: rules_jvm_external Maven jars now appear as
+    # bazel-out/.../bin/external/.../processed_*.jar (they used to be plain
+    # external/<repo>/jar/*.jar), and both must land in the library set.
+    if m and not m.group(1).startswith("/external/"):
       src.add(m.group(1).lstrip('/'))
     else:
-      if ext is not None and p.startswith("external"):
-        p = os.path.join(ext, p)
-        lib.add(p)
+      # Bazel's internal runner deploy jars: Eclipse runs tests with its own
+      # runner, and rules_java's Runner_deploy.jar bundles a copy of
+      # JUnit/Hamcrest that would shadow the real, source-attached Maven jar.
+      if p.endswith("external/bazel_tools/tools/jdk/TestRunner_deploy.jar") \
+         or p.endswith("/java_tools/Runner_deploy.jar"):
+        continue
+      lib.add(_resolve_repo_path(ext, p))
 
   src_paths = {}
   for s in sorted(src):
