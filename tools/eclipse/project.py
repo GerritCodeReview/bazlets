@@ -92,8 +92,24 @@ def _query_classpath():
     subprocess.check_call(_build_bazel_cmd('build', t))
   except subprocess.CalledProcessError:
     exit(1)
-  name = 'bazel-bin/tools/eclipse/' + t.split(':')[1] + '.runtime_classpath'
-  return [line.rstrip('\n') for line in open(name)]
+  base = 'bazel-bin/tools/eclipse/' + t.split(':')[1]
+  runtime = [line.rstrip('\n') for line in open(base + '.runtime_classpath')]
+  # rules_jvm_external resolves source jars lazily; the classpath_collector
+  # rule materializes them and lists them in .source_classpath.
+  sources = []
+  sources_name = base + '.source_classpath'
+  if os.path.exists(sources_name):
+    sources = [line.rstrip('\n') for line in open(sources_name)]
+  return runtime, sources
+
+def _normalize_jar_basename(p):
+  b = os.path.basename(p)
+  for pref in ('processed_', 'header_'):
+    if b.startswith(pref):
+      b = b[len(pref):]
+  if b.endswith('-sources.jar'):
+    b = b[:-len('-sources.jar')] + '.jar'
+  return b
 
 def _resolve_repo_path(ext, p):
   if ext is not None and p.startswith("external"):
@@ -145,8 +161,16 @@ def gen_classpath(ext):
   lib = set()
 
   java_library = re.compile('bazel-out/(?:.*)-fastbuild/bin(.*)/[^/]+[.]jar$')
-  srcs = re.compile('(.*/external/[^/]+)/jar/(.*)[.]jar')
-  for p in _query_classpath():
+
+  runtime_cp, source_cp = _query_classpath()
+
+  # Index source jars by normalized basename. A basename can map to more than
+  # one source jar; keep them all and attach only on an unambiguous match.
+  source_by_basename = {}
+  for p in source_cp:
+    source_by_basename.setdefault(_normalize_jar_basename(p), []).append(p)
+
+  for p in runtime_cp:
     m = java_library.match(p)
     # In-repo java_library outputs live under bazel-out/.../bin with a path
     # that does not start with /external/. Everything else is an external
@@ -200,13 +224,13 @@ def gen_classpath(ext):
       if excluded(j):
         continue
       s = None
-      m = srcs.match(j)
-      if m:
-        prefix = m.group(1)
-        suffix = m.group(2)
-        p = os.path.join(prefix, "src", "%s-src.jar" % suffix)
-        if os.path.exists(p):
-          s = p
+      # Attach the source jar published by the collector on an unambiguous
+      # basename match; if several source jars normalize to the same basename,
+      # skip rather than risk attaching the wrong one.
+      key = _normalize_jar_basename(j)
+      matches = source_by_basename.get(key, [])
+      if len(matches) == 1:
+        s = _resolve_repo_path(ext, matches[0])
       classpathentry('lib', j, s)
 
   classpathentry('con', JRE)
