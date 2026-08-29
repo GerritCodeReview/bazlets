@@ -106,9 +106,6 @@ def _build_bazel_cmd(*args):
     cmd.append(arg)
   return cmd
 
-def retrieve_ext_location():
-  return subprocess.check_output(_build_bazel_cmd('info', 'output_base')).strip()
-
 def _query_classpath():
   t = '//tools/eclipse:main_classpath_collect'
   try:
@@ -133,11 +130,6 @@ def _normalize_jar_basename(p):
   if b.endswith('-sources.jar'):
     b = b[:-len('-sources.jar')] + '.jar'
   return b
-
-def _resolve_repo_path(ext, p):
-  if ext is not None and p.startswith("external"):
-    return os.path.join(ext, p)
-  return p
 
 def _prefer_unprocessed_jar(jar):
   b = os.path.basename(jar)
@@ -169,7 +161,7 @@ def gen_project(name, root=ROOT):
 </projectDescription>\
     """ % {"name": name}, file=fd)
 
-def gen_classpath(ext):
+def gen_classpath():
   def make_classpath():
     impl = xml.dom.minidom.getDOMImplementation()
     return impl.createDocument(None, 'classpath', None)
@@ -274,7 +266,7 @@ def gen_classpath(ext):
       if p.endswith("external/bazel_tools/tools/jdk/TestRunner_deploy.jar") \
          or p.endswith("/java_tools/Runner_deploy.jar"):
         continue
-      lib.add(_resolve_repo_path(ext, p))
+      lib.add(p)
 
   src_paths = {}
   for s in sorted(src):
@@ -342,7 +334,7 @@ def gen_classpath(ext):
     if not s:
       matches = source_by_basename.get(key, [])
       if len(matches) == 1:
-        s = _resolve_repo_path(ext, matches[0])
+        s = matches[0]
     classpathentry('lib', j, s)
 
   classpathentry('con', JRE(args.java) if args.java else JRE())
@@ -362,7 +354,7 @@ def excluded(lib):
 try:
   name = args.name if args.name else os.path.basename(ROOT)
   gen_project(name)
-  gen_classpath(retrieve_ext_location().decode('utf-8'))
+  gen_classpath()
 
 except KeyboardInterrupt:
   print('Interrupted by user', file=sys.stderr)
