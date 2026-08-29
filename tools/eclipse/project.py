@@ -22,16 +22,19 @@ import re
 import sys
 import xml.dom.minidom
 
-JRE = '/'.join([
-  'org.eclipse.jdt.launching.JRE_CONTAINER',
-  'org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType',
-  'JavaSE-11',
-])
+def JRE(java_vers='25'):
+  return '/'.join([
+    'org.eclipse.jdt.launching.JRE_CONTAINER',
+    'org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType',
+    'JavaSE-%s' % java_vers,
+  ])
 
 opts = argparse.ArgumentParser("Create Eclipse Project")
 opts.add_argument('-r', '--root', help='Root directory entry')
 opts.add_argument('-n', '--name', help='Project name')
 opts.add_argument('-x', '--exclude', action='append', help='Exclude paths')
+opts.add_argument('-j', '--java', action='store', dest='java',
+                  help='Java version for the JRE container (default: 25)')
 opts.add_argument('-b', '--batch', action='store_true',
                   dest='batch', help='Bazel batch option')
 opts.add_argument('--bazel',
@@ -255,7 +258,7 @@ def gen_classpath(ext):
         s = _resolve_repo_path(ext, matches[0])
       classpathentry('lib', j, s)
 
-  classpathentry('con', JRE)
+  classpathentry('con', JRE(args.java) if args.java else JRE())
   classpathentry('output', 'eclipse-out/classes')
 
   p = os.path.join(ROOT, '.classpath')
