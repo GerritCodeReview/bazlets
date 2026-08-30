@@ -4,12 +4,6 @@ Build rules for plugins.
 
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load("@rules_jvm_external//:defs.bzl", "artifact")
-load(
-    "//tools:commons.bzl",
-    _plugin_deps = "PLUGIN_DEPS",
-    _plugin_deps_neverlink = "PLUGIN_DEPS_NEVERLINK",
-    _plugin_test_deps = "PLUGIN_TEST_DEPS",
-)
 load("//tools:genrule2.bzl", "genrule2")
 load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
@@ -20,18 +14,16 @@ load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
 """
 
-PLUGIN_DEPS = _plugin_deps
-PLUGIN_DEPS_NEVERLINK = _plugin_deps_neverlink
-PLUGIN_TEST_DEPS = _plugin_test_deps
+def _gerrit_api_build_mode():
+    """Return the Bzlmod build mode, failing on the removed WORKSPACE toolchain."""
+    module = native.module_name()
+    if not module:
+        fail("WORKSPACE-based toolchain was removed; migrate to Bzlmod")
+    return module
 
 def gerrit_api_neverlink(name):
     """Return the correct Gerrit API neverlink dependency for the current build mode."""
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        return PLUGIN_DEPS_NEVERLINK
-    elif native.module_name() == "gerrit":
+    if _gerrit_api_build_mode() == "gerrit":
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
         # source tree
         return ["//plugins:plugin-lib-neverlink"]
@@ -48,12 +40,7 @@ def gerrit_api_neverlink(name):
 
 def gerrit_api():
     """Return the correct Gerrit API dependency for the current build mode."""
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        return PLUGIN_DEPS
-    elif native.module_name() == "gerrit":
+    if _gerrit_api_build_mode() == "gerrit":
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
         # source tree
         return ["//plugins:plugin-lib"]
@@ -67,12 +54,7 @@ def gerrit_acceptance_framework():
     Return the correct Gerrit Acceptance Framework dependency for the current
     build mode.
     """
-    if not native.module_name():
-        # Gerrit and/or plugin does not use bazel modules yet; use Gerrit API from
-        # maven repository as defined in gerrit_api.bzl
-        # TODO(thomas): Remove after migration to Bazel modules is complete
-        return PLUGIN_TEST_DEPS
-    elif native.module_name() == "gerrit":
+    if _gerrit_api_build_mode() == "gerrit":
         # In-tree build, i.e. Gerrit is the main module; use Gerrit API from Gerrit
         # source tree
         return ["//java/com/google/gerrit/acceptance:lib"]

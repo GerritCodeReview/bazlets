@@ -19,44 +19,9 @@ dependencies.
 <a name="setup"></a>
 ## Setup
 
-The setup depends on whether the plugin uses the deprecated Bazel WORKSPACE or
-has already transitioned to Bazel modules.
-
-### WORKSPACE
-
-To be able to use the Gerrit rules, you must provide bindings for the plugin
-API jars. The easiest way to do so is to add the following to your `WORKSPACE`
-file, which will give you default versions for Gerrit plugin API.
-
-```python
-git_repository(
-  name = "com_googlesource_gerrit_bazlets",
-  remote = "https://gerrit.googlesource.com/bazlets",
-  commit = "928c928345646ae958b946e9bbdb462f58dd1384",
-)
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api()
-```
-
-The `version` parameter allows to override the default API. For release version
-numbers, make sure to also provide artifacts' SHA1 sums via the
-`plugin_api_sha1` and `acceptance_framework_sha1` parameters:
-
-```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api(version = "3.2.1",
-           plugin_api_sha1 = "47019cf43ef7e6e8d2d5c0aeba0407d23c93699c",
-           acceptance_framework_sha1 = "6252cab6d1f76202e57858fcffb428424e90b128")
-```
-
-If the version ends in `-SNAPSHOT`, the jars are consumed from the local
-Maven repository (`~/.m2`) per default assumed to be and the SHA1 sums can be
-omitted:
-
-```python
-load("@com_googlesource_gerrit_bazlets//:gerrit_api.bzl", "gerrit_api")
-gerrit_api(version = "3.3.0-SNAPSHOT")
-```
+Bazlets requires the plugin to use Bazel modules (Bzlmod); the legacy
+`WORKSPACE` setup and the `gerrit_api()` helper have been removed. Plugins
+still on `WORKSPACE` should migrate to `rules_jvm_external`.
 
 ### MODULE.bazel
 
@@ -131,6 +96,7 @@ maven.install(
     ...
 )
 
+```
 <a name="basic-example"></a>
 ## Basic Example
 
@@ -143,13 +109,13 @@ Suppose you have the following directory structure for a simple plugin:
 │       ├── java
 │       └── resources
 ├── BUILD
-└── WORKSPACE
+└── MODULE.bazel
 ```
 
 To build this plugin, your `BUILD` can look like this:
 
 ```python
-load("//tools/bzl:plugin.bzl", "gerrit_plugin")
+load("@com_googlesource_gerrit_bazlets//:gerrit_plugin.bzl", "gerrit_plugin")
 
 gerrit_plugin(
     name = "reviewers",
