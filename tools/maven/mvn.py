@@ -51,8 +51,12 @@ common = [
 ]
 
 root = path.abspath(args.root)
-while not path.exists(path.join(root, 'WORKSPACE')):
-  root = path.dirname(root)
+while not path.exists(path.join(root, 'MODULE.bazel')):
+  parent = path.dirname(root)
+  if parent == root:
+    print('MODULE.bazel not found above %s' % args.root, file=stderr)
+    exit(1)
+  root = parent
 
 if 'install' == args.a:
   cmd = mvn(args.a) + ['install:install-file'] + common
