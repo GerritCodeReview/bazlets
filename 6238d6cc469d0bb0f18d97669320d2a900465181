@@ -16,6 +16,24 @@
       "message": "Can we look for either file? Or is the tip of bazlets already bzlmod-only (`README.md` still talks about `WORKSPACE`)?",
       "revId": "6238d6cc469d0bb0f18d97669320d2a900465181",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "958ddcd7_4da050c2",
+        "filename": "tools/maven/mvn.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002666
+      },
+      "writtenOn": "2026-08-31T22:38:25Z",
+      "side": 1,
+      "message": "Ah, I see the child change does that: https://gerrit-review.googlesource.com/c/bazlets/+/623422",
+      "parentUuid": "0ea42eb2_6f68ab13",
+      "revId": "6238d6cc469d0bb0f18d97669320d2a900465181",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
