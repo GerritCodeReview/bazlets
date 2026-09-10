@@ -362,6 +362,76 @@ def gerrit_plugin_tests(
         **kwargs
     )
 
+def gerrit_plugin_library(
+        name,
+        srcs = [],
+        deps = [],
+        plugin = None,
+        ext_deps = [],
+        ext_deps_label = None,
+        ext_repo = None,
+        **kwargs):
+    """Creates a production java_library that is one internal layer of a Gerrit plugin.
+
+    Use this for plugin packages split out of the monolithic gerrit_plugin()
+    `srcs` glob so their dependency edges can be constrained explicitly -- i.e.
+    to control who-depends-on-whom inside the plugin's own DAG (for example, to
+    keep a native/protocol layer from importing a dependency the rest of the
+    plugin uses). The aggregating gerrit_plugin() target lists these libraries
+    in its `deps`.
+
+    The library gets the Gerrit plugin API on its compile-only (neverlink)
+    classpath via gerrit_api_neverlink(), so the API is not bundled twice, and
+    it works in both build modes (Gerrit in-tree and standalone plugin). Any
+    Maven `ext_deps` are resolved against the plugin's rules_jvm_external
+    repository (`<plugin>_plugin_deps` by default) -- the same repository the
+    plugin's gerrit_plugin()/gerrit_plugin_tests() targets use -- so a split
+    library sees the same artifacts in both build modes. The aggregating
+    gerrit_plugin() should reference these libraries with a package-relative
+    label (no leading `//`) so it resolves under both mounts.
+
+    This differs from gerrit_plugin_test_util() in three ways: the result is
+    production code (not `testonly`), it does not pull in the acceptance-test
+    framework, and it does NOT prepend the `:<plugin>__plugin` target -- an
+    internal library is a *lower* layer than the plugin's wiring, so depending
+    on the plugin would invert the intended DAG (and, since gerrit_plugin()
+    depends back on the library, would create a cycle).
+
+    Args:
+      name: Name of the library.
+      srcs: Java source files for the library.
+      deps: Additional Bazel dependencies, typically sibling plugin libraries
+        created by this macro.
+      plugin: Plugin name, used only to derive `ext_repo`
+        (`<plugin>_plugin_deps`) when `ext_deps` is set. Optional.
+      ext_deps: Maven coordinates resolved against `ext_repo`. Only one of
+        `ext_deps` or `ext_deps_label` may be provided.
+      ext_deps_label: Label of a java_library that exports Maven dependencies.
+        Only one of `ext_deps` or `ext_deps_label` may be provided.
+      ext_repo: Name of the rules_jvm_external repository. Defaults to
+        `<plugin>_plugin_deps` when `plugin` is set.
+      **kwargs: Additional arguments passed to the underlying java_library
+        (for example `visibility` or `resources`).
+    """
+    if ext_deps and ext_deps_label:
+        fail("Only one of `ext_deps` or `ext_deps_label` may be provided.")
+
+    if ext_deps:
+        if ext_repo == None:
+            if plugin == None:
+                fail("gerrit_plugin_library: `plugin` or `ext_repo` must be set when `ext_deps` is provided")
+            ext_repo = plugin + "_plugin_deps"
+        deps = deps + _artifacts(ext_deps, ext_repo)
+    elif ext_deps_label:
+        deps = deps + [ext_deps_label]
+
+    java_library(
+        name = name,
+        srcs = srcs,
+        deps = deps + gerrit_api_neverlink(name),
+        **kwargs
+    )
+
 def gerrit_plugin_test_util(
         name,
         srcs = [],
