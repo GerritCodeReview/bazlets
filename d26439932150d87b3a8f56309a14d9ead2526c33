@@ -34,6 +34,24 @@
       "parentUuid": "af01c375_6df1352a",
       "revId": "d26439932150d87b3a8f56309a14d9ead2526c33",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19602850_2bdf2bb1",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2026-10-02T14:20:10Z",
+      "side": 0,
+      "message": "You are right. I confused this rule with another `genrule2` on L188, were we use `bazel-out/stable-status.txt`, and depends on `tools/workspace_status.py`, and thus `stamp \u003d 1`.",
+      "parentUuid": "ae73fda7_f0f0bc4e",
+      "revId": "d26439932150d87b3a8f56309a14d9ead2526c33",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
