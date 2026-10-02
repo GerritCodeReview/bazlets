@@ -216,7 +216,6 @@ def gerrit_plugin(
     ])
     genrule2(
         name = name + target_suffix,
-        stamp = 1,
         srcs = ["%s__non_stamped_deploy.jar" % name],
         cmd = " && ".join([
             "TZ=UTC",
@@ -227,8 +226,8 @@ def gerrit_plugin(
             "unzip -qo $$ROOT/$< -x " + EXCLUDES + " 2>/dev/null",
             copy_license_cmd,
             "echo \"Implementation-Version: $$GEN_VERSION\nGerrit-ApiVersion: $$API_VERSION\n$$(cat META-INF/MANIFEST.MF)\" > META-INF/MANIFEST.MF",
-            "find . -exec touch '{}' ';'",
-            "zip -Xqr $$ROOT/$@ .",
+            "find . -exec touch -t 198001010000 '{}' ';'",
+            "find . -mindepth 1 -print | LC_ALL=C sort | zip -Xq $$ROOT/$@ -@",
         ]),
         tools = [
             ":%s__gen_stamp_info" % name,
