@@ -16,6 +16,24 @@
       "message": "Why was this removed?",
       "revId": "d26439932150d87b3a8f56309a14d9ead2526c33",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae73fda7_f0f0bc4e",
+        "filename": "gerrit_plugin.bzl",
+        "patchSetId": 1
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1087391
+      },
+      "writtenOn": "2026-10-02T12:28:10Z",
+      "side": 0,
+      "message": "\"stamp \u003d 1\": add the stable-status.txt file to the input of the action.\nHere, we are not using that file directly, but using `name + \"__gen_stamp_info\"` output instead.\n\nSo effectively, the action is still stamped through a stamped transitive dependency, but itself does not require this additional input.",
+      "parentUuid": "af01c375_6df1352a",
+      "revId": "d26439932150d87b3a8f56309a14d9ead2526c33",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153"
     }
   ]
 }
