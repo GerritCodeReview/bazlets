@@ -4,6 +4,7 @@ Build rules for plugins.
 
 load("@rules_java//java:defs.bzl", "java_binary", "java_library")
 load("@rules_jvm_external//:defs.bzl", "artifact")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     "//tools:commons.bzl",
     _plugin_deps = "PLUGIN_DEPS",
@@ -582,6 +583,35 @@ def gerrit_plugin_dependency_tests(
         name = plugin + "_sbom",
         target = plugin_target,
         product_name = plugin,
+    )
+
+    # Scan that SBOM for known CVEs with Trivy and fail on any finding, at
+    # every severity. Not hermetic: it shells out to a locally installed trivy
+    # and needs the network for the vulnerability database, so it is opt-in
+    # (manual) and runs on the host (local), uncached (external). Run with
+    # bazel test //plugins/{plugin}:{plugin}_sbom_scan.
+    #
+    # Suppressions are per-plugin, never shared: a plugin that must accept a CVE
+    # (no upstream fix, or not reachable from that plugin) drops a .trivyignore
+    # next to its BUILD, and it is picked up here automatically.
+    scan_args = ["$(rootpath :%s_sbom)" % plugin]
+    scan_data = [":%s_sbom" % plugin]
+    trivyignore = native.glob([".trivyignore"], allow_empty = True)
+    if trivyignore:
+        scan_args.append("$(rootpath %s)" % trivyignore[0])
+        scan_data.append(trivyignore[0])
+
+    sh_test(
+        name = plugin + "_sbom_scan",
+        srcs = ["@com_googlesource_gerrit_bazlets//tools:trivy_scan.sh"],
+        args = scan_args,
+        data = scan_data,
+        tags = [
+            "external",
+            "local",
+            "manual",
+            "no-sandbox",
+        ],
     )
 
     if not overlap_against:

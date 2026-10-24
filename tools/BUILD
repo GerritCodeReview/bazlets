@@ -8,6 +8,7 @@ exports_files([
     "runtime_jars_allowlist.bzl",
     "runtime_jars_overlap.bzl",
     "sbom.bzl",
+    "trivy_scan.sh",
 ])
 
 py_library(
