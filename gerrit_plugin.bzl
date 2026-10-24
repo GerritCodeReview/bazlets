@@ -15,7 +15,7 @@ load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
 load("//tools:runtime_jars_allowlist.bzl", "runtime_jars_allowlist_test")
 load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
-load("//tools:sbom.bzl", "sbom")
+load("//tools:sbom_scan.bzl", "sbom_scan")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
@@ -576,10 +576,13 @@ def gerrit_plugin_dependency_tests(
         hint = allowlist_hint,
     )
 
-    # CycloneDX SBOM of the plugin's own bundled dependencies. Build with
-    # bazel build //plugins/{plugin}:{plugin}_sbom.
-    sbom(
-        name = plugin + "_sbom",
+    # CycloneDX SBOM of the plugin's own bundled dependencies, plus an opt-in
+    # Trivy scan. Build with  bazel build //plugins/{plugin}:{plugin}_sbom  and
+    # scan with  bazel test //plugins/{plugin}:{plugin}_sbom_scan. A plugin that
+    # must accept a CVE (no upstream fix, or not reachable) drops a .trivyignore
+    # next to its BUILD; it is picked up automatically.
+    sbom_scan(
+        name = plugin,
         target = plugin_target,
         product_name = plugin,
     )
