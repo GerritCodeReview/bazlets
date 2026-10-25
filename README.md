@@ -354,34 +354,48 @@ common --@com_googlesource_gerrit_bazlets//flags:in_gerrit_tree=true
 Standalone plugin workspaces should not set this flag. In that case, the
 corresponding targets are marked incompatible and reported as SKIPPED by Bazel.
 
-## SBOM generation
+## SBOM generation and vulnerability scanning
 
-Use the shared `sbom()` rule to generate CycloneDX JSON from a Java dependency
-graph. The same aspect and generator serve Gerrit, Gitiles and plugins.
+Use `sbom_scan()` to generate a CycloneDX SBOM and an opt-in Trivy scan for a
+packaged target. The aspect, JSON generator and scan wrapper live in Bazlets
+and are shared by Gerrit, Gitiles and plugins.
 
 ```python
-load("@com_googlesource_gerrit_bazlets//tools:sbom.bzl", "sbom")
+load("@com_googlesource_gerrit_bazlets//tools:sbom_scan.bzl", "sbom_scan")
 
-sbom(
-    name = "gitiles_sbom",
+sbom_scan(
+    name = "gitiles",
     target = ":gitiles",
     product_group = "com.google.gitiles",
-    product_name = "gitiles",
     version_file = ":version.txt",
 )
 ```
 
 ```bash
 bazelisk build //:gitiles_sbom
+bazelisk test //:gitiles_sbom_scan
 ```
 
-For `pkg_war` targets, the `sbom_shipped_labels` output group identifies the
-packaged JARs after exclusions. Other packaging rules can pass a manifest through
-`shipped_labels`, with a packaged path, a tab and the producing target's label
-on each line. Java libraries use their `JavaInfo` runtime jars instead.
+For `pkg_war` targets, Bazlets reads the packaged-JAR manifest from the
+`sbom_shipped_labels` output group. Packaging exclusions are applied before
+that manifest is produced. A different packaging rule can pass its manifest
+through `shipped_labels`: each line contains the packaged path, a tab and the
+producing target's label. Java libraries use `JavaInfo` runtime jars instead.
+Targets without either source of packaging metadata report their dependency
+closure without asserting which components ship.
 
-Only bundled dependencies are reported when packaging metadata is available.
-Set `include_compile_only = True` to also report build-time dependencies.
-Targets without packaging metadata report the dependency closure without
-asserting which components ship. The product identity is configured through
+By default, only bundled dependencies are reported when packaging metadata is
+available. Set `include_compile_only = True` to also report build-time
+dependencies, marked separately. The product identity is set through
 `product_group`, `product_name`, and `version` or `version_file`.
+
+The Trivy test requires a local `trivy` installation and network access for
+its vulnerability database. It is tagged `manual`, `local`, `external`, and
+`no-sandbox`. It fails on findings at any severity. `PATH`, `HOME`,
+`TRIVY_SEVERITY`, and `TRIVY_CACHE_DIR` are inherited from the invoking shell.
+For example, use `TRIVY_SEVERITY=HIGH,CRITICAL bazelisk test //:gitiles_sbom_scan`
+to select those severities.
+
+Set `trivyignore` to a suppression file, or place `.trivyignore` next to the
+calling BUILD file. Suppressions stay with each consuming project; Bazlets
+does not supply shared exceptions.
