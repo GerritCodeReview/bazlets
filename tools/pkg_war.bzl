@@ -106,6 +106,7 @@ def _war_impl(ctx):
     # Metadata we expose for checks/tools.
     jar_entries = []
     jar_ids = []
+    jar_labels = []
 
     # Create war layout
     cmd = [
@@ -138,9 +139,10 @@ def _war_impl(ctx):
         inputs.append(dep)
 
         jar_entries.append("WEB-INF/lib/" + packaged)
+        jar_labels.append("WEB-INF/lib/%s\t%s" % (packaged, dep.owner))
 
         jid = normalize_jar_id(packaged)
-        if is_third_party_jar_id(ctx,jid):
+        if is_third_party_jar_id(ctx, jid):
             jar_ids.append(jid)
 
     # Add pgm libs
@@ -158,6 +160,7 @@ def _war_impl(ctx):
             inputs.append(dep)
 
             jar_entries.append("WEB-INF/pgm-lib/" + packaged)
+            jar_labels.append("WEB-INF/pgm-lib/%s\t%s" % (packaged, dep.owner))
 
             jid = normalize_jar_id(packaged)
             if is_third_party_jar_id(ctx, jid):
@@ -190,6 +193,11 @@ def _war_impl(ctx):
         content = "\n".join(sorted(jar_entries)) + "\n",
     )
 
+    ctx.actions.write(
+        output = ctx.outputs.labels,
+        content = "\n".join(sorted(jar_labels)) + "\n",
+    )
+
     # Add zip war
     cmd.append(_make_war(build_output, war))
 
@@ -203,6 +211,7 @@ def _war_impl(ctx):
 
     return [
         DefaultInfo(files = depset([war, ctx.outputs.jars, ctx.outputs.entries])),
+        OutputGroupInfo(sbom_shipped_labels = depset([ctx.outputs.labels])),
     ]
 
 # context: go to the root directory
@@ -223,6 +232,7 @@ _pkg_war = rule(
         "war": "%{name}.war",
         "jars": "%{name}.war.jars.txt",
         "entries": "%{name}.war.entries.txt",
+        "labels": "%{name}.war.labels.txt",
     },
     implementation = _war_impl,
 )

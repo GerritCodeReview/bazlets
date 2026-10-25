@@ -353,3 +353,35 @@ common --@com_googlesource_gerrit_bazlets//flags:in_gerrit_tree=true
 
 Standalone plugin workspaces should not set this flag. In that case, the
 corresponding targets are marked incompatible and reported as SKIPPED by Bazel.
+
+## SBOM generation
+
+Use the shared `sbom()` rule to generate CycloneDX JSON from a Java dependency
+graph. The same aspect and generator serve Gerrit, Gitiles and plugins.
+
+```python
+load("@com_googlesource_gerrit_bazlets//tools:sbom.bzl", "sbom")
+
+sbom(
+    name = "gitiles_sbom",
+    target = ":gitiles",
+    product_group = "com.google.gitiles",
+    product_name = "gitiles",
+    version_file = ":version.txt",
+)
+```
+
+```bash
+bazelisk build //:gitiles_sbom
+```
+
+For `pkg_war` targets, the `sbom_shipped_labels` output group identifies the
+packaged JARs after exclusions. Other packaging rules can pass a manifest through
+`shipped_labels`, with a packaged path, a tab and the producing target's label
+on each line. Java libraries use their `JavaInfo` runtime jars instead.
+
+Only bundled dependencies are reported when packaging metadata is available.
+Set `include_compile_only = True` to also report build-time dependencies.
+Targets without packaging metadata report the dependency closure without
+asserting which components ship. The product identity is configured through
+`product_group`, `product_name`, and `version` or `version_file`.

@@ -15,6 +15,7 @@ load("//tools:in_gerrit_tree.bzl", "in_gerrit_tree_enabled")
 load("//tools:junit.bzl", "junit_tests")
 load("//tools:runtime_jars_allowlist.bzl", "runtime_jars_allowlist_test")
 load("//tools:runtime_jars_overlap.bzl", "runtime_jars_overlap_test")
+load("//tools:sbom.bzl", "sbom")
 
 """Bazel rule for building [Gerrit Code Review](https://www.gerritcodereview.com/)
 gerrit_plugin is rule for building Gerrit plugins using Bazel.
@@ -573,6 +574,14 @@ def gerrit_plugin_dependency_tests(
         target = plugin_target,
         allowlist = allowlist,
         hint = allowlist_hint,
+    )
+
+    # CycloneDX SBOM of the plugin's own bundled dependencies. Build with
+    # bazel build //plugins/{plugin}:{plugin}_sbom.
+    sbom(
+        name = plugin + "_sbom",
+        target = plugin_target,
+        product_name = plugin,
     )
 
     if not overlap_against:
